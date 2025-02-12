@@ -1,0 +1,22 @@
+;; Capslock as Control and Escape
+
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc 
+  caps h j k l grv w a s d
+)
+
+(defalias
+  escctrl (tap-hold-press 200 200 esc lctl)
+  grvchg (tap-hold-press 200 200 grv (layer-toggle arrows))
+)
+
+(deflayer default 
+  @escctrl _ _ _ _ @grvchg _ _ _ _
+)
+
+(deflayer arrows
+  _ left down up rght _ up left down rght
+)
