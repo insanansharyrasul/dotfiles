@@ -1,10 +1,34 @@
-# Dotfiles
+<h1> Dotfiles </h1>
 
 This is my dotfiles for Ubuntu 22.04
 
-# What is dotfile?
+
+#  Table of Contents
+- [Table of Contents](#table-of-contents)
+  - [What is dotfile?](#what-is-dotfile)
+  - [Content](#content)
+    - [Folders](#folders)
+    - [Application](#application)
+  - [Requirements](#requirements)
+    - [Git](#git)
+    - [Stow](#stow)
+  - [Installation](#installation)
+
+
+## What is dotfile?
 
 A dotfile is a hidden configuration file that starts with a dot (.) and is used to store settings for applications and tools. They are commonly found in the home directory. 
+
+## Content
+
+### Folders
+- .fonts
+- .config 
+### Application
+- alacritty
+- fish
+- kanata
+- systemd
 
 ## Requirements
 
