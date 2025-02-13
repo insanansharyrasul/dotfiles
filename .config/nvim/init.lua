@@ -18,7 +18,16 @@ vim.call('plug#begin')
 
 Plug('m4xshen/autoclose.nvim')
 Plug('https://tpope.io/vim/surround.git')
+Plug('https://github.com/Shatur/neovim-ayu.git')
 
 vim.call('plug#end')
 
 require("autoclose").setup()
+
+require('ayu').setup({
+    mirage = false,
+    terminal = true,
+    overrides = {},
+})
+
+require('ayu').colorscheme()
