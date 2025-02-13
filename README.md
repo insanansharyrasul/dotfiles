@@ -1,7 +1,7 @@
 <h1> Dotfiles </h1>
 
-This is my dotfiles for Ubuntu 22.04
 
+![image](assets/ss1.png)
 
 #  Table of Contents
 - [Table of Contents](#table-of-contents)
@@ -24,11 +24,15 @@ A dotfile is a hidden configuration file that starts with a dot (.) and is used 
 ### Folders
 - .fonts
 - .config 
+- .themes
+- .poshthemes
 ### Application
 - alacritty
 - fish
 - kanata
 - systemd
+- neovim
+- 
 
 ## Requirements
 
