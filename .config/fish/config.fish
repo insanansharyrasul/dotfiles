@@ -7,3 +7,7 @@ alias vi nvim
 # end
 
 set fish_greeting
+
+# >>> coursier install directory >>>
+set -gx PATH "$PATH:/home/teaguy21/.local/share/coursier/bin"
+# <<< coursier install directory <<<
