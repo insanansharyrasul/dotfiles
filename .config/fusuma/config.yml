@@ -4,3 +4,14 @@ swipe:
       command: swaymsg workspace prev
     right:
       command: swaymsg workspace next
+  4:
+    up:
+      command: pactl set-sink-volume @DEFAULT_SINK@ +5%
+    down:
+      command: pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+threshold:
+  swipe: 0.2
+
+interval:
+  swipe: 0.3
