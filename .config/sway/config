@@ -1,0 +1,230 @@
+# Sway config file for Ubuntu 22.04
+# User: insanansharyrasul
+
+### Variables
+set $mod Mod4
+set $term alacritty
+
+### Output configuration
+output * bg #4c4f69 solid_color
+# output * bg /home/teaguy21/Pictures/Wallpapers/kaai_yuki_white.jpg fill
+
+output * scale 2
+output eDP-1 resolution 2880x1800 position 0,0
+output HDMI-A-1 resolution 1920x1200 position 1440,0
+output HDMI-A-1 scale 1
+
+### Idle configuration
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+### Input configuration
+input * {
+    xkb_layout us
+    # Enable tap to click for touchpads
+    tap enabled
+    # Natural scroll like macOS/modern touchpads (uncomment if preferred)
+    # natural_scroll enabled
+
+    # Disable mouse acceleration
+    pointer_accel -0.2
+    repeat_delay 200
+    repeat_rate 50
+}
+
+### Theme
+
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Catppuccin'
+    gsettings set $gnome-schema icon-theme 'Papirus-Dark'
+    gsettings set $gnome-schema font-name 'jetbrains mono nerd font 12'
+    dbus-update-activation-environment --systemd XCURSOR_THEME=Bibata XCURSOR_SIZE=24
+}
+seat * xcursor_theme Bibata-Modern-Classic 24
+
+default_border pixel 3
+default_floating_border pixel 3
+
+### Key bindings
+# Basics:
+    # Fast way to open applications
+    bindsym $mod+e exec opera
+    bindsym $mod+f exec nautilus
+    bindsym $mod+v exec code --ozone-platform-hint=auto
+
+    # Open the application menu
+    bindsym $mod+Shift+p exec ~/.config/wofi/power.sh
+
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+Shift+q kill
+
+    # Start your launcher
+    bindsym $mod+d exec wofi --show drun
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+    # Screenshot bindings
+    bindsym $mod+Shift+s exec mkdir -p ~/Pictures/Screenshots && \
+        FILENAME=~/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d-%H%M%S).png && \
+        grim -g "$(slurp)" "$FILENAME" && \
+        wl-copy < "$FILENAME" && \
+        notify-send "Screenshot" "Saved to $FILENAME and copied to clipboard"
+
+# Moving around:
+    # Move your focus around
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Vim version
+    bindsym $mod+h focus left
+    bindsym $mod+j focus down
+    bindsym $mod+k focus up
+    bindsym $mod+l focus right
+
+    # Move the focused window
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+
+# Workspaces:
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+
+    # Move to workspace
+    bindsym Ctrl+Alt+Left workspace prev
+    bindsym Ctrl+Alt+Right workspace next
+    bindsym Ctrl+Alt+h workspace prev
+    bindsym Ctrl+Alt+l workspace next
+
+    # Move to workspace with mouse scroll
+    bindsym --whole-window $mod+button4 workspace prev
+    bindsym --whole-window $mod+button5 workspace next
+      
+    # Move focused container to workspace 
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
+
+# Layout stuff:
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    bindsym $mod+b splith
+    bindsym $mod+n splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+t layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+g fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    # bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space floating toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+
+# Scratchpad:
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    bindsym $mod+minus scratchpad show
+
+# Resizing containers:
+mode "resize" {
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    bindsym $mod+h resize shrink width 10px
+    bindsym $mod+j resize grow height 10px
+    bindsym $mod+k resize shrink height 10px
+    bindsym $mod+l resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Special keys for volume, brightness, etc.
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+
+# Status Bar:
+bar {
+    swaybar_command waybar
+}
+
+# Window decorations
+hide_edge_borders smart
+smart_gaps off
+smart_borders on
+
+default_border pixel 3
+default_floating_border pixel 3
+gaps inner  5
+gaps outer  0
+
+# Set colors
+    client.focused          #ffc0cb #ffc0cb #ffffff
+    client.unfocused        #2e3440 #1f222d #888888
+    client.focused_inactive #2e3440 #1f222d #888888 
+    client.placeholder      #2e3440 #1f222d #888888
+    client.urgent           #D08770 #D08770 #ffffff
+    client.background       #242424
+
+# Autostart applications
+exec fusuma &
+exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+# XDG Desktop Portal
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+include /etc/sway/config.d/*

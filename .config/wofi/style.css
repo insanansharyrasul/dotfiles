@@ -1,0 +1,51 @@
+/* ~/.config/wofi/style.css */
+window {
+    margin: 5px;
+    border: 2px solid #88c0d0;
+    background-color: #2e3440;
+    border-radius: 8px;
+}
+
+#input {
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #3b4252;
+    color: #d8dee9;
+}
+
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: #2e3440;
+    color: #d8dee9;
+}
+
+#outer-box {
+    margin: 5px;
+    border: none;
+    background-color: #2e3440;
+}
+
+#scroll {
+    margin: 5px;
+    border: none;
+}
+
+#text {
+    margin: 5px;
+    border: none;
+    color: #d8dee9;
+}
+
+/* This affects the icons */
+#entry:selected {
+    background-color: #5e81ac;
+    border-radius: 5px;
+}
+
+/* Make icons larger and add padding */
+#img {
+    margin-right: 10px;
+    margin-left: 5px;
+}
