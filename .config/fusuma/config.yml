@@ -1,0 +1,6 @@
+swipe:
+  3:
+    left:
+      command: swaymsg workspace prev
+    right:
+      command: swaymsg workspace next

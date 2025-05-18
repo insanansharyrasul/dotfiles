@@ -1,0 +1,145 @@
+{
+  "modules-left": [
+    "custom/launcher",
+    "sway/workspaces",
+    "temperature",
+    "idle_inhibitor",
+    "mpd"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "backlight",
+    "memory",
+    "cpu",
+    "network",
+    "battery",
+    "custom/powermenu",
+    "tray"
+  ],
+  "custom/launcher": {
+    "format": "\uef72 ",
+    "on-click": "wofi --show drun",
+    "tooltip": false
+  },
+  "sway/workspaces": {
+    "disable-scroll": true
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "\uea70",
+      "deactivated": "\ueae7"
+    },
+    "tooltip": false
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "\udb80\udcde",
+      "\udb80\udcdd",
+      "\udb80\udcdb",
+      "\udb80\udcda"
+    ]
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "婢 Muted",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "states": {
+      "warning": 85
+    },
+    "scroll-step": 1,
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "tooltip": false
+  },
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": "{icon} {capacity}%",
+    "format-icons": [
+      "\udb80\udc7a",
+      "\udb80\udc7b",
+      "\udb80\udc7c",
+      "\udb80\udc7d",
+      "\udb80\udc7e",
+      "\udb80\udc7f",
+      "\udb80\udc80",
+      "\udb80\udc81"
+    ],
+    "format-full": "{icon} {capacity}%",
+    "format-charging": "\udb80\udc84 {capacity}%",
+    "tooltip": false
+  },
+  "clock": {
+    "on-click": "~/.config/waybar/switch_style1.sh &",
+    "on-click-right": "~/.config/waybar/wallpaper_random.sh &",
+    "on-click-middle": "~/.config/waybar/live_wallpaper.sh &",
+    "interval": 1,
+    "format": "{:%I:%M %p  %A %b %d}",
+    "tooltip": true,
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+  "memory": {
+    "interval": 1,
+    "format": "\ue266 {percentage}%",
+    "states": {
+      "warning": 85
+    }
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "\uf4bc {usage}%"
+  },
+  "mpd": {
+    "max-length": 25,
+    "format": "<span foreground='#bb9af7'></span> {title}",
+    "format-paused": " {title}",
+    "format-stopped": "<span foreground='#bb9af7'></span>",
+    "format-disconnected": "",
+    "on-click": "mpc --quiet toggle",
+    "on-click-right": "mpc ls | mpc add",
+    "on-click-middle": "kitty ncmpcpp",
+    "on-scroll-up": "mpc --quiet prev",
+    "on-scroll-down": "mpc --quiet next",
+    "smooth-scrolling-threshold": 5,
+    "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})"
+  },
+  "network": {
+    "interval": 1,
+    "interface": "wlo1",
+    "format-wifi": "󰖩 {essid}",
+    "format-ethernet": "󰈀 {ifname} ({ipaddr})",
+    "format-linked": "󰖪 {essid} (No IP)",
+    "format-disconnected": "󰖪 Disconnected",
+    "tooltip": false
+  },
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon6/temp2_input",
+    "tooltip": false,
+    "format": " {temperatureC}°C"
+  },
+  "custom/powermenu": {
+    "format": "",
+    "on-click": "~/.config/wofi/power.sh",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 5
+  }
+}

@@ -1,0 +1,7 @@
+# Add to ~/.config/wofi/config
+[drun]
+show-icons=true
+icon_size=24
+allow_images=true
+image_size=24
+display_generic=true
