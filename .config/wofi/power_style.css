@@ -1,5 +1,5 @@
 window {
-    background-color: #2e3440;
+    background-color: #0d1017;
     border: 2px solid #5e81ac;
     border-radius: 8px;
 }
@@ -8,18 +8,18 @@ window {
     margin: 5px;
     border: none;
     color: #d8dee9;
-    background-color: #3b4252;
+    background-color: #0d1017;
 }
 
 #inner-box {
     margin: 5px;
     color: #d8dee9;
-    background-color: #2e3440;
+    background-color: #0d1017;
 }
 
 #outer-box {
     margin: 5px;
-    background-color: #2e3440;
+    background-color: #0d1017;
 }
 
 #scroll {
