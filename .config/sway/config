@@ -6,10 +6,12 @@ set $mod Mod4
 set $term alacritty
 
 ### Output configuration
-output * bg #4c4f69 solid_color
+output * bg #6C7380 solid_color
 # output * bg /home/teaguy21/Pictures/Wallpapers/kaai_yuki_white.jpg fill
+corner_radius 10
+titlebar_separator disable
 
-output * scale 2
+output * scale 1.8
 output eDP-1 resolution 2880x1800 position 0,0
 output HDMI-A-1 resolution 1920x1200 position 1440,0
 output HDMI-A-1 scale 1
@@ -42,6 +44,7 @@ exec_always {
     gsettings set $gnome-schema icon-theme 'Papirus-Dark'
     gsettings set $gnome-schema font-name 'jetbrains mono nerd font 12'
     dbus-update-activation-environment --systemd XCURSOR_THEME=Bibata XCURSOR_SIZE=24
+    autotiling
 }
 seat * xcursor_theme Bibata-Modern-Classic 24
 
@@ -141,8 +144,8 @@ default_floating_border pixel 3
 # Layout stuff:
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
-    bindsym $mod+b splith
-    bindsym $mod+n splitv
+    bindsym $mod+semicolon splitv
+    bindsym $mod+apostrophe splith
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
@@ -221,8 +224,9 @@ gaps outer  0
 # Autostart applications
 exec fusuma &
 exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
-exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec autotiling
 
 # XDG Desktop Portal
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
