@@ -3,8 +3,7 @@
     "custom/launcher",
     "sway/workspaces",
     "temperature",
-    "idle_inhibitor",
-    "mpd"
+    "idle_inhibitor"
   ],
   "modules-center": [
     "clock"
@@ -104,20 +103,6 @@
   "cpu": {
     "interval": 1,
     "format": "\uf4bc {usage}%"
-  },
-  "mpd": {
-    "max-length": 25,
-    "format": "<span foreground='#bb9af7'></span> {title}",
-    "format-paused": " {title}",
-    "format-stopped": "<span foreground='#bb9af7'></span>",
-    "format-disconnected": "",
-    "on-click": "mpc --quiet toggle",
-    "on-click-right": "mpc ls | mpc add",
-    "on-click-middle": "kitty ncmpcpp",
-    "on-scroll-up": "mpc --quiet prev",
-    "on-scroll-down": "mpc --quiet next",
-    "smooth-scrolling-threshold": 5,
-    "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})"
   },
   "network": {
     "interval": 1,
