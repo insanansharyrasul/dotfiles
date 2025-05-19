@@ -3,7 +3,8 @@
     "custom/launcher",
     "sway/workspaces",
     "temperature",
-    "idle_inhibitor"
+    "idle_inhibitor",
+    "mode"
   ],
   "modules-center": [
     "clock"

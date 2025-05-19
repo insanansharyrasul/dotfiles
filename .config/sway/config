@@ -80,8 +80,9 @@ default_floating_border pixel 3
     bindsym $mod+Shift+s exec mkdir -p ~/Pictures/Screenshots && \
         FILENAME=~/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d-%H%M%S).png && \
         grim -g "$(slurp)" "$FILENAME" && \
-        wl-copy < "$FILENAME" && \
-        notify-send "Screenshot" "Saved to $FILENAME and copied to clipboard"
+        wl-copy < "$FILENAME"
+
+        # notify-send "Screenshot" "Saved to $FILENAME and copied to clipboard"
 
 # Moving around:
     # Move your focus around

@@ -2,7 +2,7 @@
 window {
     margin: 5px;
     border: 2px solid #88c0d0;
-    background-color: #2e3440;
+    background-color: #0d1017;
     border-radius: 8px;
 }
 
@@ -17,14 +17,14 @@ window {
 #inner-box {
     margin: 5px;
     border: none;
-    background-color: #2e3440;
+    background-color: #0d1017;
     color: #d8dee9;
 }
 
 #outer-box {
     margin: 5px;
     border: none;
-    background-color: #2e3440;
+    background-color: #0d1017;
 }
 
 #scroll {
