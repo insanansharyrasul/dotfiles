@@ -11,3 +11,5 @@ set fish_greeting
 # >>> coursier install directory >>>
 set -gx PATH "$PATH:/home/teaguy21/.local/share/coursier/bin"
 # <<< coursier install directory <<<
+
+set -x XDG_CURRENT_DESKTOP sway

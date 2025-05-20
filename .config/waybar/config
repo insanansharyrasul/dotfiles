@@ -3,7 +3,8 @@
     "custom/launcher",
     "sway/workspaces",
     "temperature",
-    "idle_inhibitor"
+    "idle_inhibitor",
+    "tray"
   ],
   "modules-center": [
     "clock"
@@ -16,8 +17,7 @@
     "cpu",
     "network",
     "battery",
-    "custom/powermenu",
-    "tray"
+    "custom/powermenu"
   ],
   "custom/launcher": {
     "format": "\uef72 ",
