@@ -98,12 +98,12 @@ default_floating_border pixel 3
     bindsym $mod+0 workspace number 10
 
     bindsym Ctrl+Alt+Left workspace prev
-    bindsym Ctrl+Alt+Right workspace next
+    bindsym Ctrl+Alt+Right exec ~/.config/sway/scripts/gnome-like-workspace.sh next
     bindsym Ctrl+Alt+h workspace prev
-    bindsym Ctrl+Alt+l workspace next
+    bindsym Ctrl+Alt+l exec ~/.config/sway/scripts/gnome-like-workspace.sh next
 
     bindsym --whole-window $mod+button4 workspace prev
-    bindsym --whole-window $mod+button5 workspace next
+    bindsym --whole-window $mod+button5 exec ~/.config/sway/scripts/gnome-like-workspace.sh next
       
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
