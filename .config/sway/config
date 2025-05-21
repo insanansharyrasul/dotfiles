@@ -42,6 +42,8 @@ exec_always gsettings set $gnome-schema icon-theme 'Papirus-Dark'
 exec_always gsettings set $gnome-schema font-name 'jetbrains mono nerd font 12'
 exec_always dbus-update-activation-environment --systemd XCURSOR_THEME=Bibata XCURSOR_SIZE=24
 exec_always ~/.local/bin/autotiling
+exec_always --no-startup-id fusuma &
+exec_always --no-startup-id mako &
 
 seat * xcursor_theme Bibata-Modern-Classic 24
 
@@ -54,6 +56,7 @@ default_floating_border pixel 3
     bindsym $mod+e exec opera
     bindsym $mod+f exec nautilus
     bindsym $mod+v exec code --ozone-platform-hint=auto
+    bindsym $mod+b exec ~/.config/waybar/scripts/toggle-waybar.sh
 
     # Sway
     bindsym $mod+Shift+p exec ~/.config/wofi/power.sh
@@ -143,8 +146,8 @@ default_floating_border pixel 3
     for_window [class="Emulator"]                    floating enable
 
 # Scratchpad:
-    bindsym $mod+Shift+minus move scratchpad
-    bindsym $mod+minus scratchpad show
+    bindsym $mod+minus move scratchpad
+    bindsym $mod+equal scratchpad show
 
 # Resizing containers:
 mode "resize" {
@@ -172,6 +175,9 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # Status Bar:
 bar {
@@ -197,10 +203,9 @@ gaps outer  0
     client.background       #242424
 
 # Autostart applications
-exec fusuma &
-exec mako &
 exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+exec ~/.config/waybar/scripts/autohide-waybar.sh
 
 
 # XDG Desktop Portal
