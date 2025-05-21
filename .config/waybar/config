@@ -136,7 +136,10 @@
     "format-ethernet": "󰈀 {ifname} ({ipaddr})",
     "format-linked": "󰖪 {essid} (No IP)",
     "format-disconnected": "󰖪 Disconnected",
-    "tooltip": false
+    "tooltip": true,
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n{signalStrength}% | {signaldBm}dBm | {frequency}MHz\n⬆️ {bandwidthUpBits} ⬇️ {bandwidthDownBits}",
+    "on-click": "~/.config/waybar/scripts/network-menu.sh",
+    "on-click-right": "nmtui-connect"
   },
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon6/temp2_input",
