@@ -4,7 +4,8 @@
     "sway/workspaces",
     "temperature",
     "idle_inhibitor",
-    "tray"
+    "tray",
+    "sway/mode"
   ],
   "modules-center": [
     "clock"
@@ -12,10 +13,10 @@
   "modules-right": [
     "pulseaudio",
     "backlight",
-    "bluetooth",
     "memory",
     "cpu",
     "network",
+    "bluetooth",
     "battery",
     "custom/powermenu"
   ],
@@ -64,12 +65,7 @@
     ]
   },
   "bluetooth": {
-    "format": "{icon}",
-    "format-connected": "{icon} {device_alias}",
-    "format-icons": {
-      "enabled": "\udb80\udcaf",
-      "disabled": "\udb80\udcb2"
-    },
+    "format": "\udb80\udcaf",
     "tooltip-format": "{controller_alias}\t{controller_address}",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
@@ -119,7 +115,8 @@
     "interval": 1,
     "format": "{:%H:%M:%S %A, %b %d}",
     "tooltip": true,
-    "tooltip-format": "<tt>{calendar}</tt>"
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "on-click-middle": "~/.config/sway/scripts/toggle-wallpaper.sh"
   },
   "memory": {
     "interval": 1,

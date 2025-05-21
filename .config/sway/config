@@ -6,14 +6,15 @@ set $mod Mod4
 set $term alacritty
 
 ### Output configuration
-output * bg #000000 solid_color
+# output * bg #000000 solid_color
 # output * bg #6C7380 solid_color
 # output * bg /home/teaguy21/Pictures/Wallpapers/kaai_yuki_white.jpg fill
+exec ~/.config/sway/scripts/toggle-wallpaper.sh --initial
 
 corner_radius 10
 titlebar_separator disable
 
-output * scale 2
+output * scale 1.8
 output eDP-1 resolution 2880x1800 position 0,0
 output HDMI-A-1 resolution 1920x1200 position 1440,0
 output HDMI-A-1 scale 1
@@ -126,6 +127,20 @@ default_floating_border pixel 3
     # bindsym $mod+Shift+space floating toggle
     bindsym $mod+space floating toggle
     bindsym $mod+a focus parent
+
+# Floating windows:
+    for_window [app_id="pop-up"]                     floating enable
+    for_window [app_id="bubble"]                     floating enable 
+    for_window [app_id="task_dialog"]                floating enable
+    for_window [app_id="Preferences"]                floating enable
+    for_window [app_id="dialog"]                     floating enable 
+    for_window [app_id="menu"]                       floating enable
+    for_window [app_id="Organizer"]                  floating enable
+    for_window [app_id="About"]                      floating enable
+    for_window [app_id="toolbox"]                    floating enable
+    for_window [app_id="page-info"]                  floating enable	
+    for_window [app_id="webconsole"]                 floating enable
+    for_window [class="Emulator"]                    floating enable
 
 # Scratchpad:
     bindsym $mod+Shift+minus move scratchpad
