@@ -62,7 +62,7 @@ tooltip label {
   padding-right: 6px;
   color: rgb(201, 203, 255);
 }
-#mode, #clock, #memory, #temperature,#cpu,#mpd, #idle_inhibitor, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal {
+#mode, #clock, #memory, #temperature,#cpu,#mpd, #idle_inhibitor, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal, #bluetooth {
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -71,6 +71,10 @@ tooltip label {
  	background-color: rgb(248, 189, 150); 
      color: rgb(13, 16, 23); 
  } 
+
+#bluetooth  {
+  color: rgb(114, 135, 253);
+}
 
 #memory {
   color: rgb(181, 232, 224);
