@@ -192,8 +192,8 @@ smart_borders on
 
 default_border pixel 3
 default_floating_border pixel 3
-gaps inner  5
-gaps outer  0
+gaps inner  0
+gaps outer  5
 
 # Set colors
     client.focused          #ffc0cb #ffc0cb #ffffff
@@ -206,8 +206,6 @@ gaps outer  0
 # Autostart applications
 exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
-exec ~/.config/waybar/scripts/autohide-waybar.sh
-
 
 # XDG Desktop Portal
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE=wayland DISPLAY SWAYSOCK
