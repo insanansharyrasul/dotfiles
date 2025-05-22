@@ -73,7 +73,9 @@
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "format-muted": "婢 Muted",
+    "format-source": "󰍬 {volume}%",
+    "format-source-muted": "󰍭 Muted",
+    "format-muted": "󰝟 Muted",
     "format-icons": {
       "default": [
         "",
@@ -86,6 +88,10 @@
     },
     "scroll-step": 1,
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "on-click-middle": "pavucontrol",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
     "tooltip": false
   },
   "battery": {
