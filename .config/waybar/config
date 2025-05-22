@@ -76,7 +76,7 @@
       ]
     },
     "states": {
-      "warning": 85
+      "warning": 70
     },
     "scroll-step": 1,
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
