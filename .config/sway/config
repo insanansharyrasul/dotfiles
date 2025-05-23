@@ -58,6 +58,7 @@ default_floating_border pixel 3
     bindsym $mod+f exec nautilus
     bindsym $mod+v exec code --ozone-platform-hint=auto
     bindsym $mod+b exec ~/.config/waybar/scripts/toggle-waybar.sh
+    bindsym $mod+t exec gnome-system-monitor
 
     # Sway
     bindsym $mod+Shift+p exec ~/.config/wofi/power.sh
@@ -126,7 +127,7 @@ default_floating_border pixel 3
     bindsym $mod+apostrophe splith
     bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
-    bindsym $mod+t layout toggle split
+    bindsym $mod+y layout toggle split
     bindsym $mod+g fullscreen
     # bindsym $mod+Shift+space floating toggle
     bindsym $mod+space floating toggle
