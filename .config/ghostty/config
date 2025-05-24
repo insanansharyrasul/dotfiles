@@ -1,0 +1,51 @@
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   /home/teaguy21/.config/ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+
+# Font configuration (matching Alacritty)
+font-family = FiraCode Nerd Font
+font-style = Retina
+font-size = 11.5
+
+# Window configuration (matching Alacritty)
+window-padding-x = 15
+window-padding-y = 15
+window-decoration = false
+background-opacity = 1.0
+
+# Ayu Dark Theme Colors (matching Alacritty theme)
+background = 0A0E14
+foreground = B3B1AD
+
+# Normal colors
+palette = 0=#01060E
+palette = 1=#EA6C73
+palette = 2=#91B362
+palette = 3=#F9AF4F
+palette = 4=#53BDFA
+palette = 5=#FAE994
+palette = 6=#90E1C6
+palette = 7=#C7C7C7
+
+# Bright colors
+palette = 8=#686868
+palette = 9=#F07178
+palette = 10=#C2D94C
+palette = 11=#FFB454
+palette = 12=#59C2FF
+palette = 13=#FFEE99
+palette = 14=#95E6CB
+palette = 15=#FFFFFF
