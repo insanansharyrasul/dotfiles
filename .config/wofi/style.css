@@ -1,8 +1,7 @@
 /* ~/.config/wofi/style.css */
 window {
     margin: 5px;
-    border: 2px solid #88c0d0;
-    background-color: #0d1017;
+    background-color: #10141c;
     border-radius: 8px;
 }
 
@@ -10,21 +9,21 @@ window {
     margin: 5px;
     border-radius: 5px;
     border: none;
-    background-color: #3b4252;
-    color: #d8dee9;
+    background-color: #161a24;
+    color: #bfbdb6;
 }
 
 #inner-box {
     margin: 5px;
     border: none;
-    background-color: #0d1017;
-    color: #d8dee9;
+    background-color: #10141c;
+    color: #bfbdb6;
 }
 
 #outer-box {
     margin: 5px;
     border: none;
-    background-color: #0d1017;
+    background-color: #10141c;
 }
 
 #scroll {
@@ -35,16 +34,19 @@ window {
 #text {
     margin: 5px;
     border: none;
-    color: #d8dee9;
+    color: #bfbdb6;
 }
 
-/* This affects the icons */
 #entry:selected {
-    background-color: #5e81ac;
+    background-color: #e6b450;
+    color: #10141c;
     border-radius: 5px;
 }
 
-/* Make icons larger and add padding */
+#entry:selected #text {
+    color: #10141c;
+}
+
 #img {
     margin-right: 10px;
     margin-left: 5px;
