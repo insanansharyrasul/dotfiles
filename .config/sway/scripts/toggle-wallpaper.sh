@@ -18,6 +18,7 @@ if [ -z "$1" ] || [ "$1" != "--initial" ]; then
     if [ "$CURRENT_STATE" = "solid" ]; then
         pkill swaybg 2>/dev/null
         mpvpaper -o "no-audio loop video-scale=oversample panscan=1.0" eDP-1 "${WALLPAPERS[0]}" &
+        mpvpaper -o "no-audio loop video-scale=oversample panscan=1.0" HDMI-A-1 "${WALLPAPERS[0]}" &
         echo "animated:0" > "$STATE_FILE"
     elif [[ "$CURRENT_STATE" == animated:* ]]; then
         CURRENT_INDEX=${CURRENT_STATE#animated:}
@@ -31,6 +32,7 @@ if [ -z "$1" ] || [ "$1" != "--initial" ]; then
             echo "solid" > "$STATE_FILE"
         else
             mpvpaper -o "no-audio loop video-scale=oversample panscan=1.0" eDP-1 "${WALLPAPERS[$NEXT_INDEX]}" &
+            mpvpaper -o "no-audio loop video-scale=oversample panscan=1.0" HDMI-A-1 "${WALLPAPERS[$NEXT_INDEX]}" &
             echo "animated:$NEXT_INDEX" > "$STATE_FILE"
         fi
     fi
