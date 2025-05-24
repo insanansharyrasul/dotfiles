@@ -3,7 +3,7 @@ swipe:
     left:
       command: swaymsg workspace prev
     right:
-      command: swaymsg workspace next
+      command: ~/.config/sway/scripts/gnome-like-workspace.sh next
   4:
     up:
       command: pactl set-sink-volume @DEFAULT_SINK@ +5%
