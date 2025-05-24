@@ -197,12 +197,12 @@ gaps inner  0
 gaps outer  5
 
 # Set colors
-    client.focused          #ffc0cb #ffc0cb #ffffff
-    client.unfocused        #2e3440 #1f222d #888888
-    client.focused_inactive #2e3440 #1f222d #888888 
-    client.placeholder      #2e3440 #1f222d #888888
-    client.urgent           #D08770 #D08770 #ffffff
-    client.background       #242424
+    client.focused          #e6b450 #e6b450 #10141c
+    client.unfocused        #161a24 #161a24 #6c7380
+    client.focused_inactive #161a24 #161a24 #6c7380 
+    client.placeholder      #161a24 #161a24 #6c7380
+    client.urgent           #d95757 #d95757 #bfbdb6
+    client.background       #10141c
 
 # Autostart applications
 exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
