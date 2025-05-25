@@ -16,7 +16,7 @@ titlebar_separator disable
 
 output * scale 1.8
 output eDP-1 resolution 2880x1800 position 0,0
-output HDMI-A-1 resolution 1920x1200 position 1440,0
+output HDMI-A-1 resolution 1920x1200 position 1599,0
 output HDMI-A-1 scale 1
 
 ### Idle configuration
