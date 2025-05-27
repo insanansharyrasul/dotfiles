@@ -1,0 +1,91 @@
+# Ayu Dark theme for btop
+# Based on the Ayu Dark color scheme
+
+# All graphs and meters can be gradients
+# For single color graphs leave "mid" and "end" variable empty.
+# Use "start" and "end" variables for two color gradient
+# Use "start", "mid" and "end" variables for three color gradient
+
+# Main background, empty for terminal default, need to be empty if you want transparent background
+theme[main_bg]="#0A0E14"
+
+# Main text color
+theme[main_fg]="#B3B1AD"
+
+# Title color for boxes
+theme[title]="#53BDFA"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#FAE994"
+
+# Background color of selected item in processes box
+theme[selected_bg]="#01060E"
+
+# Foreground color of selected item in processes box
+theme[selected_fg]="#FFFFFF"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#686868"
+
+# Color of text appearing on top of graphs, i.e uptime and current network graph scaling
+theme[graph_text]="#C7C7C7"
+
+# Background color of the percentage meters
+theme[meter_bg]="#01060E"
+
+# Misc colors for processes box including mini cpu graphs, details memory graph and details status text
+theme[proc_misc]="#90E1C6"
+
+# CPU, Memory, Network, Proc box outline colors
+theme[cpu_box]="#EA6C73"
+theme[mem_box]="#91B362"
+theme[net_box]="#F9AF4F"
+theme[proc_box]="#FAE994"
+
+# Box divider line and small boxes line color
+theme[div_line]="#686868"
+
+# Temperature graph color (single)
+theme[temp_start]="#53BDFA"
+theme[temp_mid]="#59C2FF"
+theme[temp_end]="#EA6C73"
+
+# CPU graph colors (gradient)
+theme[cpu_start]="#91B362"
+theme[cpu_mid]="#F9AF4F"
+theme[cpu_end]="#EA6C73"
+
+# Mem/Disk free meter (gradient)
+theme[free_start]="#90E1C6"
+theme[free_mid]="#53BDFA"
+theme[free_end]="#59C2FF"
+
+# Mem/Disk cached meter (gradient)
+theme[cached_start]="#FAE994"
+theme[cached_mid]="#FFEE99"
+theme[cached_end]="#F9AF4F"
+
+# Mem/Disk available meter (gradient)
+theme[available_start]="#91B362"
+theme[available_mid]="#C2D94C"
+theme[available_end]="#F9AF4F"
+
+# Mem/Disk used meter (gradient)
+theme[used_start]="#F07178"
+theme[used_mid]="#EA6C73"
+theme[used_end]="#01060E"
+
+# Download graph colors (gradient)
+theme[download_start]="#90E1C6"
+theme[download_mid]="#95E6CB"
+theme[download_end]="#53BDFA"
+
+# Upload graph colors (gradient)
+theme[upload_start]="#FAE994"
+theme[upload_mid]="#FFEE99"
+theme[upload_end]="#F9AF4F"
+
+# Process box color gradient for threads, mem and cpu usage (single)
+theme[process_start]="#53BDFA"
+theme[process_mid]="#59C2FF"
+theme[process_end]="#90E1C6"
