@@ -55,7 +55,7 @@ default_floating_border pixel 3
 # Basics:
     # Application
     bindsym $mod+e exec opera
-    bindsym $mod+f exec nautilus
+    bindsym $mod+f exec nemo
     bindsym $mod+v exec code --ozone-platform-hint=auto
     bindsym $mod+b exec ~/.config/waybar/scripts/toggle-waybar.sh
     bindsym $mod+t exec gnome-system-monitor
