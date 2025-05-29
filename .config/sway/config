@@ -147,6 +147,7 @@ default_floating_border pixel 3
     for_window [app_id="bubble"]                     floating enable 
     for_window [app_id="task_dialog"]                floating enable
     for_window [app_id="Preferences"]                floating enable
+    for_window [app_id="gnome-calendar"]            floating enable
     for_window [app_id="dialog"]                     floating enable 
     for_window [app_id="menu"]                       floating enable
     for_window [app_id="Organizer"]                  floating enable
@@ -230,12 +231,14 @@ gaps outer  0
     client.urgent           #d95757 #d95757 #bfbdb6
     client.background       #10141c
 
-# Autostart applications
-exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
 
 # XDG Desktop Portal
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE=wayland DISPLAY SWAYSOCK
-exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE DISPLAY SWAYSOCK
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE DISPLAY SWAYSOCK &
 exec systemctl --user start xdg-desktop-portal
 exec systemctl --user start xdg-desktop-portal-wlr
+
+# Autostart applications
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+
