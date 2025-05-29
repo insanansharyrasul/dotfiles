@@ -114,7 +114,8 @@
     "interval": 1,
     "format": "{:%H:%M:%S %A, %b %d}",
     "tooltip": true,
-    "tooltip-format": "<tt>{calendar}</tt>",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>\n<big>📅 Today: {:%A, %B %d, %Y}</big>",
+    "on-click": "gnome-calendar",
     "on-click-middle": "~/.config/sway/scripts/toggle-wallpaper.sh",
     "on-click-right": "sh ~/.config/sway/scripts/instant-solid.sh"
   },
