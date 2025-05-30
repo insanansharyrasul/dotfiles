@@ -34,6 +34,9 @@ input * {
     repeat_rate 50
 }
 
+# Disable focus follows mouse
+focus_follows_mouse no
+
 ### Theme
 
 set $gnome-schema org.gnome.desktop.interface
@@ -78,7 +81,17 @@ default_floating_border pixel 3
     bindsym $mod+Shift+s exec mkdir -p ~/Pictures/Screenshots && \
         FILENAME=~/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d-%H%M%S).png && \
         grim -g "$(slurp)" "$FILENAME" && \
-        wl-copy < "$FILENAME"
+        wl-copy < "$FILENAME" && \
+        notify-send "Screenshot" "Cropped screenshot saved to $FILENAME"
+    
+    # Screenshot bindings
+    bindsym Print exec mkdir -p ~/Pictures/Screenshots && \
+        FILENAME=~/Pictures/Screenshots/fullscreen-$(date +%Y-%m-%d-%H%M%S).png && \
+        grim "$FILENAME" && \
+        wl-copy < "$FILENAME" && \
+        notify-send "Screenshot" "Full screenshot saved to $FILENAME"
+    
+    bindsym Shift+Print exec ~/.config/sway/scripts/screenshot-window.sh
 
 # Moving around:
     bindsym $mod+Left focus left
