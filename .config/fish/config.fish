@@ -1,6 +1,8 @@
 oh-my-posh init fish --config $HOME/.poshthemes/montys.omp.json | source
 alias vim nvim
 alias vi nvim
+alias p "ping www.google.com"
+alias rsc "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-Fi networks.'"
 
 # if status is-interactive
     # Commands to run in interactive sessions can go here
