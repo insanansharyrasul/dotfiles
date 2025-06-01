@@ -1,4 +1,4 @@
-oh-my-posh init fish --config $HOME/.poshthemes/montys.omp.json | source
+oh-my-posh init fish --config $HOME/.poshthemes/ayu_custom.omp.json | source
 alias vim nvim
 alias vi nvim
 alias p "ping www.google.com"
