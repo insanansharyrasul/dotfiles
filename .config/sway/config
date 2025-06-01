@@ -44,10 +44,6 @@ exec_always gsettings set $gnome-schema gtk-theme 'Catppuccin'
 exec_always gsettings set $gnome-schema icon-theme 'Papirus-Dark'
 exec_always gsettings set $gnome-schema font-name 'jetbrains mono nerd font 12'
 exec_always dbus-update-activation-environment --systemd XCURSOR_THEME=Bibata XCURSOR_SIZE=24
-exec --no-startup-id ~/.local/bin/autotiling
-exec --no-startup-id fusuma &
-exec --no-startup-id mako &
-exec --no-startup-id blueman-applet 
 
 seat * xcursor_theme Bibata-Modern-Classic 24
 
@@ -254,4 +250,8 @@ exec systemctl --user start xdg-desktop-portal-wlr
 # Autostart applications
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
-
+exec --no-startup-id ~/.local/bin/autotiling
+exec --no-startup-id fusuma &
+exec --no-startup-id mako &
+exec --no-startup-id blueman-applet &
+exec --no-startup-id kdeconnect-indicator &

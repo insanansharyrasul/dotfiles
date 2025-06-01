@@ -13,26 +13,26 @@
             "home_icon": "\ueb06",
             "style": "full"
           },
-          "template": " <#000>\uf07b \uea9c</> {{ .Path }} ",
-          "foreground": "#ffffff",
+          "template": " <#10141c>\uf07b \uea9c</> {{ .Path }} ",
+          "foreground": "#10141c",
           "powerline_symbol": "\ue0b0",
           "leading_powerline_symbol": "\ue0b6",
-          "background": "#DA627D",
+          "background": "#e6b450",
           "type": "path",
           "style": "powerline"
         },
         {
           "properties": {
-            "branch_icon": " <#ffffff>\ue0a0 </>",
+            "branch_icon": " <#10141c>\ue0a0 </>",
             "cache_duration": "none",
             "fetch_stash_count": true,
             "fetch_status": false,
             "fetch_upstream_icon": true
           },
           "template": " ➜ ({{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }}) ",
-          "foreground": "#ffffff",
+          "foreground": "#10141c",
           "powerline_symbol": "\ue0b0",
-          "background": "#FCA17D",
+          "background": "#f07178",
           "type": "git",
           "style": "powerline"
         },
@@ -41,9 +41,9 @@
             "cache_duration": "none"
           },
           "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
-          "foreground": "#ffffff",
+          "foreground": "#10141c",
           "powerline_symbol": "\ue0b0",
-          "background": "#76b367",
+          "background": "#aad94c",
           "type": "node",
           "style": "powerline"
         }
@@ -58,7 +58,7 @@
             "cache_duration": "none"
           },
           "template": "\ue3bf ",
-          "foreground": "#cd5e42",
+          "foreground": "#f07178",
           "type": "root",
           "style": "plain"
         },
@@ -66,8 +66,8 @@
           "properties": {
             "cache_duration": "none"
           },
-          "template": "<b>{{ .UserName }}</b> <#26C6DA>❯</><#45F1C2>❯</>",
-          "foreground": "#CD4277",
+          "template": "<b>{{ .UserName }} </b><#e6b450>></>",
+          "foreground": "#d2a6ff",
           "type": "text",
           "style": "plain"
         }
