@@ -65,7 +65,7 @@ default_floating_border pixel 3
     bindsym $mod+Shift+p exec ~/.config/wofi/power.sh
     bindsym $mod+Return exec $term
     bindsym $mod+Shift+q kill
-    bindsym $mod+d exec wofi --show drun
+    bindsym $mod+d exec wofi --show drun --style "$HOME/.config/wofi/wofi-font.css"
     floating_modifier $mod normal
     bindsym $mod+Shift+c reload
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'

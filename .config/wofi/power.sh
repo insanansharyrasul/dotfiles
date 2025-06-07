@@ -3,7 +3,7 @@
 
 entries="⏻ Shutdown\n⟳ Reboot\n⏾ Suspend\n⏏ Logout\n🔒 Lock"
 
-selected=$(echo -e $entries | wofi --dmenu --cache-file /dev/null --insensitive --width 250 --height 210 --style ~/.config/wofi/power_style.css --prompt "Power Menu" | awk '{print tolower($2)}')
+selected=$(echo -e $entries | wofi --dmenu --cache-file /dev/null --insensitive --width 250 --height 210 --style ~/.config/wofi/wofi-font.css --prompt "Power Menu" | awk '{print tolower($2)}')
 
 case $selected in
   shutdown)

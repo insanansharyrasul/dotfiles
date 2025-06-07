@@ -1,0 +1,151 @@
+/* Ayu Dark Theme for Wofi */
+
+window {
+    margin: 0px;
+    border: 2px solid #1F2430;
+    background-color: #0A0E14;
+    border-radius: 8px;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 13px;
+    color: #B3B1AD;
+}
+
+#input {
+    margin: 8px;
+    padding: 8px 12px;
+    border: 1px solid #1F2430;
+    background-color: #1A1F29;
+    border-radius: 6px;
+    color: #E6E1CF;
+    font-size: 14px;
+    caret-color: #FF8F40;
+}
+
+#input:focus {
+    border-color: #FF8F40;
+    box-shadow: 0 0 0 1px #FF8F40;
+}
+
+#inner-box {
+    margin: 8px;
+    border: none;
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 0px;
+    border: none;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+    background-color: transparent;
+}
+
+#text {
+    margin: 0px;
+    border: none;
+    color: #B3B1AD;
+    font-weight: 400;
+}
+
+#entry {
+    padding: 8px 12px;
+    margin: 2px;
+    border-radius: 6px;
+    border: none;
+    background-color: transparent;
+    color: #B3B1AD;
+    transition: all 0.2s ease;
+}
+
+#entry:selected {
+    background-color: #1F2430;
+    color: #E6E1CF;
+    border-left: 3px solid #FF8F40;
+}
+
+#entry:hover {
+    background-color: #1A1F29;
+    color: #E6E1CF;
+}
+
+/* Style for network entries */
+#entry:nth-child(odd) {
+    background-color: rgba(31, 36, 48, 0.3);
+}
+
+#entry:nth-child(odd):selected {
+    background-color: #1F2430;
+    border-left: 3px solid #FFCC66;
+}
+
+/* VPN entries styling */
+#entry:contains("VPN") {
+    color: #95E6CB;
+    font-weight: 500;
+}
+
+#entry:contains("VPN"):selected {
+    background-color: #1F2430;
+    border-left: 3px solid #95E6CB;
+}
+
+/* Special styling for toggle options */
+#entry:contains("Enable"),
+#entry:contains("Disable") {
+    color: #FF8F40;
+    font-weight: 500;
+}
+
+#entry:contains("Enable"):selected,
+#entry:contains("Disable"):selected {
+    background-color: #1F2430;
+    border-left: 3px solid #FF8F40;
+}
+
+/* Connected network styling */
+#entry:contains("Disconnect") {
+    color: #F07178;
+    font-weight: 500;
+}
+
+#entry:contains("Disconnect"):selected {
+    background-color: #1F2430;
+    border-left: 3px solid #F07178;
+}
+
+/* Manual connection styling */
+#entry:contains("Manual") {
+    color: #D4BFFF;
+    font-style: italic;
+}
+
+#entry:contains("Manual"):selected {
+    background-color: #1F2430;
+    border-left: 3px solid #D4BFFF;
+}
+
+/* Scrollbar styling */
+scrolledwindow>scrollbar {
+    background-color: #1A1F29;
+    border-radius: 4px;
+    margin: 4px;
+}
+
+scrolledwindow>scrollbar>contents>trough {
+    background-color: #1A1F29;
+    border-radius: 4px;
+}
+
+scrolledwindow>scrollbar>contents>trough>slider {
+    background-color: #3D424D;
+    border-radius: 4px;
+    min-width: 8px;
+}
+
+scrolledwindow>scrollbar>contents>trough>slider:hover {
+    background-color: #FF8F40;
+}
