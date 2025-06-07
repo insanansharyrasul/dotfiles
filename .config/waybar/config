@@ -22,7 +22,7 @@
   ],
   "custom/launcher": {
     "format": "\uef72 ",
-    "on-click": "wofi --show drun",
+    "on-click": "wofi --show drun --style ~/.config/wofi/wofi-font.css",
     "tooltip": false
   },
   "wlr/taskbar": {
@@ -140,7 +140,8 @@
     "tooltip": true,
     "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n{signalStrength}% | {signaldBm}dBm | {frequency}MHz\n⬆️ {bandwidthUpBits} ⬇️ {bandwidthDownBits}",
     "on-click": "~/.config/waybar/scripts/network-menu.sh",
-    "on-click-middle": "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-Fi networks.'"
+    "on-click-middle": "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-Fi networks.'",
+    "on-click-right": "bash ~/.config/waybar/scripts/network-wofi.sh"
   },
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon6/temp2_input",
