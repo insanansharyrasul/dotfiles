@@ -18,17 +18,46 @@ ENABLED="${LOC_ENABLE["$CURRLOCALE"]}"
 ACTIVE="${LOC_ACTIVE["$CURRLOCALE"]}"
 INACTIVE="${LOC_INACTIVE["$CURRLOCALE"]}"
 
-# get current uuid
-CURRUUID="$(nmcli -f UUID,TYPE con show --active | grep wifi | awk '{print $1}')"
+# Cache variables to avoid redundant nmcli calls
+NMCLI_ACTIVE_CACHE=""
+NMCLI_WIFI_STATE_CACHE=""
+NMCLI_CON_LIST_CACHE=""
 
-# get wifi state
-function wifistate () {
-  echo "$(nmcli -fields WIFI g | sed -n 2p)"
+# Function to get active connections (cached)
+function get_active_connections() {
+  if [[ -z "$NMCLI_ACTIVE_CACHE" ]]; then
+    NMCLI_ACTIVE_CACHE="$(nmcli con show --active)"
+  fi
+  echo "$NMCLI_ACTIVE_CACHE"
 }
 
-# get active wifi connections
+# Function to get wifi state (cached)
+function get_wifi_state() {
+  if [[ -z "$NMCLI_WIFI_STATE_CACHE" ]]; then
+    NMCLI_WIFI_STATE_CACHE="$(nmcli -fields WIFI g)"
+  fi
+  echo "$NMCLI_WIFI_STATE_CACHE"
+}
+
+# Function to get connection list (cached)
+function get_connection_list() {
+  if [[ -z "$NMCLI_CON_LIST_CACHE" ]]; then
+    NMCLI_CON_LIST_CACHE="$(nmcli --fields ACTIVE,NAME,TYPE con)"
+  fi
+  echo "$NMCLI_CON_LIST_CACHE"
+}
+
+# get current uuid (now using cached data)
+CURRUUID="$(get_active_connections | grep wifi | awk '{print $1}')"
+
+# get wifi state (now using cached data)
+function wifistate () {
+  echo "$(get_wifi_state | sed -n 2p)"
+}
+
+# get active wifi connections (now using cached data)
 function wifiactive () {
-  echo "$(nmcli con show --active | grep wifi)"
+  echo "$(get_active_connections | grep wifi)"
 }
 
 function if_wifistate () {
@@ -54,7 +83,7 @@ function wifi_list () {
 }
 
 function vpn_list () {
-    nmcli --fields ACTIVE,NAME,TYPE con | awk '{ if ($NF == "vpn") { print "VPN: "$0 } }' | sed 's/ *vpn *$/"/g' | \
+    get_connection_list | awk '{ if ($NF == "vpn") { print "VPN: "$0 } }' | sed 's/ *vpn *$/"/g' | \
         sed "s/ *$INACTIVE */ Connect to \"/g" | sed "s/ *$ACTIVE */ Disconnect from \"/g"
 }
 
@@ -141,8 +170,8 @@ function main () {
     else
       CHSSID=$(get_ssid "$OPS")
 
-      # Check if password exists
-      if nmcli connection | grep -q "$CHSSID"; then
+      # Check if password exists (using cached connection list)
+      if get_connection_list | grep -q "$CHSSID"; then
           nmcli connection up "$CHSSID"
       else
         if [[ "$OPS" =~ "WPA2" ]] || [[ "$OPS" =~ "WEP" ]]; then
