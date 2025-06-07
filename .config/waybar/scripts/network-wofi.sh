@@ -1,4 +1,5 @@
 #!/bin/bash
+# https://github.com/jvanbruegge/dotfiles/blob/master/sway/wifi/nmcli-rofi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
@@ -61,9 +62,9 @@ function menu () {
   wa=$(wifiactive); ws=$(wifistate);
   if [[ $ws =~ $ENABLED ]]; then
     if [[ "$wa" != '' ]]; then
-        echo "$1\n\n$4\n\n$2\n$3\nManual Connection"
+        echo "$1\n\n$4\n\n$2\n$3"
     else
-        echo "$1\n\n$4\n\n$3\nManual Connection"
+        echo "$1\n\n$4\n\n$3"
     fi
   else
     echo "$4\n\n$3"
@@ -136,22 +137,6 @@ function main () {
 
     elif [[ "$OPS" =~ 'Disconnect' ]]; then
       nmcli con down uuid $CURRUUID
-
-    elif [[ "$OPS" =~ 'Manual' ]]; then
-      # Manual entry of the SSID
-      MSSID=$(echo -en "" | rofi -dmenu -p "SSID" -mesg "Enter the SSID of the network" \
-        -lines 0 -font "$FONT")
-
-      # manual entry of the PASSWORD
-      MPASS=$(echo -en "" | rofi -dmenu -password -p "PASSWORD" -mesg \
-        "Enter the PASSWORD of the network" -lines 0 -font "$FONT")
-
-      # If the user entered a manual password, then use the password nmcli command
-      if [ "$MPASS" = "" ]; then
-        nmcli dev wifi con "$MSSID"
-      elif [ "$MSSID" != '' ] && [ "$MPASS" != '' ]; then
-        nmcli dev wifi con "$MSSID" password "$MPASS"
-      fi
 
     else
       CHSSID=$(get_ssid "$OPS")

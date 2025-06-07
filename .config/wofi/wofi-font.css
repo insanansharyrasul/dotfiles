@@ -117,17 +117,6 @@ window {
     border-left: 3px solid #F07178;
 }
 
-/* Manual connection styling */
-#entry:contains("Manual") {
-    color: #D4BFFF;
-    font-style: italic;
-}
-
-#entry:contains("Manual"):selected {
-    background-color: #1F2430;
-    border-left: 3px solid #D4BFFF;
-}
-
 /* Scrollbar styling */
 scrolledwindow>scrollbar {
     background-color: #1A1F29;
