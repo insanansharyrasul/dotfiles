@@ -6,9 +6,6 @@ set $mod Mod4
 set $term alacritty
 
 ### Output configuration
-# output * bg #000000 solid_color
-# output * bg #6C7380 solid_color
-# output * bg /home/teaguy21/Pictures/Wallpapers/kaai_yuki_white.jpg fill
 exec ~/.config/sway/scripts/toggle-wallpaper.sh --initial
 
 corner_radius 10
@@ -147,7 +144,6 @@ default_floating_border pixel 3
     bindsym $mod+w layout tabbed
     bindsym $mod+y layout toggle split
     bindsym $mod+g fullscreen
-    # bindsym $mod+Shift+space floating toggle
     bindsym $mod+space floating toggle
     bindsym $mod+a focus parent
 
@@ -250,7 +246,7 @@ exec systemctl --user start xdg-desktop-portal-wlr
 # Autostart applications
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
-exec --no-startup-id ~/.local/bin/autotiling
+exec --no-startup-id ~/.local/bin/autotiling-rs
 exec --no-startup-id fusuma &
 exec --no-startup-id mako &
 exec --no-startup-id blueman-applet &
