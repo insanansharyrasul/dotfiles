@@ -244,7 +244,7 @@ exec systemctl --user start xdg-desktop-portal
 exec systemctl --user start xdg-desktop-portal-wlr
 
 # Autostart applications
-exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id lxpolkit
 exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
 exec --no-startup-id ~/.local/bin/autotiling-rs
 exec --no-startup-id fusuma &
