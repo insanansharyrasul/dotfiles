@@ -202,7 +202,8 @@ tooltip label {
 
 #battery.charging,
 #battery.full,
-#battery.discharging {
+#battery.discharging,
+#battery {
   color: #e6b450;
   border-radius: 10px;
 }
