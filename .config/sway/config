@@ -76,6 +76,9 @@ default_floating_border pixel 3
         grim -g "$(slurp)" "$FILENAME" && \
         wl-copy < "$FILENAME" && \
         notify-send "Screenshot" "Cropped screenshot saved to $FILENAME"
+
+    bindsym $mod+Insert exec ~/.config/sway/scripts/toggle-recording.sh
+    bindsym $mod+Shift+Insert exec ~/.config/sway/scripts/toggle-screen-audio-recording.sh
     
     # Screenshot bindings
     bindsym Print exec mkdir -p ~/Pictures/Screenshots && \
@@ -223,13 +226,13 @@ hide_edge_borders smart
 smart_gaps off
 smart_borders on
 
-default_border pixel 2
-default_floating_border pixel 2
+default_border pixel 3
+default_floating_border pixel 3
 gaps inner  5
 gaps outer  0
 
 # Set colors
-    client.focused          #e6b450 #e6b450 #10141c #e6b450 #e6b450
+    client.focused          #e6b450 #e6b450 #10141c
     client.unfocused        #161a24 #161a24 #6c7380
     client.focused_inactive #161a24 #161a24 #6c7380 
     client.placeholder      #161a24 #161a24 #6c7380
