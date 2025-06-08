@@ -5,8 +5,7 @@
     "temperature",
     "idle_inhibitor",
     "tray",
-    "sway/mode",
-    "cava"
+    "sway/mode"
   ],
   "modules-center": [
     "clock"
@@ -25,24 +24,9 @@
     "on-click": "wofi --show drun --style ~/.config/wofi/wofi-font.css",
     "tooltip": false
   },
-  "wlr/taskbar": {
-    "format": "{icon}",
-    "icon-size": 14,
-    "icon-theme": "Papirus-Dark",
-    "tooltip-format": "{title}",
-    "on-click": "activate",
-    "on-click-middle": "close"
-  },
   "sway/workspaces": {
     "disable-scroll": true,
-    "all-outputs": true,
-    "persistent_workspaces": {
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": [],
-      "5": []
-    }
+    "all-outputs": true
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -114,10 +98,29 @@
     "interval": 1,
     "format": "{:%H:%M:%S %A, %b %d}",
     "tooltip": true,
-    "tooltip-format": "<tt><big>{calendar}</big></tt>\n<big>📅 Today: {:%A, %B %d, %Y}</big>",
+    "tooltip-format": "<tt>{calendar}</tt>",
     "on-click": "gnome-calendar",
     "on-click-middle": "~/.config/sway/scripts/toggle-wallpaper.sh",
-    "on-click-right": "sh ~/.config/sway/scripts/instant-solid.sh"
+    "on-click-right": "sh ~/.config/sway/scripts/instant-solid.sh",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#bfbdb6'><b>{}</b></span>",
+        "days": "<span color='#5c6773'><b>{}</b></span>",
+        "weeks": "<span color='#95e6cb'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffb454'><b>{}</b></span>",
+        "today": "<span color='#ff8f40'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "tz_up",
+      "on-scroll-down": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
   },
   "memory": {
     "interval": 1,
@@ -155,6 +158,6 @@
   },
   "tray": {
     "icon-size": 15,
-    "spacing": 5
+    "spacing": 8
   }
 }
