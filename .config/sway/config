@@ -37,7 +37,7 @@ focus_follows_mouse no
 ### Theme
 
 set $gnome-schema org.gnome.desktop.interface
-exec_always gsettings set $gnome-schema gtk-theme 'Catppuccin'
+exec_always gsettings set $gnome-schema gtk-theme 'ayu-dark'
 exec_always gsettings set $gnome-schema icon-theme 'Papirus-Dark'
 exec_always gsettings set $gnome-schema font-name 'jetbrains mono nerd font 12'
 exec_always dbus-update-activation-environment --systemd XCURSOR_THEME=Bibata XCURSOR_SIZE=24

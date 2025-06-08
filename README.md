@@ -17,12 +17,14 @@
   - [📁 Content](#-content)
     - [Folders](#folders)
     - [Applications](#applications)
+    - [Themes](#themes)
   - [📦 Requirements](#-requirements)
     - [Optional Dependencies](#optional-dependencies)
   - [🚀 Installation](#-installation)
   - [🎯 Usage](#-usage)
     - [Key Features](#key-features)
   - [📄 License](#-license)
+  - [Credit](#credit)
 
 ## 🤔 What is dotfile?
 
@@ -47,6 +49,12 @@ A dotfile is a hidden configuration file that starts with a dot (.) and is used 
 - **Btop** - System monitor
 - **Systemd** - System services
 
+### Themes
+- **Ayu dark (customized)**
+- **Catppuccin**
+- **Dracula**
+- **Bibita Mouse Cursor**
+
 ## 📦 Requirements
 
 Ensure you have the following dependencies installed on your system:
@@ -56,20 +64,21 @@ Ensure you have the following dependencies installed on your system:
 | **Git**                    | Version control system            | `sudo apt install git`                                                           |
 | **Stow**                   | Symlink farm manager              | `sudo apt install stow`                                                          |
 | **Sway**                   | Wayland compositor                | `sudo apt install sway`                                                          |
-| **Waybar**                 | Status bar                        | `sudo apt install waybar`                                                        |
+| **Waybar**                 | Status bar                        | [Build manually from GitHub](https://github.com/Alexays/Waybar)                  |
 | **Alacritty**              | Terminal emulator                 | `sudo apt install alacritty`                                                     |
 | **Fish**                   | Shell                             | `sudo apt install fish`                                                          |
 | **Neovim**                 | Text editor                       | `sudo apt install neovim`                                                        |
 | **xdg-desktop-portal-wlr** | Desktop portal for screen sharing | [Build manually from GitHub](https://github.com/emersion/xdg-desktop-portal-wlr) |
 
 ### Optional Dependencies
-| Package     | Description          | Installation Command                                           |
-| ----------- | -------------------- | -------------------------------------------------------------- |
-| **Ghostty** | Alternative terminal | [Download from GitHub](https://github.com/ghostty-org/ghostty) |
-| **Btop**    | System monitor       | `sudo apt install btop`                                        |
-| **Wofi**    | Application launcher | `sudo apt install wofi`                                        |
-| **Mako**    | Notification daemon  | `sudo apt install mako-notifier`                               |
-| **Fusuma**  | Touchpad gestures    | `sudo gem install fusuma`                                      |
+| Package         | Description                        | Installation Command                                           |
+| --------------- | ---------------------------------- | -------------------------------------------------------------- |
+| **Ghostty**     | Alternative terminal               | [Download from GitHub](https://github.com/ghostty-org/ghostty) |
+| **Btop**        | System monitor                     | `sudo apt install btop`                                        |
+| **Wofi**        | Application launcher               | `sudo apt install wofi`                                        |
+| **Mako**        | Notification daemon                | `sudo apt install mako-notifier`                               |
+| **Fusuma**      | Touchpad gestures                  | `sudo gem install fusuma`                                      |
+| **kde-connect** | Multiplatform device communication | [Install from source](https://github.com/KDE/kdeconnect-kde)   |
 
 ## 🚀 Installation
 
@@ -104,6 +113,12 @@ After installation, your dotfiles will be symlinked to their appropriate locatio
 ## 📄 License
 
 This project is licensed under the GPL-3.0 license - see the [LICENSE](LICENSE) file for details.
+
+
+## Credit 
+I also used other resources for my dotfiles:
+1. [Ayu-dark theme, by K4zoku](https://github.com/K4zoku/dotfiles/tree/a486fb6d612db309e0dfc9123fb2ffcf9213db21)
+2. 
 
 ---
 
