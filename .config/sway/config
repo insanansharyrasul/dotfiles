@@ -229,7 +229,7 @@ gaps inner  5
 gaps outer  0
 
 # Set colors
-    client.focused          #e6b450 #e6b450 #10141c
+    client.focused          #e6b450 #e6b450 #10141c #e6b450 #e6b450
     client.unfocused        #161a24 #161a24 #6c7380
     client.focused_inactive #161a24 #161a24 #6c7380 
     client.placeholder      #161a24 #161a24 #6c7380
