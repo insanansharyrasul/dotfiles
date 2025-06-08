@@ -1,0 +1,8 @@
+[Nemo Action]
+Name=Send via KDE Connect (Advanced)...
+Comment=Send file(s) to connected devices via KDE Connect
+Exec=~/.local/share/nemo/actions/kdeconnect-send.sh %F
+Icon-Name=kdeconnect
+Selection=any
+Extensions=any;
+Dependencies=kdeconnect-cli;
