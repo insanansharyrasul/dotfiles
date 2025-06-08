@@ -52,13 +52,19 @@ window {
 }
 
 #entry {
-    padding: 8px 12px;
+    padding: 12px 16px;
     margin: 2px;
     border-radius: 6px;
     border: none;
     background-color: transparent;
     color: #B3B1AD;
     transition: all 0.2s ease;
+}
+
+/* Icon spacing */
+#entry image {
+    margin-right: 8px;
+    padding: 2px;
 }
 
 #entry:selected {
