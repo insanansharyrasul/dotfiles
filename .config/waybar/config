@@ -103,7 +103,7 @@
     "on-click-middle": "~/.config/sway/scripts/toggle-wallpaper.sh",
     "on-click-right": "sh ~/.config/sway/scripts/instant-solid.sh",
     "calendar": {
-      "mode": "year",
+      "mode": "month",
       "mode-mon-col": 3,
       "on-scroll": 1,
       "format": {
