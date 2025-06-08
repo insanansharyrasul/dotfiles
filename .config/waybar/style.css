@@ -47,20 +47,25 @@ window>box {
   padding-bottom: 5px;
   padding-left: 6px;
   padding-right: 6px;
+  border-radius: 10px;
 }
 
 #workspaces button.focused {
   background-color: #e6b450;
   color: #10141c;
+  border-radius: 10px;
 }
 
 #workspaces button.urgent {
   color: #10141c;
+  border-radius: 10px;
 }
 
 #workspaces button:hover {
   background-color: #ff8f40;
   color: #10141c;
+  transition: ease 0.2s all;
+  border-radius: 10px;
 }
 
 tooltip {
@@ -104,14 +109,38 @@ tooltip label {
 
 #memory {
   color: #39bae6;
+  border-radius: 10px;
+}
+
+#memory:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: #39bae6;
+  border-radius: 10px;
 }
 
 #cpu {
   color: #d2a6ff;
+  border-radius: 10px;
+}
+
+#cpu:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: #d2a6ff;
+  border-radius: 10px;
 }
 
 #clock {
   color: #bfbdb6;
+  border-radius: 10px;
+}
+
+#clock:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: #bfbdb6;
+  border-radius: 10px;
 }
 
 #idle_inhibitor {
@@ -120,18 +149,51 @@ tooltip label {
 
 #temperature {
   color: #59c2ff;
+  border-radius: 10px;
+}
+
+#temperature:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: #59c2ff;
+  border-radius: 10px;
 }
 
 #backlight {
   color: #ffb454;
+  border-radius: 10px;
+}
+
+#backlight:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: #ffb454;
+  border-radius: 10px;
 }
 
 #pulseaudio {
   color: #aad94c;
+  border-radius: 10px;
+}
+
+#pulseaudio:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: #aad94c;
+  border-radius: 10px;
 }
 
 #network {
   color: #95e6cb;
+  min-width: 20px;
+  border-radius: 10px;
+}
+
+#network:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: #95e6cb;
+  border-radius: 10px;
 }
 
 #network.disconnected {
@@ -142,6 +204,14 @@ tooltip label {
 #battery.full,
 #battery.discharging {
   color: #e6b450;
+  border-radius: 10px;
+}
+
+#battery:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: #e6b450;
+  border-radius: 10px;
 }
 
 #battery.critical:not(.charging) {
@@ -150,7 +220,15 @@ tooltip label {
 
 #custom-powermenu {
   color: #f07178;
-  margin-right: 8px;
+  padding-right: 12px;
+  border-radius: 10px;
+}
+
+#custom-powermenu:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: #f07178;
+  border-radius: 10px;
 }
 
 #tray {
