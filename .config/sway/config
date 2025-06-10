@@ -20,7 +20,7 @@ output HDMI-A-1 scale 1
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+         before-sleep 'swaylock -f -c 000000' && systemctl suspend
 
 ### Input configuration
 input * {
@@ -80,6 +80,7 @@ default_floating_border pixel 3
 
     bindsym $mod+Insert exec ~/.config/sway/scripts/toggle-recording.sh
     bindsym $mod+Shift+Insert exec ~/.config/sway/scripts/toggle-screen-audio-recording.sh
+    bindsym $mod+Ctrl+Insert exec ~/.config/sway/scripts/toggle-hq-recording.sh
     
     # Screenshot bindings
     bindsym Print exec mkdir -p ~/Pictures/Screenshots && \
