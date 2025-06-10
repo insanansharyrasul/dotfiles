@@ -11,7 +11,7 @@ exec ~/.config/sway/scripts/toggle-wallpaper.sh --initial
 corner_radius 10
 titlebar_separator disable
 
-output * scale 1.8
+output * scale 1.6
 output eDP-1 mode 2880x1800@90Hz position 0,0
 output HDMI-A-1 resolution 1920x1200 position 1599,0
 output HDMI-A-1 scale 1
@@ -55,6 +55,7 @@ default_floating_border pixel 3
     bindsym $mod+v exec code --ozone-platform-hint=auto
     bindsym $mod+b exec ~/.config/waybar/scripts/toggle-waybar.sh
     bindsym $mod+t exec gnome-system-monitor
+    bindsym $mod+z exec ~/.config/sway/scripts/woomer-launch.sh
 
     # Sounds
 
@@ -155,7 +156,7 @@ default_floating_border pixel 3
     for_window [app_id="bubble"]                     floating enable 
     for_window [app_id="task_dialog"]                floating enable
     for_window [app_id="Preferences"]                floating enable
-    for_window [app_id="gnome-calendar"]            floating enable
+    for_window [app_id="gnome-calendar"]             floating enable
     for_window [app_id="dialog"]                     floating enable 
     for_window [app_id="menu"]                       floating enable
     for_window [app_id="Organizer"]                  floating enable
@@ -165,6 +166,9 @@ default_floating_border pixel 3
     for_window [app_id="webconsole"]                 floating enable
     for_window [app_id="floating_con"]               floating enable
     for_window [class="Emulator"]                    floating enable
+    for_window [app_id="woomer"]                     floating enable
+    for_window [app_id="woomer"]                     move position center
+    for_window [app_id="woomer"]                     resize set width 90ppt height 90ppt
 
 # Scratchpad:
     bindsym $mod+minus move scratchpad
