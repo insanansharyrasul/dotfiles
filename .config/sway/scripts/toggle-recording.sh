@@ -14,8 +14,17 @@ mkdir -p "$RECORDINGS_DIR"
 start_recording() {
     FILENAME="$RECORDINGS_DIR/screen-recording-$(date +%Y-%m-%d-%H%M%S).mp4"
     
-    # Start wf-recorder in background and save its PID
-    wf-recorder --audio --file="$FILENAME" &
+    # Start wf-recorder with OBS-like quality settings
+    wf-recorder \
+        --audio \
+        --codec libx264 \
+        --codec-param preset=slow \
+        --codec-param crf=18 \
+        --codec-param profile=high \
+        --codec-param level=4.1 \
+        --codec-param keyint=120 \
+        --codec-param bframes=4 \
+        --file="$FILENAME" &
     WF_PID=$!
     
     # Save the PID and filename
