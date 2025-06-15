@@ -66,7 +66,7 @@
           "properties": {
             "cache_duration": "none"
           },
-          "template": "<b>{{ .UserName }} </b><#e6b450>></>",
+          "template": "<#e6b450>></>",
           "foreground": "#d2a6ff",
           "type": "text",
           "style": "plain"
