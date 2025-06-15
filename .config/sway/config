@@ -7,7 +7,7 @@ set $term alacritty
 
 ### Output configuration
 exec ~/.config/sway/scripts/toggle-wallpaper.sh --initial
-exec ~/.dotfiles/.config/sway/scripts/start-wob.sh
+exec ~/.dotfiles/.config/sway/scripts/autostart-wob.fish
 
 corner_radius 10
 titlebar_separator disable
@@ -260,5 +260,3 @@ exec --no-startup-id fusuma &
 exec --no-startup-id mako &
 exec --no-startup-id blueman-applet &
 exec --no-startup-id kdeconnect-indicator &
-exec ~/.config/sway/scripts/start-wob.sh
-exec --no-startup-id ~/.config/sway/scripts/start-wob.sh
