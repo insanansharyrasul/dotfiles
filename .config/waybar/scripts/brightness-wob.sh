@@ -1,6 +1,33 @@
 #!/bin/bash
 # Brightness control script with wob integration
 
+# Lock file to prevent multiple instances
+LOCK_FILE="/tmp/brightness-wob.lock"
+
+# Check if another instance is running
+if [ -f "$LOCK_FILE" ]; then
+    # Check if the process is actually running
+    if kill -0 "$(cat "$LOCK_FILE")" 2>/dev/null; then
+        # Another instance is running, exit quietly
+        exit 0
+    else
+        # Stale lock file, remove it
+        rm -f "$LOCK_FILE"
+    fi
+fi
+
+# Create lock file with current PID
+echo $$ > "$LOCK_FILE"
+
+# Cleanup function
+cleanup() {
+    rm -f "$LOCK_FILE"
+    exit 0
+}
+
+# Set up trap to cleanup on exit
+trap cleanup EXIT INT TERM
+
 # Get current brightness percentage
 get_brightness() {
     brightnessctl get | awk -v max="$(brightnessctl max)" '{printf "%.0f", ($1/max)*100}'
@@ -12,6 +39,13 @@ WOB_SOCK="/run/user/$(id -u)/wob.sock"
 # Function to send brightness to wob
 send_to_wob() {
     local value="$1"
+    
+    # Check if wob socket exists
+    if [ ! -p "$WOB_SOCK" ]; then
+        # Socket doesn't exist, skip wob update
+        return 0
+    fi
+    
     # Ensure value is an integer between 0-100
     value=$(printf "%.0f" "$value")
     if [ "$value" -gt 100 ]; then
@@ -20,6 +54,9 @@ send_to_wob() {
         value=0
     fi
     echo "$value" > "$WOB_SOCK" 2>/dev/null || true
+    
+    # Small delay to prevent overwhelming wob
+    sleep 0.05
 }
 
 # Handle different commands

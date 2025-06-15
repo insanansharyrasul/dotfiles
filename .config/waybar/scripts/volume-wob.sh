@@ -1,6 +1,33 @@
 #!/bin/bash
 # Volume control script with wob integration
 
+# Lock file to prevent multiple instances
+LOCK_FILE="/tmp/volume-wob.lock"
+
+# Check if another instance is running
+if [ -f "$LOCK_FILE" ]; then
+    # Check if the process is actually running
+    if kill -0 "$(cat "$LOCK_FILE")" 2>/dev/null; then
+        # Another instance is running, exit quietly
+        exit 0
+    else
+        # Stale lock file, remove it
+        rm -f "$LOCK_FILE"
+    fi
+fi
+
+# Create lock file with current PID
+echo $$ > "$LOCK_FILE"
+
+# Cleanup function
+cleanup() {
+    rm -f "$LOCK_FILE"
+    exit 0
+}
+
+# Set up trap to cleanup on exit
+trap cleanup EXIT INT TERM
+
 # Get current volume and mute status
 get_volume() {
     pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print $5}' | sed 's/%//'
@@ -18,6 +45,12 @@ send_to_wob() {
     local value="$1"
     local muted="$2"
     
+    # Check if wob socket exists
+    if [ ! -p "$WOB_SOCK" ]; then
+        # Socket doesn't exist, skip wob update
+        return 0
+    fi
+    
     # Ensure value is an integer between 0-100
     value=$(printf "%.0f" "$value")
     if [ "$value" -gt 100 ]; then
@@ -33,6 +66,9 @@ send_to_wob() {
         # Send current volume as integer
         echo "$value" > "$WOB_SOCK" 2>/dev/null || true
     fi
+    
+    # Small delay to prevent overwhelming wob
+    sleep 0.05
 }
 
 # Handle different commands

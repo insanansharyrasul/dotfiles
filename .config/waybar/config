@@ -63,7 +63,7 @@
     "states": {
       "warning": 0
     },
-    "scroll-step": 1,
+    "scroll-step": 3,
     "on-click": "~/.config/waybar/scripts/volume-wob.sh toggle",
     "on-click-right": "~/.config/waybar/scripts/volume-wob.sh mic-toggle",
     "on-click-middle": "pavucontrol",
