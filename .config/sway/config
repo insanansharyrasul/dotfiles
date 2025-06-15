@@ -7,6 +7,7 @@ set $term alacritty
 
 ### Output configuration
 exec ~/.config/sway/scripts/toggle-wallpaper.sh --initial
+exec ~/.dotfiles/.config/sway/scripts/start-wob.sh
 
 corner_radius 10
 titlebar_separator disable
@@ -59,8 +60,8 @@ default_floating_border pixel 3
 
     # Sounds
 
-    bindsym $mod+F1 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    bindsym $mod+F2 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym $mod+F1 exec ~/.config/waybar/scripts/volume-wob.sh down
+    bindsym $mod+F2 exec ~/.config/waybar/scripts/volume-wob.sh up
 
     # Sway
     bindsym $mod+Shift+p exec ~/.config/wofi/power.sh
@@ -211,12 +212,12 @@ bindsym $mod+r mode "resize"
     bindsym $mod+slash gaps inner all set 5; gaps outer all set 0
 
 # Special keys for volume, brightness, etc.
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86AudioRaiseVolume exec ~/.config/waybar/scripts/volume-wob.sh up
+bindsym XF86AudioLowerVolume exec ~/.config/waybar/scripts/volume-wob.sh down
+bindsym XF86AudioMute exec ~/.config/waybar/scripts/volume-wob.sh toggle
+bindsym XF86AudioMicMute exec ~/.config/waybar/scripts/volume-wob.sh mic-toggle
+bindsym XF86MonBrightnessDown exec ~/.config/waybar/scripts/brightness-wob.sh down
+bindsym XF86MonBrightnessUp exec ~/.config/waybar/scripts/brightness-wob.sh up
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
@@ -259,3 +260,5 @@ exec --no-startup-id fusuma &
 exec --no-startup-id mako &
 exec --no-startup-id blueman-applet &
 exec --no-startup-id kdeconnect-indicator &
+exec ~/.config/sway/scripts/start-wob.sh
+exec --no-startup-id ~/.config/sway/scripts/start-wob.sh
