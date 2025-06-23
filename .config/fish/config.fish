@@ -6,6 +6,17 @@ alias rsc "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-
 alias b "cd .."
 alias td "cd ~/Downloads"
 
+# Git aliases
+alias g "git"
+alias ga "git add"
+alias gc "git commit"
+alias gca "git commit --amend"
+alias gco "git checkout"
+alias gcm "git commit -m"
+alias gcl "git clone"
+alias gpl "git pull"
+alias gp "git push"
+
 # if status is-interactive
     # Commands to run in interactive sessions can go here
 # end
