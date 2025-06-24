@@ -82,6 +82,7 @@ default_floating_border pixel 3
     bindsym $mod+Insert exec ~/.config/sway/scripts/toggle-recording.sh
     bindsym $mod+Shift+Insert exec ~/.config/sway/scripts/toggle-screen-audio-recording.sh
     bindsym $mod+Ctrl+Insert exec ~/.config/sway/scripts/toggle-hq-recording.sh
+    bindsym $mod+m exec ~/.config/waybar/scripts/volume-wob.sh mic-toggle
     
     # Screenshot bindings
     bindsym Print exec mkdir -p ~/Pictures/Screenshots && \
