@@ -7,7 +7,6 @@ set $term alacritty
 
 ### Output configuration
 exec ~/.config/sway/scripts/toggle-wallpaper.sh --initial
-exec source ~/.dotfiles/.config/sway/scripts/autostart-wob.fish && start-wob
 
 corner_radius 10
 titlebar_separator disable
