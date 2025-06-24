@@ -22,7 +22,7 @@ echo "PATH: $PATH" >> /tmp/woomer-debug.log
 
 notify-send "Woomer" "Launching woomer..." -t 1000
 
-WOOMER_PATH="/home/teaguy21/.cargo/bin/woomer"
+WOOMER_PATH="/home/teaguy21/.local/bin/c-woomer"
 
 if [ -f "$WOOMER_PATH" ]; then
     echo "woomer found at $WOOMER_PATH, launching..." >> /tmp/woomer-debug.log
