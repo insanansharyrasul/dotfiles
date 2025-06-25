@@ -15,7 +15,8 @@ alias gco "git checkout"
 alias gcm "git commit -m"
 alias gcl "git clone"
 alias gpl "git pull"
-alias gp "git push"
+alias gp "git push origin"
+alias gps "git push"
 
 # if status is-interactive
     # Commands to run in interactive sessions can go here
