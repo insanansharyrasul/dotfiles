@@ -13,7 +13,7 @@ titlebar_separator disable
 
 output * scale 1.6
 output eDP-1 mode 2880x1800@90Hz position 0,0
-output HDMI-A-1 resolution 1920x1200 position 1599,0
+output HDMI-A-1 resolution 1920x1200 position 1798,0
 output HDMI-A-1 scale 1
 
 ### Idle configuration
@@ -171,6 +171,7 @@ default_floating_border pixel 3
     for_window [app_id="woomer"]                     floating enable
     for_window [app_id="woomer"]                     move position center
     for_window [app_id="woomer"]                     resize set width 90ppt height 90ppt
+    for_window [floating]                            border pixel 0
 
 # Scratchpad:
     bindsym $mod+minus move scratchpad
