@@ -1,33 +1,18 @@
--- Basic Vim Setup
-vim.opt.relativenumber = true
-vim.opt.nu = true
-vim.api.nvim_set_hl(0, 'NonText', { fg = 'bg' })
-vim.opt.timeoutlen = 1000
-vim.opt.ttimeoutlen = 0
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
-vim.opt.incsearch = true
-vim.opt.hlsearch = false
-vim.g.mapleader = " "
+-- Modular Neovim Configuration
+-- Load configuration modules
+require('config.options')      -- Basic Vim options
+require('config.keymaps')      -- Key mappings
+require('config.plugins')      -- Plugin management
+require('config.colorscheme')  -- Color scheme setup
+require('config.flutter')     -- Flutter-specific settings
 
--- Plugins
-local vim = vim
-local Plug = vim.fn['plug#']
-
-vim.call('plug#begin')
-
-Plug('m4xshen/autoclose.nvim')
-Plug('https://tpope.io/vim/surround.git')
-Plug('https://github.com/Shatur/neovim-ayu.git')
-
-vim.call('plug#end')
-
-require("autoclose").setup()
-
-require('ayu').setup({
-    mirage = false,
-    terminal = true,
-    overrides = {},
-})
-
-require('ayu').colorscheme()
+-- Load plugin configurations
+require('plugins.autoclose')
+require('plugins.lualine')
+require('plugins.completion')
+require('plugins.lsp')
+require('plugins.treesitter')
+require('plugins.nvim-tree')
+require('plugins.telescope')
+require('plugins.which-key')
+require('plugins.gitsigns')
