@@ -1,3 +1,10 @@
+fish_vi_key_bindings
+
+set fish_cursor_default block blink
+set fish_cursor_insert line blink
+set fish_cursor_replace_one underscore blink
+set fish_cursor_visual block
+
 oh-my-posh init fish --config $HOME/.poshthemes/ayu_custom.omp.json | source
 alias vim nvim
 alias vi nvim
