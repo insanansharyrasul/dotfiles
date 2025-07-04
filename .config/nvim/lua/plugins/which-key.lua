@@ -58,6 +58,32 @@ wk.add({
   { "<leader>Fe", ":FlutterEmulators<CR>", desc = "Flutter Emulators" },
   { "<leader>Fo", ":FlutterOutlineToggle<CR>", desc = "Toggle Outline" },
   
+  -- Rust development group
+  { "<leader>r", group = "Rust" },
+  { "<leader>rr", ":!cargo run<CR>", desc = "Cargo Run" },
+  { "<leader>rt", ":!cargo test<CR>", desc = "Cargo Test" },
+  { "<leader>rb", ":!cargo build<CR>", desc = "Cargo Build" },
+  { "<leader>rc", ":!cargo check<CR>", desc = "Cargo Check" },
+  { "<leader>rC", ":!cargo clippy<CR>", desc = "Cargo Clippy" },
+  { "<leader>rf", ":!cargo fmt<CR>", desc = "Cargo Format" },
+  { "<leader>rd", ":!cargo doc --open<CR>", desc = "Cargo Docs" },
+  
+  -- Crates.nvim group
+  { "<leader>c", group = "Code/Crates" },
+  { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action" },
+  { "<leader>cr", vim.lsp.buf.rename, desc = "Rename" },
+  { "<leader>cd", vim.diagnostic.open_float, desc = "Show Diagnostics" },
+  { "<leader>cf", function() vim.lsp.buf.format { async = true } end, desc = "Format Document" },
+  { "<leader>ct", desc = "Toggle Crates" },
+  { "<leader>cu", desc = "Update Crate" },
+  { "<leader>cU", desc = "Upgrade Crate" },
+  { "<leader>ca", desc = "Update All Crates" },
+  { "<leader>cA", desc = "Upgrade All Crates" },
+  { "<leader>cH", desc = "Open Homepage" },
+  { "<leader>cR", desc = "Open Repository" },
+  { "<leader>cD", desc = "Open Documentation" },
+  { "<leader>cC", desc = "Open Crates.io" },
+  
   -- Keep some original mappings for muscle memory
   { "<leader>v", ":vsplit<CR>", desc = "Vertical Split" },
   { "<leader>s", ":split<CR>", desc = "Horizontal Split" },

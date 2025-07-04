@@ -41,3 +41,6 @@ lspconfig.dartls.setup({
     }
   }
 })
+
+-- Note: Rust LSP (rust-analyzer) is handled by rust-tools.nvim in rust.lua
+-- This provides better integration with cargo, clippy, and debugging
