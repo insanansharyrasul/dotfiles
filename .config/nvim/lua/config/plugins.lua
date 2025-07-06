@@ -54,4 +54,7 @@ Plug('theHamsta/nvim-dap-virtual-text')
 -- Which-key for keybinding hints
 Plug('folke/which-key.nvim')
 
+-- Auto-save plugin
+Plug('Pocco81/auto-save.nvim')
+
 vim.call('plug#end')
