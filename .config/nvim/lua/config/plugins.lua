@@ -47,6 +47,7 @@ Plug('saecki/crates.nvim')
 
 -- DAP (Debug Adapter Protocol) for debugging
 Plug('mfussenegger/nvim-dap')
+Plug('nvim-neotest/nvim-nio')  -- Required dependency for nvim-dap-ui
 Plug('rcarriga/nvim-dap-ui')
 Plug('theHamsta/nvim-dap-virtual-text')
 

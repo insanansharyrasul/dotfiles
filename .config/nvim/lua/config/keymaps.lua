@@ -61,3 +61,6 @@ keymap('t', '<C-l><C-k>', '<C-\\><C-n>:clear<CR>i', { noremap = true, silent = t
 
 -- Keep some quick access mappings for muscle memory while also having grouped versions
 keymap('n', '<leader>ff', ':Telescope find_files<CR>', { noremap = true, silent = true, desc = "Find Files" }) -- Changed from <leader>f to avoid conflict
+
+-- Keymaps for LSP and diagnostics
+keymap("n", "<leader>le", vim.diagnostic.open_float, { desc = "Show Line Diagnostics" })

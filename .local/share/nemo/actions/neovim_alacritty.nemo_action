@@ -1,0 +1,8 @@
+[Nemo Action]
+Name=Open with Neovim (Alacritty)
+Comment=Open selected file(s) with Neovim in Alacritty
+Exec=alacritty -e nvim %F
+Icon-Name=Alacritty
+Selection=any
+Extensions=any;
+Terminal=false
