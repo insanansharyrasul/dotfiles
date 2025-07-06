@@ -310,16 +310,8 @@ end
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "rust",
     callback = function()
-        -- Enable format on save for Rust files
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = 0,
-            callback = function()
-                local lsp_ok = pcall(vim.lsp.buf.format, { async = false })
-                if not lsp_ok then
-                    vim.notify("LSP format failed. Install rust-analyzer and rust-tools.nvim", vim.log.levels.WARN)
-                end
-            end,
-        })
+        -- Rust file type setup (no auto-format on save)
+        vim.notify("Rust LSP loaded. Use <leader>q to format manually.", vim.log.levels.INFO)
     end,
 })
 

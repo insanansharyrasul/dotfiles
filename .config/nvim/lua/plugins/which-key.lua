@@ -15,6 +15,9 @@ wk.add({
   { "<leader>a", "<C-o>", desc = "Navigate Back" },
   { "<leader>q", function() vim.lsp.buf.format { async = true } end, desc = "Format Document" },
   
+  -- App/Settings operations
+  { "<leader>as", ":ASToggle<CR>", desc = "Toggle Auto-save" },
+  
   -- File operations group
   { "<leader>f", group = "File" },
   { "<leader>ff", ":Telescope find_files<CR>", desc = "Find Files" },
