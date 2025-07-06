@@ -6,7 +6,11 @@ vim.g.rust_clip_command = 'xclip -selection clipboard'
 
 -- Setup rust-tools.nvim
 local function setup_rust_tools()
-    local rt = require("rust-tools")
+    local rt_ok, rt = pcall(require, "rust-tools")
+    if not rt_ok then
+        vim.notify("rust-tools.nvim not found. Run :PlugInstall to install plugins.", vim.log.levels.WARN)
+        return false
+    end
     
     rt.setup({
         server = {
@@ -51,14 +55,20 @@ local function setup_rust_tools()
             },
         },
     })
+    return true
 end
 
 -- Setup crates.nvim for Cargo.toml management
 local function setup_crates()
-    require('crates').setup({
+    local crates_ok, crates = pcall(require, 'crates')
+    if not crates_ok then
+        vim.notify("crates.nvim not found. Run :PlugInstall to install plugins.", vim.log.levels.WARN)
+        return false
+    end
+    
+    crates.setup({
         smart_insert = true,
         insert_closing_quote = true,
-        avoid_prerelease = true,
         autoload = true,
         autoupdate = true,
         loading_indicator = true,
@@ -67,7 +77,6 @@ local function setup_crates()
         notification_title = "Crates",
         curl_args = { "-sL", "--retry", "1" },
         max_parallel_requests = 80,
-        open_programs = { "xdg-open", "open" },
         enable_update_available_warning = true,
         on_attach = function(bufnr)
             -- Crates keymaps
@@ -89,11 +98,16 @@ local function setup_crates()
             vim.keymap.set("n", "<leader>cC", require('crates').open_crates_io, opts)
         end
     })
+    return true
 end
 
 -- Setup DAP for Rust debugging
 local function setup_rust_dap()
-    local dap = require('dap')
+    local dap_ok, dap = pcall(require, 'dap')
+    if not dap_ok then
+        vim.notify("nvim-dap not found. Run :PlugInstall to install plugins.", vim.log.levels.WARN)
+        return false
+    end
     
     dap.adapters.lldb = {
         type = 'executable',
@@ -127,11 +141,24 @@ local function setup_rust_dap()
             runInTerminal = false,
         },
     }
+    return true
 end
 
 -- Setup DAP UI
 local function setup_dap_ui()
-    require("dapui").setup({
+    local dapui_ok, dapui = pcall(require, "dapui")
+    if not dapui_ok then
+        vim.notify("nvim-dap-ui not found. Run :PlugInstall to install plugins.", vim.log.levels.WARN)
+        return false
+    end
+    
+    local dap_ok, dap = pcall(require, "dap")
+    if not dap_ok then
+        vim.notify("nvim-dap not found. Run :PlugInstall to install plugins.", vim.log.levels.WARN)
+        return false
+    end
+    
+    dapui.setup({
         icons = { expanded = "▾", collapsed = "▸" },
         mappings = {
             expand = { "<CR>", "<2-LeftMouse>" },
@@ -177,7 +204,7 @@ local function setup_dap_ui()
     })
     
     -- Auto open/close DAP UI
-    local dap, dapui = require("dap"), require("dapui")
+    local dap, dapui = dap, dapui
     dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()
     end
@@ -187,11 +214,18 @@ local function setup_dap_ui()
     dap.listeners.before.event_exited["dapui_config"] = function()
         dapui.close()
     end
+    return true
 end
 
 -- Setup virtual text for DAP
 local function setup_dap_virtual_text()
-    require("nvim-dap-virtual-text").setup({
+    local vtext_ok, vtext = pcall(require, "nvim-dap-virtual-text")
+    if not vtext_ok then
+        vim.notify("nvim-dap-virtual-text not found. Run :PlugInstall to install plugins.", vim.log.levels.WARN)
+        return false
+    end
+    
+    vtext.setup({
         enabled = true,
         enabled_commands = true,
         highlight_changed_variables = true,
@@ -206,6 +240,7 @@ local function setup_dap_virtual_text()
         virt_lines = false,
         virt_text_win_col = nil
     })
+    return true
 end
 
 -- Rust-specific keymaps
@@ -219,35 +254,56 @@ local function setup_rust_keymaps()
     vim.keymap.set("n", "<leader>rf", ":!cargo fmt<CR>", { desc = "Cargo format" })
     vim.keymap.set("n", "<leader>rd", ":!cargo doc --open<CR>", { desc = "Cargo docs" })
     
-    -- Debug keymaps
-    vim.keymap.set("n", "<F5>", require('dap').continue, { desc = "Debug: Continue" })
-    vim.keymap.set("n", "<F10>", require('dap').step_over, { desc = "Debug: Step over" })
-    vim.keymap.set("n", "<F11>", require('dap').step_into, { desc = "Debug: Step into" })
-    vim.keymap.set("n", "<F12>", require('dap').step_out, { desc = "Debug: Step out" })
-    vim.keymap.set("n", "<leader>db", require('dap').toggle_breakpoint, { desc = "Debug: Toggle breakpoint" })
-    vim.keymap.set("n", "<leader>dB", function()
-        require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
-    end, { desc = "Debug: Set conditional breakpoint" })
-    vim.keymap.set("n", "<leader>dr", require('dap').repl.open, { desc = "Debug: Open REPL" })
-    vim.keymap.set("n", "<leader>dl", require('dap').run_last, { desc = "Debug: Run last" })
-    vim.keymap.set("n", "<leader>du", require('dapui').toggle, { desc = "Debug: Toggle UI" })
+    -- Debug keymaps (only if DAP is available)
+    local dap_ok, dap = pcall(require, 'dap')
+    local dapui_ok, dapui = pcall(require, 'dapui')
+    
+    if dap_ok then
+        vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: Continue" })
+        vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Debug: Step over" })
+        vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Debug: Step into" })
+        vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Debug: Step out" })
+        vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Debug: Toggle breakpoint" })
+        vim.keymap.set("n", "<leader>dB", function()
+            dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+        end, { desc = "Debug: Set conditional breakpoint" })
+        vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc = "Debug: Open REPL" })
+        vim.keymap.set("n", "<leader>dl", dap.run_last, { desc = "Debug: Run last" })
+    end
+    
+    if dapui_ok then
+        vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Debug: Toggle UI" })
+    end
+    return true
 end
 
 -- Initialize all Rust configurations
 local function init_rust_config()
+    local success = true
+    
     -- Setup rust-tools first (includes LSP)
-    setup_rust_tools()
+    if not setup_rust_tools() then
+        success = false
+    end
     
     -- Setup crates.nvim for Cargo.toml
-    setup_crates()
+    if not setup_crates() then
+        success = false
+    end
     
-    -- Setup debugging
+    -- Setup debugging (optional - don't fail if not available)
     setup_rust_dap()
     setup_dap_ui()
     setup_dap_virtual_text()
     
-    -- Setup keymaps
+    -- Setup keymaps (always works)
     setup_rust_keymaps()
+    
+    if success then
+        vim.notify("Rust development environment loaded successfully!", vim.log.levels.INFO)
+    else
+        vim.notify("Some Rust plugins missing. Run :PlugInstall to install.", vim.log.levels.WARN)
+    end
 end
 
 -- Auto-setup when opening Rust files
@@ -258,13 +314,27 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = 0,
             callback = function()
-                vim.lsp.buf.format({ async = false })
+                local lsp_ok = pcall(vim.lsp.buf.format, { async = false })
+                if not lsp_ok then
+                    vim.notify("LSP format failed. Install rust-analyzer and rust-tools.nvim", vim.log.levels.WARN)
+                end
             end,
         })
     end,
 })
 
+-- Only load the configuration if we're not in the initial plugin install phase
+local function safe_init()
+    -- Check if we're in the middle of plugin installation
+    local plug_dir = vim.fn.stdpath('data') .. '/plugged'
+    if vim.fn.isdirectory(plug_dir .. '/rust-tools.nvim') == 1 then
+        init_rust_config()
+    else
+        vim.notify("Rust plugins not installed yet. Run :PlugInstall first.", vim.log.levels.INFO)
+    end
+end
+
 -- Load the configuration
-init_rust_config()
+safe_init()
 
 return {}
