@@ -7,7 +7,7 @@ vim.call('plug#begin')
 -- Core plugins
 Plug('m4xshen/autoclose.nvim')
 Plug('https://tpope.io/vim/surround.git')
-Plug('https://tpope.io/vim/commentary.git')  -- For comment toggling
+Plug('https://tpope.io/vim/commentary.git') 
 Plug('https://github.com/Shatur/neovim-ayu.git')
 
 -- LSP and completion
@@ -47,7 +47,7 @@ Plug('saecki/crates.nvim')
 
 -- DAP (Debug Adapter Protocol) for debugging
 Plug('mfussenegger/nvim-dap')
-Plug('nvim-neotest/nvim-nio')  -- Required dependency for nvim-dap-ui
+Plug('nvim-neotest/nvim-nio')  
 Plug('rcarriga/nvim-dap-ui')
 Plug('theHamsta/nvim-dap-virtual-text')
 
