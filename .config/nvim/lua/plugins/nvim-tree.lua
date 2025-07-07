@@ -11,7 +11,7 @@ local function my_on_attach(bufnr)
   end
 
   -- Remove nvim-tree's default <C-e> mapping and set close functionality
-  vim.keymap.set('n', '<C-e>', api.tree.close, opts('Close Tree'))
+  -- vim.keymap.set('n', '<C-e>', api.tree.close, opts('Close Tree'))
 
   -- Default mappings
   api.config.mappings.default_on_attach(bufnr)

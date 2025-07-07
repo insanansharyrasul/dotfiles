@@ -14,7 +14,7 @@ autosave.setup({
     dim = 0.18, -- dim the color of `message`
     cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`
   },
-  trigger_events = {"InsertLeave", "FocusLost"}, -- auto-save when leaving insert mode or losing focus
+  trigger_events = {"InsertLeave"}, -- auto-save when leaving insert mode or losing focus
   -- function that determines whether to save the current file or not
   condition = function(buf)
     local fn = vim.fn
