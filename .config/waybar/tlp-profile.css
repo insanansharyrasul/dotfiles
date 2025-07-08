@@ -1,0 +1,22 @@
+/* TLP Profile Module Styling for Waybar */
+#custom-tlp-profile {
+    margin: 0 5px;
+    padding: 0 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+#custom-tlp-profile.performance {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+    color: #ffffff;
+}
+
+#custom-tlp-profile.powersave {
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    color: #ffffff;
+}
+
+#custom-tlp-profile.unknown {
+    background: linear-gradient(45deg, #ffd93d, #ff6b6b);
+    color: #2d2d2d;
+}
