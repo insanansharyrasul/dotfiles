@@ -36,3 +36,10 @@ set -gx PATH "$PATH:/home/teaguy21/.local/share/coursier/bin"
 # <<< coursier install directory <<<
 
 set -x XDG_CURRENT_DESKTOP sway
+
+# pnpm
+set -gx PNPM_HOME "/home/teaguy21/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
