@@ -162,11 +162,11 @@
     "icon-size": 15,
     "spacing": 8
   },
-"custom/tlp-profile": {
-  "exec": "~/.dotfiles/.config/scripts/waybar-tlp-status.sh",
-  "return-type": "json",
-  "interval": 5,
-  "on-click": "~/.dotfiles/.config/scripts/tlp-switcher.sh toggle",
-  "tooltip": true
-}
+  "custom/tlp-profile": {
+    "exec": "~/.dotfiles/.config/scripts/waybar-tlp-status.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "alacritty -e bash -c ~/.dotfiles/.config/scripts/tlp-interactive.sh",
+    "tooltip": true
+  }
 }
