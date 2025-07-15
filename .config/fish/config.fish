@@ -25,6 +25,12 @@ alias gpl "git pull"
 alias gp "git push origin"
 alias gps "git push"
 
+function gall -d "Git add, commit, and push"
+    git add .
+    git commit -m "$argv[1]"
+    git push origin
+end
+
 # Alias for killing processes
 alias qw "pkill java && pkill qemu"
 
