@@ -25,6 +25,9 @@ alias gpl "git pull"
 alias gp "git push origin"
 alias gps "git push"
 
+# Alias for killing processes
+alias qw "pkill java && pkill qemu"
+
 # if status is-interactive
     # Commands to run in interactive sessions can go here
 # end
