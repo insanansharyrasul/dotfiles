@@ -12,6 +12,7 @@ alias p "ping www.google.com"
 alias rsc "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-Fi networks.'"
 alias b "cd .."
 alias td "cd ~/Downloads"
+alias bf "flutter clean && flutter build apk --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Downloads/"
 
 # Git aliases
 alias g "git"

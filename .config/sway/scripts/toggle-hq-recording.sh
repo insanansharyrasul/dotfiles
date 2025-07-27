@@ -22,7 +22,6 @@ start_recording() {
             --codec h264_qsv \
             --codec-param preset=slow \
             --codec-param global_quality=18 \
-            --codec-param profile=high \
             --codec-param level=4.1 \
             --file="$FILENAME" &
         WF_PID=$!
@@ -34,7 +33,6 @@ start_recording() {
             --codec libx264 \
             --codec-param preset=slow \
             --codec-param crf=18 \
-            --codec-param profile=high \
             --codec-param level=4.1 \
             --codec-param keyint=120 \
             --codec-param bframes=4 \
