@@ -13,6 +13,7 @@ alias rsc "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-
 alias b "cd .."
 alias td "cd ~/Downloads"
 alias bf "flutter clean && flutter build apk --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Downloads/"
+alias c "clear"
 
 # Git aliases
 alias g "git"
