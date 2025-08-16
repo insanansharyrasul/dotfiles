@@ -17,10 +17,10 @@ current_profile=$("$TLP_SWITCHER" status 2>/dev/null | grep "Current Profile:" |
 # Output JSON for Waybar
 case "$current_profile" in
     "high")
-        echo '{"text": "🚀", "tooltip": "High Performance Mode\nClick to switch to Power Saving", "class": "performance"}'
+        echo '{"text": "", "tooltip": "High Performance Mode\nClick to switch to Power Saving", "class": "performance"}'
         ;;
     "low")
-        echo '{"text": "🔋", "tooltip": "Power Saving Mode\nClick to switch to High Performance", "class": "powersave"}'
+        echo '{"text": "", "tooltip": "Power Saving Mode\nClick to switch to High Performance", "class": "powersave"}'
         ;;
     *)
         echo '{"text": "⚡", "tooltip": "Unknown TLP Profile\nClick to toggle", "class": "unknown"}'

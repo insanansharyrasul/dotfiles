@@ -2,7 +2,6 @@
   "modules-left": [
     "custom/launcher",
     "sway/workspaces",
-    "temperature",
     "idle_inhibitor",
     "tray",
     "sway/mode"
@@ -14,8 +13,6 @@
     "custom/tlp-profile",
     "pulseaudio",
     "backlight",
-    "memory",
-    "cpu",
     "network",
     "battery",
     "custom/powermenu"
@@ -52,8 +49,8 @@
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-source": "󰍬 {volume}%",
-    "format-source-muted": "󰍭 Muted",
-    "format-muted": "󰝟 Muted",
+    "format-source-muted": "󰍭 0%",
+    "format-muted": "󰝟 0%",
     "format-icons": {
       "default": [
         "",
