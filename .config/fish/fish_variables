@@ -44,4 +44,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3dE6B450
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/home/teaguy21/\x2econfig/herd\x2dlite/bin\x1e/home/teaguy21/\x2elocal/bin\x1e/usr/local/go/bin\x1e/home/teaguy21/\x2epub\x2dcache/bin\x1e/home/teaguy21/development/flutter/bin\x1e/home/teaguy21/\x2ecargo/bin
+SETUVAR fish_user_paths:/home/teaguy21/development/flutter/bin\x1e/home/teaguy21/\x2econfig/herd\x2dlite/bin\x1e/home/teaguy21/\x2elocal/bin\x1e/usr/local/go/bin\x1e/home/teaguy21/\x2epub\x2dcache/bin\x1e/home/teaguy21/\x2ecargo/bin

@@ -1,3 +1,5 @@
+@define-color main-accent #95e6cb;
+
 * {
   font-family: "JetBrainsMono Nerd Font";
   font-size: 12pt;
@@ -51,7 +53,7 @@ window>box {
 }
 
 #workspaces button.focused {
-  background-color: #e6b450;
+  background-color: @main-accent;
   color: #10141c;
   border-radius: 10px;
 }
@@ -79,7 +81,7 @@ tooltip label {
 #custom-launcher {
   padding-left: 8px;
   padding-right: 6px;
-  color: #59c2ff;
+  color: @main-accent;
 }
 
 #mode,
@@ -102,32 +104,32 @@ tooltip label {
 
 #mode {
   margin-left: 10px;
-  background-color: #e6b450;
+  background-color: @main-accent;
   color: #10141c;
 }
 
 
 #memory {
-  color: #39bae6;
+  color: @main-accent;
   border-radius: 10px;
 }
 
 #memory:hover {
   transition: ease 0.2s all;
   color: #10141c;
-  background-color: #39bae6;
+  background-color: @main-accent;
   border-radius: 10px;
 }
 
 #cpu {
-  color: #d2a6ff;
+  color: @main-accent;
   border-radius: 10px;
 }
 
 #cpu:hover {
   transition: ease 0.2s all;
   color: #10141c;
-  background-color: #d2a6ff;
+  background-color: @main-accent;
   border-radius: 10px;
 }
 
@@ -144,11 +146,11 @@ tooltip label {
 }
 
 #idle_inhibitor {
-  color: #ff8f40;
+  color: @main-accent;
 }
 
 #temperature {
-  color: #59c2ff;
+  color: @main-accent;
   border-radius: 10px;
 }
 
@@ -160,31 +162,31 @@ tooltip label {
 }
 
 #backlight {
-  color: #ffb454;
+  color: @main-accent;
   border-radius: 10px;
 }
 
 #backlight:hover {
   transition: ease 0.2s all;
   color: #10141c;
-  background-color: #ffb454;
+  background-color: @main-accent;
   border-radius: 10px;
 }
 
 #pulseaudio {
-  color: #aad94c;
+  color: @main-accent;
   border-radius: 10px;
 }
 
 #pulseaudio:hover {
   transition: ease 0.2s all;
   color: #10141c;
-  background-color: #aad94c;
+  background-color: @main-accent;
   border-radius: 10px;
 }
 
 #network {
-  color: #95e6cb;
+  color: @main-accent;
   min-width: 20px;
   border-radius: 10px;
 }
@@ -192,7 +194,7 @@ tooltip label {
 #network:hover {
   transition: ease 0.2s all;
   color: #10141c;
-  background-color: #95e6cb;
+  background-color: @main-accent;
   border-radius: 10px;
 }
 
@@ -204,14 +206,14 @@ tooltip label {
 #battery.full,
 #battery.discharging,
 #battery {
-  color: #e6b450;
+  color: @main-accent;
   border-radius: 10px;
 }
 
 #battery:hover {
   transition: ease 0.2s all;
   color: #10141c;
-  background-color: #e6b450;
+  background-color: @main-accent;
   border-radius: 10px;
 }
 
@@ -248,4 +250,11 @@ tooltip label {
 
 #mpd {
   color: #bfbdb6;
+}
+
+#custom-tlp-profile {
+  color: @main-accent;
+  padding-left: 10px;
+  padding-right: 5px;
+  margin-right: 10px;
 }
