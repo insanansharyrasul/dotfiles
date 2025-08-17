@@ -2,6 +2,7 @@
   "modules-left": [
     "custom/launcher",
     "sway/workspaces",
+    "memory",
     "idle_inhibitor",
     "tray",
     "sway/mode"
