@@ -14,6 +14,7 @@ alias b "cd .."
 alias td "cd ~/Downloads"
 alias bf "flutter clean && flutter build apk --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Downloads/"
 alias c "clear"
+alias sai "sudo apt install"
 
 # Git aliases
 alias g "git"
