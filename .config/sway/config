@@ -153,6 +153,13 @@ default_floating_border pixel 3
     bindsym $mod+space floating toggle
     bindsym $mod+a focus parent
 
+# Move stuff:
+    bindsym $mod+Shift+h move left
+    bindsym $mod+Shift+j move down
+    bindsym $mod+Shift+k move up
+    bindsym $mod+Shift+l move right
+
+
 # Floating windows:
     for_window [app_id="pop-up"]                     floating enable
     for_window [app_id="bubble"]                     floating enable 
