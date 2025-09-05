@@ -34,6 +34,10 @@ function gall -d "Git add, commit, and push"
     git push origin
 end
 
+function fc -d "Compile and run a C file"
+    set base_name (basename $argv[1] .c)
+    gcc $argv[1] -o $base_name; and ./$base_name
+end
 # Alias for killing processes
 alias qw "pkill java && pkill qemu"
 
