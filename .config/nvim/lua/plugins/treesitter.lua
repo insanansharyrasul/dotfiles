@@ -5,7 +5,7 @@ if not treesitter_ok then
 end
 
 treesitter.setup {
-  ensure_installed = { "dart", "lua", "vim", "javascript", "typescript", "json", "yaml", "rust", "toml" },
+  ensure_installed = { "c", "cpp", "dart", "lua", "vim", "javascript", "typescript", "json", "yaml", "rust", "toml" },
   auto_install = true,
   highlight = {
     enable = true,
