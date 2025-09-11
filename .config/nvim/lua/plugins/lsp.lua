@@ -30,6 +30,26 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>ld', vim.diagnostic.setloclist, bufopts)
 end
 
+-- C/C++ LSP setup (clangd)
+lspconfig.clangd.setup({
+  on_attach = on_attach,
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--clang-tidy",
+    "--header-insertion=iwyu",
+    "--completion-style=detailed",
+    "--function-arg-placeholders",
+    "--fallback-style=llvm",
+  },
+  init_options = {
+    usePlaceholders = true,
+    completeUnimported = true,
+    clangdFileStatus = true,
+  },
+})
+
 -- Dart/Flutter LSP setup
 lspconfig.dartls.setup({
   on_attach = on_attach,
