@@ -1,11 +1,11 @@
 {
   "modules-left": [
     "custom/launcher",
-    "sway/workspaces",
+    "hyprland/workspaces",
     "memory",
     "idle_inhibitor",
     "tray",
-    "sway/mode"
+    "hyprland/submap"
   ],
   "modules-center": [
     "clock"
@@ -23,9 +23,25 @@
     "on-click": "wofi --show drun --style ~/.config/wofi/wofi-font.css",
     "tooltip": false
   },
-  "sway/workspaces": {
+  "hyprland/workspaces": {
     "disable-scroll": true,
-    "all-outputs": true
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+      "urgent": "",
+      "focused": "",
+      "default": ""
+    }
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -91,7 +107,6 @@
     ],
     "format-full": "\udb80\udc79 {capacity}%",
     "format-charging": "\udb80\udc84 {capacity}%",
-    "on-click": "~/.dotfiles/.config/scripts/tlp-switcher.sh status",
     "tooltip": false
   },
   "clock": {
@@ -116,8 +131,6 @@
     },
     "actions": {
       "on-click-right": "mode",
-      "on-scroll-up": "tz_up",
-      "on-scroll-down": "tz_down",
       "on-scroll-up": "shift_up",
       "on-scroll-down": "shift_down"
     }
@@ -142,9 +155,9 @@
     "format-disconnected": "󰖪 Disconnected",
     "tooltip": true,
     "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n{signalStrength}% | {signaldBm}dBm | {frequency}MHz\n⬆️ {bandwidthUpBits} ⬇️ {bandwidthDownBits}",
-    "on-click-right": "~/.config/waybar/scripts/network-menu.sh",
+    "on-click": "~/.config/waybar/scripts/network-menu.sh",
     "on-click-middle": "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-Fi networks.'",
-    "on-click": "bash ~/.config/waybar/scripts/network-wofi.sh"
+    // "on-click": "bash ~/.config/waybar/scripts/network-wofi.sh"
   },
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon6/temp2_input",
@@ -166,5 +179,10 @@
     "interval": 5,
     "on-click": "alacritty -e bash -c ~/.dotfiles/.config/scripts/tlp-interactive.sh",
     "tooltip": true
+  },
+  "hyprland/submap": {
+    "format": "{}",
+    "max-length": 8,
+    "tooltip": false
   }
 }

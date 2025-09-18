@@ -55,6 +55,12 @@ window>box {
   border-radius: 10px;
 }
 
+#workspaces button.active {
+  background-color: @main-accent;
+  color: #10141c;
+  border-radius: 10px;
+}
+
 #workspaces button.focused {
   background-color: @main-accent;
   color: #10141c;
@@ -114,6 +120,12 @@ tooltip label {
 }
 
 #mode {
+  margin-left: 10px;
+  background-color: @main-accent;
+  color: #10141c;
+}
+
+#submap {
   margin-left: 10px;
   background-color: @main-accent;
   color: #10141c;
@@ -268,4 +280,14 @@ tooltip label {
   padding-left: 10px;
   padding-right: 5px;
   margin-right: 10px;
+}
+
+#submap {
+  margin-left: 10px;
+  background-color: @main-accent;
+  color: #10141c;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: bold;
 }

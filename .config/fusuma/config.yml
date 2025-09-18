@@ -1,9 +1,9 @@
 swipe:
   3:
     left:
-      command: swaymsg workspace prev
+      command: hyprctl dispatch workspace e-1
     right:
-      command: ~/.config/sway/scripts/gnome-like-workspace.sh next
+      command: hyprctl dispatch workspace e+1
   4:
     up:
       command: pactl set-sink-volume @DEFAULT_SINK@ +5%
