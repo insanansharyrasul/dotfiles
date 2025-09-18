@@ -13,8 +13,13 @@
 }
 
 @keyframes blink_red {
-  to {
+  from {
     background-color: #d95757;
+    color: #ffffff;
+  }
+
+  to {
+    background-color: #ff4444;
     color: #10141c;
   }
 }
@@ -68,7 +73,8 @@ window>box {
 }
 
 #workspaces button.urgent {
-  color: #10141c;
+  background-color: #d95757;
+  color: #ffffff;
   border-radius: 10px;
 }
 
