@@ -6,11 +6,10 @@ allow_images=true
 image_size=32
 display_generic=true
 
-# Vim-like key bindings
-key_down=j,Down
-key_up=k,Up
-key_left=h,Left
-key_right=l,Right
+key_down=Down
+key_up=Up
+key_left=Left
+key_right=Right
 key_forward=Tab
 key_backward=ISO_Left_Tab
 key_submit=Return,KP_Enter
