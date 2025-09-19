@@ -70,7 +70,21 @@ window {
 #entry:selected {
     background-color: #1F2430;
     color: #E6E1CF;
-    border-left: 3px solid #FF8F40;
+    /* border-left: 3px solid #FF8F40; */
+}
+
+#entry:focus,
+#entry:focus-visible,
+#entry:selected:focus,
+#entry:selected,
+#input:focus,
+window {
+    outline: 1px solid #FFCC55;
+    box-shadow: none;
+    -gtk-focus-ring: 0;
+    border-style: solid;
+    -gtk-outline-radius: 8px;
+    outline-offset: -3px;
 }
 
 #entry:hover {
@@ -78,28 +92,6 @@ window {
     color: #E6E1CF;
 }
 
-/* Style for network entries */
-#entry:nth-child(odd) {
-    background-color: rgba(31, 36, 48, 0.3);
-}
-
-#entry:nth-child(odd):selected {
-    background-color: #1F2430;
-    border-left: 3px solid #FFCC66;
-}
-
-/* VPN entries styling */
-#entry:contains("VPN") {
-    color: #95E6CB;
-    font-weight: 500;
-}
-
-#entry:contains("VPN"):selected {
-    background-color: #1F2430;
-    border-left: 3px solid #95E6CB;
-}
-
-/* Special styling for toggle options */
 #entry:contains("Enable"),
 #entry:contains("Disable") {
     color: #FF8F40;
@@ -123,9 +115,8 @@ window {
     border-left: 3px solid #F07178;
 }
 
-/* Scrollbar styling */
 scrolledwindow>scrollbar {
-    background-color: #1A1F29;
+    /* background-color: #1A1F29; */
     border-radius: 4px;
     margin: 4px;
 }
