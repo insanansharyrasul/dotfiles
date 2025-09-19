@@ -42,3 +42,6 @@ else
     swaybg -c "$SOLID_COLOR" &
     echo "solid" > "$STATE_FILE"
 fi
+
+# Properly exit the script
+exit 0
