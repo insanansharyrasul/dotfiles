@@ -84,12 +84,12 @@
     "states": {
       "warning": 0
     },
-    "scroll-step": 1,
+    "scroll-step": 5,
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
     "on-click-middle": "pavucontrol",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
     "tooltip": false
   },
   "battery": {
@@ -121,8 +121,8 @@
     "tooltip": true,
     "tooltip-format": "<tt>{calendar}</tt>",
     "on-click": "gnome-calendar",
-    "on-click-middle": "~/.config/sway/scripts/toggle-wallpaper.sh",
-    "on-click-right": "sh ~/.config/sway/scripts/instant-solid.sh",
+    "on-click-middle": "~/.config/hypr/scripts/toggle-wallpaper.sh",
+    "on-click-right": "~/.config/hypr/scripts/instant-solid.sh",
     "calendar": {
       "mode": "month",
       "mode-mon-col": 3,
