@@ -58,4 +58,7 @@ set -gx PNPM_HOME "/home/teaguy21/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
-# pnpm end
+
+# g++-14
+set -Ux CC gcc-14
+set -Ux CXX g++-14
