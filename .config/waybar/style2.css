@@ -1,0 +1,299 @@
+/* @define-color main-accent #95e6cb; */
+/* @define-color main-accent #ff8f40; */
+@define-color main-accent #F5BABB;
+
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12pt;
+  font-weight: bold;
+  border-radius: 0px;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+@keyframes blink_red {
+  from {
+    background-color: #d95757;
+    color: #ffffff;
+  }
+
+  to {
+    background-color: #ff4444;
+    color: #10141c;
+  }
+}
+
+.warning,
+.critical,
+.urgent {
+  animation-name: blink_red;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+window#waybar {
+  background-color: transparent;
+  /* border-radius: 10px; */
+}
+
+window>box {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  background-color: rgb(13, 16, 23);
+  border-radius: 10px;
+}
+
+#workspaces {
+  padding-left: 0px;
+  padding-right: 4px;
+}
+
+#workspaces button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 10px;
+}
+
+#workspaces button.active {
+  background-color: @main-accent;
+  color: #10141c;
+  border-radius: 10px;
+}
+
+#workspaces button.focused {
+  background-color: @main-accent;
+  color: #10141c;
+  border-radius: 10px;
+}
+
+#workspaces button.urgent {
+  background-color: #d95757;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+#workspaces button:hover {
+  background-color: #ff8f40;
+  color: #10141c;
+  transition: ease 0.2s all;
+  border-radius: 10px;
+}
+
+tooltip {
+  background: #161a24;
+}
+
+tooltip label {
+  color: #bfbdb6;
+}
+
+#custom-launcher {
+  padding-left: 8px;
+  padding-right: 6px;
+  color: @main-accent;
+}
+
+#mode,
+#clock,
+#temperature,
+#cpu,
+#mpd,
+#temperature,
+#backlight,
+#pulseaudio,
+#network,
+#battery,
+#custom-powermenu,
+#custom-cava-internal {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#memory {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#idle_inhibitor {
+  padding-left: 8px;
+  padding-right: 5px;
+}
+
+#mode {
+  margin-left: 10px;
+  background-color: @main-accent;
+  color: #10141c;
+}
+
+#submap {
+  margin-left: 10px;
+  background-color: @main-accent;
+  color: #10141c;
+}
+
+
+#memory {
+  color: @main-accent;
+  border-radius: 10px;
+}
+
+#memory:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: @main-accent;
+  border-radius: 10px;
+}
+
+#cpu {
+  color: @main-accent;
+  border-radius: 10px;
+}
+
+#cpu:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: @main-accent;
+  border-radius: 10px;
+}
+
+#clock {
+  color: #bfbdb6;
+  border-radius: 10px;
+}
+
+#clock:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: #bfbdb6;
+  border-radius: 10px;
+}
+
+#idle_inhibitor {
+  color: @main-accent;
+}
+
+#temperature {
+  color: @main-accent;
+  border-radius: 10px;
+}
+
+#temperature:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: #59c2ff;
+  border-radius: 10px;
+}
+
+#backlight {
+  color: @main-accent;
+  border-radius: 10px;
+}
+
+#backlight:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: @main-accent;
+  border-radius: 10px;
+}
+
+#pulseaudio {
+  color: @main-accent;
+  border-radius: 10px;
+}
+
+#pulseaudio:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: @main-accent;
+  border-radius: 10px;
+}
+
+#network {
+  color: @main-accent;
+  min-width: 20px;
+  border-radius: 10px;
+}
+
+#network:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: @main-accent;
+  border-radius: 10px;
+}
+
+#network.disconnected {
+  color: #f07178;
+}
+
+#battery.charging,
+#battery.full,
+#battery.discharging,
+#battery {
+  color: @main-accent;
+  border-radius: 10px;
+}
+
+#battery:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: @main-accent;
+  border-radius: 10px;
+}
+
+#battery.critical:not(.charging) {
+  color: #d95757;
+}
+
+#custom-powermenu {
+  color: #f07178;
+  padding-right: 12px;
+  border-radius: 10px;
+}
+
+#custom-powermenu:hover {
+  transition: ease 0.2s all;
+  color: #10141c;
+  background-color: #f07178;
+  border-radius: 10px;
+}
+
+#tray {
+  padding-right: 8px;
+  padding-left: 10px;
+}
+
+#mpd.paused {
+  color: #6c7380;
+  font-style: italic;
+}
+
+#mpd.stopped {
+  background: transparent;
+}
+
+#mpd {
+  color: #bfbdb6;
+}
+
+#custom-tlp-profile {
+  color: @main-accent;
+  padding-left: 10px;
+  padding-right: 5px;
+  margin-right: 10px;
+}
+
+#submap {
+  margin-left: 10px;
+  background-color: @main-accent;
+  color: #10141c;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: bold;
+}
