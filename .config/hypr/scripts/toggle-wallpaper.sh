@@ -1,6 +1,6 @@
 #!/bin/bash
 
-STATE_FILE="/tmp/wallpaper_state"
+STATE_FILE="/tmp/wallpaper_current"
 WALLPAPER_DIR="/home/teaguy21/Videos/LiveWallpaper"
 WALLPAPER_PREFIX="live-wallpaper"
 SOLID_COLOR="#000000"
@@ -25,52 +25,11 @@ is_video() {
     esac
 }
 
-# helper: set wallpaper preferring hyprpaper for images
-set_wallpaper_image() {
-    FILE="$1"
-    
-    if ! command -v hyprpaper >/dev/null 2>&1; then
-        return 1
-    fi
-    
-    # Kill any existing hyprpaper
-    pkill hyprpaper 2>/dev/null || true
-    sleep 0.1
-    
-    # Get current monitors from hyprctl
-    local monitors
-    monitors=$(hyprctl monitors -j 2>/dev/null | jq -r '.[].name' 2>/dev/null) || return 1
-    
-    if [ -z "$monitors" ]; then
-        return 1
-    fi
-    
-    # Start hyprpaper in background
-    hyprpaper >/dev/null 2>&1 &
-    sleep 0.2
-    
-    # Configure each monitor and set wallpaper
-    echo "$monitors" | while read -r monitor; do
-        [ -n "$monitor" ] && {
-            hyprctl hyprpaper preload "$FILE" 2>/dev/null || true
-            hyprctl hyprpaper wallpaper "$monitor,$FILE" 2>/dev/null || true
-        }
-    done
-    
-    return 0
-}
-
 # helper: set wallpaper video via mpvpaper if needed
 set_wallpaper_video() {
     FILE="$1"
-    if command -v mpvpaper >/dev/null 2>&1; then
-        # try to set on all common outputs; hyprpaper doesn't support video wallpapers
-        mpvpaper -o "no-audio loop video-scale=oversample panscan=1.0" eDP-1 "$FILE" >/dev/null 2>&1 &
-        mpvpaper -o "no-audio loop video-scale=oversample panscan=1.0" HDMI-A-1 "$FILE" >/dev/null 2>&1 &
-    else
-        # fallback: if no mpvpaper, try hyprpaper (images only) or skip
-        set_wallpaper_image "$FILE"
-    fi
+    mpvpaper -o "no-audio loop video-scale=oversample panscan=1.0" eDP-1 "$FILE" >/dev/null 2>&1 &
+    mpvpaper -o "no-audio loop video-scale=oversample panscan=1.0" HDMI-A-1 "$FILE" >/dev/null 2>&1 &
 }
 
 if [ -z "$1" ] || [ "$1" != "--initial" ]; then

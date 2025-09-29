@@ -1,0 +1,12 @@
+[Unit]
+Description=Start SWWW for Hyprland
+After=hyprland.service
+
+[Service]
+Environment=RUST_BACKTRACE=1
+ExecStart=/home/teaguy21/.local/bin/swww-daemon -f argb
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

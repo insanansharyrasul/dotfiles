@@ -123,7 +123,8 @@
     "tooltip-format": "<tt>{calendar}</tt>",
     "on-click": "gnome-calendar",
     "on-click-middle": "~/.config/hypr/scripts/toggle-wallpaper.sh",
-    "on-click-right": "~/.config/hypr/scripts/instant-solid.sh",
+    "on-click-right": "~/.config/swww/swww.sh",
+    // "on-click-right": "~/.local/bin/swww img ~/Pictures/Wallpapers/black.png",
     "calendar": {
       "mode": "month",
       "mode-mon-col": 3,
