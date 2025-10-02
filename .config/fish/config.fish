@@ -62,3 +62,6 @@ end
 # g++-14
 set -Ux CC gcc-14
 set -Ux CXX g++-14
+
+bind -M insert \t accept-autosuggestion
+bind -M insert \e\[Z complete
