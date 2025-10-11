@@ -1,6 +1,6 @@
-/* @define-color main-accent #95e6cb; */
+@define-color main-accent #95e6cb;
 /* @define-color main-accent #ff8f40; */
-@define-color main-accent #F5BABB;
+/* @define-color main-accent #F5BABB; */
 
 
 * {
@@ -36,7 +36,7 @@
 
 window#waybar {
   background-color: transparent;
-  /* border-radius: 10px; */
+  border-radius: 10px;
 }
 
 window>box {
