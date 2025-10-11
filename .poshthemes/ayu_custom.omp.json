@@ -17,7 +17,8 @@
           "foreground": "#10141c",
           "powerline_symbol": "\ue0b0",
           "leading_powerline_symbol": "\ue0b6",
-          "background": "#95e6cb",
+          // "background": "#95e6cb",
+          "background": "#F5BABB",
           "type": "path",
           "style": "powerline"
         },
@@ -66,7 +67,8 @@
           "properties": {
             "cache_duration": "none"
           },
-          "template": "<#95e6cb>></>",
+          // "template": "<#95e6cb>></>",
+          "template": "<#F5BABB>></>",
           "foreground": "#d2a6ff",
           "type": "text",
           "style": "plain"
