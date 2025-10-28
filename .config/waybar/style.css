@@ -43,8 +43,8 @@ window>box {
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;
-  background-color: rgb(13, 16, 23);
   border-radius: 10px;
+  background-color: rgb(13, 16, 23);
 }
 
 #workspaces {
@@ -163,14 +163,14 @@ tooltip label {
 }
 
 #clock {
-  color: #bfbdb6;
+  color: @main-accent;
   border-radius: 10px;
 }
 
 #clock:hover {
   transition: ease 0.2s all;
   color: #10141c;
-  background-color: #bfbdb6;
+  background-color: @main-accent;
   border-radius: 10px;
 }
 
@@ -266,19 +266,6 @@ tooltip label {
 #tray {
   padding-right: 8px;
   padding-left: 10px;
-}
-
-#mpd.paused {
-  color: #6c7380;
-  font-style: italic;
-}
-
-#mpd.stopped {
-  background: transparent;
-}
-
-#mpd {
-  color: #bfbdb6;
 }
 
 #custom-tlp-profile {
