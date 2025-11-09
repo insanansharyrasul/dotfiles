@@ -1,6 +1,7 @@
 [Unit]
 Description=Start SWWW for Hyprland
 After=hyprland.service
+ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
 Environment=RUST_BACKTRACE=1
