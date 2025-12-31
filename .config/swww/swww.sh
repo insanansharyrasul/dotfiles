@@ -10,6 +10,7 @@ WALLPAPERS=(
     "$HOME/Pictures/Wallpapers/black2.png"
     "$HOME/Pictures/Wallpapers/thunderstorm.jpg"
     "$HOME/Pictures/Wallpapers/sakura.jpg"
+    "$HOME/Pictures/Wallpapers/lava-wallpaper.jpg"
     "$HOME/Pictures/Wallpapers/neon.png"
     "$HOME/Pictures/Wallpapers/black.png"
     # Add more wallpapers here:
