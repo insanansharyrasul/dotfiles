@@ -7,6 +7,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Define your wallpapers here - easily add more!
 WALLPAPERS=(
+    "$HOME/Pictures/Wallpapers/black2.png"
     "$HOME/Pictures/Wallpapers/thunderstorm.jpg"
     "$HOME/Pictures/Wallpapers/sakura.jpg"
     "$HOME/Pictures/Wallpapers/neon.png"
