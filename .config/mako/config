@@ -16,3 +16,5 @@ max-visible=5
 border-color=#d95757
 background-color=#d95757
 text-color=#10141c
+
+on-button-left=exec hyprctl dispatch focuswindow address:0x${mako_id} || hyprctl dispatch focuswindow ${mako_app_name}
