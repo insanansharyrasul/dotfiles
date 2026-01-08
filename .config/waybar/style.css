@@ -41,10 +41,18 @@ window#waybar {
 }
 
 window>box {
-  margin-left: 5px;
+  /* IF YOU WANT ROUNDED BORDER */
+  /* margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;
-  border-radius: 10px;
+  border-radius: 10px; */
+
+
+  /* IF YOU DON'T WANT ROUNDED BORDER */
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+
   background-color: rgb(13, 16, 23);
 }
 
