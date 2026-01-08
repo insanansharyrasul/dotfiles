@@ -1,7 +1,4 @@
-@define-color main-accent #95e6cb;
-/* @define-color main-accent #ff8f40; */
-/* @define-color main-accent #F5BABB; */
-
+@define-color main-accent #FF9C40;
 
 * {
   font-family: "JetBrainsMono Nerd Font";
@@ -43,6 +40,7 @@ window>box {
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;
+  margin-bottom: 5px;
   background-color: rgb(13, 16, 23);
   border-radius: 10px;
 }
