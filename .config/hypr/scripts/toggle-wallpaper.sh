@@ -1,6 +1,6 @@
 #!/bin/bash
 
-STATE_FILE="/tmp/wallpaper_current"
+STATE_FILE="/tmp/wallpaper_toggle_state"
 WALLPAPER_DIR="/home/teaguy21/Videos/LiveWallpaper"
 WALLPAPER_PREFIX="live-wallpaper"
 SOLID_COLOR="#000000"
@@ -30,6 +30,19 @@ set_wallpaper_video() {
     FILE="$1"
     mpvpaper -o "no-audio loop video-scale=oversample panscan=1.0" eDP-1 "$FILE" >/dev/null 2>&1 &
     mpvpaper -o "no-audio loop video-scale=oversample panscan=1.0" HDMI-A-1 "$FILE" >/dev/null 2>&1 &
+}
+
+# helper: set wallpaper image via swww
+set_wallpaper_image() {
+    FILE="$1"
+    if ! pgrep -x "swww-daemon" >/dev/null; then
+        "$HOME/.local/bin/swww-daemon" >/dev/null 2>&1 &
+        sleep 0.5
+    fi
+    "$HOME/.local/bin/swww" img "$FILE" \
+        --transition-type wipe \
+        --transition-duration 2 \
+        --transition-fps 90 >/dev/null 2>&1
 }
 
 if [ -z "$1" ] || [ "$1" != "--initial" ]; then
