@@ -16,13 +16,16 @@ alias bldapk "flutter clean && flutter build apk --release && cp build/app/outpu
 alias c "clear"
 alias sai "sudo apt install"
 
+# config aliases
+alias dotfc "vim ~/.config/hypr/hyprland.conf"
+alias fishc "vim ~/.config/fish/config.fish"
+
 # Git aliases
 alias g "git"
 alias ga "git add"
-alias gc "git commit"
+alias gc "git commit -m"
 alias gca "git commit --amend"
 alias gco "git checkout"
-alias gcm "git commit -m"
 alias gcl "git clone"
 alias gpl "git pull"
 alias gp "git push origin"
@@ -39,7 +42,7 @@ function fc -d "Compile and run a C file"
     gcc $argv[1] -o $base_name; and ./$base_name
 end
 # Alias for killing processes
-alias qw "pkill java && pkill qemu"
+alias qw "pkill java && pkill qemu && pkill adb && pkill dart"
 
 # if status is-interactive
     # Commands to run in interactive sessions can go here
