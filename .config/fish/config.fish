@@ -15,6 +15,7 @@ alias td "cd ~/Downloads"
 alias bldapk "flutter clean && flutter build apk --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Downloads/"
 alias c "clear"
 alias sai "sudo apt install"
+alias f "python3"
 
 # config aliases
 alias dotfc "vim ~/.config/hypr/hyprland.conf"
