@@ -69,3 +69,5 @@ set -Ux CXX g++-14
 
 bind -M insert \t accept-autosuggestion
 bind -M insert \e\[Z complete
+# opencode
+fish_add_path /home/teaguy21/.opencode/bin
