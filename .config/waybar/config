@@ -59,8 +59,8 @@
   },
   "backlight": {
     "device": "intel_backlight",
-    "on-scroll-up": "brightnessctl set +5%",
-    "on-scroll-down": "brightnessctl set 5%-",
+    "on-scroll-up": "brightnessctl set +10%",
+    "on-scroll-down": "brightnessctl set 10%-",
     "format": "{icon} {percent}%",
     "format-icons": [
       "󰃞",
@@ -82,15 +82,12 @@
         ""
       ]
     },
-    "states": {
-      "warning": 0
-    },
-    "scroll-step": 5,
+    "scroll-step": 10,
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
     "on-click-middle": "pavucontrol",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +10%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -10%",
     "tooltip": false
   },
   "battery": {
@@ -124,7 +121,6 @@
     "on-click": "gnome-calendar",
     "on-click-middle": "~/.config/hypr/scripts/toggle-wallpaper.sh",
     "on-click-right": "~/.config/swww/swww.sh",
-    // "on-click-right": "~/.local/bin/swww img ~/Pictures/Wallpapers/black.png",
     "calendar": {
       "mode": "month",
       "mode-mon-col": 3,
@@ -164,8 +160,7 @@
     "tooltip": true,
     "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n{signalStrength}% | {signaldBm}dBm | {frequency}MHz\n⬆️ {bandwidthUpBits} ⬇️ {bandwidthDownBits}",
     "on-click": "~/.config/waybar/scripts/network-menu.sh",
-    "on-click-middle": "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-Fi networks.'",
-    // "on-click": "bash ~/.config/waybar/scripts/network-wofi.sh"
+    "on-click-middle": "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-Fi networks.'"
   },
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon6/temp2_input",
