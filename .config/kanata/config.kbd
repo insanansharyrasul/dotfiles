@@ -5,7 +5,7 @@
 )
 
 (defsrc 
-  caps h j k l grv w a s d
+  caps h j k l grv w a s d ralt
 )
 
 (defalias
@@ -14,9 +14,9 @@
 )
 
 (deflayer default 
-  @escctrl _ _ _ _ @grvchg _ _ _ _
+  @escctrl _ _ _ _ @grvchg _ _ _ _ f1
 )
 
 (deflayer arrows
-  _ left down up rght _ up left down rght
+  _ left down up rght _ up left down rght _
 )

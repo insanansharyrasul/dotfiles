@@ -1,0 +1,8 @@
+[Nemo Action]
+Name=Kirim ke HP via Valent
+Comment=Kirim file yang dipilih ke perangkat melalui Valent
+Exec=flatpak run ca.andyholmes.Valent %F
+Icon=ca.andyholmes.Valent
+Selection=notnone
+Extensions=any;
+Quote=double
