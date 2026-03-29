@@ -58,7 +58,6 @@
     "tooltip": false
   },
   "backlight": {
-    "device": "intel_backlight",
     "on-scroll-up": "brightnessctl set +10%",
     "on-scroll-down": "brightnessctl set 10%-",
     "format": "{icon} {percent}%",
@@ -111,6 +110,7 @@
     ],
     "format-full": "\udb80\udc79 {capacity}%",
     "format-charging": "\udb80\udc84 {capacity}%",
+    "format-discharging": "{icon} {capacity}% ({time})",
     "tooltip": false
   },
   "clock": {
@@ -140,18 +140,14 @@
     }
   },
   "memory": {
-    "interval": 1,
+    "interval": 5,
     "format": "\ue266 {percentage}%",
     "states": {
       "warning": 85
     }
   },
-  "cpu": {
-    "interval": 1,
-    "format": "\uf4bc {usage}%"
-  },
   "network": {
-    "interval": 1,
+    "interval": 3,
     "interface": "wlo1",
     "format-wifi": "󰖩 {essid}",
     "format-ethernet": "󰈀 {ifname} ({ipaddr})",
@@ -161,11 +157,6 @@
     "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n{signalStrength}% | {signaldBm}dBm | {frequency}MHz\n⬆️ {bandwidthUpBits} ⬇️ {bandwidthDownBits}",
     "on-click": "~/.config/waybar/scripts/network-menu.sh",
     "on-click-middle": "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-Fi networks.'"
-  },
-  "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon6/temp2_input",
-    "tooltip": false,
-    "format": " {temperatureC}°C"
   },
   "custom/powermenu": {
     "format": "",
