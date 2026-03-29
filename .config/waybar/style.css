@@ -119,9 +119,22 @@ tooltip label {
 #network,
 #battery,
 #custom-powermenu,
-#custom-cava-internal {
+#custom-cava-internal,
+#privacy,
+#custom-media
+{
   padding-left: 10px;
   padding-right: 10px;
+}
+
+#privacy {
+  color: @main-accent;
+  border-radius: 10px;
+}
+
+#custom-media {
+  color: @main-accent;
+  border-radius: 10px;
 }
 
 #memory {
