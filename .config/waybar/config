@@ -5,14 +5,17 @@
     "memory",
     "idle_inhibitor",
     "tray",
-    "hyprland/submap"
+    "hyprland/submap",
+    "custom/media"
   ],
   "modules-center": [
     "clock"
   ],
   "modules-right": [
     "custom/tlp-profile",
+    "privacy",
     "pulseaudio",
+    "pulseaudio#source",
     "backlight",
     "network",
     "battery",
@@ -111,7 +114,8 @@
     "format-full": "\udb80\udc79 {capacity}%",
     "format-charging": "\udb80\udc84 {capacity}%",
     "format-discharging": "{icon} {capacity}% ({time})",
-    "tooltip": false
+    "tooltip": true,
+    "tooltip-format": "{timeTo}\nHealth: {health}%"
   },
   "clock": {
     "interval": 1,
@@ -157,6 +161,48 @@
     "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n{signalStrength}% | {signaldBm}dBm | {frequency}MHz\n⬆️ {bandwidthUpBits} ⬇️ {bandwidthDownBits}",
     "on-click": "~/.config/waybar/scripts/network-menu.sh",
     "on-click-middle": "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-Fi networks.'"
+  },
+  "pulseaudio#source": {
+    "format": "{format_source}",
+    "format-source": "󰍬 {volume}%",
+    "format-source-muted": "󰍭 0%",
+    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +10%",
+    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -10%",
+    "tooltip": false
+  },
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 14,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-out",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ]
+  },
+  "custom/media": {
+    "format": "{}",
+    "return-type": "json",
+    "max-length": 45,
+    "interval": 3,
+    "exec": "~/.config/waybar/scripts/mediaplayer.py 2>/dev/null",
+    "on-click": "playerctl --player=%any play-pause",
+    "on-click-right": "playerctl --player=%any next",
+    "on-click-middle": "playerctl --player=%any previous",
+    "tooltip": true
   },
   "custom/powermenu": {
     "format": "",
