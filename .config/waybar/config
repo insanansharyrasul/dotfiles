@@ -197,7 +197,6 @@
     "format": "{}",
     "return-type": "json",
     "max-length": 45,
-    "interval": 3,
     "exec": "~/.config/waybar/scripts/mediaplayer.py 2>/dev/null",
     "on-click": "playerctl --player=%any play-pause",
     "on-click-right": "playerctl --player=%any next",
