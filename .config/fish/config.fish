@@ -72,3 +72,6 @@ bind -M insert \t accept-autosuggestion
 bind -M insert \e\[Z complete
 # opencode
 fish_add_path /home/teaguy21/.opencode/bin
+
+set -gx LANG en_US.UTF-8
+set -gx LC_ALL en_US.UTF-8
