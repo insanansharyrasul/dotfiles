@@ -25,22 +25,19 @@ local HOME = os.getenv("HOME")
 
 ---------------------------
 --- Monitor configuration
--- (inlined from monitors.conf)
+-- Parsed from monitors.conf (managed by nwg-displays, hyprlang format)
 ---------------------------
 
-hl.monitor({
-    output   = "eDP-1",
-    mode     = "2880x1800@90.0",
-    position = "0x0",
-    scale    = "2.0",
-})
-
-hl.monitor({
-    output   = "HDMI-A-1",
-    mode     = "1920x1200@59.95",
-    position = "1440x0",
-    scale    = "1.0",
-})
+local monitors_conf = io.open(HOME .. "/.config/hypr/monitors.conf", "r")
+if monitors_conf then
+    for line in monitors_conf:lines() do
+        local output, mode, position, scale = line:match("^monitor=([^,]+),([^,]+),([^,]+),([^%s,]+)")
+        if output then
+            hl.monitor({ output = output, mode = mode, position = position, scale = scale })
+        end
+    end
+    monitors_conf:close()
+end
 
 -- (workspaces.conf was empty, nothing to source)
 
