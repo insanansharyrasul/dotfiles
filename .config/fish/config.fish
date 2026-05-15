@@ -17,6 +17,7 @@ alias c "clear"
 alias sai "sudo apt install"
 alias f "python3"
 alias apt='sudo apt-fast'
+alias ntp "sudo ntpdate -s time.nist.gov"
 
 # config aliases
 alias dotfc "vim ~/.config/hypr/hyprland.conf"
