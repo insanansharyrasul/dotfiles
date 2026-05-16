@@ -11,20 +11,15 @@
 (deflisten media     :initial '{"text":"","tooltip":"","class":"stopped"}'
 "$HOME/.config/waybar/scripts/mediaplayer.py 2>/dev/null")
 
-(deflisten volume_listen    :initial "" "scripts/volume listen")
-(deflisten mic_listen       :initial "" "scripts/mic listen")
-(deflisten backlight_listen :initial "" "scripts/backlight listen")
+(deflisten volume     :initial '{"level":0,"icon":"󰕿"}' "scripts/volume listen")
+(deflisten mic        :initial '{"level":0,"icon":"󰍬"}' "scripts/mic listen")
+(deflisten brightness :initial "0" "scripts/backlight listen")
 
 (defpoll battery-icon    :interval "10s" :initial "" "scripts/battery icon")
 (defpoll battery-percent :interval "10s" :initial "0" "scripts/battery percent")
 (defpoll battery-status  :interval "10s" :initial "" "scripts/battery status")
 (defpoll wifi-icon       :interval "5s"  :initial "" "scripts/network icon")
 (defpoll wifi-name       :interval "5s"  :initial "" "scripts/network name")
-(defpoll volume-icon     :interval "5s"  :initial "" "scripts/volume icon")
-(defpoll volume-level    :interval "5s"  :initial "0" "scripts/volume get")
-(defpoll mic-icon        :interval "5s"  :initial "" "scripts/mic icon")
-(defpoll mic-level       :interval "5s"  :initial "0" "scripts/mic get")
-(defpoll brightness      :interval "5s"  :initial "0" "scripts/backlight get")
 (defpoll memory          :interval "5s"  :initial "0" "scripts/memory")
 (defpoll tlp             :interval "5s"  :initial "{}"
 "$HOME/.dotfiles/.config/scripts/waybar-tlp-status.sh")
@@ -82,14 +77,14 @@
     :halign "center"
     (box :orientation "v" :space-evenly false :spacing 4 :halign "center"
       (revealer :transition "slideup" :reveal volume-reveal :duration "350ms"
-        (scale :class "volbar" :value volume-level :orientation "v"
-          :flipped true :round-digits 0 :tooltip "Volume ${volume-level}%"
+        (scale :class "volbar" :value {volume.level} :orientation "v"
+          :flipped true :round-digits 0 :tooltip "Volume ${volume.level}%"
         :max 100 :min 0 :onchange "scripts/volume set {}"))
       (box :orientation "v" :space-evenly false :halign "center"
         (button :class "mod icon-vol" :tooltip "Mute / right-click: mixer" :halign "center"
           :onclick "scripts/volume mute"
-        :onrightclick "scripts/popup audio" volume-icon)
-        (label :class "label-sm" :halign "center" :text "${volume-level}")))))
+        :onrightclick "scripts/popup audio" {volume.icon})
+        (label :class "label-sm" :halign "center" :text "${volume.level}")))))
 
 ;; Microphone
 (defwidget mic []
@@ -99,13 +94,13 @@
     :halign "center"
     (box :orientation "v" :space-evenly false :spacing 4 :halign "center"
       (revealer :transition "slideup" :reveal mic-reveal :duration "350ms"
-        (scale :class "micbar" :value mic-level :orientation "v"
-          :flipped true :round-digits 0 :tooltip "Mic ${mic-level}%"
+        (scale :class "micbar" :value {mic.level} :orientation "v"
+          :flipped true :round-digits 0 :tooltip "Mic ${mic.level}%"
         :max 100 :min 0 :onchange "scripts/mic set {}"))
       (box :orientation "v" :space-evenly false :halign "center"
         (button :class "mod icon-mic" :tooltip "Scroll: adjust · Click: mute" :halign "center"
-        :onclick "scripts/mic mute" mic-icon)
-        (label :class "label-sm" :halign "center" :text "${mic-level}")))))
+        :onclick "scripts/mic mute" {mic.icon})
+        (label :class "label-sm" :halign "center" :text "${mic.level}")))))
 
 ;; Brightness (hover-reveal scale)
 (defwidget backlight []
