@@ -5,6 +5,9 @@
 
 * { all: unset; }
 
+// Transparent window so the bar can float with rounded corners.
+window { background-color: transparent; }
+
 // -- Ayu Dark palette --
 $background: #0D1017;
 $surface:    #161A24;
@@ -21,12 +24,16 @@ $magenta:    #D2A6FF;
 $font: "JetBrainsMono Nerd Font";
 
 // -- Bar --
+// The bar floats: `margin` is the gap to the screen edges, `border-radius`
+// rounds the whole bar. Width/thickness is set in eww.yuck (defwindow bar).
 .eww_bar {
-  background-color: $background;
+  // background-color: $background;
+  // background-color: $surface;
   color: $foreground;
   font-family: $font;
   font-weight: bold;
-  padding: 8px 0;
+  border-radius: 11px;
+  padding: 8px;
 }
 
 @keyframes blink_red {
@@ -36,23 +43,25 @@ $font: "JetBrainsMono Nerd Font";
 
 // -- Launcher --
 .launcher {
+  background-color: $surface;
+  border-radius: 11px;
   font-size: 23px;
   color: $accent;
   padding: 10px 0;
   margin-bottom: 4px;
 }
-.launcher:hover { color: $yellow; }
+.launcher:hover { color: $blue; }
 
 // -- Workspaces --
 .works {
   background-color: $surface;
   border-radius: 10px;
-  padding: 8px 0;
+  padding: 6px;
   margin: 0 4px;
 }
 .ws, .ws-occupied, .ws-active {
   font-size: 15px;
-  padding: 6px 0;
+  padding: 4px;
   margin: 2px 5px;
   border-radius: 9px;
   color: $gray;
@@ -73,7 +82,7 @@ $font: "JetBrainsMono Nerd Font";
   color: $background;
   background-color: $accent;
   border-radius: 8px;
-  padding: 6px 2px;
+  padding: 8px;
   margin: 0 4px;
 }
 
@@ -81,12 +90,12 @@ $font: "JetBrainsMono Nerd Font";
 .control {
   background-color: $surface;
   border-radius: 10px;
-  padding: 10px 0;
-  margin: 0 3px;
+  padding: 0px 0px 0px 0px;
+  // margin: 0 3px;
 }
 .mod {
   font-size: 19px;
-  padding: 3px 0;
+  padding: 3px;
 }
 .label-sm {
   font-size: 11px;
@@ -140,7 +149,7 @@ scale.bribar trough highlight {
 .clock {
   background-color: $surface;
   border-radius: 10px;
-  padding: 8px 0;
+  padding: 8px;
   margin: 0 3px;
 }
 .clock:hover { background-color: $surface2; }
@@ -163,7 +172,7 @@ scale.bribar trough highlight {
 }
 .pw-lock, .pw-logout, .pw-reboot, .pw-sleep, .pw-power {
   font-size: 18px;
-  padding: 6px 0;
+  padding: 0px 10px 0px 10px;
 }
 .pw-lock   { color: $blue; }
 .pw-logout { color: $magenta; }

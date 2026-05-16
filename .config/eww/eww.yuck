@@ -129,7 +129,7 @@
 ;; Clock  (left: calendar · middle: toggle wallpaper · right: wallpaper picker)
 (defwidget clock []
   (button :class "clock"
-          :tooltip "${fulldate} — middle-click: toggle wallpaper · right-click: picker"
+          :tooltip "${fulldate}"
           :onclick "scripts/popup calendar"
           :onmiddleclick "$HOME/.config/hypr/scripts/toggle-wallpaper.sh"
           :onrightclick "$HOME/.config/swww/swww.sh"
@@ -192,15 +192,18 @@
       (end))))
 
 ;; ──────────────────────────── Windows ──────────────────────────────
+;; Bar thickness: change :width here. The bar floats inside this window
+;; with an 8px margin (see .eww_bar in eww.scss), so the visible bar is
+;; roughly :width minus 16px.
 (defwindow bar
-  :geometry (geometry :x "0px" :y "0px" :width "60px" :height "100%" :anchor "left center")
+  :geometry (geometry :x "0px" :y "0px" :width "10px" :height "100%" :anchor "left center")
   :monitor 0
   :stacking "fg"
   :exclusive true
   (bar))
 
 (defwindow calendar
-  :geometry (geometry :x "70px" :y "60px" :width "290px" :height "210px" :anchor "bottom left")
+  :geometry (geometry :x "92px" :y "60px" :width "290px" :height "210px" :anchor "bottom left")
   :monitor 0
   :stacking "fg"
   (cal))
