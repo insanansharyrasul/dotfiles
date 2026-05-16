@@ -126,9 +126,13 @@
             :onrightclick "playerctl --player=%any next"
             :onmiddleclick "playerctl --player=%any previous" "")))
 
-;; Clock
+;; Clock  (left: calendar · middle: toggle wallpaper · right: wallpaper picker)
 (defwidget clock []
-  (button :class "clock" :tooltip fulldate :onclick "scripts/popup calendar"
+  (button :class "clock"
+          :tooltip "${fulldate} — middle-click: toggle wallpaper · right-click: picker"
+          :onclick "scripts/popup calendar"
+          :onmiddleclick "$HOME/.config/hypr/scripts/toggle-wallpaper.sh"
+          :onrightclick "$HOME/.config/swww/swww.sh"
     (box :orientation "v" :space-evenly false
       (label :class "clock-hour" :text hour)
       (label :class "clock-min"  :text min))))
