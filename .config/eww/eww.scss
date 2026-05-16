@@ -3,22 +3,26 @@
    NOTE: keep this file ASCII-only. Non-ASCII chars make `grass` emit a
    `@charset` rule that GTK's CSS parser rejects, dropping all styles. */
 
-* { all: unset; }
+* {
+  all: unset;
+}
 
-window { background-color: transparent; }
+window {
+  background-color: transparent;
+}
 
 // -- Ayu Dark palette --
 $background: #0D1017;
-$surface:    #161A24;
-$surface2:   #1F2430;
+$surface: #161A24;
+$surface2: #1F2430;
 $foreground: #BFBDB6;
-$gray:       #5C6773;
-$accent:     #FF9C40;
-$red:        #F07178;
-$green:      #95E6CB;
-$yellow:     #FFB454;
-$blue:       #59C2FF;
-$magenta:    #D2A6FF;
+$gray: #5C6773;
+$accent: #FF9C40;
+$red: #F07178;
+$green: #95E6CB;
+$yellow: #FFB454;
+$blue: #59C2FF;
+$magenta: #D2A6FF;
 
 $font: "JetBrainsMono Nerd Font";
 $global-padding: 3px 2px;
@@ -36,8 +40,15 @@ $global-padding: 3px 2px;
 }
 
 @keyframes blink_red {
-  from { background-color: transparent; color: $red; }
-  to   { background-color: $red;        color: $background; }
+  from {
+    background-color: transparent;
+    color: $red;
+  }
+
+  to {
+    background-color: $red;
+    color: $background;
+  }
 }
 
 // -- Launcher --
@@ -49,7 +60,10 @@ $global-padding: 3px 2px;
   color: $accent;
   padding: 8px;
 }
-.launcher:hover { color: $blue; }
+
+.launcher:hover {
+  color: $blue;
+}
 
 // -- Workspaces --
 .works {
@@ -58,19 +72,28 @@ $global-padding: 3px 2px;
   padding: $global-padding;
   margin: 0px;
 }
-.ws, .ws-occupied, .ws-active {
+
+.ws,
+.ws-occupied,
+.ws-active {
   font-size: 14px;
   padding: $global-padding;
   border-radius: 9px;
   color: $gray;
 }
-.ws-occupied { color: $foreground; }
+
+.ws-occupied {
+  color: $foreground;
+}
+
 .ws-active {
   color: $background;
   background-color: $accent;
   padding: 3 9px;
 }
-.ws:hover, .ws-occupied:hover {
+
+.ws:hover,
+.ws-occupied:hover {
   color: $background;
   background-color: $yellow;
 }
@@ -102,25 +125,71 @@ $global-padding: 3px 2px;
   color: $foreground;
 }
 
-.icon-bat   { color: $blue; }
+.icon-bat {
+  color: $blue;
+}
+
 .icon-bat.critical {
   border-radius: 8px;
   animation: blink_red 1s linear infinite alternate;
 }
-.icon-wifi  { color: $magenta; }
-.icon-wifi:hover { color: $accent; }
-.icon-vol   { color: $green; }
-.icon-vol:hover { color: $accent; }
-.icon-mic   { color: $blue; }
-.icon-mic:hover { color: $accent; }
-.icon-bright { color: $yellow; }
-.icon-mem   { color: $accent; font-size: 18px; }
-.icon-tlp   { color: $accent; }
-.icon-tlp:hover { color: $yellow; }
-.icon-idle  { color: $gray; }
-.icon-idle:hover { color: $accent; }
-.icon-media { color: $accent; }
-.icon-media:hover { color: $yellow; }
+
+.icon-wifi {
+  color: $magenta;
+}
+
+.icon-wifi:hover {
+  color: $accent;
+}
+
+.icon-vol {
+  color: $green;
+}
+
+.icon-vol:hover {
+  color: $accent;
+}
+
+.icon-mic {
+  color: $blue;
+}
+
+.icon-mic:hover {
+  color: $accent;
+}
+
+.icon-bright {
+  color: $yellow;
+}
+
+.icon-mem {
+  color: $accent;
+  font-size: 18px;
+}
+
+.icon-tlp {
+  color: $accent;
+}
+
+.icon-tlp:hover {
+  color: $yellow;
+}
+
+.icon-idle {
+  color: $gray;
+}
+
+.icon-idle:hover {
+  color: $accent;
+}
+
+.icon-media {
+  color: $accent;
+}
+
+.icon-media:hover {
+  color: $yellow;
+}
 
 .privacy {
   color: $red;
@@ -130,16 +199,23 @@ $global-padding: 3px 2px;
 
 // -- Sliders (volume / brightness) --
 scale trough {
-  background-color: $background;
+  background-color: $surface;
   border-radius: 8px;
   min-height: 78px;
   min-width: 8px;
   margin: 4px 0;
 }
+
 scale.volbar trough highlight {
   background-color: $green;
   border-radius: 8px;
 }
+
+scale.micbar trough highlight {
+  background-color: $blue;
+  border-radius: 8px;
+}
+
 scale.bribar trough highlight {
   background-color: $yellow;
   border-radius: 8px;
@@ -151,11 +227,16 @@ scale.bribar trough highlight {
   border-radius: 10px;
   padding: $global-padding;
 }
-.clock:hover { background-color: $surface2; }
+
+.clock:hover {
+  background-color: $surface2;
+}
+
 .clock-hour {
   font-size: 14px;
   color: $accent;
 }
+
 .clock-min {
   font-size: 14px;
   color: $foreground;
@@ -169,17 +250,42 @@ scale.bribar trough highlight {
   font-size: 18px;
 }
 
-.pw-lock, .pw-logout, .pw-reboot, .pw-sleep, .pw-power {
+.pw-lock,
+.pw-logout,
+.pw-reboot,
+.pw-sleep,
+.pw-power {
   font-size: 18px;
   padding: 0px 10px 0px 10px;
 }
-.pw-lock   { color: $blue; }
-.pw-logout { color: $magenta; }
-.pw-reboot { color: $yellow; }
-.pw-sleep  { color: $green; }
-.pw-power  { color: $red; }
-.pw-lock:hover, .pw-logout:hover, .pw-reboot:hover,
-.pw-sleep:hover, .pw-power:hover { color: $accent; }
+
+.pw-lock {
+  color: $blue;
+}
+
+.pw-logout {
+  color: $magenta;
+}
+
+.pw-reboot {
+  color: $yellow;
+}
+
+.pw-sleep {
+  color: $green;
+}
+
+.pw-power {
+  color: $red;
+}
+
+.pw-lock:hover,
+.pw-logout:hover,
+.pw-reboot:hover,
+.pw-sleep:hover,
+.pw-power:hover {
+  color: $accent;
+}
 
 // -- Calendar popup --
 .cal-box {
@@ -187,19 +293,41 @@ scale.bribar trough highlight {
   border-radius: 10px;
   padding: 12px;
 }
+
 .cal {
   font-family: $font;
   color: $foreground;
 }
-calendar:selected { color: $accent; }
-calendar.header   { color: $accent; font-weight: bold; }
-calendar.button   { color: $magenta; }
-calendar.highlight { color: $accent; font-weight: bold; }
-calendar:indeterminate { color: $gray; }
+
+calendar:selected {
+  color: $accent;
+}
+
+calendar.header {
+  color: $accent;
+  font-weight: bold;
+}
+
+calendar.button {
+  color: $magenta;
+}
+
+calendar.highlight {
+  color: $accent;
+  font-weight: bold;
+}
+
+calendar:indeterminate {
+  color: $gray;
+}
 
 // -- Tooltips --
 tooltip {
   background-color: $surface;
   border-radius: 8px;
 }
-tooltip label { color: $foreground; padding: 4px; }
+
+tooltip label {
+  color: $foreground;
+  padding: 4px;
+}
