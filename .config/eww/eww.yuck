@@ -25,10 +25,11 @@
 (defpoll tlp             :interval "5s"  :initial "{}"
 "$HOME/.dotfiles/.config/scripts/waybar-tlp-status.sh")
 (defpoll privacy-mic     :interval "3s"  :initial "false" "scripts/privacy")
-(defpoll idle-state      :interval "2s"  :initial "off" "scripts/idleinhibit status")
+(defpoll idle_inhibit :interval "2s" :initial "false" "scripts/idleinhibit status")
 
-(defpoll hour     :interval "10s" :initial "" "date '+%H'")
-(defpoll min      :interval "10s" :initial "" "date '+%M'")
+(defpoll hour     :interval "1s" :initial "" "date '+%H'")
+(defpoll min      :interval "1s" :initial "" "date '+%M'")
+(defpoll sec      :interval "1s" :initial "" "date '+%S'")
 (defpoll fulldate :interval "60s" :initial "" "date '+%A, %d %B %Y'")
 (defpoll calendar_day   :interval "1h" "date '+%d'")
 (defpoll calendar_month :interval "1h" "scripts/calendar")
@@ -132,9 +133,11 @@
 
 ;; Idle inhibitor
 (defwidget idle []
-  (button :class "mod icon-idle" :tooltip "Idle inhibitor: ${idle-state}" :halign "center" :valign "center"
+  (button :class "mod icon-idle"
+    :tooltip {idle_inhibit ? "Idle inhibitor: on" : "Idle inhibitor: off"}
+    :halign "center" :valign "center"
     :onclick "scripts/idleinhibit toggle"
-  {idle-state == "on" ? "󰅶" : "󰾪"}))
+  {idle_inhibit ? "󰅶" : "󰾪"}))
 
 ;; Privacy (microphone-in-use indicator)
 (defwidget privacy []
@@ -160,7 +163,7 @@
     (box :orientation "v" :space-evenly false
       (label :class "clock-hour" :text hour)
       (label :class "clock-min"  :text min)
-      ; (label :class "clock-sec"  :text sec)
+      (label :class "clock-sec"  :text sec)
     )))
 
 ;; Powermenu (hover-reveal, like the reference)
