@@ -19,6 +19,7 @@
 (defpoll volume-icon     :interval "1s"  :initial "" "scripts/volume icon")
 (defpoll volume-level    :interval "1s"  :initial "0" "scripts/volume get")
 (defpoll mic-icon        :interval "1s"  :initial "" "scripts/mic icon")
+(defpoll mic-level       :interval "1s"  :initial "0" "scripts/mic get")
 (defpoll brightness      :interval "1s"  :initial "0" "scripts/backlight get")
 (defpoll memory          :interval "5s"  :initial "0" "scripts/memory")
 (defpoll tlp             :interval "5s"  :initial "{}"
@@ -71,35 +72,42 @@
 (defwidget volume []
   (eventbox :onhover "${eww} update volume-reveal=true"
     :onhoverlost "${eww} update volume-reveal=false"
+    :onscroll "scripts/volume scroll {}"
     :halign "center"
     (box :orientation "v" :space-evenly false :spacing 4 :halign "center"
       (revealer :transition "slideup" :reveal volume-reveal :duration "350ms"
         (scale :class "volbar" :value volume-level :orientation "v"
           :flipped true :round-digits 0 :tooltip "Volume ${volume-level}%"
         :max 100 :min 0 :onchange "scripts/volume set {}"))
-      (button :class "mod icon-vol" :tooltip "Mute / right-click: mixer" :halign "center"
-        :onclick "scripts/volume mute"
-      :onrightclick "scripts/popup audio" volume-icon))))
+      (box :orientation "v" :space-evenly false :halign "center"
+        (button :class "mod icon-vol" :tooltip "Mute / right-click: mixer" :halign "center"
+          :onclick "scripts/volume mute"
+          :onrightclick "scripts/popup audio" volume-icon)
+        (label :class "label-sm" :halign "center" :text "${volume-level}")))))
 
 ;; Microphone
 (defwidget mic []
-  (button :class "mod icon-mic" :tooltip "Toggle microphone" :halign "center"
-  :onclick "scripts/mic mute" mic-icon))
+  (eventbox :onscroll "scripts/mic scroll {}"
+            :halign "center"
+    (box :orientation "v" :space-evenly false :halign "center"
+      (button :class "mod icon-mic" :tooltip "Scroll: adjust · Click: mute" :halign "center"
+        :onclick "scripts/mic mute" mic-icon)
+      (label :class "label-sm" :halign "center" :text "${mic-level}"))))
 
 ;; Brightness (hover-reveal scale)
 (defwidget backlight []
   (eventbox :onhover "${eww} update bright-reveal=true"
     :onhoverlost "${eww} update bright-reveal=false"
+    :onscroll "scripts/backlight scroll {}"
     :halign "center"
     (box :orientation "v" :space-evenly false :spacing 4 :halign "center" :valign "center"
       (revealer :transition "slideup" :reveal bright-reveal :duration "350ms"
         (scale :class "bribar" :value brightness :orientation "v"
           :flipped true :round-digits 0 :tooltip "Brightness ${brightness}%"
         :max 100 :min 1 :onchange "scripts/backlight set {}"))
-      (label :class "mod icon-bright" :halign "center" :text "󰃠")
-      ; (label :class "mod icon-bright" :halign "center" :text "󰍛")
-      ; (label :class "mod icon-bright" :halign "center" :text "test")
-    )))
+      (box :orientation "v" :space-evenly false :halign "center"
+        (label :class "mod icon-bright" :halign "center" :text "󰃠")
+        (label :class "label-sm" :halign "center" :text "${brightness}")))))
 
 ;; Memory
 (defwidget memory []
@@ -187,12 +195,12 @@
     (media)))
 
 (defwidget bottom []
-  (box :orientation "v" :space-evenly false :halign "center" :spacing 0
+  (box :orientation "v" :space-evenly false :halign "center" :spacing 5
     (clock)
     (powermenu)))
 
 (defwidget end []
-  (box :orientation "v" :space-evenly false :valign "end" :halign "center" :spacing 0
+  (box :orientation "v" :space-evenly false :valign "end" :halign "center" :spacing 5
     (control)
     (bottom)))
 

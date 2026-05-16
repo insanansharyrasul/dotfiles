@@ -2,4 +2,9 @@
 case "$1" in
   get) brightnessctl -m 2>/dev/null | awk -F, '{print $4}' | tr -d '%' ;;
   set) v=$(printf '%.0f' "${2:-0}"); brightnessctl set "${v}%" >/dev/null ;;
+  scroll)
+    case "$2" in
+      up)   brightnessctl set 5%+ >/dev/null ;;
+      down) brightnessctl set 5%- >/dev/null ;;
+    esac ;;
 esac
