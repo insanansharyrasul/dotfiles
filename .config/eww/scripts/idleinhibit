@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Toggle idle inhibition by pausing/resuming the hypridle process.
+state="$HOME/.cache/eww-idle-inhibit"
+
+case "$1" in
+  toggle)
+    if [ -f "$state" ]; then
+      rm -f "$state"
+      pkill -CONT hypridle 2>/dev/null
+    else
+      touch "$state"
+      pkill -STOP hypridle 2>/dev/null
+    fi ;;
+  status)
+    [ -f "$state" ] && echo "on" || echo "off" ;;
+esac

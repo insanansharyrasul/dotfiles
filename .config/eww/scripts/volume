@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+SINK="@DEFAULT_AUDIO_SINK@"
+
+level() { wpctl get-volume "$SINK" 2>/dev/null | awk '{print int($2 * 100)}'; }
+muted() { wpctl get-volume "$SINK" 2>/dev/null | grep -q MUTED; }
+
+case "$1" in
+  get) level ;;
+  icon)
+    if muted; then echo "󰝟"
+    else
+      v=$(level)
+      if   [ "${v:-0}" -eq 0 ];  then echo "󰕿"
+      elif [ "${v:-0}" -lt 50 ]; then echo "󰖀"
+      else echo "󰕾"; fi
+    fi ;;
+  set)  v=$(printf '%.0f' "${2:-0}"); wpctl set-volume "$SINK" "${v}%" ;;
+  mute) wpctl set-mute "$SINK" toggle ;;
+esac

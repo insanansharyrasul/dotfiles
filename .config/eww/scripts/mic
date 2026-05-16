@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+SRC="@DEFAULT_AUDIO_SOURCE@"
+
+case "$1" in
+  icon)
+    if wpctl get-volume "$SRC" 2>/dev/null | grep -q MUTED; then echo "󰍭"; else echo "󰍬"; fi ;;
+  get)  wpctl get-volume "$SRC" 2>/dev/null | awk '{print int($2 * 100)}' ;;
+  mute) wpctl set-mute "$SRC" toggle ;;
+esac

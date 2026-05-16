@@ -1,0 +1,196 @@
+/* ════════════════════════════════════════════════════════════════
+   Eww bar — ported from Waybar, styled after github.com/raexera/tokyo
+   Ayu Dark theme
+   ════════════════════════════════════════════════════════════════ */
+
+* { all: unset; }
+
+// ── Ayu Dark palette ──
+$background: #0D1017;
+$surface:    #161A24;
+$surface2:   #1F2430;
+$foreground: #BFBDB6;
+$gray:       #5C6773;
+$accent:     #FF9C40;
+$red:        #F07178;
+$green:      #95E6CB;
+$yellow:     #FFB454;
+$blue:       #59C2FF;
+$magenta:    #D2A6FF;
+
+$font: "JetBrainsMono Nerd Font";
+
+// ── Bar ──
+.eww_bar {
+  background-color: $background;
+  color: $foreground;
+  font-family: $font;
+  font-weight: bold;
+  padding: 8px 0;
+}
+
+@keyframes blink_red {
+  from { background-color: transparent; color: $red; }
+  to   { background-color: $red;        color: $background; }
+}
+
+// ── Launcher ──
+.launcher {
+  font-size: 20px;
+  color: $accent;
+  padding: 8px 0;
+  margin-bottom: 4px;
+}
+.launcher:hover { color: $yellow; }
+
+// ── Workspaces ──
+.works {
+  background-color: $surface;
+  border-radius: 10px;
+  padding: 8px 0;
+  margin: 0 4px;
+}
+.ws, .ws-occupied, .ws-active {
+  font-size: 13px;
+  padding: 5px 0;
+  margin: 2px 4px;
+  border-radius: 8px;
+  color: $gray;
+}
+.ws-occupied { color: $foreground; }
+.ws-active {
+  color: $background;
+  background-color: $accent;
+}
+.ws:hover, .ws-occupied:hover {
+  color: $background;
+  background-color: $yellow;
+}
+
+// ── Submap ──
+.submap {
+  font-size: 10px;
+  color: $background;
+  background-color: $accent;
+  border-radius: 8px;
+  padding: 6px 2px;
+  margin: 0 4px;
+}
+
+// ── Control panel ──
+.control {
+  background-color: $surface;
+  border-radius: 10px;
+  padding: 10px 0;
+  margin: 0 3px;
+}
+.mod {
+  font-size: 16px;
+  padding: 2px 0;
+}
+.label-sm {
+  font-size: 9px;
+  color: $foreground;
+}
+
+.icon-bat   { color: $blue; }
+.icon-bat.critical {
+  border-radius: 8px;
+  animation: blink_red 1s linear infinite alternate;
+}
+.icon-wifi  { color: $magenta; }
+.icon-wifi:hover { color: $accent; }
+.icon-vol   { color: $green; }
+.icon-vol:hover { color: $accent; }
+.icon-mic   { color: $blue; }
+.icon-mic:hover { color: $accent; }
+.icon-bright { color: $yellow; }
+.icon-mem   { color: $accent; font-size: 15px; }
+.icon-tlp   { color: $accent; }
+.icon-tlp:hover { color: $yellow; }
+.icon-idle  { color: $gray; }
+.icon-idle:hover { color: $accent; }
+.icon-media { color: $accent; }
+.icon-media:hover { color: $yellow; }
+
+.privacy {
+  color: $red;
+  font-size: 13px;
+  padding: 2px 0;
+}
+
+// ── Sliders (volume / brightness) ──
+scale trough {
+  background-color: $background;
+  border-radius: 8px;
+  min-height: 90px;
+  min-width: 8px;
+  margin: 4px 0;
+}
+scale.volbar trough highlight {
+  background-color: $green;
+  border-radius: 8px;
+}
+scale.bribar trough highlight {
+  background-color: $yellow;
+  border-radius: 8px;
+}
+
+// ── Clock ──
+.clock {
+  background-color: $surface;
+  border-radius: 10px;
+  padding: 8px 0;
+  margin: 0 3px;
+}
+.clock:hover { background-color: $surface2; }
+.clock-hour {
+  font-size: 15px;
+  color: $accent;
+}
+.clock-min {
+  font-size: 15px;
+  color: $foreground;
+}
+
+// ── Powermenu ──
+.powermenu {
+  background-color: $surface;
+  border-radius: 10px;
+  padding: 6px 0;
+  margin: 0 3px;
+  font-size: 15px;
+}
+.pw-lock, .pw-logout, .pw-reboot, .pw-sleep, .pw-power {
+  padding: 6px 0;
+}
+.pw-lock   { color: $blue; }
+.pw-logout { color: $magenta; }
+.pw-reboot { color: $yellow; }
+.pw-sleep  { color: $green; }
+.pw-power  { color: $red; }
+.pw-lock:hover, .pw-logout:hover, .pw-reboot:hover,
+.pw-sleep:hover, .pw-power:hover { color: $accent; }
+
+// ── Calendar popup ──
+.cal-box {
+  background-color: $surface;
+  border-radius: 10px;
+  padding: 12px;
+}
+.cal {
+  font-family: $font;
+  color: $foreground;
+}
+calendar:selected { color: $accent; }
+calendar.header   { color: $accent; font-weight: bold; }
+calendar.button   { color: $magenta; }
+calendar.highlight { color: $accent; font-weight: bold; }
+calendar:indeterminate { color: $gray; }
+
+// ── Tooltips ──
+tooltip {
+  background-color: $surface;
+  border-radius: 8px;
+}
+tooltip label { color: $foreground; padding: 4px; }
