@@ -64,7 +64,7 @@
 
 ;; Wifi
 (defwidget wifi []
-  (button :class "mod icon-wifi" :tooltip wifi-name :halign "start" :valign "center"
+  (button :class "mod icon-wifi" :tooltip wifi-name :halign "center" :valign "center"
   :onclick "scripts/popup wifi" wifi-icon))
 
 ;; Volume (hover-reveal scale, like the reference)
@@ -96,8 +96,9 @@
         (scale :class "bribar" :value brightness :orientation "v"
           :flipped true :round-digits 0 :tooltip "Brightness ${brightness}%"
         :max 100 :min 1 :onchange "scripts/backlight set {}"))
-      ; (label :class "mod icon-bright" :halign "center" :text "󰃟")
-      (label :class "mod icon-bright" :halign "center" :text "󰍛")
+      (label :class "mod icon-bright" :halign "center" :text "󰃠")
+      ; (label :class "mod icon-bright" :halign "center" :text "󰍛")
+      ; (label :class "mod icon-bright" :halign "center" :text "test")
     )))
 
 ;; Memory
@@ -167,13 +168,13 @@
 
 ;; ──────────────────────────── Layout ───────────────────────────────
 (defwidget top []
-  (box :orientation "v" :space-evenly false :valign "start" :halign "center" :spacing 5
+  (box :orientation "v" :space-evenly false :valign "start" :halign "center" :spacing 0
     (launcher)
     (workspaces)
     (submap)))
 
 (defwidget control []
-  (box :orientation "v" :space-evenly false :halign "center" :class "control" :spacing 5
+  (box :orientation "v" :space-evenly false :halign "center" :class "control" :spacing 0
     (memory)
     (battery)
     (wifi)
@@ -186,12 +187,12 @@
     (media)))
 
 (defwidget bottom []
-  (box :orientation "v" :space-evenly false :halign "center" :spacing 6
+  (box :orientation "v" :space-evenly false :halign "center" :spacing 0
     (clock)
     (powermenu)))
 
 (defwidget end []
-  (box :orientation "v" :space-evenly false :valign "end" :halign "center" :spacing 10
+  (box :orientation "v" :space-evenly false :valign "end" :halign "center" :spacing 0
     (control)
     (bottom)))
 
@@ -205,9 +206,16 @@
 ;; Bar thickness: change :width here. The bar floats inside this window
 ;; with an 8px margin (see .eww_bar in eww.scss), so the visible bar is
 ;; roughly :width minus 16px.
-(defwindow bar
-  :geometry (geometry :x "0px" :y "0px" :width "10px" :height "100%" :anchor "left center")
-  :monitor 0
+(defwindow bar-left
+  :geometry (geometry :x "0px" :y "0px" :width "1px" :height "100%" :anchor "left center")
+  :monitor "eDP-1"
+  :stacking "fg"
+  :exclusive true
+  (bar))
+
+(defwindow bar-right
+  :geometry (geometry :x "0px" :y "0px" :width "1px" :height "100%" :anchor "left center")
+  :monitor "HDMI-A-1"
   :stacking "fg"
   :exclusive true
   (bar))
