@@ -16,7 +16,7 @@ render() {
     else
       class="ws"
     fi
-    out="$out (button :onclick \"hyprctl dispatch workspace $ws\" :class \"$class\" \"$ws\")"
+    out="$out (button :onclick \"hyprctl dispatch 'hl.dsp.focus({ workspace = \\\"$ws\\\" })'\" :class \"$class\" \"$ws\")"
   done
   echo "$out)"
 }

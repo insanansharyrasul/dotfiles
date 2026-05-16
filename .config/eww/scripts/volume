@@ -16,4 +16,9 @@ case "$1" in
     fi ;;
   set)  v=$(printf '%.0f' "${2:-0}"); wpctl set-volume "$SINK" "${v}%" ;;
   mute) wpctl set-mute "$SINK" toggle ;;
+  scroll)
+    case "$2" in
+      up)   wpctl set-volume "$SINK" 5%+ ;;
+      down) wpctl set-volume "$SINK" 5%- ;;
+    esac ;;
 esac

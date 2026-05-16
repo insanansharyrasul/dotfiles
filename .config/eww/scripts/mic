@@ -6,4 +6,9 @@ case "$1" in
     if wpctl get-volume "$SRC" 2>/dev/null | grep -q MUTED; then echo "󰍭"; else echo "󰍬"; fi ;;
   get)  wpctl get-volume "$SRC" 2>/dev/null | awk '{print int($2 * 100)}' ;;
   mute) wpctl set-mute "$SRC" toggle ;;
+  scroll)
+    case "$2" in
+      up)   wpctl set-volume "$SRC" 5%+ ;;
+      down) wpctl set-volume "$SRC" 5%- ;;
+    esac ;;
 esac
