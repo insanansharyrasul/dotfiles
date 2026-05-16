@@ -229,7 +229,7 @@
   (bar))
 
 (defwindow calendar
-  :geometry (geometry :x "92px" :y "60px" :width "290px" :height "210px" :anchor "bottom left")
+  :geometry (geometry :x "5px" :y "5px" :width "290px" :height "210px" :anchor "bottom left")
   :monitor 0
   :stacking "fg"
   (cal))
