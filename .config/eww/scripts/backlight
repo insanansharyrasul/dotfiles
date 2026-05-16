@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+case "$1" in
+  get) brightnessctl -m 2>/dev/null | awk -F, '{print $4}' | tr -d '%' ;;
+  set) v=$(printf '%.0f' "${2:-0}"); brightnessctl set "${v}%" >/dev/null ;;
+esac
