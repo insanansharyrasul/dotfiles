@@ -35,6 +35,7 @@
 (defpoll calendar_year  :interval "1h" "date '+%Y'")
 
 (defvar volume-reveal false)
+(defvar mic-reveal    false)
 (defvar bright-reveal false)
 (defvar power-reveal  false)
 
@@ -82,17 +83,24 @@
       (box :orientation "v" :space-evenly false :halign "center"
         (button :class "mod icon-vol" :tooltip "Mute / right-click: mixer" :halign "center"
           :onclick "scripts/volume mute"
-          :onrightclick "scripts/popup audio" volume-icon)
+        :onrightclick "scripts/popup audio" volume-icon)
         (label :class "label-sm" :halign "center" :text "${volume-level}")))))
 
 ;; Microphone
 (defwidget mic []
-  (eventbox :onscroll "scripts/mic scroll {}"
-            :halign "center"
-    (box :orientation "v" :space-evenly false :halign "center"
-      (button :class "mod icon-mic" :tooltip "Scroll: adjust · Click: mute" :halign "center"
+  (eventbox :onhover "${eww} update mic-reveal=true"
+    :onhoverlost "${eww} update mic-reveal=false"
+    :onscroll "scripts/mic scroll {}"
+    :halign "center"
+    (box :orientation "v" :space-evenly false :spacing 4 :halign "center"
+      (revealer :transition "slideup" :reveal mic-reveal :duration "350ms"
+        (scale :class "micbar" :value mic-level :orientation "v"
+          :flipped true :round-digits 0 :tooltip "Mic ${mic-level}%"
+        :max 100 :min 0 :onchange "scripts/mic set {}"))
+      (box :orientation "v" :space-evenly false :halign "center"
+        (button :class "mod icon-mic" :tooltip "Scroll: adjust · Click: mute" :halign "center"
         :onclick "scripts/mic mute" mic-icon)
-      (label :class "label-sm" :halign "center" :text "${mic-level}"))))
+        (label :class "label-sm" :halign "center" :text "${mic-level}")))))
 
 ;; Brightness (hover-reveal scale)
 (defwidget backlight []
@@ -185,14 +193,15 @@
   (box :orientation "v" :space-evenly false :halign "center" :class "control" :spacing 0
     (memory)
     (battery)
-    (wifi)
     (mic)
     (volume)
     (backlight)
     (tlp)
     (idle)
+    (wifi)
     (privacy)
-    (media)))
+    (media)
+  ))
 
 (defwidget bottom []
   (box :orientation "v" :space-evenly false :halign "center" :spacing 5
