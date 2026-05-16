@@ -19,7 +19,7 @@
 (defpoll volume-icon     :interval "1s"  :initial "" "scripts/volume icon")
 (defpoll volume-level    :interval "1s"  :initial "0" "scripts/volume get")
 (defpoll mic-icon        :interval "1s"  :initial "" "scripts/mic icon")
-(defpoll brightness      :interval "2s"  :initial "0" "scripts/backlight get")
+(defpoll brightness      :interval "1s"  :initial "0" "scripts/backlight get")
 (defpoll memory          :interval "5s"  :initial "0" "scripts/memory")
 (defpoll tlp             :interval "5s"  :initial "{}"
 "$HOME/.dotfiles/.config/scripts/waybar-tlp-status.sh")
@@ -59,11 +59,12 @@
     :tooltip "Battery ${battery-percent}% — ${battery-status}"
     (label :class "icon-bat ${battery-status == 'Discharging' && battery-percent < 20 ? 'critical' : ''}"
     :text battery-icon)
-    (label :class "label-sm" :text battery-percent)))
+    (label :class "label-sm" :text battery-percent)
+  ))
 
 ;; Wifi
 (defwidget wifi []
-  (button :class "mod icon-wifi" :tooltip wifi-name :halign "center"
+  (button :class "mod icon-wifi" :tooltip wifi-name :halign "start" :valign "center"
   :onclick "scripts/popup wifi" wifi-icon))
 
 ;; Volume (hover-reveal scale, like the reference)
@@ -90,40 +91,42 @@
   (eventbox :onhover "${eww} update bright-reveal=true"
     :onhoverlost "${eww} update bright-reveal=false"
     :halign "center"
-    (box :orientation "v" :space-evenly false :spacing 4 :halign "center"
+    (box :orientation "v" :space-evenly false :spacing 4 :halign "center" :valign "center"
       (revealer :transition "slideup" :reveal bright-reveal :duration "350ms"
         (scale :class "bribar" :value brightness :orientation "v"
           :flipped true :round-digits 0 :tooltip "Brightness ${brightness}%"
         :max 100 :min 1 :onchange "scripts/backlight set {}"))
-      (label :class "mod icon-bright" :halign "center" :text "󰃟"))))
+      ; (label :class "mod icon-bright" :halign "center" :text "󰃟")
+      (label :class "mod icon-bright" :halign "center" :text "󰍛")
+    )))
 
 ;; Memory
 (defwidget memory []
-  (box :orientation "v" :space-evenly false :class "mod" :halign "center"
+  (box :orientation "v" :space-evenly false :class "mod" :halign "center" :valign "center"
     :tooltip "RAM ${memory}%"
     (label :class "icon-mem" :text "󰍛")
     (label :class "label-sm" :text memory)))
 
 ;; TLP profile
 (defwidget tlp []
-  (button :class "mod icon-tlp" :tooltip {tlp.tooltip ?: "TLP profile"} :halign "center"
+  (button :class "mod icon-tlp" :tooltip {tlp.tooltip ?: "TLP profile"} :halign "center" :valign "center"
     :onclick "alacritty -e bash -c ~/.dotfiles/.config/scripts/tlp-interactive.sh"
   {tlp.text ?: "⚡"}))
 
 ;; Idle inhibitor
 (defwidget idle []
-  (button :class "mod icon-idle" :tooltip "Idle inhibitor: ${idle-state}" :halign "center"
+  (button :class "mod icon-idle" :tooltip "Idle inhibitor: ${idle-state}" :halign "center" :valign "center"
     :onclick "scripts/idleinhibit toggle"
   {idle-state == "on" ? "󰅶" : "󰾪"}))
 
 ;; Privacy (microphone-in-use indicator)
 (defwidget privacy []
-  (revealer :transition "slideup" :reveal privacy-mic :duration "300ms" :halign "center"
+  (revealer :transition "slideup" :reveal privacy-mic :duration "300ms" :halign "center" :valign "center"
     (label :class "privacy" :text "" :tooltip "Microphone in use")))
 
 ;; Media
 (defwidget media []
-  (revealer :transition "slideup" :reveal {media.text != ""} :duration "300ms" :halign "center"
+  (revealer :transition "slideup" :reveal {media.text != ""} :duration "300ms" :halign "center" :valign "center"
     (button :class "mod icon-media" :tooltip {media.tooltip} :halign "center"
       :onclick "playerctl --player=%any play-pause"
       :onrightclick "playerctl --player=%any next"
@@ -139,7 +142,9 @@
     :onrightclick "$HOME/.config/swww/swww.sh"
     (box :orientation "v" :space-evenly false
       (label :class "clock-hour" :text hour)
-      (label :class "clock-min"  :text min))))
+      (label :class "clock-min"  :text min)
+      ; (label :class "clock-sec"  :text sec)
+    )))
 
 ;; Powermenu (hover-reveal, like the reference)
 (defwidget powermenu []
@@ -151,7 +156,8 @@
           (button :class "pw-lock"   :tooltip "Lock"    :onclick "loginctl lock-session" "󰌾")
           (button :class "pw-logout" :tooltip "Logout"  :onclick "hyprctl dispatch exit" "󰍃")
           (button :class "pw-reboot" :tooltip "Reboot"  :onclick "systemctl reboot" "󰜉")
-          (button :class "pw-sleep"  :tooltip "Suspend" :onclick "systemctl suspend" "󰒲")))
+          ; (button :class "pw-sleep"  :tooltip "Suspend" :onclick "systemctl suspend" "󰒲")
+        ))
       (button :class "pw-power" :tooltip "Shutdown" :onclick "systemctl poweroff" "󰐥"))))
 
 ;; Calendar (popup window content)
@@ -167,13 +173,13 @@
     (submap)))
 
 (defwidget control []
-  (box :orientation "v" :space-evenly false :halign "center" :class "control" :spacing 10
+  (box :orientation "v" :space-evenly false :halign "center" :class "control" :spacing 5
+    (memory)
     (battery)
     (wifi)
     (mic)
     (volume)
     (backlight)
-    (memory)
     (tlp)
     (idle)
     (privacy)

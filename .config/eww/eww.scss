@@ -5,7 +5,6 @@
 
 * { all: unset; }
 
-// Transparent window so the bar can float with rounded corners.
 window { background-color: transparent; }
 
 // -- Ayu Dark palette --
@@ -24,16 +23,14 @@ $magenta:    #D2A6FF;
 $font: "JetBrainsMono Nerd Font";
 
 // -- Bar --
-// The bar floats: `margin` is the gap to the screen edges, `border-radius`
-// rounds the whole bar. Width/thickness is set in eww.yuck (defwindow bar).
 .eww_bar {
   // background-color: $background;
   // background-color: $surface;
   color: $foreground;
   font-family: $font;
   font-weight: bold;
-  border-radius: 11px;
-  padding: 8px;
+  border-radius: 8px;
+  padding: 4px;
 }
 
 @keyframes blink_red {
@@ -46,9 +43,9 @@ $font: "JetBrainsMono Nerd Font";
   background-color: $surface;
   border-radius: 11px;
   font-size: 23px;
+  font-family: "Material Design Icons";
   color: $accent;
-  padding: 10px 0;
-  margin-bottom: 4px;
+  padding: 8px;
 }
 .launcher:hover { color: $blue; }
 
@@ -56,13 +53,12 @@ $font: "JetBrainsMono Nerd Font";
 .works {
   background-color: $surface;
   border-radius: 10px;
-  padding: 6px;
-  margin: 0 4px;
+  padding: 8px;
+  margin: 0px;
 }
 .ws, .ws-occupied, .ws-active {
-  font-size: 15px;
-  padding: 4px;
-  margin: 2px 5px;
+  font-size: 14px;
+  padding: 6px;
   border-radius: 9px;
   color: $gray;
 }
@@ -90,15 +86,15 @@ $font: "JetBrainsMono Nerd Font";
 .control {
   background-color: $surface;
   border-radius: 10px;
-  padding: 0px 0px 0px 0px;
-  // margin: 0 3px;
+  padding: 14px;
 }
+
 .mod {
   font-size: 19px;
-  padding: 3px;
 }
+
 .label-sm {
-  font-size: 11px;
+  font-size: 14px;
   color: $foreground;
 }
 
@@ -150,15 +146,14 @@ scale.bribar trough highlight {
   background-color: $surface;
   border-radius: 10px;
   padding: 8px;
-  margin: 0 3px;
 }
 .clock:hover { background-color: $surface2; }
 .clock-hour {
-  font-size: 18px;
+  font-size: 14px;
   color: $accent;
 }
 .clock-min {
-  font-size: 18px;
+  font-size: 14px;
   color: $foreground;
 }
 
@@ -166,10 +161,10 @@ scale.bribar trough highlight {
 .powermenu {
   background-color: $surface;
   border-radius: 10px;
-  padding: 6px 0;
-  margin: 0 3px;
+  padding: 6px;
   font-size: 18px;
 }
+
 .pw-lock, .pw-logout, .pw-reboot, .pw-sleep, .pw-power {
   font-size: 18px;
   padding: 0px 10px 0px 10px;

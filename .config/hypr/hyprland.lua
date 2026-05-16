@@ -142,13 +142,13 @@ hl.animation({ leaf = "fade",        enabled = true, speed = 7,  bezier = "defau
 hl.animation({ leaf = "workspaces",  enabled = true, speed = 6,  bezier = "default" })
 
 
---- Dwindle layout
--- hl.config({
---     dwindle = {
---         pseudotile    = true,
---         preserve_split = true,
---     },
--- })
+-- Dwindle layout
+hl.config({
+    dwindle = {
+        -- pseudotile    = true,
+        preserve_split = true,
+    },
+})
 
 
 --------------------
@@ -157,7 +157,7 @@ hl.animation({ leaf = "workspaces",  enabled = true, speed = 6,  bezier = "defau
 
 hl.config({
     master = {
-        new_status = "master",
+        new_status = "slave",
     },
 })
 
