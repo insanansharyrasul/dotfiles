@@ -165,7 +165,7 @@
           (button :class "pw-lock"   :tooltip "Lock"    :onclick "loginctl lock-session" "󰌾")
           (button :class "pw-logout" :tooltip "Logout"  :onclick "hyprctl dispatch exit" "󰍃")
           (button :class "pw-reboot" :tooltip "Reboot"  :onclick "systemctl reboot" "󰜉")
-          ; (button :class "pw-sleep"  :tooltip "Suspend" :onclick "systemctl suspend" "󰒲")
+          (button :class "pw-sleep"  :tooltip "Suspend" :onclick "systemctl suspend" "󰒲")
         ))
       (button :class "pw-power" :tooltip "Shutdown" :onclick "systemctl poweroff" "󰐥"))))
 
