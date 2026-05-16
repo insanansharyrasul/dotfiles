@@ -124,7 +124,8 @@
     (button :class "mod icon-media" :tooltip {media.tooltip}
             :onclick "playerctl --player=%any play-pause"
             :onrightclick "playerctl --player=%any next"
-            :onmiddleclick "playerctl --player=%any previous" "")))
+            :onmiddleclick "playerctl --player=%any previous"
+      {media.class == "playing" ? "󰏤" : "󰐊"})))
 
 ;; Clock  (left: calendar · middle: toggle wallpaper · right: wallpaper picker)
 (defwidget clock []
