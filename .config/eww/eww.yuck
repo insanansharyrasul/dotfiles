@@ -11,16 +11,20 @@
 (deflisten media     :initial '{"text":"","tooltip":"","class":"stopped"}'
 "$HOME/.config/waybar/scripts/mediaplayer.py 2>/dev/null")
 
+(deflisten volume-listen    :initial "" "scripts/volume listen")
+(deflisten mic-listen       :initial "" "scripts/mic listen")
+(deflisten backlight-listen :initial "" "scripts/backlight listen")
+
 (defpoll battery-icon    :interval "10s" :initial "" "scripts/battery icon")
 (defpoll battery-percent :interval "10s" :initial "0" "scripts/battery percent")
 (defpoll battery-status  :interval "10s" :initial "" "scripts/battery status")
 (defpoll wifi-icon       :interval "5s"  :initial "" "scripts/network icon")
 (defpoll wifi-name       :interval "5s"  :initial "" "scripts/network name")
-(defpoll volume-icon     :interval "1s"  :initial "" "scripts/volume icon")
-(defpoll volume-level    :interval "1s"  :initial "0" "scripts/volume get")
-(defpoll mic-icon        :interval "1s"  :initial "" "scripts/mic icon")
-(defpoll mic-level       :interval "1s"  :initial "0" "scripts/mic get")
-(defpoll brightness      :interval "1s"  :initial "0" "scripts/backlight get")
+(defvar volume-icon "")
+(defvar volume-level 0)
+(defvar mic-icon "")
+(defvar mic-level 0)
+(defvar brightness 0)
 (defpoll memory          :interval "5s"  :initial "0" "scripts/memory")
 (defpoll tlp             :interval "5s"  :initial "{}"
 "$HOME/.dotfiles/.config/scripts/waybar-tlp-status.sh")
