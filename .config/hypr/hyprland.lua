@@ -206,8 +206,8 @@ hl.gesture({ fingers = 3, direction = "up",   mods = "SUPER", action = "fullscre
 hl.gesture({ fingers = 3, direction = "down", mods = "ALT",   action = "close" })
 -- NOTE: hl.gesture action only accepts built-in string actions ("workspace", "fullscreen", "close").
 -- Exec-based gestures are not supported; use keybinds (Super+F2/F3) for volume control instead.
--- hl.gesture({ fingers = 3, direction = "up",   action = hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+") })
--- hl.gesture({ fingers = 3, direction = "down", action = hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-") })
+hl.gesture({ fingers = 3, direction = "up",   action = function() hl.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+") end})
+hl.gesture({ fingers = 3, direction = "down", action = function() hl.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-") end })
 
 hl.config({
     gestures = {
