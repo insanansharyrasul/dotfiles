@@ -9,7 +9,7 @@
 (deflisten workspace :initial "(box :class \"works\")" "scripts/workspaces")
 (deflisten submap    :initial "" "scripts/submap")
 (deflisten media     :initial '{"text":"","tooltip":"","class":"stopped"}'
-                     "$HOME/.config/waybar/scripts/mediaplayer.py 2>/dev/null")
+"$HOME/.config/waybar/scripts/mediaplayer.py 2>/dev/null")
 
 (defpoll battery-icon    :interval "10s" :initial "" "scripts/battery icon")
 (defpoll battery-percent :interval "10s" :initial "0" "scripts/battery percent")
@@ -22,7 +22,7 @@
 (defpoll brightness      :interval "2s"  :initial "0" "scripts/backlight get")
 (defpoll memory          :interval "5s"  :initial "0" "scripts/memory")
 (defpoll tlp             :interval "5s"  :initial "{}"
-                         "$HOME/.dotfiles/.config/scripts/waybar-tlp-status.sh")
+"$HOME/.dotfiles/.config/scripts/waybar-tlp-status.sh")
 (defpoll privacy-mic     :interval "3s"  :initial "false" "scripts/privacy")
 (defpoll idle-state      :interval "2s"  :initial "off" "scripts/idleinhibit status")
 
@@ -42,7 +42,7 @@
 ;; Launcher
 (defwidget launcher []
   (button :class "launcher" :tooltip "Applications"
-          :onclick "scripts/popup launcher" "󰀻"))
+  :onclick "scripts/popup launcher" "󰀻"))
 
 ;; Workspaces (Hyprland)
 (defwidget workspaces []
@@ -55,85 +55,88 @@
 
 ;; Battery
 (defwidget battery []
-  (box :orientation "v" :space-evenly false :class "mod"
-       :tooltip "Battery ${battery-percent}% — ${battery-status}"
+  (box :orientation "v" :space-evenly false :class "mod" :halign "center"
+    :tooltip "Battery ${battery-percent}% — ${battery-status}"
     (label :class "icon-bat ${battery-status == 'Discharging' && battery-percent < 20 ? 'critical' : ''}"
-           :text battery-icon)
+    :text battery-icon)
     (label :class "label-sm" :text battery-percent)))
 
 ;; Wifi
 (defwidget wifi []
-  (button :class "mod icon-wifi" :tooltip wifi-name
-          :onclick "scripts/popup wifi" wifi-icon))
+  (button :class "mod icon-wifi" :tooltip wifi-name :halign "center"
+  :onclick "scripts/popup wifi" wifi-icon))
 
 ;; Volume (hover-reveal scale, like the reference)
 (defwidget volume []
   (eventbox :onhover "${eww} update volume-reveal=true"
-            :onhoverlost "${eww} update volume-reveal=false"
-    (box :orientation "v" :space-evenly false :spacing 4
+    :onhoverlost "${eww} update volume-reveal=false"
+    :halign "center"
+    (box :orientation "v" :space-evenly false :spacing 4 :halign "center"
       (revealer :transition "slideup" :reveal volume-reveal :duration "350ms"
         (scale :class "volbar" :value volume-level :orientation "v"
-               :flipped true :round-digits 0 :tooltip "Volume ${volume-level}%"
-               :max 100 :min 0 :onchange "scripts/volume set {}"))
-      (button :class "mod icon-vol" :tooltip "Mute / right-click: mixer"
-              :onclick "scripts/volume mute"
-              :onrightclick "scripts/popup audio" volume-icon))))
+          :flipped true :round-digits 0 :tooltip "Volume ${volume-level}%"
+        :max 100 :min 0 :onchange "scripts/volume set {}"))
+      (button :class "mod icon-vol" :tooltip "Mute / right-click: mixer" :halign "center"
+        :onclick "scripts/volume mute"
+      :onrightclick "scripts/popup audio" volume-icon))))
 
 ;; Microphone
 (defwidget mic []
-  (button :class "mod icon-mic" :tooltip "Toggle microphone"
-          :onclick "scripts/mic mute" mic-icon))
+  (button :class "mod icon-mic" :tooltip "Toggle microphone" :halign "center"
+  :onclick "scripts/mic mute" mic-icon))
 
 ;; Brightness (hover-reveal scale)
 (defwidget backlight []
   (eventbox :onhover "${eww} update bright-reveal=true"
-            :onhoverlost "${eww} update bright-reveal=false"
-    (box :orientation "v" :space-evenly false :spacing 4
+    :onhoverlost "${eww} update bright-reveal=false"
+    :halign "center"
+    (box :orientation "v" :space-evenly false :spacing 4 :halign "center"
       (revealer :transition "slideup" :reveal bright-reveal :duration "350ms"
         (scale :class "bribar" :value brightness :orientation "v"
-               :flipped true :round-digits 0 :tooltip "Brightness ${brightness}%"
-               :max 100 :min 1 :onchange "scripts/backlight set {}"))
-      (label :class "mod icon-bright" :text "󰃟"))))
+          :flipped true :round-digits 0 :tooltip "Brightness ${brightness}%"
+        :max 100 :min 1 :onchange "scripts/backlight set {}"))
+      (label :class "mod icon-bright" :halign "center" :text "󰃟"))))
 
 ;; Memory
 (defwidget memory []
-  (box :orientation "v" :space-evenly false :class "mod" :tooltip "RAM ${memory}%"
+  (box :orientation "v" :space-evenly false :class "mod" :halign "center"
+    :tooltip "RAM ${memory}%"
     (label :class "icon-mem" :text "󰍛")
     (label :class "label-sm" :text memory)))
 
 ;; TLP profile
 (defwidget tlp []
-  (button :class "mod icon-tlp" :tooltip {tlp.tooltip ?: "TLP profile"}
-          :onclick "alacritty -e bash -c ~/.dotfiles/.config/scripts/tlp-interactive.sh"
-    {tlp.text ?: "⚡"}))
+  (button :class "mod icon-tlp" :tooltip {tlp.tooltip ?: "TLP profile"} :halign "center"
+    :onclick "alacritty -e bash -c ~/.dotfiles/.config/scripts/tlp-interactive.sh"
+  {tlp.text ?: "⚡"}))
 
 ;; Idle inhibitor
 (defwidget idle []
-  (button :class "mod icon-idle" :tooltip "Idle inhibitor: ${idle-state}"
-          :onclick "scripts/idleinhibit toggle"
-    {idle-state == "on" ? "󰅶" : "󰾪"}))
+  (button :class "mod icon-idle" :tooltip "Idle inhibitor: ${idle-state}" :halign "center"
+    :onclick "scripts/idleinhibit toggle"
+  {idle-state == "on" ? "󰅶" : "󰾪"}))
 
 ;; Privacy (microphone-in-use indicator)
 (defwidget privacy []
-  (revealer :transition "slideup" :reveal privacy-mic :duration "300ms"
+  (revealer :transition "slideup" :reveal privacy-mic :duration "300ms" :halign "center"
     (label :class "privacy" :text "" :tooltip "Microphone in use")))
 
 ;; Media
 (defwidget media []
-  (revealer :transition "slideup" :reveal {media.text != ""} :duration "300ms"
-    (button :class "mod icon-media" :tooltip {media.tooltip}
-            :onclick "playerctl --player=%any play-pause"
-            :onrightclick "playerctl --player=%any next"
-            :onmiddleclick "playerctl --player=%any previous"
-      {media.class == "playing" ? "󰏤" : "󰐊"})))
+  (revealer :transition "slideup" :reveal {media.text != ""} :duration "300ms" :halign "center"
+    (button :class "mod icon-media" :tooltip {media.tooltip} :halign "center"
+      :onclick "playerctl --player=%any play-pause"
+      :onrightclick "playerctl --player=%any next"
+      :onmiddleclick "playerctl --player=%any previous"
+    {media.class == "playing" ? "󰏤" : "󰐊"})))
 
 ;; Clock  (left: calendar · middle: toggle wallpaper · right: wallpaper picker)
 (defwidget clock []
   (button :class "clock"
-          :tooltip "${fulldate}"
-          :onclick "scripts/popup calendar"
-          :onmiddleclick "$HOME/.config/hypr/scripts/toggle-wallpaper.sh"
-          :onrightclick "$HOME/.config/swww/swww.sh"
+    :tooltip "${fulldate}"
+    :onclick "scripts/popup calendar"
+    :onmiddleclick "$HOME/.config/hypr/scripts/toggle-wallpaper.sh"
+    :onrightclick "$HOME/.config/swww/swww.sh"
     (box :orientation "v" :space-evenly false
       (label :class "clock-hour" :text hour)
       (label :class "clock-min"  :text min))))
@@ -141,7 +144,7 @@
 ;; Powermenu (hover-reveal, like the reference)
 (defwidget powermenu []
   (eventbox :onhover "${eww} update power-reveal=true"
-            :onhoverlost "${eww} update power-reveal=false"
+    :onhoverlost "${eww} update power-reveal=false"
     (box :orientation "v" :space-evenly false :class "powermenu"
       (revealer :transition "slideup" :reveal power-reveal :duration "400ms"
         (box :orientation "v" :space-evenly false
