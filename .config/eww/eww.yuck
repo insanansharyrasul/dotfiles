@@ -20,7 +20,7 @@
 (defpoll battery-status  :interval "10s" :initial "" "scripts/battery status")
 (defpoll wifi-icon       :interval "5s"  :initial "" "scripts/network icon")
 (defpoll wifi-name       :interval "5s"  :initial "" "scripts/network name")
-(defpoll memory          :interval "5s"  :initial "0" "scripts/memory")
+; (defpoll memory          :interval "5s"  :initial "0" "scripts/memory")
 (defpoll tlp             :interval "5s"  :initial "{}"
 "$HOME/.dotfiles/.config/scripts/waybar-tlp-status.sh")
 (defpoll privacy-mic     :interval "3s"  :initial "false" "scripts/privacy")
@@ -29,6 +29,11 @@
 (defpoll hour     :interval "1s" :initial "" "date '+%H'")
 (defpoll min      :interval "1s" :initial "" "date '+%M'")
 (defpoll sec      :interval "1s" :initial "" "date '+%S'")
+
+(defpoll day      :interval "1m" :initial "" "date '+%d'")
+(defpoll month      :interval "1m" :initial "" "date '+%m'")
+(defpoll year      :interval "1m" :initial "" "date '+%y'")
+
 (defpoll fulldate :interval "60s" :initial "" "date '+%A, %d %B %Y'")
 (defpoll calendar_day   :interval "1h" "date '+%d'")
 (defpoll calendar_month :interval "1h" "scripts/calendar")
@@ -43,8 +48,8 @@
 
 ;; Launcher
 (defwidget launcher []
-  (button :class "launcher" :tooltip "Applications"
-  :onclick "scripts/popup launcher" "󰀻"))
+  (button :class "launcher" :tooltip "Applications" :halign "center"
+  :onclick "scripts/popup launcher" ""))
 
 ;; Workspaces (Hyprland)
 (defwidget workspaces []
@@ -60,14 +65,20 @@
   (box :orientation "v" :space-evenly false :class "mod" :halign "center"
     :tooltip "Battery ${battery-percent}% — ${battery-status}"
     (label :class "icon-bat ${battery-status == 'Discharging' && battery-percent < 20 ? 'critical' : ''}"
-    :text battery-icon)
-    (label :class "label-sm" :text battery-percent)
+      :text
+      battery-icon
+      ; "󰤨"
+    )
+    ; (label :class "label-sm" :text battery-percent)
   ))
 
 ;; Wifi
 (defwidget wifi []
   (button :class "mod icon-wifi" :tooltip wifi-name :halign "center" :valign "center"
-  :onclick "scripts/popup wifi" wifi-icon))
+    :onclick "scripts/popup wifi"
+    wifi-icon
+    ; "󰤨"
+  ))
 
 ;; Volume (hover-reveal scale, like the reference)
 (defwidget volume []
@@ -75,16 +86,20 @@
     :onhoverlost "${eww} update volume-reveal=false"
     :onscroll "scripts/volume scroll {}"
     :halign "center"
-    (box :orientation "v" :space-evenly false :spacing 4 :halign "center"
+    (box :orientation "v" :space-evenly false :halign "center"
       (revealer :transition "slideup" :reveal volume-reveal :duration "350ms"
         (scale :class "volbar" :value {volume.level} :orientation "v"
           :flipped true :round-digits 0 :tooltip "Volume ${volume.level}%"
         :max 100 :min 0 :onchange "scripts/volume set {}"))
       (box :orientation "v" :space-evenly false :halign "center"
-        (button :class "mod icon-vol" :tooltip "Mute / right-click: mixer" :halign "center"
+        (button :class "mod icon-vol" :tooltip "Speaker: ${volume.level}%" :halign "center"
           :onclick "scripts/volume mute"
-        :onrightclick "scripts/popup audio" {volume.icon})
-        (label :class "label-sm" :halign "center" :text "${volume.level}")))))
+          :onrightclick "scripts/popup audio"
+          {volume.icon}
+          ; "󰤨"
+        )
+        ; (label :class "label-sm" :halign "center" :text "${volume.level}")
+      ))))
 
 ;; Microphone
 (defwidget mic []
@@ -92,43 +107,61 @@
     :onhoverlost "${eww} update mic-reveal=false"
     :onscroll "scripts/mic scroll {}"
     :halign "center"
-    (box :orientation "v" :space-evenly false :spacing 4 :halign "center"
+    (box :orientation "v" :space-evenly false :halign "center" :valign "center"
       (revealer :transition "slideup" :reveal mic-reveal :duration "350ms"
         (scale :class "micbar" :value {mic.level} :orientation "v"
           :flipped true :round-digits 0 :tooltip "Mic ${mic.level}%"
-        :max 100 :min 0 :onchange "scripts/mic set {}"))
+        :max 100 :min 0 :onchange "scripts/mic set {}")
+      )
       (box :orientation "v" :space-evenly false :halign "center"
-        (button :class "mod icon-mic" :tooltip "Scroll: adjust · Click: mute" :halign "center"
-        :onclick "scripts/mic mute" {mic.icon})
-        (label :class "label-sm" :halign "center" :text "${mic.level}")))))
+        (button :class "mod icon-mic" :tooltip "Mic: ${mic.level}%" :halign "center"
+          :onclick "scripts/mic mute"
+          {mic.icon}
+          ; "󰤨"
+        )
+        ; (label :class "label-sm" :halign "center" :text "${mic.level}")
+      ))))
 
 ;; Brightness (hover-reveal scale)
 (defwidget backlight []
-  (eventbox :onhover "${eww} update bright-reveal=true"
+  (
+    eventbox :onhover "${eww} update bright-reveal=true"
     :onhoverlost "${eww} update bright-reveal=false"
     :onscroll "scripts/backlight scroll {}"
     :halign "center"
-    (box :orientation "v" :space-evenly false :spacing 4 :halign "center" :valign "center"
+    :valign "center"
+    (box :orientation "v" :space-evenly false :halign "center" :valign "center"
       (revealer :transition "slideup" :reveal bright-reveal :duration "350ms"
         (scale :class "bribar" :value brightness :orientation "v"
           :flipped true :round-digits 0 :tooltip "Brightness ${brightness}%"
-        :max 100 :min 1 :onchange "scripts/backlight set {}"))
+        :max 100 :min 1 :onchange "scripts/backlight set {}")
+        
+      )
       (box :orientation "v" :space-evenly false :halign "center"
-        (label :class "mod icon-bright" :halign "center" :text "󰃠")
-        (label :class "label-sm" :halign "center" :text "${brightness}")))))
+        (label :class "mod icon-bright" :halign "center" :text "󰃠" :tooltip "Brightness ${brightness}%")
+      )
+      ; (
+        ;   button :class "mod icon-bright" :halign "center"
+        ;   "󰤨"
+      ; )
+    )
+  ))
 
 ;; Memory
-(defwidget memory []
-  (box :orientation "v" :space-evenly false :class "mod" :halign "center" :valign "center"
-    :tooltip "RAM ${memory}%"
-    (label :class "icon-mem" :text "󰍛")
-    (label :class "label-sm" :text memory)))
+; (defwidget memory []
+  ;   (box :orientation "v" :space-evenly false :class "mod" :halign "center" :valign "center"
+    ;     :tooltip "RAM ${memory}%"
+    ;     (label :class "icon-mem" :text "󰍛")
+    ;     ; (label :class "label-sm" :text memory)
+  ;   ))
 
 ;; TLP profile
 (defwidget tlp []
   (button :class "mod icon-tlp" :tooltip {tlp.tooltip ?: "TLP profile"} :halign "center" :valign "center"
     :onclick "alacritty -e bash -c ~/.dotfiles/.config/scripts/tlp-interactive.sh"
-  {tlp.text ?: "⚡"}))
+    {tlp.text ?: "⚡"}
+    ; "󰤨"
+  ))
 
 ;; Idle inhibitor
 (defwidget idle []
@@ -136,7 +169,9 @@
     :tooltip {idle_inhibit ? "Idle inhibitor: on" : "Idle inhibitor: off"}
     :halign "center" :valign "center"
     :onclick "scripts/idleinhibit toggle"
-  {idle_inhibit ? "󰅶" : "󰾪"}))
+    {idle_inhibit ? "󰅶" : "󰾪"}
+    ; "󰤨"
+  ))
 
 ;; Privacy (microphone-in-use indicator)
 (defwidget privacy []
@@ -163,6 +198,10 @@
       (label :class "clock-hour" :text hour)
       (label :class "clock-min"  :text min)
       (label :class "clock-sec"  :text sec)
+      (box :height 6)
+      (label :class "clock-day" :text day)
+      (label :class "clock-month"  :text month)
+      (label :class "clock-year"  :text year)
     )))
 
 ;; Powermenu (hover-reveal, like the reference)
@@ -186,40 +225,42 @@
 
 ;; ──────────────────────────── Layout ───────────────────────────────
 (defwidget top []
-  (box :orientation "v" :space-evenly false :valign "start" :halign "center" :spacing 0
+  (box :orientation "v" :space-evenly false :valign "center" :halign "center"
     (launcher)
     (workspaces)
-    (submap)))
+    (submap)
+    (idle)
+    (tlp)
+  ))
 
 (defwidget control []
-  (box :orientation "v" :space-evenly false :halign "center" :class "control" :spacing 0
-    (memory)
+  (box :orientation "v" :space-evenly false :halign "center" :class "control"
+    ; (memory)
     (battery)
     (mic)
     (volume)
     (backlight)
-    (tlp)
-    (idle)
     (wifi)
     (media)
     (privacy)
   ))
 
 (defwidget bottom []
-  (box :orientation "v" :space-evenly false :halign "center" :spacing 5
+  (box :orientation "v" :space-evenly false :halign "center"
     (clock)
     (powermenu)))
 
 (defwidget end []
-  (box :orientation "v" :space-evenly false :valign "end" :halign "center" :spacing 5
+  (box :orientation "v" :space-evenly false :valign "center" :halign "center" :spacing 5
     (control)
     (bottom)))
 
 (defwidget bar []
   (box :class "eww_bar" :orientation "v" :space-evenly false :vexpand true :hexpand true
     (top)
-    (box :vexpand true :hexpand true :valign "end" :space-evenly false
-      (end))))
+    (box :vexpand true :hexpand true :valign "end" :halign "center" :space-evenly false
+      (end)
+    )))
 
 ;; ──────────────────────────── Windows ──────────────────────────────
 ;; Bar thickness: change :width here. The bar floats inside this window
