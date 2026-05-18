@@ -166,9 +166,25 @@ $global-padding: 3px 2px;
   // padding: 0 7px 0 0px; 
 }
 
-.icon-mem {
-  color: $accent;
+.mem-ring {
+  color: $blue;
+  background-color: $foreground;
+  border-radius: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  margin: 3px 0 2px;
+}
+
+.mem-icon {
+  color: $foreground;
   font-size: 18px;
+  font-family: $font;
+}
+
+.mem-label {
+  font-size: 9px;
+  color: $blue;
+  margin-bottom: 2px;
 }
 
 .icon-tlp {
