@@ -20,7 +20,7 @@
 (defpoll battery-status  :interval "10s" :initial "" "scripts/battery status")
 (defpoll wifi-icon       :interval "5s"  :initial "" "scripts/network icon")
 (defpoll wifi-name       :interval "5s"  :initial "" "scripts/network name")
-; (defpoll memory          :interval "5s"  :initial "0" "scripts/memory")
+(defpoll memory          :interval "5s"  :initial "0" "scripts/memory")
 (defpoll tlp             :interval "5s"  :initial "{}"
 "$HOME/.dotfiles/.config/scripts/waybar-tlp-status.sh")
 (defpoll privacy-mic     :interval "3s"  :initial "false" "scripts/privacy")
@@ -148,12 +148,11 @@
   ))
 
 ;; Memory
-; (defwidget memory []
-  ;   (box :orientation "v" :space-evenly false :class "mod" :halign "center" :valign "center"
-    ;     :tooltip "RAM ${memory}%"
-    ;     (label :class "icon-mem" :text "󰍛")
-    ;     ; (label :class "label-sm" :text memory)
-  ;   ))
+(defwidget memory []
+  (circular-progress :value memory :class "mem-ring" :thickness 4 :clockwise true
+    :tooltip "RAM ${memory}%"
+    (label :class "mem-icon" :text "ㅤ"
+      :limit-width 2 :show_truncated false :wrap false)))
 
 ;; TLP profile
 (defwidget tlp []
@@ -235,7 +234,7 @@
 
 (defwidget control []
   (box :orientation "v" :space-evenly false :halign "center" :class "control"
-    ; (memory)
+    (memory)
     (battery)
     (mic)
     (volume)
