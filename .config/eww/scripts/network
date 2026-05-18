@@ -3,7 +3,7 @@ iface=wlo1
 
 icon() {
   state=$(cat "/sys/class/net/$iface/operstate" 2>/dev/null)
-  [ "$state" = "up" ] && echo "󰖩" || echo "󰖪"
+  [ "$state" = "up" ] && echo "󰤨" || echo "󰤭"
 }
 
 name() {

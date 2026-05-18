@@ -55,10 +55,10 @@ $global-padding: 3px 2px;
 .launcher {
   // background-color: $surface;
   border-radius: 11px;
-  font-size: 23px;
+  font-size: 17px;
   font-family: "Material Design Icons";
   color: $accent;
-  padding: 8px;
+  padding: 8px 8px 3 0;
 }
 
 .launcher:hover {
@@ -100,7 +100,7 @@ $global-padding: 3px 2px;
 
 // -- Submap --
 .submap {
-  font-size: 10px;
+  font-size: 14px;
   color: $background;
   background-color: $accent;
   border-radius: 8px;
@@ -110,14 +110,13 @@ $global-padding: 3px 2px;
 
 // -- Control panel --
 .control {
-  // background-color: $surface;
   border-radius: 10px;
   padding: $global-padding;
 }
 
 .mod {
   font-size: 20px;
-  padding: 0 6px;
+  padding: 0px 6px 0px 0px;
 }
 
 .label-sm {
@@ -127,6 +126,7 @@ $global-padding: 3px 2px;
 
 .icon-bat {
   color: $blue;
+  padding: 0 0px 0 7px; 
 }
 
 .icon-bat.critical {
@@ -136,7 +136,7 @@ $global-padding: 3px 2px;
 
 .icon-wifi {
   color: $magenta;
-  padding: 0 7px 0 0px; 
+  // padding: 0 7px 0 0px; 
 }
 
 .icon-wifi:hover {
@@ -145,6 +145,7 @@ $global-padding: 3px 2px;
 
 .icon-vol {
   color: $green;
+  padding: 0 3px 0 0px; 
 }
 
 .icon-vol:hover {
@@ -153,6 +154,7 @@ $global-padding: 3px 2px;
 
 .icon-mic {
   color: $blue;
+  padding: 0 0px 0 0px; 
 }
 
 .icon-mic:hover {
@@ -161,7 +163,7 @@ $global-padding: 3px 2px;
 
 .icon-bright {
   color: $yellow;
-  padding: 0 7px 0 0px; 
+  // padding: 0 7px 0 0px; 
 }
 
 .icon-mem {
@@ -171,7 +173,7 @@ $global-padding: 3px 2px;
 
 .icon-tlp {
   color: $accent;
-  padding: 0 7px 0 0px; 
+  padding: 0 2px 0 0px; 
 }
 
 .icon-tlp:hover {
@@ -179,8 +181,8 @@ $global-padding: 3px 2px;
 }
 
 .icon-idle {
-  color: $gray;
-  padding: 0 7px 0 0px; 
+  color: $yellow;
+  padding: 0 2px 0 0px; 
 }
 
 .icon-idle:hover {
@@ -198,7 +200,7 @@ $global-padding: 3px 2px;
 .privacy {
   color: $red;
   font-size: 13px;
-  padding: 2px 0;
+  // padding: 2px 0;
 }
 
 // -- Sliders (volume / brightness) --
@@ -236,14 +238,14 @@ scale.bribar trough highlight {
   background-color: $surface2;
 }
 
-.clock-hour {
+.clock-hour, .clock-min, .clock-sec {
   font-size: 14px;
   color: $accent;
 }
 
-.clock-min, .clock-sec {
+.clock-day, .clock-month, .clock-year {
   font-size: 14px;
-  color: $foreground;
+  color: $magenta;
 }
 
 // -- Powermenu --
