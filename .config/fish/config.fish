@@ -20,7 +20,7 @@ alias apt='sudo apt-fast'
 alias ntp "sudo ntpdate -s time.nist.gov"
 
 # config aliases
-alias dotfc "vim ~/.config/hypr/hyprland.conf"
+alias dotfc "vim ~/.config/hypr/hyprland.lua"
 alias fishc "vim ~/.config/fish/config.fish"
 
 # Git aliases

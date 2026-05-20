@@ -47,9 +47,9 @@ end
 -- Monitor assignment + persistent flag combined
 ----------------------------
 
-hl.workspace_rule({ workspace = "1", monitor = "eDP-1",    persistent = true })
-hl.workspace_rule({ workspace = "2", monitor = "eDP-1",    persistent = true })
-hl.workspace_rule({ workspace = "3", monitor = "eDP-1",    persistent = true })
+hl.workspace_rule({ workspace = "1", monitor = "eDP-1", persistent = true })
+hl.workspace_rule({ workspace = "2", monitor = "eDP-1", persistent = true })
+hl.workspace_rule({ workspace = "3", monitor = "eDP-1", persistent = true })
 hl.workspace_rule({ workspace = "4", monitor = "HDMI-A-1", persistent = true })
 hl.workspace_rule({ workspace = "5", monitor = "HDMI-A-1", persistent = true })
 hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-1", persistent = true })
@@ -61,19 +61,19 @@ hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-1", persistent = true })
 
 hl.config({
     input = {
-        kb_layout    = "us",
-        follow_mouse = 1,
-        touchpad = {
-            natural_scroll        = false,
-            tap_to_click          = true,
-            drag_lock             = true,
-            disable_while_typing  = true,
-            scroll_factor         = 0.8,
-            clickfinger_behavior  = true,
+        kb_layout     = "us",
+        follow_mouse  = 1,
+        touchpad      = {
+            natural_scroll       = false,
+            tap_to_click         = true,
+            drag_lock            = true,
+            disable_while_typing = true,
+            scroll_factor        = 0.8,
+            clickfinger_behavior = true,
         },
-        sensitivity  = -0.2,
-        repeat_rate  = 50,
-        repeat_delay = 200,
+        sensitivity   = -0.2,
+        repeat_rate   = 50,
+        repeat_delay  = 200,
         accel_profile = "adaptive",
     },
 })
@@ -85,12 +85,12 @@ hl.config({
 
 hl.config({
     general = {
-        gaps_in  = 5,
-        gaps_out = 5,
+        gaps_in       = 5,
+        gaps_out      = 5,
 
-        border_size = 1,
+        border_size   = 1,
 
-        col = {
+        col           = {
             active_border   = "rgba(ff9c40ff)",
             inactive_border = "rgba(161a24aa)",
         },
@@ -131,15 +131,15 @@ hl.config({
 
 hl.config({ animations = { enabled = true } })
 
-hl.curve("myBezier", { type = "bezier", points = { {0.05, 0.9}, {0.1, 1.05} } })
+hl.curve("myBezier", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.05 } } })
 
-hl.animation({ leaf = "windows",     enabled = true, speed = 7,  bezier = "myBezier" })
-hl.animation({ leaf = "windowsIn",   enabled = true, speed = 7,  bezier = "myBezier", style = "slide" })
-hl.animation({ leaf = "windowsOut",  enabled = true, speed = 7,  bezier = "default",  style = "slide" })
-hl.animation({ leaf = "border",      enabled = true, speed = 10, bezier = "default" })
-hl.animation({ leaf = "borderangle", enabled = true, speed = 8,  bezier = "default" })
-hl.animation({ leaf = "fade",        enabled = true, speed = 7,  bezier = "default" })
-hl.animation({ leaf = "workspaces",  enabled = true, speed = 6,  bezier = "default" })
+hl.animation({ leaf = "windows", enabled = true, speed = 7, bezier = "myBezier" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 7, bezier = "myBezier", style = "slide" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 7, bezier = "default", style = "slide" })
+hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "default" })
+hl.animation({ leaf = "borderangle", enabled = true, speed = 8, bezier = "default" })
+hl.animation({ leaf = "fade", enabled = true, speed = 7, bezier = "default" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 6, bezier = "default" })
 
 
 -- Dwindle layout
@@ -174,19 +174,19 @@ hl.config({
 --- Environment variables ---
 ----------------------------
 
-hl.env("GDK_SCALE",                        "1")
-hl.env("OZONE_PLATFORM",                   "wayland")
-hl.env("XKB_DEFAULT_LAYOUT",               "us")
-hl.env("XKB_DEFAULT_OPTIONS",              "")
-hl.env("QT_SCALE_FACTOR",                  "1")
-hl.env("MOZ_ENABLE_WAYLAND",               "1")
-hl.env("ELECTRON_OZONE_PLATFORM_HINT",     "wayland")
-hl.env("GDK_BACKEND",                      "wayland,x11")
-hl.env("SDL_VIDEODRIVER",                  "wayland")
-hl.env("CLUTTER_BACKEND",                  "wayland")
-hl.env("QT_QPA_PLATFORM",                  "wayland;xcb")
+hl.env("GDK_SCALE", "1")
+hl.env("OZONE_PLATFORM", "wayland")
+hl.env("XKB_DEFAULT_LAYOUT", "us")
+hl.env("XKB_DEFAULT_OPTIONS", "")
+hl.env("QT_SCALE_FACTOR", "1")
+hl.env("MOZ_ENABLE_WAYLAND", "1")
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
+hl.env("GDK_BACKEND", "wayland,x11")
+hl.env("SDL_VIDEODRIVER", "wayland")
+hl.env("CLUTTER_BACKEND", "wayland")
+hl.env("QT_QPA_PLATFORM", "wayland;xcb")
 hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
-hl.env("_JAVA_AWT_WM_NONREPARENTING",      "1")
+hl.env("_JAVA_AWT_WM_NONREPARENTING", "1")
 
 -- hl.env("QT_ENABLE_HIGHDPI_SCALING", "1")
 -- hl.env("QT_SCALE_FACTOR",           "2") -- zoom
@@ -201,20 +201,21 @@ hl.env("_JAVA_AWT_WM_NONREPARENTING",      "1")
 -- 3-finger horizontal swipe for workspace navigation (inversion handled by workspace_swipe_touch_invert below)
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 -- 3-finger swipe up with Super: fullscreen
-hl.gesture({ fingers = 3, direction = "up",   mods = "SUPER", action = "fullscreen" })
+hl.gesture({ fingers = 3, direction = "up", mods = "SUPER", action = "fullscreen" })
 -- 3-finger swipe down with Alt: close window
-hl.gesture({ fingers = 3, direction = "down", mods = "ALT",   action = "close" })
+hl.gesture({ fingers = 3, direction = "down", mods = "ALT", action = "close" })
 -- NOTE: hl.gesture action only accepts built-in string actions ("workspace", "fullscreen", "close").
 -- Exec-based gestures are not supported; use keybinds (Super+F2/F3) for volume control instead.
-hl.gesture({ fingers = 3, direction = "up",   action = function() hl.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+") end})
-hl.gesture({ fingers = 3, direction = "down", action = function() hl.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-") end })
+hl.gesture({ fingers = 3, direction = "up", action = function() hl.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+") end })
+hl.gesture({ fingers = 3, direction = "down", action = function() hl.exec_cmd(
+    "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-") end })
 
 hl.config({
     gestures = {
-        workspace_swipe_cancel_ratio  = 0.15,
-        workspace_swipe_distance      = 100,
-        workspace_swipe_touch_invert  = true,
-        workspace_swipe_invert        = false,
+        workspace_swipe_cancel_ratio = 0.15,
+        workspace_swipe_distance     = 100,
+        workspace_swipe_touch_invert = true,
+        workspace_swipe_invert       = false,
     },
 })
 
@@ -239,20 +240,21 @@ hl.config({
 ---------------------
 
 -- Application launches
-hl.bind(mainMod .. " + E",       hl.dsp.exec_cmd("firefox"))
-hl.bind(mainMod .. " + F",       hl.dsp.exec_cmd("alacritty -e ranger"))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("firefox"))
+hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("alacritty -e ranger"))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("nemo"))
-hl.bind(mainMod .. " + V",       hl.dsp.exec_cmd("code --ozone-platform-hint=wayland"))
-hl.bind(mainMod .. " + B",       hl.dsp.exec_cmd("~/.config/eww/scripts/toggle-eww.sh"))
-hl.bind(mainMod .. " + T",       hl.dsp.exec_cmd("gnome-system-monitor"))
-hl.bind(mainMod .. " + Z",       hl.dsp.exec_cmd("~/.local/bin/c-woomer"))
-hl.bind(mainMod .. " + N",       hl.dsp.exec_cmd("alacritty -e nvim"))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("code --ozone-platform-hint=wayland"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("~/.config/eww/scripts/toggle-eww.sh"))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("gnome-system-monitor"))
+hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("~/.local/bin/c-woomer"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("alacritty -e nvim"))
 
 -- Terminal and basic Hyprland controls
-hl.bind(mainMod .. " + Return",    hl.dsp.exec_cmd("alacritty"))
-hl.bind(mainMod .. " + Q",         hl.dsp.exec_cmd("alacritty"))
+hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("alacritty"))
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("alacritty"))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close())
-hl.bind(mainMod .. " + D",         hl.dsp.exec_cmd('wofi --show drun --style "$HOME/.config/wofi/wofi-font.css" --width 650 --height 500'))
+hl.bind(mainMod .. " + D",
+    hl.dsp.exec_cmd('wofi --show drun --style "$HOME/.config/wofi/wofi-font.css" --width 650 --height 500'))
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exit())
 
@@ -260,7 +262,7 @@ hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exit())
 hl.bind(mainMod .. " + F2", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -10%"), { repeating = true })
 hl.bind(mainMod .. " + F3", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +10%"), { repeating = true })
 hl.bind(mainMod .. " + F4", hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"))
-hl.bind(mainMod .. " + M",  hl.dsp.exec_cmd("pactl set-source-mute 85 toggle"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("pactl set-source-mute 85 toggle"))
 
 -- Power menu
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("~/.config/wofi/power.sh"))
@@ -269,15 +271,15 @@ hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("~/.config/wofi/power.sh"))
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
 
 -- Screenshots - using grim/slurp (more reliable)
-hl.bind("Print",                    hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/screenshot-full.sh"'))
-hl.bind(mainMod .. " + Print",      hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/screenshot-window.sh"'))
-hl.bind(mainMod .. " + SHIFT + S",  hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/screenshot-region.sh"'))
+hl.bind("Print", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/screenshot-full.sh"'))
+hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/screenshot-window.sh"'))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/screenshot-region.sh"'))
 
 -- Move focus with mainMod + arrow keys
-hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 
 -- Move focus with mainMod + hjkl
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
@@ -286,10 +288,10 @@ hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 
 -- Move windows with mainMod + SHIFT + arrow keys
-hl.bind(mainMod .. " + SHIFT + left",  hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.move({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ direction = "right" }))
-hl.bind(mainMod .. " + SHIFT + up",    hl.dsp.window.move({ direction = "up" }))
-hl.bind(mainMod .. " + SHIFT + down",  hl.dsp.window.move({ direction = "down" }))
+hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.move({ direction = "down" }))
 
 -- Move windows with mainMod + SHIFT + hjkl
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
@@ -300,28 +302,28 @@ hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
-    local key = i % 10  -- key 0 maps to workspace 10
-    hl.bind(mainMod .. " + " .. key,           hl.dsp.focus({ workspace = tostring(i) }))
-    hl.bind(mainMod .. " + SHIFT + " .. key,   hl.dsp.window.move({ workspace = tostring(i) }))
+    local key = i % 10 -- key 0 maps to workspace 10
+    hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = tostring(i) }))
+    hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = tostring(i) }))
 end
 
 -- Workspace navigation with Ctrl+Alt
-hl.bind("CTRL + ALT + left",  hl.dsp.focus({ workspace = "e-1" }))
+hl.bind("CTRL + ALT + left", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind("CTRL + ALT + right", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind("CTRL + ALT + H",     hl.dsp.focus({ workspace = "e-1" }))
-hl.bind("CTRL + ALT + L",     hl.dsp.focus({ workspace = "e+1" }))
+hl.bind("CTRL + ALT + H", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind("CTRL + ALT + L", hl.dsp.focus({ workspace = "e+1" }))
 
 -- Move window to workspace and follow
 hl.bind("CTRL + ALT + SHIFT + H", hl.dsp.window.move({ workspace = "e-1" }))
 hl.bind("CTRL + ALT + SHIFT + L", hl.dsp.window.move({ workspace = "e+1" }))
 
 -- Layout controls
-hl.bind(mainMod .. " + S",     hl.dsp.layout("togglesplit"))
-hl.bind(mainMod .. " + W",     hl.dsp.group.toggle())
-hl.bind(mainMod .. " + Y",     hl.dsp.group.next())
-hl.bind(mainMod .. " + G",     hl.dsp.window.fullscreen())
+hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit"))
+hl.bind(mainMod .. " + W", hl.dsp.group.toggle())
+hl.bind(mainMod .. " + Y", hl.dsp.group.next())
+hl.bind(mainMod .. " + G", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + Space", hl.dsp.window.float())
-hl.bind(mainMod .. " + A",     hl.dsp.focus({ urgent_or_last = true }))
+hl.bind(mainMod .. " + A", hl.dsp.focus({ urgent_or_last = true }))
 
 -- Scratchpad (Special workspace)
 hl.bind(mainMod .. " + x", hl.dsp.window.move({ workspace = "special", follow = false }))
@@ -334,91 +336,99 @@ hl.bind(mainMod .. " + semicolon", hl.dsp.window.toggle_swallow())
 hl.bind(mainMod .. " + R", hl.dsp.submap("R"))
 
 hl.define_submap("R", function()
-    hl.bind("right",  hl.dsp.window.resize({ x = 10,  y = 0,   relative = true }), { repeating = true })
-    hl.bind("left",   hl.dsp.window.resize({ x = -10, y = 0,   relative = true }), { repeating = true })
-    hl.bind("up",     hl.dsp.window.resize({ x = 0,   y = -10, relative = true }), { repeating = true })
-    hl.bind("down",   hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }), { repeating = true })
-    hl.bind("l",      hl.dsp.window.resize({ x = 10,  y = 0,   relative = true }), { repeating = true })
-    hl.bind("h",      hl.dsp.window.resize({ x = -10, y = 0,   relative = true }), { repeating = true })
-    hl.bind("k",      hl.dsp.window.resize({ x = 0,   y = -10, relative = true }), { repeating = true })
-    hl.bind("j",      hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }), { repeating = true })
+    hl.bind("right", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
+    hl.bind("left", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
+    hl.bind("up", hl.dsp.window.resize({ x = 0, y = -10, relative = true }), { repeating = true })
+    hl.bind("down", hl.dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
+    hl.bind("l", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
+    hl.bind("h", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
+    hl.bind("k", hl.dsp.window.resize({ x = 0, y = -10, relative = true }), { repeating = true })
+    hl.bind("j", hl.dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
     hl.bind("escape", hl.dsp.submap("reset"))
     hl.bind("Return", hl.dsp.submap("reset"))
 end)
 
 -- Zoom
-hl.bind(mainMod .. " + SHIFT + equal", hl.dsp.exec_cmd("hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '.float * 1.2')"), { repeating = true })
-hl.bind(mainMod .. " + SHIFT + minus", hl.dsp.exec_cmd("hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '(.float * 0.8) | if . < 1 then 1 else . end')"), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + equal",
+    hl.dsp.exec_cmd(
+    "hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '.float * 1.2')"),
+    { repeating = true })
+hl.bind(mainMod .. " + SHIFT + minus",
+    hl.dsp.exec_cmd(
+    "hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '(.float * 0.8) | if . < 1 then 1 else . end')"),
+    { repeating = true })
 
 -- Gap adjustments
-hl.bind(mainMod .. " + bracketleft",  hl.dsp.exec_cmd("hyprctl keyword general:gaps_out $(($(hyprctl getoption general:gaps_out -j | jq -r '.int') + 2))"))
-hl.bind(mainMod .. " + bracketright", hl.dsp.exec_cmd("hyprctl keyword general:gaps_out $(($(hyprctl getoption general:gaps_out -j | jq -r '.int') - 2))"))
-hl.bind(mainMod .. " + slash",        hl.dsp.exec_cmd("hyprctl keyword general:gaps_in 5 && hyprctl keyword general:gaps_out 0"))
+hl.bind(mainMod .. " + bracketleft",
+    hl.dsp.exec_cmd("hyprctl keyword general:gaps_out $(($(hyprctl getoption general:gaps_out -j | jq -r '.int') + 2))"))
+hl.bind(mainMod .. " + bracketright",
+    hl.dsp.exec_cmd("hyprctl keyword general:gaps_out $(($(hyprctl getoption general:gaps_out -j | jq -r '.int') - 2))"))
+hl.bind(mainMod .. " + slash", hl.dsp.exec_cmd("hyprctl keyword general:gaps_in 5 && hyprctl keyword general:gaps_out 0"))
 
 -- Special function keys
-hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +10%"), { repeating = true })
-hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -10%"), { repeating = true })
-hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"))
-hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"))
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +10%"), { repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -10%"), { repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"))
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"))
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 10%-"), { repeating = true })
-hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl set +10%"), { repeating = true })
-hl.bind("XF86AudioPlay",         hl.dsp.exec_cmd("playerctl play-pause"))
-hl.bind("XF86AudioNext",         hl.dsp.exec_cmd("playerctl next"))
-hl.bind("XF86AudioPrev",         hl.dsp.exec_cmd("playerctl previous"))
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set +10%"), { repeating = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
 
 -- Mouse bindings
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e-1" }))
-hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e+1" }))
 
 
 ---------------------
 --- Window rules ---
 ---------------------
 
-hl.window_rule({ match = { class = "^(pop-up)$" },              float = true })
-hl.window_rule({ match = { class = "^(bubble)$" },              float = true })
-hl.window_rule({ match = { class = "^(task_dialog)$" },         float = true })
-hl.window_rule({ match = { class = "^(Preferences)$" },         float = true })
+hl.window_rule({ match = { class = "^(pop-up)$" }, float = true })
+hl.window_rule({ match = { class = "^(bubble)$" }, float = true })
+hl.window_rule({ match = { class = "^(task_dialog)$" }, float = true })
+hl.window_rule({ match = { class = "^(Preferences)$" }, float = true })
 hl.window_rule({ match = { class = "^(code)$", title = "^(Open Folder)$" }, float = true })
-hl.window_rule({ match = { title = "^(All Files)$" },           float = true })
-hl.window_rule({ match = { class = "^(gnome-calendar)$" },      float = true })
-hl.window_rule({ match = { class = "^(dialog)$" },              float = true })
-hl.window_rule({ match = { class = "^(menu)$" },                float = true })
-hl.window_rule({ match = { class = "^(Organizer)$" },           float = true })
-hl.window_rule({ match = { class = "^(About)$" },               float = true })
-hl.window_rule({ match = { class = "^(toolbox)$" },             float = true })
-hl.window_rule({ match = { class = "^(page-info)$" },           float = true })
-hl.window_rule({ match = { class = "^(webconsole)$" },          float = true })
-hl.window_rule({ match = { class = "^(floating_con)$" },        float = true })
-hl.window_rule({ match = { class = "^(Emulator)$" },            float = true })
-hl.window_rule({ match = { class = "^(Emulator)$" },            float = true, monitor = "eDP-1" })
-hl.window_rule({ match = { class = "^(woomer)$" },              float = true, center = true })
+hl.window_rule({ match = { title = "^(All Files)$" }, float = true })
+hl.window_rule({ match = { class = "^(gnome-calendar)$" }, float = true })
+hl.window_rule({ match = { class = "^(dialog)$" }, float = true })
+hl.window_rule({ match = { class = "^(menu)$" }, float = true })
+hl.window_rule({ match = { class = "^(Organizer)$" }, float = true })
+hl.window_rule({ match = { class = "^(About)$" }, float = true })
+hl.window_rule({ match = { class = "^(toolbox)$" }, float = true })
+hl.window_rule({ match = { class = "^(page-info)$" }, float = true })
+hl.window_rule({ match = { class = "^(webconsole)$" }, float = true })
+hl.window_rule({ match = { class = "^(floating_con)$" }, float = true })
+hl.window_rule({ match = { class = "^(Emulator)$" }, float = true })
+hl.window_rule({ match = { class = "^(Emulator)$" }, float = true, monitor = "eDP-1" })
+hl.window_rule({ match = { class = "^(woomer)$" }, float = true, center = true })
 hl.window_rule({ match = { class = "^(xdg-desktop-portal-gtk)$" }, float = true })
-hl.window_rule({ match = { class = "^zoom$" },                  float = true })
+hl.window_rule({ match = { class = "^zoom$" }, float = true })
 
 -- File picker dialogs
-hl.window_rule({ match = { title = "^(Open File)$" },   float = true })
+hl.window_rule({ match = { title = "^(Open File)$" }, float = true })
 hl.window_rule({ match = { title = "^(Open Folder)$" }, float = true })
-hl.window_rule({ match = { title = "^(Save File)$" },   float = true })
-hl.window_rule({ match = { title = "^(Save As)$" },     float = true })
+hl.window_rule({ match = { title = "^(Save File)$" }, float = true })
+hl.window_rule({ match = { title = "^(Save As)$" }, float = true })
 
 -- Generic dialog patterns
 -- hl.window_rule({ match = { xwayland = true, title = "^$" }, float = true })
-hl.window_rule({ match = { class = "^(.*)$", title = "^(.*[Ee]rror.*)$" },   float = true })
+hl.window_rule({ match = { class = "^(.*)$", title = "^(.*[Ee]rror.*)$" }, float = true })
 hl.window_rule({ match = { class = "^(.*)$", title = "^(.*[Ww]arning.*)$" }, float = true })
 
 hl.window_rule({ match = { class = "zoom", title = "Zoom Workplace" }, no_initial_focus = true })
-hl.window_rule({ match = { class = "zoom", title = "menu window" },    no_initial_focus = true })
+hl.window_rule({ match = { class = "zoom", title = "menu window" }, no_initial_focus = true })
 
 -- Smart Gaps (Hyprland v0.53.1+)
-hl.window_rule({ name = "smart-gaps-tiled-border",   match = { float = false, workspace = "w[t1]" },   border_size = 0 })
+hl.window_rule({ name = "smart-gaps-tiled-border", match = { float = false, workspace = "w[t1]" }, border_size = 0 })
 -- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
 -- hl.window_rule({ name = "smart-gaps-tiled-rounding", match = { float = false, workspace = "w[tv1]" },  rounding = 0 })
-hl.window_rule({ name = "float-no-border",            match = { float = true },                         border_size = 0 })
+hl.window_rule({ name = "float-no-border", match = { float = true }, border_size = 0 })
 
 -- DOTA 2
 hl.window_rule({ match = { title = "^dota2$" }, fullscreen = true })
@@ -430,10 +440,10 @@ hl.window_rule({ match = { class = "^dota2$" }, suppress_event = "fullscreen" })
 
 
 --- Animation for specific apps
-hl.window_rule({ match = { class = "^(pop-up)$" },    animation = "popin" })
+hl.window_rule({ match = { class = "^(pop-up)$" }, animation = "popin" })
 hl.window_rule({ match = { class = "^(task_dialog)$" }, animation = "popin" })
-hl.window_rule({ match = { class = "^(dialog)$" },    animation = "popin" })
-hl.window_rule({ match = { class = "^(woomer)$" },    animation = "popin" })
+hl.window_rule({ match = { class = "^(dialog)$" }, animation = "popin" })
+hl.window_rule({ match = { class = "^(woomer)$" }, animation = "popin" })
 
 --- No screen share
 -- hl.window_rule({ match = { class = "^(firefox)$" }, no_screen_share = true })
@@ -451,11 +461,12 @@ hl.layer_rule({ match = { namespace = "wofi" }, ignore_alpha = 0.5 })
 --- Environment variables ---
 ----------------------------
 
-hl.env("XCURSOR_SIZE",       "32")
-hl.env("XCURSOR_THEME",      "Bibata-Modern-Classic")
-hl.env("PATH",               HOME .. "/.local/bin:" .. HOME .. "/.cargo/bin:" .. HOME .. "/.npm-global/bin:" .. (os.getenv("PATH") or ""))
+hl.env("XCURSOR_SIZE", "32")
+hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
+hl.env("PATH",
+    HOME .. "/.local/bin:" .. HOME .. "/.cargo/bin:" .. HOME .. "/.npm-global/bin:" .. (os.getenv("PATH") or ""))
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
-hl.env("XDG_SESSION_TYPE",   "wayland")
+hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 -- hl.env("QT_QPA_PLATFORM", "xcb")
 

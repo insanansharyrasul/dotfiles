@@ -53,7 +53,6 @@ $global-padding: 3px 2px;
 
 // -- Launcher --
 .launcher {
-  // background-color: $surface;
   border-radius: 11px;
   font-size: 17px;
   font-family: "Material Design Icons";
@@ -67,7 +66,6 @@ $global-padding: 3px 2px;
 
 // -- Workspaces --
 .works {
-  // background-color: $surface;
   border-radius: 10px;
   padding: $global-padding;
   margin: 0px;
@@ -163,12 +161,11 @@ $global-padding: 3px 2px;
 
 .icon-bright {
   color: $yellow;
-  // padding: 0 7px 0 0px; 
 }
 
 .mem-ring {
-  color: $blue;
-  background-color: $foreground;
+  color: $accent;
+  background-color: $surface;
   border-radius: 32px;
   min-width: 32px;
   min-height: 32px;
@@ -189,7 +186,7 @@ $global-padding: 3px 2px;
 
 .icon-tlp {
   color: $accent;
-  padding: 0 2px 0 0px; 
+  padding: 0 10px 0 0px; 
 }
 
 .icon-tlp:hover {
@@ -197,7 +194,7 @@ $global-padding: 3px 2px;
 }
 
 .icon-idle {
-  color: $yellow;
+  color: $accent;
   padding: 0 2px 0 0px; 
 }
 
@@ -207,6 +204,7 @@ $global-padding: 3px 2px;
 
 .icon-media {
   color: $accent;
+  padding: 0 0 0 0; 
 }
 
 .icon-media:hover {
@@ -215,8 +213,6 @@ $global-padding: 3px 2px;
 
 .privacy {
   color: $red;
-  font-size: 13px;
-  // padding: 2px 0;
 }
 
 // -- Sliders (volume / brightness) --
@@ -245,7 +241,6 @@ scale.bribar trough highlight {
 
 // -- Clock --
 .clock {
-  // background-color: $surface;
   border-radius: 10px;
   padding: $global-padding;
 }
@@ -266,7 +261,6 @@ scale.bribar trough highlight {
 
 // -- Powermenu --
 .powermenu {
-  // background-color: $surface;
   border-radius: 10px;
   padding: $global-padding;
   font-size: 18px;
@@ -341,6 +335,23 @@ calendar.highlight {
 
 calendar:indeterminate {
   color: $gray;
+}
+
+
+// -- Waifu popup --
+
+.waifu-box {
+  background-color: $background;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.waifu-caption {
+  font-family: "Impact";
+  font-size: 28px;
+  color: white;
+  text-shadow: 2px 2px 0px black, -2px -2px 0px black, 2px -2px 0px black, -2px 2px 0px black;
+  padding-top: 6px;
 }
 
 // -- Tooltips --
