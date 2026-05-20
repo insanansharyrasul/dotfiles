@@ -48,8 +48,14 @@
 
 ;; Launcher
 (defwidget launcher []
-  (button :class "launcher" :tooltip "Applications" :halign "center"
-  :onclick "scripts/popup launcher" ""))
+  (button 
+   :class "launcher"
+   :tooltip "Applications" 
+   :halign "center"
+   :onclick "scripts/popup launcher"
+   :onrightclick "scripts/popup waifu"
+   ""
+  ))
 
 ;; Workspaces (Hyprland)
 (defwidget workspaces []
@@ -175,7 +181,7 @@
 ;; Privacy (microphone-in-use indicator)
 (defwidget privacy []
   (revealer :transition "slideup" :reveal privacy-mic :duration "300ms" :halign "center" :valign "center"
-    (label :class "privacy" :text "" :tooltip "Microphone in use")))
+    (label :class "privacy" :text "󰍬" :tooltip "Microphone in use")))
 
 ;; Media
 (defwidget media []
@@ -222,6 +228,7 @@
   (box :class "cal-box" :orientation "v"
     (calendar :class "cal" :day calendar_day :month calendar_month :year calendar_year)))
 
+
 ;; ──────────────────────────── Layout ───────────────────────────────
 (defwidget top []
   (box :orientation "v" :space-evenly false :valign "center" :halign "center"
@@ -243,6 +250,20 @@
     (media)
     (privacy)
   ))
+
+(defwidget cal []
+  (box :class "cal-box" :orientation "v"
+    (calendar :class "cal" :day calendar_day :month calendar_month :year calendar_year)))
+
+(defvar waifu-path "/home/teaguy21/Pictures/waifu.jpeg")
+
+(defwidget waifu []
+  (box :class "waifu-box" :orientation "v"
+    (overlay
+      (image :path waifu-path :image-width 280 :image-height 200)
+      (label :class "waifu-caption" :text "Wanted" :valign "start" :halign "center")
+      (label :class "waifu-caption" :text "Dead or Live" :valign "end" :halign "center")
+    )))
 
 (defwidget bottom []
   (box :orientation "v" :space-evenly false :halign "center"
@@ -284,3 +305,9 @@
   :monitor 0
   :stacking "fg"
   (cal))
+
+(defwindow waifu
+  :geometry (geometry :x "5px" :y "5px" :width "290px" :height "210px" :anchor "bottom left")
+  :monitor 0
+  :stacking "fg"
+  (waifu))
