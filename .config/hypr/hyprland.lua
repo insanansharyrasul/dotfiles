@@ -28,16 +28,31 @@ local HOME = os.getenv("HOME")
 -- Parsed from monitors.conf (managed by nwg-displays, hyprlang format)
 ---------------------------
 
-local monitors_conf = io.open(HOME .. "/.config/hypr/monitors.conf", "r")
-if monitors_conf then
-    for line in monitors_conf:lines() do
-        local output, mode, position, scale = line:match("^monitor=([^,]+),([^,]+),([^,]+),([^%s,]+)")
-        if output then
-            hl.monitor({ output = output, mode = mode, position = position, scale = scale })
-        end
-    end
-    monitors_conf:close()
-end
+-- local monitors_conf = io.open(HOME .. "/.config/hypr/monitors.conf", "r")
+-- if monitors_conf then
+--     for line in monitors_conf:lines() do
+--         local output, mode, position, scale = line:match("^monitor=([^,]+),([^,]+),([^,]+),([^%s,]+)")
+--         if output then
+--             hl.monitor({ output = output, mode = mode, position = position, scale = scale })
+--         end
+--     end
+--     monitors_conf:close()
+-- end
+
+hl.monitor({
+    output = "eDP-1",
+    mode = "2880x1800@144",
+    position = "0x0",
+    scale = 2,
+})
+
+hl.monitor({
+    output = "HDMI-A-1",
+    mode = "1920x1080@60",
+    position = "1440x0",
+    scale = 2,
+    mirror = "eDP-1"
+})
 
 -- (workspaces.conf was empty, nothing to source)
 
@@ -207,8 +222,14 @@ hl.gesture({ fingers = 3, direction = "down", mods = "ALT", action = "close" })
 -- NOTE: hl.gesture action only accepts built-in string actions ("workspace", "fullscreen", "close").
 -- Exec-based gestures are not supported; use keybinds (Super+F2/F3) for volume control instead.
 hl.gesture({ fingers = 3, direction = "up", action = function() hl.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+") end })
-hl.gesture({ fingers = 3, direction = "down", action = function() hl.exec_cmd(
-    "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-") end })
+hl.gesture({
+    fingers = 3,
+    direction = "down",
+    action = function()
+        hl.exec_cmd(
+            "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-")
+    end
+})
 
 hl.config({
     gestures = {
@@ -351,11 +372,11 @@ end)
 -- Zoom
 hl.bind(mainMod .. " + SHIFT + equal",
     hl.dsp.exec_cmd(
-    "hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '.float * 1.2')"),
+        "hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '.float * 1.2')"),
     { repeating = true })
 hl.bind(mainMod .. " + SHIFT + minus",
     hl.dsp.exec_cmd(
-    "hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '(.float * 0.8) | if . < 1 then 1 else . end')"),
+        "hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '(.float * 0.8) | if . < 1 then 1 else . end')"),
     { repeating = true })
 
 -- Gap adjustments
