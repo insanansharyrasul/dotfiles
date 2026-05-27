@@ -409,6 +409,11 @@ hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e+1" }))
 ---------------------
 --- Window rules ---
 ---------------------
+hl.window_rule({ match =  {class = "^(trayer)$"}, float = true})
+hl.window_rule({ match =  {class = "^(trayer)$"}, pin = true})
+hl.window_rule({ match =  {class = "^(trayer)$"}, no_initial_focus = true})
+hl.window_rule({ match =  {class = "^(trayer)$"}, float = true})
+hl.window_rule({ match =  {class = "^(trayer)$"}, float = true})
 
 hl.window_rule({ match = { class = "^(pop-up)$" }, float = true })
 hl.window_rule({ match = { class = "^(bubble)$" }, float = true })
@@ -524,6 +529,8 @@ hl.on("hyprland.start", function()
     -- Hyprgrass
     -- hl.exec_cmd("kill -34 $(ps -C wvkbd-mobintl)")
     -- hl.exec_cmd("wvkbd-mobintl -L 200")
+
+    hl.exec_cmd("trayer --edge left --align center --widthtype pixel --width 36 --heighttype pixel --height 200 --transparent true --alpha 0 --tint 0x0D1017 --distance 0 --monitor 0 --SetDockType false --SetPartialStrut false")
 
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 end)
