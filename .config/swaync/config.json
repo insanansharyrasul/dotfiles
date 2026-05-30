@@ -35,8 +35,7 @@
     "notifications",
     "mpris",
     "volume",
-    "backlight",
-    "buttons-grid"
+    "backlight"
   ],
   "widget-config": {
     "title": {
@@ -59,36 +58,6 @@
     },
     "backlight": {
       "label": "Brightness"
-    },
-    "buttons-grid": {
-      "columns": 3,
-      "rows": 2,
-      "actions": [
-        {
-          "label": "Lock",
-          "command": "hyprlock"
-        },
-        {
-          "label": "Suspend",
-          "command": "systemctl suspend"
-        },
-        {
-          "label": "Logout",
-          "command": "hyprctl dispatch exit"
-        },
-        {
-          "label": "Reboot",
-          "command": "systemctl reboot"
-        },
-        {
-          "label": "Poweroff",
-          "command": "systemctl poweroff"
-        },
-        {
-          "label": "Mute",
-          "command": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-        }
-      ]
     }
   }
 }
