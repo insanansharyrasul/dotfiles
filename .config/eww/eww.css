@@ -2,7 +2,6 @@
    Ayu Dark theme
    NOTE: keep this file ASCII-only. Non-ASCII chars make `grass` emit a
    `@charset` rule that GTK's CSS parser rejects, dropping all styles. */
-
 * {
   all: unset;
 }
@@ -11,63 +10,40 @@ window {
   background-color: transparent;
 }
 
-// -- Ayu Dark palette --
-$background: #0D1017;
-$surface: #161A24;
-$surface2: #1F2430;
-$foreground: #BFBDB6;
-$gray: #5C6773;
-$accent: #FF9C40;
-$red: #F07178;
-$green: #95E6CB;
-$yellow: #FFB454;
-$blue: #59C2FF;
-$magenta: #D2A6FF;
-
-$font: "JetBrainsMono Nerd Font";
-$global-padding: 3px 2px;
-
-// -- Bar --
 .eww_bar {
-  // background-color: $background;
-  background-color: $background;
-  color: $foreground;
-  font-family: $font;
+  background-color: #0D1017;
+  color: #BFBDB6;
+  font-family: "JetBrainsMono Nerd Font";
   font-weight: bold;
   border-radius: 8px;
-  // padding: 0 2px;
   margin: 4px;
 }
 
 @keyframes blink_red {
   from {
     background-color: transparent;
-    color: $red;
+    color: #F07178;
   }
-
   to {
-    background-color: $red;
-    color: $background;
+    background-color: #F07178;
+    color: #0D1017;
   }
 }
-
-// -- Launcher --
 .launcher {
   border-radius: 11px;
   font-size: 17px;
   font-family: "Material Design Icons";
-  color: $accent;
+  color: #FF9C40;
   padding: 8px 8px 3 0;
 }
 
 .launcher:hover {
-  color: $blue;
+  color: #59C2FF;
 }
 
-// -- Workspaces --
 .works {
   border-radius: 10px;
-  padding: $global-padding;
+  padding: 3px 2px;
   margin: 0px;
 }
 
@@ -75,41 +51,39 @@ $global-padding: 3px 2px;
 .ws-occupied,
 .ws-active {
   font-size: 14px;
-  padding: $global-padding;
+  padding: 3px 2px;
   border-radius: 9px;
-  color: $gray;
+  color: #5C6773;
 }
 
 .ws-occupied {
-  color: $foreground;
+  color: #BFBDB6;
 }
 
 .ws-active {
-  color: $background;
-  background-color: $accent;
+  color: #0D1017;
+  background-color: #FF9C40;
   padding: 3 9px;
 }
 
 .ws:hover,
 .ws-occupied:hover {
-  color: $background;
-  background-color: $yellow;
+  color: #0D1017;
+  background-color: #FFB454;
 }
 
-// -- Submap --
 .submap {
   font-size: 14px;
-  color: $background;
-  background-color: $accent;
+  color: #0D1017;
+  background-color: #FF9C40;
   border-radius: 8px;
-  padding: $global-padding;
+  padding: 3px 2px;
   margin: 0 4px;
 }
 
-// -- Control panel --
 .control {
   border-radius: 10px;
-  padding: $global-padding;
+  padding: 3px 2px;
 }
 
 .mod {
@@ -119,11 +93,11 @@ $global-padding: 3px 2px;
 
 .label-sm {
   font-size: 14px;
-  color: $foreground;
+  color: #BFBDB6;
 }
 
 .icon-bat {
-  color: $blue;
+  color: #59C2FF;
   padding: 0 0px 0 7px;
 }
 
@@ -133,39 +107,38 @@ $global-padding: 3px 2px;
 }
 
 .icon-wifi {
-  color: $magenta;
-  // padding: 0 7px 0 0px; 
+  color: #D2A6FF;
 }
 
 .icon-wifi:hover {
-  color: $accent;
+  color: #FF9C40;
 }
 
 .icon-vol {
-  color: $green;
+  color: #95E6CB;
   padding: 0 3px 0 0px;
 }
 
 .icon-vol:hover {
-  color: $accent;
+  color: #FF9C40;
 }
 
 .icon-mic {
-  color: $blue;
+  color: #59C2FF;
   padding: 0 0px 0 0px;
 }
 
 .icon-mic:hover {
-  color: $accent;
+  color: #FF9C40;
 }
 
 .icon-bright {
-  color: $yellow;
+  color: #FFB454;
 }
 
 .mem-ring {
-  color: $accent;
-  background-color: $surface;
+  color: #FF9C40;
+  background-color: #161A24;
   border-radius: 32px;
   min-width: 32px;
   min-height: 32px;
@@ -173,62 +146,62 @@ $global-padding: 3px 2px;
 }
 
 .mem-icon {
-  color: $foreground;
+  color: #BFBDB6;
   font-size: 18px;
-  font-family: $font;
+  font-family: "JetBrainsMono Nerd Font";
 }
 
 .mem-label {
   font-size: 9px;
-  color: $blue;
+  color: #59C2FF;
   margin-bottom: 2px;
 }
 
 .icon-tlp {
-  color: $accent;
+  color: #FF9C40;
   padding: 0 5px 0 0px;
   font-size: 18px;
 }
 
 .icon-tlp:hover {
-  color: $yellow;
+  color: #FFB454;
 }
 
 .icon-idle {
-  color: $accent;
+  color: #FF9C40;
   padding: 0 2px 0 0px;
 }
 
 .icon-idle:hover {
-  color: $accent;
+  color: #FF9C40;
 }
 
 .icon-notif {
-  color: $accent;
+  color: #FF9C40;
   padding: 0 2px 0 0;
 }
 
 .icon-notif.none {
-  color: $accent;
+  color: #FF9C40;
 }
 
 .icon-notif.notification {
-  color: $accent;
+  color: #FF9C40;
 }
 
 .icon-notif.dnd-notification,
 .icon-notif.dnd-none {
-  color: $red;
+  color: #F07178;
 }
 
 .icon-notif.inhibited-notification,
 .icon-notif.inhibited-none {
-  color: $magenta;
+  color: #D2A6FF;
 }
 
 .icon-notif.dnd-inhibited-notification,
 .icon-notif.dnd-inhibited-none {
-  color: $yellow;
+  color: #FFB454;
 }
 
 .notif-icon {
@@ -237,17 +210,15 @@ $global-padding: 3px 2px;
 
 .notif-count {
   font-size: 10px;
-  color: $foreground;
-  // margin-top: 2px;
+  color: #BFBDB6;
 }
 
 .privacy {
-  color: $red;
+  color: #F07178;
 }
 
-// -- Sliders (volume / brightness) --
 scale trough {
-  background-color: $surface;
+  background-color: #161A24;
   border-radius: 8px;
   min-height: 78px;
   min-width: 8px;
@@ -255,48 +226,46 @@ scale trough {
 }
 
 scale.volbar trough highlight {
-  background-color: $green;
+  background-color: #95E6CB;
   border-radius: 8px;
 }
 
 scale.micbar trough highlight {
-  background-color: $blue;
+  background-color: #59C2FF;
   border-radius: 8px;
 }
 
 scale.bribar trough highlight {
-  background-color: $yellow;
+  background-color: #FFB454;
   border-radius: 8px;
 }
 
-// -- Clock --
 .clock {
   border-radius: 10px;
-  padding: $global-padding;
+  padding: 3px 2px;
 }
 
 .clock:hover {
-  background-color: $surface2;
+  background-color: #1F2430;
 }
 
 .clock-hour,
 .clock-min,
 .clock-sec {
   font-size: 14px;
-  color: $accent;
+  color: #FF9C40;
 }
 
 .clock-day,
 .clock-month,
 .clock-year {
   font-size: 14px;
-  color: $magenta;
+  color: #D2A6FF;
 }
 
-// -- Powermenu --
 .powermenu {
   border-radius: 10px;
-  padding: $global-padding;
+  padding: 3px 2px;
   font-size: 18px;
 }
 
@@ -310,23 +279,23 @@ scale.bribar trough highlight {
 }
 
 .pw-lock {
-  color: $blue;
+  color: #59C2FF;
 }
 
 .pw-logout {
-  color: $magenta;
+  color: #D2A6FF;
 }
 
 .pw-reboot {
-  color: $yellow;
+  color: #FFB454;
 }
 
 .pw-sleep {
-  color: $green;
+  color: #95E6CB;
 }
 
 .pw-power {
-  color: $red;
+  color: #F07178;
 }
 
 .pw-lock:hover,
@@ -334,48 +303,44 @@ scale.bribar trough highlight {
 .pw-reboot:hover,
 .pw-sleep:hover,
 .pw-power:hover {
-  color: $accent;
+  color: #FF9C40;
 }
 
-// -- Calendar popup --
 .cal-box {
-  background-color: $background;
+  background-color: #0D1017;
   border-radius: 10px;
   padding: 12px;
 }
 
 .cal {
-  font-family: $font;
-  color: $foreground;
+  font-family: "JetBrainsMono Nerd Font";
+  color: #BFBDB6;
 }
 
 calendar:selected {
-  color: $accent;
+  color: #FF9C40;
 }
 
 calendar.header {
-  color: $accent;
+  color: #FF9C40;
   font-weight: bold;
 }
 
 calendar.button {
-  color: $magenta;
+  color: #D2A6FF;
 }
 
 calendar.highlight {
-  color: $accent;
+  color: #FF9C40;
   font-weight: bold;
 }
 
 calendar:indeterminate {
-  color: $gray;
+  color: #5C6773;
 }
 
-
-// -- Waifu popup --
-
 .waifu-box {
-  background-color: $background;
+  background-color: #0D1017;
   border-radius: 12px;
   padding: 8px;
 }
@@ -388,13 +353,12 @@ calendar:indeterminate {
   padding-top: 6px;
 }
 
-// -- Tooltips --
 tooltip {
-  background-color: $surface;
+  background-color: #161A24;
   border-radius: 8px;
 }
 
 tooltip label {
-  color: $foreground;
+  color: #BFBDB6;
   padding: 4px;
-}
+}/*# sourceMappingURL=eww.css.map */
