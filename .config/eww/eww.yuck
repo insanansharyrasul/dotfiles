@@ -8,12 +8,11 @@
 ;; ──────────────────────────── Variables ────────────────────────────
 (deflisten workspace :initial "(box :class \"works\")" "scripts/workspaces")
 (deflisten submap    :initial "" "scripts/submap")
-(deflisten media     :initial '{"text":"","tooltip":"","class":"stopped"}'
-"$HOME/.config/waybar/scripts/mediaplayer.py 2>/dev/null")
 
 (deflisten volume     :initial '{"level":0,"icon":"󰕿"}' "scripts/volume listen")
 (deflisten mic        :initial '{"level":0,"icon":"󰍬"}' "scripts/mic listen")
 (deflisten brightness :initial "0" "scripts/backlight listen")
+(deflisten notifications :initial '{"count":0,"state":"none","icon":"󰂜,"tooltip":"Notifications"}' "scripts/notifications listen")
 
 (defpoll battery-icon    :interval "10s" :initial "" "scripts/battery icon")
 (defpoll battery-percent :interval "10s" :initial "0" "scripts/battery percent")
@@ -48,13 +47,13 @@
 
 ;; Launcher
 (defwidget launcher []
-  (button 
-   :class "launcher"
-   :tooltip "Applications" 
-   :halign "center"
-   :onclick "scripts/popup launcher"
-   :onrightclick "scripts/popup waifu"
-   ""
+  (button
+    :class "launcher"
+    :tooltip "Applications"
+    :halign "center"
+    :onclick "scripts/popup launcher"
+    :onrightclick "scripts/popup waifu"
+    ""
   ))
 
 ;; Workspaces (Hyprland)
@@ -153,12 +152,25 @@
     )
   ))
 
+;; Notifications (SwayNC)
+(defwidget notifications []
+  (button :class "mod icon-notif ${notifications.state}"
+    :tooltip {notifications.tooltip}
+    :halign "center"
+    :onclick "scripts/notifications toggle"
+    :onrightclick "scripts/notifications dnd"
+    :onmiddleclick "scripts/notifications clear"
+    (box :orientation "v" :space-evenly false :halign "center"
+      (label :class "notif-icon" :text {notifications.icon})
+      (label :class "notif-count" :text {notifications.count > 0 ? notifications.count : ""})
+    )))
+
 ;; Memory
 (defwidget memory []
   (circular-progress :value memory :class "mem-ring" :thickness 4 :clockwise true
     :tooltip "RAM ${memory}%"
     (label :class "mem-icon" :text "ㅤ"
-      :limit-width 2 :show_truncated false :wrap false)))
+    :limit-width 2 :show_truncated false :wrap false)))
 
 ;; TLP profile
 (defwidget tlp []
@@ -182,15 +194,6 @@
 (defwidget privacy []
   (revealer :transition "slideup" :reveal privacy-mic :duration "300ms" :halign "center" :valign "center"
     (label :class "privacy" :text "󰍬" :tooltip "Microphone in use")))
-
-;; Media
-(defwidget media []
-  (revealer :transition "slideup" :reveal {media.text != ""} :duration "300ms" :halign "center" :valign "center"
-    (button :class "mod icon-media" :tooltip {media.tooltip} :halign "center"
-      :onclick "playerctl --player=%any play-pause"
-      :onrightclick "playerctl --player=%any next"
-      :onmiddleclick "playerctl --player=%any previous"
-    {media.class == "playing" ? "󰏤" : "󰐊"})))
 
 ;; Clock  (left: calendar · middle: toggle wallpaper · right: wallpaper picker)
 (defwidget clock []
@@ -237,6 +240,7 @@
     (submap)
     (idle)
     (tlp)
+    (notifications)
   ))
 
 (defwidget control []
@@ -247,7 +251,6 @@
     (volume)
     (backlight)
     (wifi)
-    (media)
     (privacy)
   ))
 

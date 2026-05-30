@@ -124,7 +124,7 @@ $global-padding: 3px 2px;
 
 .icon-bat {
   color: $blue;
-  padding: 0 0px 0 7px; 
+  padding: 0 0px 0 7px;
 }
 
 .icon-bat.critical {
@@ -143,7 +143,7 @@ $global-padding: 3px 2px;
 
 .icon-vol {
   color: $green;
-  padding: 0 3px 0 0px; 
+  padding: 0 3px 0 0px;
 }
 
 .icon-vol:hover {
@@ -152,7 +152,7 @@ $global-padding: 3px 2px;
 
 .icon-mic {
   color: $blue;
-  padding: 0 0px 0 0px; 
+  padding: 0 0px 0 0px;
 }
 
 .icon-mic:hover {
@@ -186,7 +186,8 @@ $global-padding: 3px 2px;
 
 .icon-tlp {
   color: $accent;
-  padding: 0 10px 0 0px; 
+  padding: 0 5px 0 0px;
+  font-size: 18px;
 }
 
 .icon-tlp:hover {
@@ -195,20 +196,49 @@ $global-padding: 3px 2px;
 
 .icon-idle {
   color: $accent;
-  padding: 0 2px 0 0px; 
+  padding: 0 2px 0 0px;
 }
 
 .icon-idle:hover {
   color: $accent;
 }
 
-.icon-media {
+.icon-notif {
   color: $accent;
-  padding: 0 0 0 0; 
+  padding: 0 2px 0 0;
 }
 
-.icon-media:hover {
+.icon-notif.none {
+  color: $accent;
+}
+
+.icon-notif.notification {
+  color: $accent;
+}
+
+.icon-notif.dnd-notification,
+.icon-notif.dnd-none {
+  color: $red;
+}
+
+.icon-notif.inhibited-notification,
+.icon-notif.inhibited-none {
+  color: $magenta;
+}
+
+.icon-notif.dnd-inhibited-notification,
+.icon-notif.dnd-inhibited-none {
   color: $yellow;
+}
+
+.notif-icon {
+  font-size: 18px;
+}
+
+.notif-count {
+  font-size: 10px;
+  color: $foreground;
+  // margin-top: 2px;
 }
 
 .privacy {
@@ -249,12 +279,16 @@ scale.bribar trough highlight {
   background-color: $surface2;
 }
 
-.clock-hour, .clock-min, .clock-sec {
+.clock-hour,
+.clock-min,
+.clock-sec {
   font-size: 14px;
   color: $accent;
 }
 
-.clock-day, .clock-month, .clock-year {
+.clock-day,
+.clock-month,
+.clock-year {
   font-size: 14px;
   color: $magenta;
 }
