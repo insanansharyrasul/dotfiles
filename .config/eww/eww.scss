@@ -34,9 +34,9 @@ $global-padding: 3px 2px;
   color: $foreground;
   font-family: $font;
   font-weight: bold;
-  border-radius: 8px;
+  // border-radius: 8px;
   // padding: 0 2px;
-  margin: 4px;
+  // margin: 4px;
 }
 
 @keyframes blink_red {
@@ -306,7 +306,7 @@ scale.bribar trough highlight {
 .pw-sleep,
 .pw-power {
   font-size: 18px;
-  padding: 0px 10px 0px 10px;
+  padding: 0px 10px 3px 10px;
 }
 
 .pw-lock {
