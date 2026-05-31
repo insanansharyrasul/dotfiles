@@ -1,8 +1,34 @@
+@define-color background #0D1017;
+@define-color surface #161A24;
+@define-color surface2 #1F2430;
+@define-color foreground #BFBDB6;
+@define-color gray #5C6773;
+@define-color accent #FF9C40;
+@define-color red #F07178;
+@define-color green #95E6CB;
+@define-color yellow #FFB454;
+@define-color blue #59C2FF;
+@define-color magenta #D2A6FF;
+
+list,
+listview,
+row,
+listview row,
+listview row:selected,
+listview row:hover,
+listview row:focus,
+listview row:active {
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+  outline: none;
+}
+
 * {
   font-family: "JetBrainsMono Nerd Font";
   font-size: 12pt;
   font-weight: bold;
-  color: #BFBDB6;
+  color: @foreground;
 }
 
 window#notification-window,
@@ -12,17 +38,9 @@ window#control-center {
 
 .control-center {
   background-color: rgba(13, 16, 23, 0.92);
-  border: 1px solid #1F2430;
+  border: 1px solid @surface2;
   border-radius: 14px;
   padding: 10px;
-}
-
-.control-center button,
-.control-center button:hover,
-.control-center button:active,
-.control-center button:focus {
-  background: transparent;
-  box-shadow: none;
 }
 
 .notification-row,
@@ -40,7 +58,7 @@ window#control-center {
 }
 
 .notification.critical {
-  border-color: #F07178;
+  border-color: @red;
 }
 
 .notification-content {
@@ -50,17 +68,17 @@ window#control-center {
 .summary {
   font-size: 12.5pt;
   font-weight: 700;
-  color: #BFBDB6;
+  color: @foreground;
 }
 
 .body {
   font-size: 11pt;
-  color: #5C6773;
+  color: @gray;
 }
 
 .time {
   font-size: 10.5pt;
-  color: #5C6773;
+  color: @gray;
 }
 
 .image {
@@ -69,181 +87,199 @@ window#control-center {
 
 .notification-default-action,
 .notification-action {
-  background: #1F2430;
+  background: @surface;
+  border-radius: 0;
+  padding: 10px;
+  margin: 0;
+  color: @foreground;
+}
+
+.notification-default-action {
   border-radius: 10px;
-  padding: 6px 10px;
-  color: #BFBDB6;
+}
+
+.notification-default-action:not(:only-child) {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.notification-action:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.notification-action:last-child {
+  border-bottom-right-radius: 10px;
 }
 
 .notification-default-action:hover,
 .notification-action:hover {
-  background: #FF9C40;
-  color: #0D1017;
+  background: @surface2;
+  color: @foreground;
 }
 
 .notification-default-action:active,
 .notification-action:active {
-  background: #FFB454;
-  color: #0D1017;
+  background: @surface2;
+  color: @accent;
 }
 
 .close-button {
-  background: #1F2430;
-  color: #BFBDB6;
+  background: @surface2;
+  color: @foreground;
   border-radius: 999px;
   margin: 8px;
   padding: 2px;
 }
 
 .close-button:hover {
-  background: #F07178;
-  color: #0D1017;
+  background: @red;
+  color: @background;
 }
 
 .inline-reply {
-  background: #1F2430;
+  background: @surface2;
   border-radius: 10px;
   padding: 6px;
   margin: 6px;
 }
 
 .inline-reply-entry {
-  background: #0D1017;
-  border: 1px solid #1F2430;
+  background: @background;
+  border: 1px solid @surface2;
   border-radius: 8px;
   padding: 6px;
-  color: #BFBDB6;
+  color: @foreground;
 }
 
 .inline-reply-button {
-  background: #FF9C40;
-  color: #0D1017;
+  background: @accent;
+  color: @background;
   border-radius: 8px;
   padding: 6px 10px;
   margin-left: 6px;
 }
 
 .inline-reply-button:hover {
-  background: #FFB454;
-  color: #0D1017;
+  background: @yellow;
+  color: @background;
 }
 
 .widget {
-  background: #161A24;
-  border: 1px solid #1F2430;
+  background: @surface;
+  border: 1px solid @surface2;
   border-radius: 12px;
   padding: 10px;
   margin: 6px 0;
 }
 
 .widget-title {
-  color: #BFBDB6;
+  color: @foreground;
   font-size: 12pt;
   font-weight: 700;
   margin-bottom: 6px;
 }
 
 .widget-title > button {
-  background: #1F2430;
+  background: @surface2;
   border-radius: 8px;
   padding: 6px 10px;
-  color: #BFBDB6;
+  color: @foreground;
 }
 
 .widget-title > button:hover {
-  background: #FF9C40;
-  color: #0D1017;
+  background: @accent;
+  color: @background;
 }
 
 .widget-dnd {
-  background: #161A24;
-  border: 1px solid #1F2430;
+  background: @surface;
+  border: 1px solid @surface2;
   border-radius: 12px;
   padding: 8px 10px;
 }
 
 .widget-dnd > switch {
-  background: #1F2430;
+  background: @surface2;
   border-radius: 999px;
   min-width: 48px;
   min-height: 22px;
 }
 
 .widget-dnd > switch slider {
-  background: #5C6773;
+  background: @gray;
   border-radius: 999px;
 }
 
 .widget-dnd > switch:checked slider {
-  background: #FF9C40;
+  background: @accent;
 }
 
 .widget-mpris {
-  background: #161A24;
-  border: 1px solid #1F2430;
+  background: @surface;
+  border: 1px solid @surface2;
   border-radius: 12px;
   margin: 10px;
 }
 
 .widget-mpris-player {
-  color: #FF9C40;
+  color: @accent;
 }
 
 .widget-mpris-title {
-  color: #BFBDB6;
+  color: @foreground;
   font-weight: 700;
 }
 
 .widget-mpris-subtitle {
-  color: #5C6773;
+  color: @gray;
 }
 
 .widget-mpris-buttons button {
-  background: #1F2430;
+  background: @surface2;
   border-radius: 8px;
   padding: 6px;
   margin-right: 6px;
-  color: #BFBDB6;
+  color: @foreground;
 }
 
 .widget-mpris-buttons button:hover {
-  background: #FF9C40;
-  color: #0D1017;
+  background: @accent;
+  color: @background;
 }
 
 .widget-volume,
 .widget-backlight,
 .widget-buttons-grid {
-  background: #161A24;
-  border: 1px solid #1F2430;
+  background: @surface;
+  border: 1px solid @surface2;
   border-radius: 12px;
   padding: 10px;
 }
 
 .widget-buttons-grid button {
-  background: #1F2430;
+  background: @surface2;
   border-radius: 10px;
   padding: 8px 10px;
-  color: #BFBDB6;
+  color: @foreground;
 }
 
 .widget-buttons-grid button:hover {
-  background: #FF9C40;
-  color: #0D1017;
+  background: @accent;
+  color: @background;
 }
 
 .widget-buttons-grid button:active {
-  background: #FFB454;
-  color: #0D1017;
+  background: @yellow;
+  color: @background;
 }
 
 scale trough {
-  background: #1F2430;
+  background: @surface2;
   border-radius: 999px;
   min-height: 6px;
 }
 
 scale highlight {
-  background: #FF9C40;
+  background: @accent;
   border-radius: 999px;
-}/*# sourceMappingURL=style.css.map */
+}
