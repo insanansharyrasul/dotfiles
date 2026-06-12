@@ -12,7 +12,8 @@ window {
 }
 
 // -- Ayu Dark palette --
-$background: #0D1017;
+$background: #000000;
+// $background: #0D1017;
 $surface: #161A24;
 $surface2: #1F2430;
 $foreground: #BFBDB6;
@@ -29,14 +30,10 @@ $global-padding: 3px 2px;
 
 // -- Bar --
 .eww_bar {
-  // background-color: $background;
   background-color: $background;
   color: $foreground;
   font-family: $font;
   font-weight: bold;
-  // border-radius: 8px;
-  // padding: 0 2px;
-  // margin: 4px;
 }
 
 @keyframes blink_red {
@@ -134,7 +131,6 @@ $global-padding: 3px 2px;
 
 .icon-wifi {
   color: $magenta;
-  // padding: 0 7px 0 0px; 
 }
 
 .icon-wifi:hover {
