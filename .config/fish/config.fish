@@ -22,6 +22,7 @@ alias ntp "sudo ntpdate -s time.nist.gov"
 # config aliases
 alias dotfc "vim ~/.config/hypr/hyprland.lua"
 alias fishc "vim ~/.config/fish/config.fish"
+alias monitorc "vim ~/.config/hypr/monitors.lua"
 
 # Git aliases
 alias g "git"
