@@ -45,6 +45,10 @@ keymap('n', '<leader>w', ':!flutter build<CR>', { noremap = true, silent = true,
 -- Comment toggle
 keymap('v', '<leader>c', 'gc', { noremap = false, silent = true })
 keymap('n', '<leader>c', 'gcc', { noremap = false, silent = true })
+keymap('v', '<C-/>', 'gc', { noremap = false, silent = true, desc = "Toggle comment" })
+keymap('n', '<C-/>', 'gcc', { noremap = false, silent = true, desc = "Toggle comment" })
+keymap('v', '<C-_>', 'gc', { noremap = false, silent = true, desc = "Toggle comment" })
+keymap('n', '<C-_>', 'gcc', { noremap = false, silent = true, desc = "Toggle comment" })
 
 -- Additional VSCode-like keybindings
 keymap('n', '<leader>ee', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = "Toggle File Explorer" }) 
