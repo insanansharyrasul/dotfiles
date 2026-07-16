@@ -178,6 +178,8 @@ hl.env("_JAVA_AWT_WM_NONREPARENTING", "1")
 -- hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "111")
 -- hl.env("QT_DEVICE_PIXEL_RATIO",     "2")
 
+hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
+hl.env("QT_SCALE_FACTOR_ROUNDING_POLICY", "PassThrough")
 
 -----------------
 --- Gestures ---
