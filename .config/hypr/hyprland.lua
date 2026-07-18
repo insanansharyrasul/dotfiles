@@ -487,7 +487,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hypridle")
     hl.exec_cmd("/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg")
     hl.exec_cmd("bus-update-activation-environment --all")
-    hl.exec_cmd("/home/teaguy21/.config/swww/swww.sh")
+    hl.exec_cmd("/home/teaguy21/.config/swww/swww.sh 0")
 
     -- GTK theme settings
     hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'ayu-dark'")
