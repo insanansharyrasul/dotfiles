@@ -11,12 +11,27 @@
 (defalias
   escctrl (tap-hold-press 200 200 esc lctl)
   grvchg (tap-hold-press 200 200 grv (layer-toggle arrows))
+  mousectl (tap-hold-press 200 200 XX (layer-while-held mouse))
+  ;; mouse movement (accelerated: starts slow, ramps up over 1s)
+  mup (movemouse-accel-up 6 1000 2 10)
+  mdn (movemouse-accel-down 6 1000 2 10)
+  mlt (movemouse-accel-left 6 1000 2 10)
+  mrt (movemouse-accel-right 6 1000 2 10)
+  ;; scroll wheel
+  mwu (mwheel-up 30 120)
+  mwd (mwheel-down 30 120)
+  ;; speed boost (200% faster movement while held)
+  spd (movemouse-speed 200)
 )
 
 (deflayer default 
-  @escctrl _ _ _ _ @grvchg _ _ _ _ f1
+  @escctrl _ _ _ _ @grvchg _ _ _ _ @mousectl
 )
 
 (deflayer arrows
   _ left down up rght _ up left down rght _
+)
+
+(deflayer mouse
+  mltp @mlt @mdn @mup @mrt mrtp @mwu mmtp @mwd @spd XX
 )
