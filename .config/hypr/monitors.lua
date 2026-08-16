@@ -1,6 +1,7 @@
 hl.monitor({
   output = "eDP-1",
-  mode = "highrr",
+  -- mode = "highrr",
+  mode = "2880x1800@90",
   position = "auto-left",
   scale = 2,
 })

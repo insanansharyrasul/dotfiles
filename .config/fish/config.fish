@@ -77,3 +77,6 @@ fish_add_path /home/teaguy21/.opencode/bin
 
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
+
+# kimi-code
+fish_add_path -g "/home/teaguy21/.kimi-code/bin"

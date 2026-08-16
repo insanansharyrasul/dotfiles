@@ -74,7 +74,7 @@
       battery-icon
       ; "󰤨"
     )
-    ; (label :class "label-sm" :text battery-percent)
+    (label :class "label-sm" :text "${battery-percent}%")
   ))
 
 ;; Wifi
