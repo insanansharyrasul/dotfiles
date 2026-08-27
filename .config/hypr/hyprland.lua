@@ -375,8 +375,8 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e-1" }))
-hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 
 
 ---------------------
@@ -414,6 +414,7 @@ hl.window_rule({ match = { title = "^(Open File)$" }, float = true })
 hl.window_rule({ match = { title = "^(Open Folder)$" }, float = true })
 hl.window_rule({ match = { title = "^(Save File)$" }, float = true })
 hl.window_rule({ match = { title = "^(Save As)$" }, float = true })
+hl.window_rule({ match = { class = "^nemo$", title = "Properties" }, float = true })
 
 -- Generic dialog patterns
 -- hl.window_rule({ match = { xwayland = true, title = "^$" }, float = true })

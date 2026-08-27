@@ -58,8 +58,6 @@ set fish_greeting
 set -gx PATH "$PATH:/home/teaguy21/.local/share/coursier/bin"
 # <<< coursier install directory <<<
 
-set -x XDG_CURRENT_DESKTOP sway
-
 # pnpm
 set -gx PNPM_HOME "/home/teaguy21/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
@@ -80,3 +78,19 @@ set -gx LC_ALL en_US.UTF-8
 
 # kimi-code
 fish_add_path -g "/home/teaguy21/.kimi-code/bin"
+fish_add_path -g "/home/teaguy21/.maestro/bin"
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/teaguy21/.local/bin" $PATH
+
+
+# Android
+set -gx ANDROID_HOME $HOME/Android/Sdk
+set -gx ANDROID_SDK_ROOT $ANDROID_HOME
+
+fish_add_path \
+    $ANDROID_HOME/platform-tools \
+    $ANDROID_HOME/emulator \
+    $ANDROID_HOME/cmdline-tools/latest/bin
+
