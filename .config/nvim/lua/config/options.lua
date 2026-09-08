@@ -9,6 +9,7 @@ opt.expandtab = true
 opt.shiftwidth = 4
 opt.incsearch = true
 opt.hlsearch = true
+opt.clipboard = "unnamedplus"
 
 -- Set leader key
 vim.g.mapleader = " "
