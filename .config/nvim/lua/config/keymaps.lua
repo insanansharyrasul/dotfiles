@@ -1,9 +1,10 @@
 local keymap = vim.keymap.set
+local terminal_copy = "\27[99~"
 
 -- Basic remaps
 keymap('n', '<C-z>', 'u', { noremap = true, silent = true })
-keymap('v', '<C-S-c>', '"+y', { noremap = true, silent = true, desc = "Copy to clipboard" })
-keymap('n', '<C-S-c>', '"+yy', { noremap = true, silent = true, desc = "Copy line to clipboard" })
+keymap('v', terminal_copy, '"+y', { noremap = true, silent = true, desc = "Copy to clipboard" })
+keymap('n', terminal_copy, '"+yy', { noremap = true, silent = true, desc = "Copy line to clipboard" })
 
 -- VSCode-like navigation mappings
 -- Buffer navigation
@@ -26,6 +27,17 @@ keymap('n', '<leader>ll', '<C-w>l', { noremap = true, silent = true })
 -- Clear search highlighting
 keymap('n', '<C-n>', ':nohl<CR>', { noremap = true, silent = true })
 
+-- Run the current Python script
+keymap('n', '<C-A-n>', function()
+	local file = vim.fn.expand('%:p')
+	if vim.bo.filetype ~= 'python' then
+		vim.notify('Current buffer is not a Python file', vim.log.levels.WARN)
+		return
+	end
+	vim.cmd('write')
+	vim.cmd('botright split | terminal python3 ' .. vim.fn.shellescape(file))
+end, { noremap = true, silent = true, desc = 'Run Python script' })
+
 -- Visual mode improvements
 keymap('v', '<', '<gv', { noremap = true, silent = true })
 keymap('v', '>', '>gv', { noremap = true, silent = true })
@@ -39,7 +51,8 @@ keymap('n', '<leader>r', ':FlutterRun<CR>', { noremap = true, silent = true, des
 keymap('n', '<leader>t', ':FlutterQuit<CR>', { noremap = true, silent = true, desc = "Stop Debug" })
 keymap('n', '<leader>er', ':FlutterReload<CR>', { noremap = true, silent = true, desc = "Continue/Hot Reload" })
 keymap('n', '<leader>d', ':FlutterRestart<CR>', { noremap = true, silent = true, desc = "Restart Debug" })
-keymap('n', '<leader>b', function() vim.lsp.buf.code_action() end, { noremap = true, silent = true, desc = "Toggle Breakpoint/Code Action" })
+keymap('n', '<leader>b', function() vim.lsp.buf.code_action() end,
+	{ noremap = true, silent = true, desc = "Toggle Breakpoint/Code Action" })
 keymap('n', '<leader>w', ':!flutter build<CR>', { noremap = true, silent = true, desc = "Build Task" })
 
 -- Comment toggle
@@ -51,8 +64,8 @@ keymap('v', '<C-_>', 'gc', { noremap = false, silent = true, desc = "Toggle comm
 keymap('n', '<C-_>', 'gcc', { noremap = false, silent = true, desc = "Toggle comment" })
 
 -- Additional VSCode-like keybindings
-keymap('n', '<leader>ee', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = "Toggle File Explorer" }) 
-keymap('n', '<C-q>', ':bd<CR>', { noremap = true, silent = true, desc = "Close Buffer" }) 
+keymap('n', '<leader>ee', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = "Toggle File Explorer" })
+keymap('n', '<C-q>', ':bd<CR>', { noremap = true, silent = true, desc = "Close Buffer" })
 keymap('n', '<C-j>', '<C-w>w', { noremap = true, silent = true, desc = "Focus next window" })
 keymap('n', '<C-S-j>', ':terminal<CR>', { noremap = true, silent = true, desc = "Toggle Terminal" })
 keymap('n', '<A-j>', ':move .+1<CR>==', { noremap = true, silent = true, desc = "Move line down" })
@@ -64,7 +77,7 @@ keymap('n', '<C-S-v>', '"+p', { noremap = true, silent = true, desc = "Paste fro
 keymap('t', '<C-l><C-k>', '<C-\\><C-n>:clear<CR>i', { noremap = true, silent = true, desc = "Clear terminal" })
 
 -- Keep some quick access mappings for muscle memory while also having grouped versions
-keymap('n', '<leader>ff', ':Telescope find_files<CR>', { noremap = true, silent = true, desc = "Find Files" }) 
+keymap('n', '<leader>ff', ':Telescope find_files<CR>', { noremap = true, silent = true, desc = "Find Files" })
 
 -- Keymaps for LSP and diagnostics
 keymap("n", "<leader>le", vim.diagnostic.open_float, { desc = "Show Line Diagnostics" })

@@ -5,13 +5,10 @@
 export PATH="$HOME/.local/bin:$PATH"
 
 WALLPAPERS=( 
-    "$HOME/Pictures/Wallpapers/lava-wallpaper.jpg"
     "$HOME/Pictures/Wallpapers/black.png"
+    "$HOME/Pictures/Wallpapers/lava-wallpaper.jpg"
     "$HOME/Pictures/Wallpapers/white.png"
     "$HOME/Pictures/Wallpapers/black2.png"
-    # "$HOME/Pictures/Wallpapers/thunderstorm.jpg"
-    # "$HOME/Pictures/Wallpapers/sakura.jpg"
-    # "$HOME/Pictures/Wallpapers/neon.png"
 )
 
 STATE_FILE="/tmp/wallpaper_state"
