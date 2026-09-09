@@ -7,9 +7,6 @@ window.padding = { x = 15, y = 15 }
 window.decorations = "None"
 window.opacity = 0.95
 
-[keyboard]
-bindings = [{ key = "C", mods = "Control|Shift", chars = "\u001b[99~" }]
-
 # Themes
 [general]
 import = ["~/.config/alacritty/themes/themes/ayu_dark.toml"]
