@@ -268,6 +268,9 @@ hl.bind("Print", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/screens
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/screenshot-window.sh"'))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/screenshot-region.sh"'))
 
+-- OCR
+hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd('grim -g "$(slurp)" - | tesseract stdin stdout | wl-copy'))
+
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
