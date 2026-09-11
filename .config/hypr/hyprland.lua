@@ -14,9 +14,9 @@ hl.config({
 require("monitors")
 
 hl.monitor({
-  output = "",
-  mode = "highres",
-  scale = 2,
+    output = "",
+    mode = "highres",
+    scale = 2,
 })
 
 
@@ -271,6 +271,9 @@ hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hy
 -- OCR
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd('grim -g "$(slurp)" - | tesseract stdin stdout | wl-copy'))
 
+-- Screen record
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/record-screen.sh"'))
+
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
@@ -430,7 +433,7 @@ hl.window_rule({ match = { class = "zoom", title = "menu window" }, no_initial_f
 -- Smart Gaps (Hyprland v0.53.1+)
 hl.window_rule({ name = "smart-gaps-tiled-border", match = { float = false, workspace = "w[t1]" }, border_size = 0 })
 hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
-hl.window_rule({ name = "smart-gaps-tiled-rounding", match = { float = false, workspace = "w[tv1]" },  rounding = 0 })
+hl.window_rule({ name = "smart-gaps-tiled-rounding", match = { float = false, workspace = "w[tv1]" }, rounding = 0 })
 
 hl.window_rule({ name = "float-no-border", match = { float = true }, border_size = 0 })
 
@@ -459,6 +462,7 @@ hl.window_rule({ match = { class = "^(woomer)$" }, animation = "popin" })
 
 hl.layer_rule({ match = { namespace = "wofi" }, ignore_alpha = 0 })
 hl.layer_rule({ match = { namespace = "wofi" }, ignore_alpha = 0.5 })
+-- hl.layer_rule({ match = { namespace = "notifications" }, no_screen_share = true })
 
 
 ----------------------------
