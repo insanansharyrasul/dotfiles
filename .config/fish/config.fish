@@ -94,3 +94,17 @@ fish_add_path \
     $ANDROID_HOME/emulator \
     $ANDROID_HOME/cmdline-tools/latest/bin
 
+# Fish notifier
+function notify_on_complete --on-event fish_postexec
+    set -l threshold 5000
+
+    if test -n "$CMD_DURATION" -a $CMD_DURATION -ge $threshold
+        set -l duration_sec (math -s1 "$CMD_DURATION / 1000")
+        set -l title "Command Finished"
+        set -l msg "\"$argv\" completed in $duration_sec s"
+
+        if type -q notify-send
+            notify-send -u normal $title $msg
+        end
+    end
+end
