@@ -156,6 +156,7 @@ This project is licensed under the GPL-3.0 license - see the [LICENSE](LICENSE) 
 ## Credit 
 I also used other resources for my dotfiles:
 1. [Ayu-dark theme, by K4zoku](https://github.com/K4zoku/dotfiles/tree/a486fb6d612db309e0dfc9123fb2ffcf9213db21)
+2. [RAM Usage Script for Eww Bar](https://github.com/insanansharyrasul/sysinfoscript)
 
 ---
 
