@@ -5,6 +5,16 @@ if not lspconfig_ok then
   return
 end
 
+-- ponytail: show clangd E/W inline, no new plugin needed
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = { border = "rounded", source = "always" },
+})
+
 -- LSP keybindings
 local on_attach = function(client, bufnr)
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
