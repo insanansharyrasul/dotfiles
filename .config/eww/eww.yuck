@@ -140,7 +140,7 @@
   (
     eventbox :onhover "${eww} update bright-reveal=true"
     :onhoverlost "${eww} update bright-reveal=false"
-    :onscroll "scripts/backlight scroll {}"
+    :onscroll "brightness_listener scroll {}"
     :halign "center"
     :valign "center"
     (box :orientation "v" :space-evenly false :halign "center" :valign "center"
