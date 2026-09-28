@@ -3,5 +3,5 @@
 if pgrep -x "eww" > /dev/null; then
     killall eww
 else
-    ~/.config/eww/scripts/launch
+    ~/.config/eww/scripts/launch.sh
 fi
