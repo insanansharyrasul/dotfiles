@@ -1,29 +1,22 @@
-;; ════════════════════════════════════════════════════════════════════
-;;  Eww bar — ported from Waybar, styled after github.com/raexera/tokyo
-;;  Vertical bar for Hyprland · Ayu Dark theme
-;; ════════════════════════════════════════════════════════════════════
-
 (defvar eww "eww -c $HOME/.config/eww")
 
 ;; ──────────────────────────── Variables ────────────────────────────
-(deflisten workspace :initial "(box :class \"works\")" "scripts/workspaces")
-(deflisten submap    :initial "" "scripts/submap")
-
-(deflisten volume     :initial '{"level":0,"icon":"󰕿"}' "scripts/volume listen")
-(deflisten mic        :initial '{"level":0,"icon":"󰍬"}' "scripts/mic listen")
+(deflisten workspace :initial "(box :class \"works\")" "scripts/workspaces.sh")
+(deflisten submap    :initial "" "scripts/submap.sh")
+(deflisten volume     :initial '{"level":0,"icon":"󰕿"}' "scripts/volume.sh listen")
+(deflisten mic        :initial '{"level":0,"icon":"󰍬"}' "scripts/mic.sh listen")
 (deflisten brightness :initial "0" "brightness_listener listen")
-(deflisten notifications :initial '{"count":0,"state":"none","icon":"󰂜,"tooltip":"Notifications"}' "scripts/notifications listen")
+(deflisten notifications :initial '{"count":0,"state":"none","icon":"󰂜,"tooltip":"Notifications"}' "scripts/notifications.sh listen")
 (deflisten memory        :initial "0" "ram_usage")
+(deflisten idle_inhibit :initial "false" "idleinhibitor listen")
 
-(defpoll battery-icon    :interval "10s" :initial "" "scripts/battery icon")
-(defpoll battery-percent :interval "10s" :initial "0" "scripts/battery percent")
-(defpoll battery-status  :interval "10s" :initial "" "scripts/battery status")
-(defpoll wifi-icon       :interval "5s"  :initial "" "scripts/network icon")
-(defpoll wifi-name       :interval "5s"  :initial "" "scripts/network name")
-(defpoll tlp             :interval "5s"  :initial "{}"
-"$HOME/.dotfiles/.config/scripts/waybar-tlp-status.sh")
-(defpoll privacy-mic     :interval "3s"  :initial "false" "scripts/privacy")
-(defpoll idle_inhibit :interval "2s" :initial "false" "scripts/idleinhibit status")
+(defpoll battery-icon    :interval "10s" :initial "" "scripts/battery.sh icon")
+(defpoll battery-percent :interval "10s" :initial "0" "scripts/battery.sh percent")
+(defpoll battery-status  :interval "10s" :initial "" "scripts/battery.sh status")
+(defpoll wifi-icon       :interval "5s"  :initial "" "scripts/network.sh icon")
+(defpoll wifi-name       :interval "5s"  :initial "" "scripts/network.sh name")
+(defpoll tlp             :interval "5s"  :initial "{}" "$HOME/.dotfiles/.config/scripts/waybar-tlp-status.sh")
+(defpoll privacy-mic     :interval "3s"  :initial "false" "scripts/privacy.sh")
 
 (defpoll hour     :interval "1s" :initial "" "date '+%H'")
 (defpoll min      :interval "1s" :initial "" "date '+%M'")
@@ -51,8 +44,8 @@
     :class "launcher"
     :tooltip "Applications"
     :halign "center"
-    :onclick "scripts/popup launcher"
-    :onrightclick "scripts/popup waifu"
+    :onclick "scripts/popup.sh launcher"
+    :onrightclick "scripts/popup.sh waifu"
     ""
   ))
 
@@ -81,7 +74,7 @@
 ;; Wifi
 (defwidget wifi []
   (button :class "mod icon-wifi" :tooltip wifi-name :halign "center" :valign "center"
-    :onclick "scripts/popup wifi"
+    :onclick "scripts/popup.sh wifi"
     wifi-icon
     ; "󰤨"
   ))
@@ -90,7 +83,7 @@
 (defwidget volume []
   (eventbox :onhover "${eww} update volume-reveal=true"
     :onhoverlost "${eww} update volume-reveal=false"
-    :onscroll "scripts/volume scroll {}"
+    :onscroll "scripts/volume.sh scroll {}"
     :halign "center"
     (box :orientation "v" :space-evenly false :halign "center" :class "mod"
       ; (revealer :transition "slideup" :reveal volume-reveal :duration "350ms"
@@ -101,8 +94,8 @@
       ; )
       (box :orientation "v" :space-evenly false :halign "center"
         (button :class "mod icon-vol" :tooltip "Speaker: ${volume.level}%" :halign "center"
-          :onclick "scripts/volume mute"
-          :onrightclick "scripts/popup audio"
+          :onclick "scripts/volume.sh mute"
+          :onrightclick "scripts/popup.sh audio"
           {volume.icon}
           ; "󰤨"
         )
@@ -116,17 +109,17 @@
 (defwidget mic []
   (eventbox :onhover "${eww} update mic-reveal=true"
     :onhoverlost "${eww} update mic-reveal=false"
-    :onscroll "scripts/mic scroll {}"
+    :onscroll "scripts/mic.sh scroll {}"
     :halign "center"
     (box :orientation "v" :space-evenly false :halign "center" :valign "center"
       ; (revealer :transition "slideup" :reveal mic-reveal :duration "350ms"
         ;   (scale :class "micbar" :value {mic.level} :orientation "v"
           ;     :flipped true :round-digits 0 :tooltip "Mic ${mic.level}%"
-        ;   :max 100 :min 0 :onchange "scripts/mic set {}")
+        ;   :max 100 :min 0 :onchange "scripts/mic.sh set {}")
       ; )
       (box :orientation "v" :space-evenly false :halign "center"
         (button :class "mod icon-mic" :tooltip "Mic: ${mic.level}%" :halign "center"
-          :onclick "scripts/mic mute"
+          :onclick "scripts/mic.sh mute"
           {mic.icon}
         )
       )
@@ -162,9 +155,9 @@
   (button :class "mod icon-notif ${notifications.state}"
     :tooltip {notifications.tooltip}
     :halign "center"
-    :onclick "scripts/notifications toggle"
-    :onrightclick "scripts/notifications dnd"
-    :onmiddleclick "scripts/notifications clear"
+    :onclick "scripts/notifications.sh toggle"
+    :onrightclick "scripts/notifications.sh dnd"
+    :onmiddleclick "scripts/notifications.sh clear"
     (box :orientation "v" :space-evenly false :halign "center"
       (label :class "notif-icon" :text {notifications.icon})
       (label :class "notif-count" :text {notifications.count > 0 ? notifications.count : ""})
@@ -196,7 +189,7 @@
   (button :class "mod icon-idle"
     :tooltip {idle_inhibit ? "Idle inhibitor: on" : "Idle inhibitor: off"}
     :halign "center" :valign "center"
-    :onclick "scripts/idleinhibit toggle"
+    :onclick "idleinhibitor toggle"
     {idle_inhibit ? "󰅶" : "󰾪"}
     ; "󰤨"
   ))
@@ -210,7 +203,7 @@
 (defwidget clock []
   (button :class "clock"
     :tooltip "${fulldate}"
-    :onclick "scripts/popup calendar"
+    :onclick "scripts/popup.sh calendar"
     :onmiddleclick "$HOME/.config/hypr/scripts/toggle-wallpaper.sh"
     :onrightclick "$HOME/.config/swww/swww.sh"
     (box :orientation "v" :space-evenly false
