@@ -27,7 +27,7 @@ $blue: #59C2FF;
 $magenta: #D2A6FF;
 
 $font: "JetBrainsMono Nerd Font";
-$global-padding: 3px 2px;
+$global-padding: 3px 0px;
 
 // -- Bar --
 .eww_bar {
@@ -112,18 +112,18 @@ $global-padding: 3px 2px;
 
 .mod {
   font-size: 20px;
-  padding: 0px 6px 0px 0px;
+  // padding: 0px 6px 0px 0px;
 }
 
 .label-sm {
   font-size: 10px;
   color: $foreground;
-  padding: 0px 0px 1px 7px;
+  padding: 0px 0px 0px 0px;
 }
 
 .icon-bat {
   color: $blue;
-  padding: 0 0px 0 7px;
+  padding: 0 0px 0 0px;
 }
 
 .icon-bat.critical {
@@ -133,6 +133,7 @@ $global-padding: 3px 2px;
 
 .icon-wifi {
   color: $magenta;
+  padding: 0px 8px 0px 0px;
 }
 
 .icon-wifi:hover {
@@ -141,7 +142,7 @@ $global-padding: 3px 2px;
 
 .icon-vol {
   color: $green;
-  padding: 0 3px 0 0px;
+  padding: 0px 3px 0px 0px;
 }
 
 .icon-vol:hover {
@@ -150,7 +151,7 @@ $global-padding: 3px 2px;
 
 .icon-mic {
   color: $blue;
-  padding: 0 0px 0 0px;
+  padding: 0 6px 0 0px;
 }
 
 .icon-mic:hover {
@@ -159,6 +160,7 @@ $global-padding: 3px 2px;
 
 .icon-bright {
   color: $yellow;
+  padding: 0 8px 0 0px;
 }
 
 .mem-ring {
@@ -171,7 +173,7 @@ $global-padding: 3px 2px;
 }
 
 .ringgy {
-  margin: 0px 0px 0px 6px;
+  margin: 0px 0px 0px 0px;
 }
 
 .mem-icon {
@@ -188,7 +190,7 @@ $global-padding: 3px 2px;
 
 .icon-tlp {
   color: $accent;
-  padding: 0 5px 0 0px;
+  padding: 0 8px 0 0px;
   font-size: 18px;
 }
 

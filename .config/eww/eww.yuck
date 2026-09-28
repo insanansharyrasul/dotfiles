@@ -75,7 +75,8 @@
       ; "󰤨"
     )
     (label :class "label-sm" :text "${battery-percent}%")
-  ))
+  )
+)
 
 ;; Wifi
 (defwidget wifi []
@@ -91,11 +92,13 @@
     :onhoverlost "${eww} update volume-reveal=false"
     :onscroll "scripts/volume scroll {}"
     :halign "center"
-    (box :orientation "v" :space-evenly false :halign "center"
-      (revealer :transition "slideup" :reveal volume-reveal :duration "350ms"
-        (scale :class "volbar" :value {volume.level} :orientation "v"
-          :flipped true :round-digits 0 :tooltip "Volume ${volume.level}%"
-        :max 100 :min 0 :onchange "scripts/volume set {}"))
+    (box :orientation "v" :space-evenly false :halign "center" :class "mod"
+      ; (revealer :transition "slideup" :reveal volume-reveal :duration "350ms"
+        ;   (scale :class "volbar" :value {volume.level} :orientation "v"
+          ;     :flipped true :round-digits 0 :tooltip "Volume ${volume.level}%"
+          ;     :max 100 :min 0 :onchange "scripts/volume set {}"
+        ;   )
+      ; )
       (box :orientation "v" :space-evenly false :halign "center"
         (button :class "mod icon-vol" :tooltip "Speaker: ${volume.level}%" :halign "center"
           :onclick "scripts/volume mute"
@@ -103,8 +106,11 @@
           {volume.icon}
           ; "󰤨"
         )
-        ; (label :class "label-sm" :halign "center" :text "${volume.level}")
-      ))))
+      )
+      (label :class "label-sm" :halign "center" :text "${volume.level}%")
+    )
+  )
+)
 
 ;; Microphone
 (defwidget mic []
@@ -113,19 +119,21 @@
     :onscroll "scripts/mic scroll {}"
     :halign "center"
     (box :orientation "v" :space-evenly false :halign "center" :valign "center"
-      (revealer :transition "slideup" :reveal mic-reveal :duration "350ms"
-        (scale :class "micbar" :value {mic.level} :orientation "v"
-          :flipped true :round-digits 0 :tooltip "Mic ${mic.level}%"
-        :max 100 :min 0 :onchange "scripts/mic set {}")
-      )
+      ; (revealer :transition "slideup" :reveal mic-reveal :duration "350ms"
+        ;   (scale :class "micbar" :value {mic.level} :orientation "v"
+          ;     :flipped true :round-digits 0 :tooltip "Mic ${mic.level}%"
+        ;   :max 100 :min 0 :onchange "scripts/mic set {}")
+      ; )
       (box :orientation "v" :space-evenly false :halign "center"
         (button :class "mod icon-mic" :tooltip "Mic: ${mic.level}%" :halign "center"
           :onclick "scripts/mic mute"
           {mic.icon}
-          ; "󰤨"
         )
-        ; (label :class "label-sm" :halign "center" :text "${mic.level}")
-      ))))
+      )
+      (label :class "label-sm" :halign "center" :text "${mic.level}%")
+    )
+  )
+)
 
 ;; Brightness (hover-reveal scale)
 (defwidget backlight []
@@ -136,21 +144,18 @@
     :halign "center"
     :valign "center"
     (box :orientation "v" :space-evenly false :halign "center" :valign "center"
-      (revealer :transition "slideup" :reveal bright-reveal :duration "350ms"
-        (scale :class "bribar" :value brightness :orientation "v"
-          :flipped true :round-digits 0 :tooltip "Brightness ${brightness}%"
-        :max 100 :min 1 :onchange "scripts/backlight set {}")
-        
-      )
+      ; (revealer :transition "slideup" :reveal bright-reveal :duration "350ms"
+        ;   (scale :class "bribar" :value brightness :orientation "v"
+          ;     :flipped true :round-digits 0 :tooltip "Brightness ${brightness}%"
+        ;   :max 100 :min 1 :onchange "scripts/backlight set {}")
+      ; )
       (box :orientation "v" :space-evenly false :halign "center"
         (label :class "mod icon-bright" :halign "center" :text "󰃠" :tooltip "Brightness ${brightness}%")
       )
-      ; (
-        ;   button :class "mod icon-bright" :halign "center"
-        ;   "󰤨"
-      ; )
+      (label :class "label-sm" :halign "center" :valign "center" :text "${brightness}%")
     )
-  ))
+  )
+)
 
 ;; Notifications (SwayNC)
 (defwidget notifications []
@@ -250,7 +255,7 @@
   ))
 
 (defwidget control []
-  (box :orientation "v" :space-evenly false :halign "center" :class "control"
+  (box :orientation "v" :space-evenly false :halign "center"  :class "control"
     (memory)
     (battery)
     (mic)
@@ -280,16 +285,19 @@
     (powermenu)))
 
 (defwidget end []
-  (box :orientation "v" :space-evenly false :valign "center" :halign "center" :spacing 5
+  (box :orientation "v" :space-evenly false :valign "center" :halign "center"
     (control)
-    (bottom)))
+    (bottom)
+  ))
 
 (defwidget bar []
   (box :class "eww_bar" :orientation "v" :space-evenly false :vexpand true :hexpand true
     (top)
     (box :vexpand true :hexpand true :valign "end" :halign "center" :space-evenly false
       (end)
-    )))
+    )
+  )
+)
 
 ;; ──────────────────────────── Windows ──────────────────────────────
 ;; Bar thickness: change :width here. The bar floats inside this window
