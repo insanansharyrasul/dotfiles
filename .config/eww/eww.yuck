@@ -11,7 +11,7 @@
 
 (deflisten volume     :initial '{"level":0,"icon":"󰕿"}' "scripts/volume listen")
 (deflisten mic        :initial '{"level":0,"icon":"󰍬"}' "scripts/mic listen")
-(deflisten brightness :initial "0" "scripts/backlight listen")
+(deflisten brightness :initial "0" "brightness_listener listen")
 (deflisten notifications :initial '{"count":0,"state":"none","icon":"󰂜,"tooltip":"Notifications"}' "scripts/notifications listen")
 (deflisten memory        :initial "0" "ram_usage")
 
