@@ -145,9 +145,9 @@
     :valign "center"
     (box :orientation "v" :space-evenly false :halign "center" :valign "center"
       ; (revealer :transition "slideup" :reveal bright-reveal :duration "350ms"
-        ;   (scale :class "bribar" :value brightness :orientation "v"
-          ;     :flipped true :round-digits 0 :tooltip "Brightness ${brightness}%"
-        ;   :max 100 :min 1 :onchange "scripts/backlight set {}")
+      ;     (scale :class "bribar" :value brightness :orientation "v"
+      ;         :flipped true :round-digits 0 :tooltip "Brightness ${brightness}%"
+      ;     :max 100 :min 1 :onchange "brightness_listener set {}")
       ; )
       (box :orientation "v" :space-evenly false :halign "center"
         (label :class "mod icon-bright" :halign "center" :text "󰃠" :tooltip "Brightness ${brightness}%")
