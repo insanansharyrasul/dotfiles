@@ -1,5 +1,5 @@
--- Git signs configuration
-local gitsigns_ok, gitsigns = pcall(require, 'gitsigns')
-if gitsigns_ok then
-  gitsigns.setup()
-end
+return {
+  "lewis6991/gitsigns.nvim",
+  event = "BufReadPost",
+  config = function() require("gitsigns").setup() end,
+}

@@ -46,14 +46,9 @@ keymap('v', '>', '>gv', { noremap = true, silent = true })
 keymap('v', 'J', ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
 keymap('v', 'K', ":move '<-2<CR>gv=gv", { noremap = true, silent = true })
 
--- Debug/Build mappings (Flutter)
-keymap('n', '<leader>r', ':FlutterRun<CR>', { noremap = true, silent = true, desc = "Run/Debug" })
-keymap('n', '<leader>t', ':FlutterQuit<CR>', { noremap = true, silent = true, desc = "Stop Debug" })
-keymap('n', '<leader>er', ':FlutterReload<CR>', { noremap = true, silent = true, desc = "Continue/Hot Reload" })
-keymap('n', '<leader>d', ':FlutterRestart<CR>', { noremap = true, silent = true, desc = "Restart Debug" })
+-- LSP code action
 keymap('n', '<leader>b', function() vim.lsp.buf.code_action() end,
-	{ noremap = true, silent = true, desc = "Toggle Breakpoint/Code Action" })
-keymap('n', '<leader>w', ':!flutter build<CR>', { noremap = true, silent = true, desc = "Build Task" })
+	{ noremap = true, silent = true, desc = "Code Action" })
 
 -- Comment toggle
 keymap('v', '<leader>c', 'gc', { noremap = false, silent = true })
