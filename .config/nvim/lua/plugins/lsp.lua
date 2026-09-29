@@ -1,9 +1,9 @@
 -- LSP Configuration
-local lspconfig_ok, lspconfig = pcall(require, 'lspconfig')
-if not lspconfig_ok then
-  vim.notify("LSP config not available. Run :PlugInstall to install plugins.", vim.log.levels.WARN)
-  return
-end
+-- local lspconfig_ok, lspconfig = pcall(require, 'lspconfig')
+-- if not lspconfig_ok then
+--   vim.notify("LSP config not available. Run :PlugInstall to install plugins.", vim.log.levels.WARN)
+--   return
+-- end
 
 -- ponytail: show clangd E/W inline, no new plugin needed
 vim.diagnostic.config({
@@ -41,7 +41,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- C/C++ LSP setup (clangd)
-lspconfig.clangd.setup({
+vim.lsp.config('clangd', {
   on_attach = on_attach,
   capabilities = require('cmp_nvim_lsp').default_capabilities(),
   cmd = {
@@ -60,17 +60,20 @@ lspconfig.clangd.setup({
   },
 })
 
+-- Enable the server
+vim.lsp.enable('clangd')
+
 -- Dart/Flutter LSP setup
-lspconfig.dartls.setup({
+vim.lsp.config('dartls', {
   on_attach = on_attach,
   capabilities = require('cmp_nvim_lsp').default_capabilities(),
   settings = {
     dart = {
       completeFunctionCalls = true,
       showTodos = true,
-    }
-  }
+    },
+  },
 })
 
--- Note: Rust LSP (rust-analyzer) is handled by rust-tools.nvim in rust.lua
--- This provides better integration with cargo, clippy, and debugging
+-- Enable dartls
+vim.lsp.enable('dartls')

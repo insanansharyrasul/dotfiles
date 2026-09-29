@@ -299,9 +299,7 @@ local function init_rust_config()
     -- Setup keymaps (always works)
     setup_rust_keymaps()
     
-    if success then
-        vim.notify("Rust development environment loaded successfully!", vim.log.levels.INFO)
-    else
+    if not success then
         vim.notify("Some Rust plugins missing. Run :PlugInstall to install.", vim.log.levels.WARN)
     end
 end
