@@ -41,8 +41,8 @@ Plug('nvim-lualine/lualine.nvim')
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
 -- Rust development
-Plug('rust-lang/rust.vim')
-Plug('simrat39/rust-tools.nvim')
+-- Plug('rust-lang/rust.vim')
+-- Plug('simrat39/rust-tools.nvim')
 Plug('saecki/crates.nvim')
 
 -- DAP (Debug Adapter Protocol) for debugging
