@@ -1,16 +1,13 @@
--- Treesitter configuration
-local treesitter_ok, treesitter = pcall(require, 'nvim-treesitter.configs')
-if not treesitter_ok then
-  return
-end
-
-treesitter.setup {
-  ensure_installed = { "c", "cpp", "dart", "lua", "vim", "javascript", "typescript", "json", "yaml", "rust", "toml" },
-  auto_install = true,
-  highlight = {
-    enable = true,
-  },
-  indent = {
-    enable = true,
-  },
+return {
+  "nvim-treesitter/nvim-treesitter",
+  event = "BufReadPost",
+  build = ":TSUpdate",
+  config = function()
+    require("nvim-treesitter.configs").setup({
+      ensure_installed = { "c", "cpp", "lua", "vim" },
+      auto_install = true,
+      highlight = { enable = true },
+      indent = { enable = true },
+    })
+  end,
 }

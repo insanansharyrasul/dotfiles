@@ -1,5 +1,5 @@
--- Autoclose plugin setup
-local autoclose_ok, autoclose = pcall(require, "autoclose")
-if autoclose_ok then
-  autoclose.setup()
-end
+return {
+  "m4xshen/autoclose.nvim",
+  event = "InsertEnter",
+  config = function() require("autoclose").setup() end,
+}
