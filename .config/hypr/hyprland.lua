@@ -273,6 +273,7 @@ hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd('grim -g "$(slurp)" - | tesse
 
 -- Screen record
 hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/record-screen.sh"'))
+hl.bind(mainMod .. " + CTRL + SHIFT + R", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/record-screen-desktop-audio.sh"'))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
