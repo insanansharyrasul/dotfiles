@@ -42,6 +42,7 @@ return {
         "--completion-style=detailed",
         "--function-arg-placeholders",
         "--fallback-style=llvm",
+        "--tweaks=-std=c++23"
       },
       init_options = {
         usePlaceholders = true,
