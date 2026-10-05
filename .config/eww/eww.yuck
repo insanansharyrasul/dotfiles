@@ -8,6 +8,7 @@
 (deflisten brightness :initial "0" "brightness_listener listen")
 (deflisten notifications :initial '{"count":0,"state":"none","icon":"󰂜","tooltip":"Notifications"}' "scripts/notifications.sh listen")
 (deflisten memory        :initial "0" "ram_usage")
+(deflisten cpu        :initial "0" "cpu_usage")
 (deflisten idle_inhibit :initial "false" "idleinhibitor listen")
 
 (defpoll battery-icon    :interval "10s" :initial "" "scripts/battery.sh icon")
@@ -176,6 +177,19 @@
   )
 )
 
+;; CPU
+(defwidget cpu []
+  (box  :orientation "v" :space-evenly false :class "mod" :halign "center" :valign "center"
+    (box  :class "ringgy"
+      (circular-progress :value cpu :class "mem-ring-cpu" :thickness 4 :clockwise true
+        :tooltip "RAM ${cpu}%"
+        (label :class "mem-icon" :text "ㅤ" )
+      )
+    )
+    (label :class "label-sm" :text "${cpu}%")
+  )
+)
+
 ;; TLP profile
 (defwidget tlp []
   (button :class "mod icon-tlp" :tooltip {tlp.tooltip ?: "TLP profile"} :halign "center" :valign "center"
@@ -249,6 +263,7 @@
 
 (defwidget control []
   (box :orientation "v" :space-evenly false :halign "center"  :class "control"
+    (cpu)
     (memory)
     (battery)
     (mic)
