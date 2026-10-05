@@ -19,6 +19,7 @@ alias sai "sudo apt install"
 alias f "python3"
 alias apt='sudo apt-fast'
 alias ntp "sudo ntpdate -s time.nist.gov"
+alias qw "pkill java && pkill qemu && pkill adb && pkill dart"
 
 # config aliases
 alias dotfc "vim ~/.config/hypr/hyprland.lua"
@@ -36,66 +37,34 @@ alias gpl "git pull"
 alias gp "git push origin"
 alias gps "git push"
 
-function gall -d "Git add, commit, and push"
-    git add .
-    git commit -m "$argv[1]"
-    git push origin
-end
-
-function fc -d "Compile and run a C file"
-    set base_name (basename $argv[1] .c)
-    gcc $argv[1] -o $base_name; and ./$base_name
-end
-# Alias for killing processes
-alias qw "pkill java && pkill qemu && pkill adb && pkill dart"
-
-# if status is-interactive
-    # Commands to run in interactive sessions can go here
-# end
-
-set fish_greeting
-
-# >>> coursier install directory >>>
-set -gx PATH "$PATH:/home/teaguy21/.local/share/coursier/bin"
-# <<< coursier install directory <<<
-
 # pnpm
 set -gx PNPM_HOME "/home/teaguy21/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 
+bind -M insert \t accept-autosuggestion
+bind -M insert \e\[Z complete
+
 # g++-14
 set -Ux CC gcc-14
 set -Ux CXX g++-14
-
-bind -M insert \t accept-autosuggestion
-bind -M insert \e\[Z complete
-# opencode
-fish_add_path /home/teaguy21/.opencode/bin
-
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
-
-# kimi-code
-fish_add_path -g "/home/teaguy21/.kimi-code/bin"
-fish_add_path -g "/home/teaguy21/.maestro/bin"
-
-
-# Added by Antigravity CLI installer
 set -gx PATH "/home/teaguy21/.local/bin" $PATH
-
-
-# Android
 set -gx ANDROID_HOME $HOME/Android/Sdk
 set -gx ANDROID_SDK_ROOT $ANDROID_HOME
+set -gx PATH "$PATH:/home/teaguy21/.local/share/coursier/bin"
+set fish_greeting
 
 fish_add_path \
     $ANDROID_HOME/platform-tools \
     $ANDROID_HOME/emulator \
     $ANDROID_HOME/cmdline-tools/latest/bin
+fish_add_path /home/teaguy21/.opencode/bin
+fish_add_path -g "/home/teaguy21/.kimi-code/bin"
+fish_add_path -g "/home/teaguy21/.maestro/bin"
 
-# Fish notifier
 function notify_on_complete --on-event fish_postexec
     set -l threshold 5000
 
@@ -108,4 +77,15 @@ function notify_on_complete --on-event fish_postexec
             notify-send -u normal $title $msg
         end
     end
+end
+
+function gall -d "Git add, commit, and push"
+    git add .
+    git commit -m "$argv[1]"
+    git push origin
+end
+
+function fc -d "Compile and run a C file"
+    set base_name (basename $argv[1] .c)
+    gcc $argv[1] -o $base_name; and ./$base_name
 end
