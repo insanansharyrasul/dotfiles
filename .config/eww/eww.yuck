@@ -6,7 +6,7 @@
 (deflisten volume     :initial '{"level":0,"icon":"󰕿"}' "scripts/volume.sh listen")
 (deflisten mic        :initial '{"level":0,"icon":"󰍬"}' "scripts/mic.sh listen")
 (deflisten brightness :initial "0" "brightness_listener listen")
-(deflisten notifications :initial '{"count":0,"state":"none","icon":"󰂜","tooltip":"Notifications"}' "scripts/notifications.sh listen")
+(deflisten notifications :initial '{"count":0,"state":"none","icon":"󰂜"}' "scripts/notifications.sh listen")
 (deflisten memory        :initial "0" "ram_usage")
 (deflisten cpu        :initial "0" "cpu_usage")
 (deflisten idle_inhibit :initial "false" "idleinhibitor listen")
@@ -43,7 +43,6 @@
 (defwidget launcher []
   (button
     :class "launcher"
-    :tooltip "Applications"
     :halign "center"
     :onclick "scripts/popup.sh launcher"
     :onrightclick "scripts/popup.sh waifu"
@@ -62,7 +61,6 @@
 ;; Battery
 (defwidget battery []
   (box :orientation "v" :space-evenly false :class "mod" :halign "center"
-    :tooltip "Battery ${battery-percent}% — ${battery-status}"
     (label :class "icon-bat ${battery-status == 'Discharging' && battery-percent < 20 ? 'critical' : ''}"
       :text
       battery-icon
@@ -74,7 +72,7 @@
 
 ;; Wifi
 (defwidget wifi []
-  (button :class "mod icon-wifi" :tooltip wifi-name :halign "center" :valign "center"
+  (button :class "mod icon-wifi"  :halign "center" :valign "center"
     :onclick "scripts/popup.sh wifi"
     wifi-icon
     ; "󰤨"
@@ -89,12 +87,12 @@
     (box :orientation "v" :space-evenly false :halign "center" :class "mod"
       ; (revealer :transition "slideup" :reveal volume-reveal :duration "350ms"
         ;   (scale :class "volbar" :value {volume.level} :orientation "v"
-          ;     :flipped true :round-digits 0 :tooltip "Volume ${volume.level}%"
+          ;     :flipped true :round-digits 0
           ;     :max 100 :min 0 :onchange "scripts/volume set {}"
         ;   )
       ; )
       (box :orientation "v" :space-evenly false :halign "center"
-        (button :class "mod icon-vol" :tooltip "Speaker: ${volume.level}%" :halign "center"
+        (button :class "mod icon-vol" :halign "center"
           :onclick "scripts/volume.sh mute"
           :onrightclick "scripts/popup.sh audio"
           {volume.icon}
@@ -115,11 +113,11 @@
     (box :orientation "v" :space-evenly false :halign "center" :valign "center"
       ; (revealer :transition "slideup" :reveal mic-reveal :duration "350ms"
         ;   (scale :class "micbar" :value {mic.level} :orientation "v"
-          ;     :flipped true :round-digits 0 :tooltip "Mic ${mic.level}%"
+          ;     :flipped true :round-digits 0 
         ;   :max 100 :min 0 :onchange "scripts/mic.sh set {}")
       ; )
       (box :orientation "v" :space-evenly false :halign "center"
-        (button :class "mod icon-mic" :tooltip "Mic: ${mic.level}%" :halign "center"
+        (button :class "mod icon-mic"  :halign "center"
           :onclick "scripts/mic.sh mute"
           {mic.icon}
         )
@@ -140,11 +138,11 @@
     (box :orientation "v" :space-evenly false :halign "center" :valign "center"
       ; (revealer :transition "slideup" :reveal bright-reveal :duration "350ms"
         ;     (scale :class "bribar" :value brightness :orientation "v"
-          ;         :flipped true :round-digits 0 :tooltip "Brightness ${brightness}%"
+          ;         :flipped true :round-digits 0
         ;     :max 100 :min 1 :onchange "brightness_listener set {}")
       ; )
       (box :orientation "v" :space-evenly false :halign "center"
-        (label :class "mod icon-bright" :halign "center" :text "󰃠" :tooltip "Brightness ${brightness}%")
+        (label :class "mod icon-bright" :halign "center" :text "󰃠")
       )
       (label :class "label-sm" :halign "center" :valign "center" :text "${brightness}%")
     )
@@ -154,7 +152,6 @@
 ;; Notifications (SwayNC)
 (defwidget notifications []
   (button :class "mod icon-notif ${notifications.state}"
-    :tooltip {notifications.tooltip}
     :halign "center"
     :onclick "scripts/notifications.sh toggle"
     :onrightclick "scripts/notifications.sh dnd"
@@ -169,7 +166,6 @@
   (box  :orientation "v" :space-evenly false :class "mod" :halign "center" :valign "center"
     (box  :class "ringgy"
       (circular-progress :value memory :class "mem-ring" :thickness 4 :clockwise true
-        :tooltip "RAM ${memory}%"
         (label :class "mem-icon" :text "ㅤ" )
       )
     )
@@ -182,7 +178,6 @@
   (box  :orientation "v" :space-evenly false :class "mod" :halign "center" :valign "center"
     (box  :class "ringgy"
       (circular-progress :value cpu :class "mem-ring-cpu" :thickness 4 :clockwise true
-        :tooltip "RAM ${cpu}%"
         (label :class "mem-icon" :text "ㅤ" )
       )
     )
@@ -192,7 +187,7 @@
 
 ;; TLP profile
 (defwidget tlp []
-  (button :class "mod icon-tlp" :tooltip {tlp.tooltip ?: "TLP profile"} :halign "center" :valign "center"
+  (button :class "mod icon-tlp" :halign "center" :valign "center"
     :onclick "alacritty -e bash -c ~/.dotfiles/.config/scripts/tlp-interactive.sh"
     {tlp.text ?: "⚡"}
     ; "󰤨"
@@ -201,7 +196,6 @@
 ;; Idle inhibitor
 (defwidget idle []
   (button :class "mod icon-idle"
-    :tooltip {idle_inhibit ? "Idle inhibitor: on" : "Idle inhibitor: off"}
     :halign "center" :valign "center"
     :onclick "idleinhibitor toggle"
     {idle_inhibit ? "󰅶" : "󰾪"}
@@ -211,12 +205,11 @@
 ;; Privacy (microphone-in-use indicator)
 (defwidget privacy []
   (revealer :transition "slideup" :reveal privacy-mic :duration "300ms" :halign "center" :valign "center"
-    (label :class "privacy" :text "󰍬" :tooltip "Microphone in use")))
+    (label :class "privacy" :text "󰍬")))
 
 ;; Clock  (left: calendar · middle: toggle wallpaper · right: wallpaper picker)
 (defwidget clock []
   (button :class "clock"
-    :tooltip "${fulldate}"
     :onclick "scripts/popup.sh calendar"
     :onmiddleclick "$HOME/.config/hypr/scripts/toggle-wallpaper.sh"
     :onrightclick "$HOME/.config/swww/swww.sh"
@@ -237,12 +230,12 @@
     (box :orientation "v" :space-evenly false :class "powermenu"
       (revealer :transition "slideup" :reveal power-reveal :duration "400ms"
         (box :orientation "v" :space-evenly false
-          (button :class "pw-lock"   :tooltip "Lock"    :onclick "loginctl lock-session" "󰌾")
-          (button :class "pw-logout" :tooltip "Logout"  :onclick "hyprctl dispatch exit" "󰍃")
-          (button :class "pw-reboot" :tooltip "Reboot"  :onclick "systemctl reboot" "󰜉")
-          (button :class "pw-sleep"  :tooltip "Suspend" :onclick "systemctl suspend" "󰒲")
+          (button :class "pw-lock" :onclick "loginctl lock-session" "󰌾")
+          (button :class "pw-logout" :onclick "hyprctl dispatch exit" "󰍃")
+          (button :class "pw-reboot" :onclick "systemctl reboot" "󰜉")
+          (button :class "pw-sleep"  :onclick "systemctl suspend" "󰒲")
         ))
-      (button :class "pw-power" :tooltip "Shutdown" :onclick "systemctl poweroff" "󰐥"))))
+      (button :class "pw-power" :onclick "systemctl poweroff" "󰐥"))))
 
 ;; Calendar (popup window content)
 (defwidget cal []
