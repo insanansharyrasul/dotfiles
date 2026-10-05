@@ -14,6 +14,7 @@ alias b "cd .."
 alias td "cd ~/Downloads"
 alias bldapk "flutter clean && flutter build apk --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Downloads/"
 alias c "clear"
+alias d "sudo apt update && sudo apt ugrade"
 alias sai "sudo apt install"
 alias f "python3"
 alias apt='sudo apt-fast'
