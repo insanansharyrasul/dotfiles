@@ -1,8 +1,3 @@
--- Hyprland Lua configuration
--- Migrated from hyprland.conf (Hyprland 0.55+ Lua API)
--- https://wiki.hypr.land/Configuring/Start/
-
---- Debug
 hl.config({
     debug = {
         disable_logs = true,
@@ -115,9 +110,7 @@ hl.config({
 ------------------
 
 hl.config({ animations = { enabled = false } })
-
 hl.curve("myBezier", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.05 } } })
-
 hl.animation({ leaf = "windows", enabled = true, speed = 7, bezier = "myBezier" })
 hl.animation({ leaf = "windowsIn", enabled = true, speed = 7, bezier = "myBezier", style = "slide" })
 hl.animation({ leaf = "windowsOut", enabled = true, speed = 7, bezier = "default", style = "slide" })
@@ -126,19 +119,14 @@ hl.animation({ leaf = "borderangle", enabled = true, speed = 8, bezier = "defaul
 hl.animation({ leaf = "fade", enabled = true, speed = 7, bezier = "default" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 6, bezier = "default" })
 
-
--- Dwindle layout
-hl.config({
-    dwindle = {
-        -- pseudotile    = true,
-        preserve_split = true,
-    },
-})
-
-
 --------------------
 --- Master layout ---
 --------------------
+hl.config({
+    dwindle = {
+        preserve_split = true,
+    },
+})
 
 hl.config({
     master = {
@@ -146,8 +134,6 @@ hl.config({
     },
 })
 
-
---- Xwayland thingy
 hl.config({
     xwayland = {
         force_zero_scaling = true,
@@ -172,12 +158,6 @@ hl.env("CLUTTER_BACKEND", "wayland")
 hl.env("QT_QPA_PLATFORM", "wayland;xcb")
 hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
 hl.env("_JAVA_AWT_WM_NONREPARENTING", "1")
-
--- hl.env("QT_ENABLE_HIGHDPI_SCALING", "1")
--- hl.env("QT_SCALE_FACTOR",           "2") -- zoom
--- hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "111")
--- hl.env("QT_DEVICE_PIXEL_RATIO",     "2")
-
 hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 hl.env("QT_SCALE_FACTOR_ROUNDING_POLICY", "PassThrough")
 
@@ -187,12 +167,8 @@ hl.env("QT_SCALE_FACTOR_ROUNDING_POLICY", "PassThrough")
 
 -- 3-finger horizontal swipe for workspace navigation (inversion handled by workspace_swipe_touch_invert below)
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
--- 3-finger swipe up with Super: fullscreen
 hl.gesture({ fingers = 3, direction = "up", mods = "SUPER", action = "fullscreen" })
--- 3-finger swipe down with Alt: close window
 hl.gesture({ fingers = 3, direction = "down", mods = "ALT", action = "close" })
--- NOTE: hl.gesture action only accepts built-in string actions ("workspace", "fullscreen", "close").
--- Exec-based gestures are not supported; use keybinds (Super+F2/F3) for volume control instead.
 hl.gesture({ fingers = 3, direction = "up", action = function() hl.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+") end })
 hl.gesture({
     fingers = 3,
@@ -223,7 +199,8 @@ hl.config({
         disable_hyprland_logo   = true,
         vrr                     = 0,
         disable_autoreload      = false,
-        -- no_direct_scanout = false,
+        enable_swallow = true,
+        swallow_regex = '^Alacritty$'
     },
 })
 
@@ -319,9 +296,7 @@ hl.bind("CTRL + ALT + SHIFT + L", hl.dsp.window.move({ workspace = "e+1" }))
 
 -- Layout controls
 hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit"))
--- hl.bind(mainMod .. " + W", hl.dsp.group.toggle())
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("swaync-client -t"))
-hl.bind(mainMod .. " + Y", hl.dsp.group.next())
 hl.bind(mainMod .. " + G", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + Space", hl.dsp.window.float())
 hl.bind(mainMod .. " + A", hl.dsp.focus({ urgent_or_last = true }))
@@ -329,11 +304,7 @@ hl.bind(mainMod .. " + A", hl.dsp.focus({ urgent_or_last = true }))
 -- Scratchpad (Special workspace)
 hl.bind(mainMod .. " + x", hl.dsp.window.move({ workspace = "special", follow = false }))
 hl.bind(mainMod .. " + c", hl.dsp.workspace.toggle_special())
-
--- Swallow
 hl.bind(mainMod .. " + semicolon", hl.dsp.window.toggle_swallow())
-
--- Resize mode
 hl.bind(mainMod .. " + R", hl.dsp.submap("R"))
 
 hl.define_submap("R", function()
@@ -394,7 +365,6 @@ hl.window_rule({ match = { class = "^(trayer)$" }, pin = true })
 hl.window_rule({ match = { class = "^(trayer)$" }, no_initial_focus = true })
 hl.window_rule({ match = { class = "^(trayer)$" }, float = true })
 hl.window_rule({ match = { class = "^(trayer)$" }, float = true })
-
 hl.window_rule({ match = { class = "^(pop-up)$" }, float = true })
 hl.window_rule({ match = { class = "^(bubble)$" }, float = true })
 hl.window_rule({ match = { class = "^(task_dialog)$" }, float = true })
@@ -424,7 +394,6 @@ hl.window_rule({ match = { title = "^(Save As)$" }, float = true })
 hl.window_rule({ match = { class = "^nemo$", title = "Properties" }, float = true })
 
 -- Generic dialog patterns
--- hl.window_rule({ match = { xwayland = true, title = "^$" }, float = true })
 hl.window_rule({ match = { class = "^(.*)$", title = "^(.*[Ee]rror.*)$" }, float = true })
 hl.window_rule({ match = { class = "^(.*)$", title = "^(.*[Ww]arning.*)$" }, float = true })
 
@@ -435,17 +404,7 @@ hl.window_rule({ match = { class = "zoom", title = "menu window" }, no_initial_f
 hl.window_rule({ name = "smart-gaps-tiled-border", match = { float = false, workspace = "w[t1]" }, border_size = 0 })
 hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
 hl.window_rule({ name = "smart-gaps-tiled-rounding", match = { float = false, workspace = "w[tv1]" }, rounding = 0 })
-
 hl.window_rule({ name = "float-no-border", match = { float = true }, border_size = 0 })
-
--- DOTA 2
-hl.window_rule({ match = { title = "^dota2$" }, fullscreen = true })
-hl.bind("SUPER + Super_L", hl.dsp.pass({ window = "class:^dota2$" }))
-
--- Disable Super key window grabbing for Dota 2
--- hl.window_rule({ match = { class = "^dota2$" }, no_initial_focus = true })
-hl.window_rule({ match = { class = "^dota2$" }, suppress_event = "fullscreen" })
-
 
 --- Animation for specific apps
 hl.window_rule({ match = { class = "^(pop-up)$" }, animation = "popin" })
@@ -455,7 +414,6 @@ hl.window_rule({ match = { class = "^(woomer)$" }, animation = "popin" })
 
 --- No screen share
 -- hl.window_rule({ match = { class = "^(firefox)$" }, no_screen_share = true })
-
 
 ------------------
 --- Layer rules ---
@@ -477,17 +435,12 @@ hl.env("PATH",
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
--- hl.env("QT_QPA_PLATFORM", "xcb")
-
 
 --------------------------
 --- Autostart applications
--- (exec-once equivalent: runs on hyprland.start event)
 --------------------------
 
 hl.on("hyprland.start", function()
-    -- hl.exec_cmd("blueman-applet")
-    -- hl.exec_cmd("waybar")
     hl.exec_cmd("lxpolkit")
     hl.exec_cmd("swaync")
     hl.exec_cmd("kdeconnect-indicator")
@@ -497,32 +450,10 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg")
     hl.exec_cmd("bus-update-activation-environment --all")
     hl.exec_cmd("/home/teaguy21/.config/swww/swww.sh 0")
-
-    -- GTK theme settings
     hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'ayu-dark'")
     hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'")
     hl.exec_cmd("gsettings set org.gnome.desktop.interface font-name 'jetbrains mono nerd font 12'")
-
-    -- XDG Desktop Portal
     hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE DISPLAY")
-
-    -- Sound
     hl.exec_cmd("~/.config/scripts/autoswitch-bt.sh")
-
-    -- Hyprgrass
-    -- hl.exec_cmd("kill -34 $(ps -C wvkbd-mobintl)")
-    -- hl.exec_cmd("wvkbd-mobintl -L 200")
-
-    -- hl.exec_cmd(
-    -- "trayer --edge left --align center --widthtype pixel --width 36 --heighttype pixel --height 200 --transparent true --alpha 0 --tint 0x0D1017 --distance 0 --monitor 0 --SetDockType false --SetPartialStrut false")
-
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 end)
-
-
---- Plugin block (hyprgrass plugin-specific — no built-in Lua equivalent for edge gestures yet)
--- plugin {
---     touch_gestures {
---         hyprgrass-bind = , edge:d:u, exec, pkill -SIGRTMIN wvkbd-mobintl
---     }
--- }
