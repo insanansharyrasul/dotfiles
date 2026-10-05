@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Emit Hyprland workspaces as an eww `literal` yuck box.
-
 render() {
   active=$(hyprctl activeworkspace -j | jq -r '.id')
   occupied=$(hyprctl workspaces -j | jq -r '.[].id | select(. > 0)')

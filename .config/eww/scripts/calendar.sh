@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-# Eww's calendar widget expects a zero-based month index.
 echo $(( $(date +%-m) ))

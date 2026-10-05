@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# filepath: ~/.config/wofi/power.sh
-
-# entries="⏻ Shutdown\n⟳ Reboot\n⏾ Suspend\n⏏ Logout\n🔒 Lock"
 entries="⏾ Suspend\n⏏ Logout\n⟳ Reboot\n⏻ Shutdown"
 
 selected=$(echo -e $entries | wofi --dmenu --cache-file /dev/null --insensitive --width 250 --height 275 --style ~/.config/wofi/wofi-font.css --prompt "Power Menu" | awk '{print tolower($2)}')

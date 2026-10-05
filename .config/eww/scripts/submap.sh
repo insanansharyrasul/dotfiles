@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Stream the current Hyprland submap name (empty when in the default submap).
-
 echo ""
 
 socket="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
