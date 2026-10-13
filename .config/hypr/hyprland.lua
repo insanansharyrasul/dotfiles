@@ -32,7 +32,7 @@ hl.workspace_rule({ workspace = "2", monitor = "eDP-1", persistent = true })
 hl.workspace_rule({ workspace = "3", monitor = "eDP-1", persistent = true })
 hl.workspace_rule({ workspace = "4", monitor = "HDMI-A-1", persistent = false })
 hl.workspace_rule({ workspace = "5", monitor = "HDMI-A-1", persistent = false })
-hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-1", persistent = false })
+hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-1", persistent = false, layout = "scrolling" }) 
 
 
 --------------------------
@@ -109,7 +109,7 @@ hl.config({
 --- Animations ---
 ------------------
 
-hl.config({ animations = { enabled = false } })
+hl.config({ animations = { enabled = true } })
 hl.curve("myBezier", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.05 } } })
 hl.animation({ leaf = "windows", enabled = true, speed = 7, bezier = "myBezier" })
 hl.animation({ leaf = "windowsIn", enabled = true, speed = 7, bezier = "myBezier", style = "slide" })
@@ -297,6 +297,25 @@ hl.bind("CTRL + ALT + SHIFT + L", hl.dsp.window.move({ workspace = "e+1" }))
 
 -- Layout controls
 hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit"))
+hl.bind(mainMod .. " + comma", hl.dsp.layout("swapcol l"))
+hl.bind(mainMod .. " + period", hl.dsp.layout("move +col"))
+hl.bind(mainMod .. " + Tab", function()
+    local layouts = { "dwindle", "scrolling", "monocle" }
+    local workspace = hl.get_active_special_workspace() or hl.get_active_workspace()
+    if not workspace then return end
+    local next_layout = "dwindle"
+    for i = 1, #layouts do
+        if layouts[i] == workspace.tiled_layout then
+            next_layout = layouts[(i % #layouts) + 1]
+            break
+        end
+    end
+    if workspace.special then
+        hl.workspace_rule({ workspace = tostring(workspace.name), layout = next_layout })
+    else
+        hl.workspace_rule({ workspace = "name:" .. tostring(workspace.name), layout = next_layout })
+    end
+end)
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("swaync-client -t"))
 hl.bind(mainMod .. " + G", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + Space", hl.dsp.window.float())
@@ -461,4 +480,21 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("/home/teaguy21/.config/swww/swww.sh 0")
     hl.exec_cmd("~/.config/eww/scripts/launch.sh")
     hl.exec_cmd("~/.config/scripts/autoswitch-bt.sh")
+end)
+
+--------------------------
+--- Event notifications ---
+--------------------------
+
+hl.on("keybinds.submap", function(name)
+    if name == "" then return end
+    hl.notification.create({ text = "Submap: " .. name .. " (Esc to exit)", timeout = 3000, icon = "info" })
+end)
+
+hl.on("monitor.added", function(m)
+    hl.notification.create({ text = "Monitor connected: " .. m.name, timeout = 4000, icon = "ok" })
+end)
+
+hl.on("monitor.removed", function(m)
+    hl.notification.create({ text = "Monitor disconnected: " .. m.name, timeout = 4000, icon = "warn" })
 end)
