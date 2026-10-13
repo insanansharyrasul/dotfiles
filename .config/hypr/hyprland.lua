@@ -241,16 +241,16 @@ hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("~/.config/wofi/power.sh"))
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
 
 -- Screenshots - using grim/slurp (more reliable)
-hl.bind("Print", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/screenshot-full.sh"'))
-hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/screenshot-window.sh"'))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/screenshot-region.sh"'))
+hl.bind("Print", hl.dsp.exec_cmd('$HOME/.config/hypr/scripts/screenshot-full.sh'))
+hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd('$HOME/.config/hypr/scripts/screenshot-window.sh'))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd('$HOME/.config/hypr/scripts/screenshot-region.sh'))
 
 -- OCR
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd('grim -g "$(slurp)" - | tesseract stdin stdout | wl-copy'))
 
 -- Screen record
-hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/record-screen.sh"'))
-hl.bind(mainMod .. " + CTRL + SHIFT + R", hl.dsp.exec_cmd('/bin/sh -c "$HOME/.config/hypr/scripts/record-screen-desktop-audio.sh"'))
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd('$HOME/.config/hypr/scripts/record-screen.sh'))
+hl.bind(mainMod .. " + CTRL + SHIFT + R", hl.dsp.exec_cmd('$HOME/.config/hypr/scripts/record-screen-desktop-audio.sh'))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
@@ -442,19 +442,22 @@ hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 --------------------------
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("lxpolkit")
-    hl.exec_cmd("swaync")
-    hl.exec_cmd("kdeconnect-indicator")
-    hl.exec_cmd("gammastep -c ~/.config/gammastep/config.ini")
-    hl.exec_cmd("~/.config/eww/scripts/launch.sh")
-    hl.exec_cmd("hypridle")
-    hl.exec_cmd("/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg")
-    hl.exec_cmd("bus-update-activation-environment --all")
+    -- Raw
+    hl.dispatch(hl.dsp.exec_raw("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"))
+    hl.dispatch(hl.dsp.exec_raw("lxpolkit"))
+    hl.dispatch(hl.dsp.exec_raw("swaync"))
+    hl.dispatch(hl.dsp.exec_raw("kdeconnect-indicator"))
+    hl.dispatch(hl.dsp.exec_raw("hypridle"))
+    hl.dispatch(hl.dsp.exec_raw("gammastep -c ~/.config/gammastep/config.ini"))
+    hl.dispatch(hl.dsp.exec_raw("/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg"))
+    hl.dispatch(hl.dsp.exec_raw("bus-update-activation-environment --all"))
+    hl.dispatch(hl.dsp.exec_raw("gsettings set org.gnome.desktop.interface gtk-theme 'ayu-dark'"))
+    hl.dispatch(hl.dsp.exec_raw("gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'"))
+    hl.dispatch(hl.dsp.exec_raw("gsettings set org.gnome.desktop.interface font-name 'jetbrains mono nerd font 12'"))
+    hl.dispatch(hl.dsp.exec_raw("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE DISPLAY"))
+
+    -- Shell
     hl.exec_cmd("/home/teaguy21/.config/swww/swww.sh 0")
-    hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'ayu-dark'")
-    hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'")
-    hl.exec_cmd("gsettings set org.gnome.desktop.interface font-name 'jetbrains mono nerd font 12'")
-    hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE DISPLAY")
+    hl.exec_cmd("~/.config/eww/scripts/launch.sh")
     hl.exec_cmd("~/.config/scripts/autoswitch-bt.sh")
-    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 end)
