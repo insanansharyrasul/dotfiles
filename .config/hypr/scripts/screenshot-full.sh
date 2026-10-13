@@ -10,4 +10,8 @@ else
 fi
 
 command -v wl-copy >/dev/null 2>&1 && wl-copy < "$FILENAME"
-notify-send "Screenshot" "Full screenshot saved to $FILENAME"
+if command -v nemo >/dev/null 2>&1; then
+  [ "$(notify-send -A "default=Show in Folder" "Screenshot" "Full screenshot saved to $FILENAME")" = "default" ] && nemo "$(dirname "$FILENAME")"
+else
+  notify-send "Screenshot" "Full screenshot saved to $FILENAME"
+fi

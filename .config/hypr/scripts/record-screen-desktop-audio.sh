@@ -33,7 +33,11 @@ if [ -f "$PID_FILE" ]; then
 
         OUTPUT_FILE=$(cat "$OUTPUT_FILE_STATE" 2>/dev/null || printf '%s' "$HOME/Videos")
         rm -f "$PID_FILE" "$OUTPUT_FILE_STATE"
-        notify -u normal -t 5000 "Screen recording" "Saved to $OUTPUT_FILE"
+        if command -v nemo >/dev/null 2>&1; then
+            [ "$(notify -u normal -t 5000 -A "default=Show in Folder" "Screen recording" "Saved to $OUTPUT_FILE")" = "default" ] && nemo "$(dirname "$OUTPUT_FILE")"
+        else
+            notify -u normal -t 5000 "Screen recording" "Saved to $OUTPUT_FILE"
+        fi
         exit 0
     fi
 
