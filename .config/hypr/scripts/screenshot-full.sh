@@ -10,4 +10,5 @@ else
 fi
 
 command -v wl-copy >/dev/null 2>&1 && wl-copy < "$FILENAME"
-notify-send "Screenshot" "Full screenshot saved to $FILENAME"
+ACTION=$(notify-send --wait --action=default=Open "Screenshot" "Full screenshot saved to $FILENAME")
+[ "$ACTION" = "default" ] && nemo --no-desktop "$FILENAME"
