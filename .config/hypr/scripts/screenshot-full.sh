@@ -3,15 +3,11 @@ mkdir -p "$HOME/Pictures/Screenshots"
 FILENAME="$HOME/Pictures/Screenshots/fullscreen-$(date +%Y-%m-%d-%H%M%S).png"
 
 if command -v grim >/dev/null 2>&1; then
-  grim "$FILENAME"
+  grim "$FILENAME" || exit 1
 else
   notify-send "Screenshot" "No grim installed"
   exit 1
 fi
 
 command -v wl-copy >/dev/null 2>&1 && wl-copy < "$FILENAME"
-if command -v nemo >/dev/null 2>&1; then
-  [ "$(notify-send -A "default=Show in Folder" "Screenshot" "Full screenshot saved to $FILENAME")" = "default" ] && nemo --no-desktop "$FILENAME"
-else
-  notify-send "Screenshot" "Full screenshot saved to $FILENAME"
-fi
+notify-send "Screenshot" "Full screenshot saved to $FILENAME"

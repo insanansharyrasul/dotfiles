@@ -3,16 +3,13 @@ mkdir -p "$HOME/Pictures/Screenshots"
 FILENAME="$HOME/Pictures/Screenshots/region-$(date +%Y-%m-%d-%H%M%S).png"
 
 if command -v slurp >/dev/null 2>&1 && command -v grim >/dev/null 2>&1; then
-  GEO=$(slurp 2>/dev/null)
-  [ -n "$GEO" ] && grim -g "$GEO" "$FILENAME"
+  GEO=$(slurp 2>/dev/null) || exit 0
+  [ -n "$GEO" ] || exit 0
+  grim -g "$GEO" "$FILENAME" || exit 1
 else
   notify-send "Screenshot" "No slurp+grim available"
   exit 1
 fi
 
 command -v wl-copy >/dev/null 2>&1 && wl-copy < "$FILENAME"
-if command -v nemo >/dev/null 2>&1; then
-  [ "$(notify-send -A "default=Show in Folder" "Screenshot" "Region screenshot saved to $FILENAME")" = "default" ] && nemo --no-desktop "$FILENAME"
-else
-  notify-send "Screenshot" "Region screenshot saved to $FILENAME"
-fi
+notify-send "Screenshot" "Region screenshot saved to $FILENAME"

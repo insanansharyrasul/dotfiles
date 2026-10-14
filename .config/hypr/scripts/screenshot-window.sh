@@ -10,9 +10,9 @@ fi
 
 if command -v grim >/dev/null 2>&1; then
   if [ -n "$GEO" ]; then
-    grim -g "$GEO" "$FILENAME"
+    grim -g "$GEO" "$FILENAME" || exit 1
   else
-    grim "$FILENAME"
+    grim "$FILENAME" || exit 1
   fi
 else
   notify-send "Screenshot" "No grim installed"
@@ -20,8 +20,4 @@ else
 fi
 
 command -v wl-copy >/dev/null 2>&1 && wl-copy < "$FILENAME"
-if command -v nemo >/dev/null 2>&1; then
-  [ "$(notify-send -A "default=Show in Folder" "Screenshot" "Window screenshot saved to $FILENAME")" = "default" ] && nemo --no-desktop "$FILENAME"
-else
-  notify-send "Screenshot" "Window screenshot saved to $FILENAME"
-fi
+notify-send "Screenshot" "Window screenshot saved to $FILENAME"
