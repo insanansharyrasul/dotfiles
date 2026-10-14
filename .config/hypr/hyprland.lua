@@ -109,7 +109,7 @@ hl.config({
 --- Animations ---
 ------------------
 
-hl.config({ animations = { enabled = true } })
+hl.config({ animations = { enabled = false } })
 hl.curve("myBezier", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.05 } } })
 hl.animation({ leaf = "windows", enabled = true, speed = 7, bezier = "myBezier" })
 hl.animation({ leaf = "windowsIn", enabled = true, speed = 7, bezier = "myBezier", style = "slide" })
@@ -243,10 +243,13 @@ hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
 -- Screenshots - using grim/slurp (more reliable)
 hl.bind("Print", hl.dsp.exec_cmd('$HOME/.config/hypr/scripts/screenshot-full.sh'))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd('$HOME/.config/hypr/scripts/screenshot-window.sh'))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd('$HOME/.config/hypr/scripts/screenshot-region.sh'))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/screenshot-region.sh"))
 
 -- OCR
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd('grim -g "$(slurp)" - | tesseract stdin stdout | wl-copy'))
+
+-- Color Picker
+hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd('wl-color-picker'))
 
 -- Screen record
 hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd('$HOME/.config/hypr/scripts/record-screen.sh'))
