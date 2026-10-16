@@ -8,6 +8,7 @@ set fish_cursor_visual block
 oh-my-posh init fish --config $HOME/.poshthemes/ayu_custom.omp.json | source
 alias vim nvim
 alias vi nvim
+alias v nvim
 alias p "ping www.google.com"
 alias rsc "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-Fi networks.'"
 alias b "cd .."
