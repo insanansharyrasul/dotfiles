@@ -23,7 +23,7 @@ hl.window_rule({ match = { class = "^(webconsole)$" }, float = true })
 hl.window_rule({ match = { class = "^(floating_con)$" }, float = true })
 hl.window_rule({ match = { class = "^(Emulator)$" }, float = true })
 hl.window_rule({ match = { class = "^(Emulator)$" }, float = true, monitor = "eDP-1" })
-hl.window_rule({ match = { class = "^(woomer)$" }, float = true, center = true })
+hl.window_rule({ match = { class = "^(woomer)$" }, float = true, center = true, fullscreen = true })
 hl.window_rule({ match = { class = "^(xdg-desktop-portal-gtk)$" }, float = true })
 hl.window_rule({ match = { class = "^zoom$" }, float = true })
 
