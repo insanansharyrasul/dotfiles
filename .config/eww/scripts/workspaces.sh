@@ -4,7 +4,7 @@ render() {
   occupied=$(hyprctl workspaces -j | jq -r '.[].id | select(. > 0)')
   ws_list=$(printf '1\n2\n3\n%s\n' "$occupied" | sort -n -u)
 
-  out='(box :class "works" :orientation "v" :halign "center" :valign "start" :space-evenly false :spacing 2'
+  out="(box :class \"works\" :orientation \"${WORKSPACES_ORIENT:-v}\" :halign \"center\" :valign \"center\" :space-evenly false :spacing 2"
   for ws in $ws_list; do
     [ -z "$ws" ] && continue
     if [ "$ws" = "$active" ]; then
