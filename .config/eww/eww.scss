@@ -130,6 +130,14 @@ $global-padding: 3px 0px;
   color: $magenta;
 }
 
+.wifi-button {
+  border-radius: 10px;
+}
+
+.wifi-button:hover {
+  background-color: $surface2;
+}
+
 .icon-wifi:hover {
   color: $accent;
 }
