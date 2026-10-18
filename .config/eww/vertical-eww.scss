@@ -1,0 +1,414 @@
+/* Eww bar - ported from Waybar, styled after github.com/raexera/tokyo
+   Ayu Dark theme
+   NOTE: keep this file ASCII-only. Non-ASCII chars make `grass` emit a
+   `@charset` rule that GTK's CSS parser rejects, dropping all styles. */
+
+* {
+  all: unset;
+}
+
+window {
+  background-color: transparent;
+}
+
+// -- Ayu Dark palette --
+$background: #000000;
+// $background: #FFFFFF;
+// $background: #0D1017;
+$surface: #161A24;
+$surface2: #1F2430;
+$foreground: #BFBDB6;
+$gray: #5C6773;
+$accent: #FF9C40;
+$red: #F07178;
+$green: #95E6CB;
+$yellow: #FFB454;
+$blue: #59C2FF;
+$magenta: #D2A6FF;
+
+$font: "JetBrainsMono Nerd Font";
+$global-padding: 3px 0px;
+
+// -- Bar --
+.eww_bar {
+  background-color: $background;
+  color: $foreground;
+  font-family: $font;
+  font-weight: bold;
+}
+
+@keyframes blink_red {
+  from {
+    background-color: transparent;
+    color: $red;
+  }
+
+  to {
+    background-color: $red;
+    color: $background;
+  }
+}
+
+// -- Launcher --
+.launcher {
+  border-radius: 11px;
+  font-size: 17px;
+  font-family: "Material Design Icons";
+  color: $accent;
+  padding: 8px 8px 3 0;
+}
+
+.launcher:hover {
+  color: $blue;
+}
+
+// -- Workspaces --
+.works {
+  border-radius: 10px;
+  padding: $global-padding;
+  margin: 0px;
+}
+
+.ws,
+.ws-occupied,
+.ws-active {
+  font-size: 14px;
+  padding: $global-padding;
+  border-radius: 9px;
+  color: $gray;
+}
+
+.ws-occupied {
+  color: $foreground;
+}
+
+.ws-active {
+  color: $background;
+  background-color: $accent;
+  padding: 3 9px;
+}
+
+.ws:hover,
+.ws-occupied:hover {
+  color: $background;
+  background-color: $yellow;
+}
+
+// -- Submap --
+.submap {
+  font-size: 14px;
+  color: $background;
+  background-color: $accent;
+  border-radius: 8px;
+  padding: $global-padding;
+  margin: 0 4px;
+}
+
+// -- Control panel --
+.control {
+  border-radius: 10px;
+  padding: $global-padding;
+}
+
+.mod {
+  font-size: 20px;
+  // padding: 0px 6px 0px 0px;
+}
+
+.label-sm {
+  font-size: 10px;
+  color: $foreground;
+  padding: 0px 0px 0px 0px;
+}
+
+.icon-bat {
+  color: $blue;
+  padding: 0 0px 0 0px;
+}
+
+.icon-bat.critical {
+  border-radius: 8px;
+  animation: blink_red 1s linear infinite alternate;
+}
+
+.icon-wifi {
+  color: $magenta;
+  padding: 0px 8px 0px 0px;
+}
+
+.icon-wifi:hover {
+  color: $accent;
+}
+
+.icon-vol {
+  color: $green;
+  padding: 0px 4px 0px 0px;
+}
+
+.icon-vol:hover {
+  color: $accent;
+}
+
+.icon-mic {
+  color: $blue;
+  padding: 0 2px 0 0px;
+}
+
+.icon-mic:hover {
+  color: $accent;
+}
+
+.icon-bright {
+  color: $yellow;
+  padding: 0 8px 0 0px;
+}
+
+.mem-ring {
+  color: $accent;
+  background-color: $surface;
+  border-radius: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  margin: 3px 0 2px;
+}
+
+.mem-ring-cpu {
+  color: $green;
+  background-color: $surface;
+  border-radius: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  margin: 3px 0 2px;
+}
+
+.ringgy {
+  margin: 0px 0px 0px 0px;
+}
+
+.mem-icon {
+  color: $foreground;
+  font-size: 18px;
+  font-family: $font;
+}
+
+.mem-label {
+  font-size: 9px;
+  color: $blue;
+  margin-bottom: 2px;
+}
+
+.icon-tlp {
+  color: $accent;
+  padding: 0 8px 0 0px;
+  font-size: 18px;
+}
+
+.icon-tlp:hover {
+  color: $yellow;
+}
+
+.icon-idle {
+  color: $accent;
+  padding: 0 2px 0 0px;
+}
+
+.icon-idle:hover {
+  color: $accent;
+}
+
+.icon-notif {
+  color: $accent;
+  padding: 0 2px 0 0;
+}
+
+.icon-notif.none {
+  color: $accent;
+}
+
+.icon-notif.notification {
+  color: $accent;
+}
+
+.icon-notif.dnd-notification,
+.icon-notif.dnd-none {
+  color: $red;
+}
+
+.icon-notif.inhibited-notification,
+.icon-notif.inhibited-none {
+  color: $magenta;
+}
+
+.icon-notif.dnd-inhibited-notification,
+.icon-notif.dnd-inhibited-none {
+  color: $yellow;
+}
+
+.notif-icon {
+  font-size: 18px;
+}
+
+.notif-count {
+  font-size: 10px;
+  color: $foreground;
+  // margin-top: 2px;
+}
+
+.privacy {
+  color: $red;
+}
+
+// -- Sliders (volume / brightness) --
+scale trough {
+  background-color: $surface;
+  border-radius: 8px;
+  min-height: 78px;
+  min-width: 8px;
+  margin: 4px 0;
+}
+
+scale.volbar trough highlight {
+  background-color: $green;
+  border-radius: 8px;
+}
+
+scale.micbar trough highlight {
+  background-color: $blue;
+  border-radius: 8px;
+}
+
+scale.bribar trough highlight {
+  background-color: $yellow;
+  border-radius: 8px;
+}
+
+// -- Clock --
+.clock {
+  border-radius: 10px;
+  padding: $global-padding;
+}
+
+.clock:hover {
+  background-color: $surface2;
+}
+
+.clock-hour,
+.clock-min,
+.clock-sec {
+  font-size: 14px;
+  color: $accent;
+}
+
+.clock-day,
+.clock-month,
+.clock-year {
+  font-size: 14px;
+  color: $magenta;
+}
+
+// -- Powermenu --
+.powermenu {
+  border-radius: 10px;
+  padding: $global-padding;
+  font-size: 18px;
+}
+
+.pw-lock,
+.pw-logout,
+.pw-reboot,
+.pw-sleep,
+.pw-power {
+  font-size: 18px;
+  padding: 0px 10px 3px 10px;
+}
+
+.pw-lock {
+  color: $blue;
+}
+
+.pw-logout {
+  color: $magenta;
+}
+
+.pw-reboot {
+  color: $yellow;
+}
+
+.pw-sleep {
+  color: $green;
+}
+
+.pw-power {
+  color: $red;
+}
+
+.pw-lock:hover,
+.pw-logout:hover,
+.pw-reboot:hover,
+.pw-sleep:hover,
+.pw-power:hover {
+  color: $accent;
+}
+
+// -- Calendar popup --
+.cal-box {
+  background-color: $background;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.cal {
+  font-family: $font;
+  color: $foreground;
+}
+
+calendar:selected {
+  color: $accent;
+}
+
+calendar.header {
+  color: $accent;
+  font-weight: bold;
+}
+
+calendar.button {
+  color: $magenta;
+}
+
+calendar.highlight {
+  color: $accent;
+  font-weight: bold;
+}
+
+calendar:indeterminate {
+  color: $gray;
+}
+
+
+// -- Waifu popup --
+
+.waifu-box {
+  background-color: $background;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.waifu-caption {
+  font-family: "Impact";
+  font-size: 28px;
+  color: white;
+  text-shadow: 2px 2px 0px black, -2px -2px 0px black, 2px -2px 0px black, -2px 2px 0px black;
+  padding-top: 6px;
+}
+
+// -- Tooltips --
+tooltip {
+  background-color: $surface;
+  border-radius: 8px;
+}
+
+tooltip label {
+  color: $foreground;
+  padding: 4px;
+}
+

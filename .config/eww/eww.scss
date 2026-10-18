@@ -1,5 +1,5 @@
-/* Eww bar - ported from Waybar, styled after github.com/raexera/tokyo
-   Ayu Dark theme
+/* Eww horizontal (top) bar stylesheet.
+   Standalone: no @import. The old vertical bar's styles live in old-eww.scss.
    NOTE: keep this file ASCII-only. Non-ASCII chars make `grass` emit a
    `@charset` rule that GTK's CSS parser rejects, dropping all styles. */
 
@@ -13,8 +13,6 @@ window {
 
 // -- Ayu Dark palette --
 $background: #000000;
-// $background: #FFFFFF;
-// $background: #0D1017;
 $surface: #161A24;
 $surface2: #1F2430;
 $foreground: #BFBDB6;
@@ -112,18 +110,15 @@ $global-padding: 3px 0px;
 
 .mod {
   font-size: 20px;
-  // padding: 0px 6px 0px 0px;
 }
 
 .label-sm {
   font-size: 10px;
   color: $foreground;
-  padding: 0px 0px 0px 0px;
 }
 
 .icon-bat {
   color: $blue;
-  padding: 0 0px 0 0px;
 }
 
 .icon-bat.critical {
@@ -133,7 +128,6 @@ $global-padding: 3px 0px;
 
 .icon-wifi {
   color: $magenta;
-  padding: 0px 8px 0px 0px;
 }
 
 .icon-wifi:hover {
@@ -142,7 +136,6 @@ $global-padding: 3px 0px;
 
 .icon-vol {
   color: $green;
-  padding: 0px 4px 0px 0px;
 }
 
 .icon-vol:hover {
@@ -151,7 +144,6 @@ $global-padding: 3px 0px;
 
 .icon-mic {
   color: $blue;
-  padding: 0 2px 0 0px;
 }
 
 .icon-mic:hover {
@@ -160,7 +152,6 @@ $global-padding: 3px 0px;
 
 .icon-bright {
   color: $yellow;
-  padding: 0 8px 0 0px;
 }
 
 .mem-ring {
@@ -169,7 +160,6 @@ $global-padding: 3px 0px;
   border-radius: 32px;
   min-width: 32px;
   min-height: 32px;
-  margin: 3px 0 2px;
 }
 
 .mem-ring-cpu {
@@ -178,11 +168,10 @@ $global-padding: 3px 0px;
   border-radius: 32px;
   min-width: 32px;
   min-height: 32px;
-  margin: 3px 0 2px;
 }
 
 .ringgy {
-  margin: 0px 0px 0px 0px;
+  margin: 0px;
 }
 
 .mem-icon {
@@ -191,15 +180,8 @@ $global-padding: 3px 0px;
   font-family: $font;
 }
 
-.mem-label {
-  font-size: 9px;
-  color: $blue;
-  margin-bottom: 2px;
-}
-
 .icon-tlp {
   color: $accent;
-  padding: 0 8px 0 0px;
   font-size: 18px;
 }
 
@@ -209,16 +191,6 @@ $global-padding: 3px 0px;
 
 .icon-idle {
   color: $accent;
-  padding: 0 2px 0 0px;
-}
-
-.icon-idle:hover {
-  color: $accent;
-}
-
-.icon-notif {
-  color: $accent;
-  padding: 0 2px 0 0;
 }
 
 .icon-notif.none {
@@ -251,35 +223,10 @@ $global-padding: 3px 0px;
 .notif-count {
   font-size: 10px;
   color: $foreground;
-  // margin-top: 2px;
 }
 
 .privacy {
   color: $red;
-}
-
-// -- Sliders (volume / brightness) --
-scale trough {
-  background-color: $surface;
-  border-radius: 8px;
-  min-height: 78px;
-  min-width: 8px;
-  margin: 4px 0;
-}
-
-scale.volbar trough highlight {
-  background-color: $green;
-  border-radius: 8px;
-}
-
-scale.micbar trough highlight {
-  background-color: $blue;
-  border-radius: 8px;
-}
-
-scale.bribar trough highlight {
-  background-color: $yellow;
-  border-radius: 8px;
 }
 
 // -- Clock --
@@ -384,9 +331,7 @@ calendar:indeterminate {
   color: $gray;
 }
 
-
 // -- Waifu popup --
-
 .waifu-box {
   background-color: $background;
   border-radius: 12px;
@@ -412,4 +357,144 @@ tooltip label {
   padding: 4px;
 }
 
-@import "horizontal";
+// ───────────────────────── Horizontal bar ─────────────────────────
+
+.bar-h {
+  font-family: $font;
+  font-size: 13px;
+  color: $foreground;
+  padding: 3px 10px;
+}
+
+/* -- left cluster: launcher + workspaces -- */
+.bar-h .launcher {
+  font-size: 16px;
+  padding: 3px 8px 2px 2px;
+  margin: 0 2px 0 0;
+}
+
+.eww_bar {
+  color: #fff;
+}
+
+.bar-h .works {
+  padding: 0;
+  margin: 0 2px 0 0;
+}
+
+.bar-h .ws,
+.bar-h .ws-occupied {
+  font-size: 13px;
+  padding: 2px 7px;
+}
+
+.bar-h .ws-active {
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 9px;
+}
+
+.bar-h .submap {
+  font-size: 12px;
+  padding: 2px 8px;
+  margin: 0 4px;
+  color: $background;
+  background-color: $accent;
+  border-radius: 8px;
+}
+
+.bar-h .icon-idle,
+.bar-h .icon-tlp {
+  font-size: 16px;
+  padding: 0;
+  margin: 0 7px;
+}
+
+/* -- stats: one line each, icon left - value right -- */
+.bar-h .control {
+  padding: 0;
+}
+
+.bar-h .stat {
+  margin: 0 10px 0 0;
+}
+
+.bar-h .mem-ring,
+.bar-h .mem-ring-cpu {
+  min-width: 10px;
+  min-height: 10px;
+  margin: 0;
+}
+
+.bar-h .mem-icon {
+  font-size: 20px;
+}
+
+.bar-h .label-sm {
+  font-size: 10px;
+  margin: 0 0 0 10px;
+}
+
+.bar-h .icon-bat,
+.bar-h .icon-mic,
+.bar-h .icon-vol,
+.bar-h .icon-bright {
+  font-size: 20px;
+  padding: 0;
+}
+
+.bar-h .icon-wifi {
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.bar-h .privacy {
+  font-size: 15px;
+  margin: 0 4px 0 0;
+}
+
+.bar-h .notif-icon {
+  font-size: 15px;
+  margin: 0 7px;
+}
+
+.bar-h .notif-count {
+  font-size: 10px;
+}
+
+/* -- right cluster: clock + power -- */
+.bar-h .clock {
+  padding: 2px 6px;
+  margin: 0 2px 0 10px;
+}
+
+.bar-h .clock-hour,
+.bar-h .clock-min,
+.bar-h .clock-sec {
+  font-size: 13px;
+}
+
+.bar-h .clock-day,
+.bar-h .clock-month,
+.bar-h .clock-year {
+  font-size: 13px;
+  margin-left: 8px;
+}
+
+.bar-h .powermenu {
+  padding: 0;
+}
+
+.bar-h .pw-lock,
+.bar-h .pw-logout,
+.bar-h .pw-reboot,
+.bar-h .pw-sleep {
+  font-size: 16px;
+  padding: 0 4px;
+}
+
+.bar-h .pw-power {
+  font-size: 16px;
+  padding: 0 8px 0 6px;
+}

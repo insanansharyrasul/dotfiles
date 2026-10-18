@@ -1,7 +1,7 @@
 (defvar eww "eww -c $HOME/.config/eww")
 
 ;; ──────────────────────────── Variables ────────────────────────────
-(deflisten workspace :initial "(box :class \"works\")" "exec scripts/workspaces.sh")
+(deflisten workspace-h :initial "(box :class \"works\")" "WORKSPACES_ORIENT=h exec scripts/workspaces.sh")
 (deflisten submap    :initial "" "exec scripts/submap.sh")
 (deflisten volume     :initial '{"level":0,"icon":"󰕿"}' "exec scripts/volume.sh listen")
 (deflisten mic        :initial '{"level":0,"icon":"󰍬"}' "exec scripts/mic.sh listen")
@@ -15,29 +15,20 @@
 (defpoll battery-percent :interval "10s" :initial "0" "scripts/battery.sh percent")
 (defpoll battery-status  :interval "10s" :initial "" "scripts/battery.sh status")
 (defpoll wifi-icon       :interval "5s"  :initial "" "scripts/network.sh icon")
-(defpoll wifi-name       :interval "5s"  :initial "" "scripts/network.sh name")
 (defpoll tlp             :interval "5s"  :initial "{}" "$HOME/.dotfiles/.config/scripts/waybar-tlp-status.sh")
 (defpoll privacy-mic     :interval "3s"  :initial "false" "scripts/privacy.sh")
 
-(defpoll hour     :interval "1s" :initial "" "date '+%H'")
-(defpoll min      :interval "1s" :initial "" "date '+%M'")
-(defpoll sec      :interval "1s" :initial "" "date '+%S'")
+(defpoll full-hour :interval "1s" :initial "" "date +'%H:%M:%S'")
+(defpoll full-day  :interval "1s" :initial "" "date +'%d/%m/%y'")
 
-(defpoll day      :interval "1m" :initial "" "date '+%d'")
-(defpoll month      :interval "1m" :initial "" "date '+%m'")
-(defpoll year      :interval "1m" :initial "" "date '+%y'")
-
-(defpoll fulldate :interval "60s" :initial "" "date '+%A, %d %B %Y'")
 (defpoll calendar_day   :interval "1h" "date '+%d'")
 (defpoll calendar_month :interval "1h" "scripts/calendar")
 (defpoll calendar_year  :interval "1h" "date '+%Y'")
 
-(defvar volume-reveal false)
-(defvar mic-reveal    false)
-(defvar bright-reveal false)
-(defvar power-reveal  false)
+(defvar power-reveal false)
+(defvar waifu-path "/home/teaguy21/Pictures/waifu.jpeg")
 
-;; ──────────────────────────── Widgets ──────────────────────────────
+;; ──────────────────────── Shared widgets ───────────────────────────
 
 ;; Launcher
 (defwidget launcher []
@@ -46,151 +37,14 @@
     :halign "center"
     :onclick "scripts/popup.sh launcher"
     :onrightclick "scripts/popup.sh waifu"
-    ""
+    ""
   ))
-
-;; Workspaces (Hyprland)
-(defwidget workspaces []
-  (literal :content workspace))
-
-;; Submap indicator
-(defwidget submap []
-  (revealer :transition "slideup" :reveal {submap != ""} :duration "300ms"
-    (label :class "submap" :text submap :limit-width 6)))
-
-;; Battery
-(defwidget battery []
-  (box :orientation "v" :space-evenly false :class "mod" :halign "center"
-    (label :class "icon-bat ${battery-status == 'Discharging' && battery-percent < 20 ? 'critical' : ''}"
-      :text
-      battery-icon
-      ; "󰤨"
-    )
-    (label :class "label-sm" :text "${battery-percent}%")
-  )
-)
 
 ;; Wifi
 (defwidget wifi []
   (button :class "mod icon-wifi"  :halign "center" :valign "center"
     :onclick "scripts/popup.sh wifi"
     wifi-icon
-    ; "󰤨"
-  ))
-
-;; Volume (hover-reveal scale, like the reference)
-(defwidget volume []
-  (eventbox :onhover "${eww} update volume-reveal=true"
-    :onhoverlost "${eww} update volume-reveal=false"
-    :onscroll "scripts/volume.sh scroll {}"
-    :halign "center"
-    (box :orientation "v" :space-evenly false :halign "center" :class "mod"
-      ; (revealer :transition "slideup" :reveal volume-reveal :duration "350ms"
-        ;   (scale :class "volbar" :value {volume.level} :orientation "v"
-          ;     :flipped true :round-digits 0
-          ;     :max 100 :min 0 :onchange "scripts/volume set {}"
-        ;   )
-      ; )
-      (box :orientation "v" :space-evenly false :halign "center"
-        (button :class "mod icon-vol" :halign "center"
-          :onclick "scripts/volume.sh mute"
-          :onrightclick "scripts/popup.sh audio"
-          {volume.icon}
-          ; "󰤨"
-        )
-      )
-      (label :class "label-sm" :halign "center" :text "${volume.level}%")
-    )
-  )
-)
-
-;; Microphone
-(defwidget mic []
-  (eventbox :onhover "${eww} update mic-reveal=true"
-    :onhoverlost "${eww} update mic-reveal=false"
-    :onscroll "scripts/mic.sh scroll {}"
-    :halign "center"
-    (box :orientation "v" :space-evenly false :halign "center" :valign "center"
-      ; (revealer :transition "slideup" :reveal mic-reveal :duration "350ms"
-        ;   (scale :class "micbar" :value {mic.level} :orientation "v"
-          ;     :flipped true :round-digits 0 
-        ;   :max 100 :min 0 :onchange "scripts/mic.sh set {}")
-      ; )
-      (box :orientation "v" :space-evenly false :halign "center"
-        (button :class "mod icon-mic"  :halign "center"
-          :onclick "scripts/mic.sh mute"
-          {mic.icon}
-        )
-      )
-      (label :class "label-sm" :halign "center" :text "${mic.level}%")
-    )
-  )
-)
-
-;; Brightness (hover-reveal scale)
-(defwidget backlight []
-  (
-    eventbox :onhover "${eww} update bright-reveal=true"
-    :onhoverlost "${eww} update bright-reveal=false"
-    :onscroll "brightness_listener scroll {}"
-    :halign "center"
-    :valign "center"
-    (box :orientation "v" :space-evenly false :halign "center" :valign "center"
-      ; (revealer :transition "slideup" :reveal bright-reveal :duration "350ms"
-        ;     (scale :class "bribar" :value brightness :orientation "v"
-          ;         :flipped true :round-digits 0
-        ;     :max 100 :min 1 :onchange "brightness_listener set {}")
-      ; )
-      (box :orientation "v" :space-evenly false :halign "center"
-        (label :class "mod icon-bright" :halign "center" :text "󰃠")
-      )
-      (label :class "label-sm" :halign "center" :valign "center" :text "${brightness}%")
-    )
-  )
-)
-
-;; Notifications (SwayNC)
-(defwidget notifications []
-  (button :class "mod icon-notif ${notifications.state}"
-    :halign "center"
-    :onclick "scripts/notifications.sh toggle"
-    :onrightclick "scripts/notifications.sh dnd"
-    :onmiddleclick "scripts/notifications.sh clear"
-    (box :orientation "v" :space-evenly false :halign "center"
-      (label :class "notif-icon" :text {notifications.icon})
-      (label :class "notif-count" :text {notifications.count > 0 ? notifications.count : ""})
-    )))
-
-;; Memory
-(defwidget memory []
-  (box  :orientation "v" :space-evenly false :class "mod" :halign "center" :valign "center"
-    (box  :class "ringgy"
-      (circular-progress :value memory :class "mem-ring" :thickness 4 :clockwise true
-        (label :class "mem-icon" :text "ㅤ" )
-      )
-    )
-    (label :class "label-sm" :text "${memory}%")
-  )
-)
-
-;; CPU
-(defwidget cpu []
-  (box  :orientation "v" :space-evenly false :class "mod" :halign "center" :valign "center"
-    (box  :class "ringgy"
-      (circular-progress :value cpu :class "mem-ring-cpu" :thickness 4 :clockwise true
-        (label :class "mem-icon" :text "ㅤ" )
-      )
-    )
-    (label :class "label-sm" :text "${cpu}%")
-  )
-)
-
-;; TLP profile
-(defwidget tlp []
-  (button :class "mod icon-tlp" :halign "center" :valign "center"
-    :onclick "alacritty -e bash -c ~/.dotfiles/.config/scripts/tlp-interactive.sh"
-    {tlp.text ?: "⚡"}
-    ; "󰤨"
   ))
 
 ;; Idle inhibitor
@@ -199,79 +53,21 @@
     :halign "center" :valign "center"
     :onclick "idleinhibitor toggle"
     {idle_inhibit ? "󰅶" : "󰾪"}
-    ; "󰤨"
   ))
 
-;; Privacy (microphone-in-use indicator)
-(defwidget privacy []
-  (revealer :transition "slideup" :reveal privacy-mic :duration "300ms" :halign "center" :valign "center"
-    (label :class "privacy" :text "󰍬")))
-
-;; Clock  (left: calendar · middle: toggle wallpaper · right: wallpaper picker)
-(defwidget clock []
-  (button :class "clock"
-    :onclick "scripts/popup.sh calendar"
-    :onmiddleclick "$HOME/.config/hypr/scripts/toggle-wallpaper.sh"
-    :onrightclick "$HOME/.config/swww/swww.sh"
-    (box :orientation "v" :space-evenly false
-      (label :class "clock-hour" :text hour)
-      (label :class "clock-min"  :text min)
-      (label :class "clock-sec"  :text sec)
-      (box :height 6)
-      (label :class "clock-day" :text day)
-      (label :class "clock-month"  :text month)
-      (label :class "clock-year"  :text year)
-    )))
-
-;; Powermenu (hover-reveal, like the reference)
-(defwidget powermenu []
-  (eventbox :onhover "${eww} update power-reveal=true"
-    :onhoverlost "${eww} update power-reveal=false"
-    (box :orientation "v" :space-evenly false :class "powermenu"
-      (revealer :transition "slideup" :reveal power-reveal :duration "400ms"
-        (box :orientation "v" :space-evenly false
-          (button :class "pw-lock" :onclick "loginctl lock-session" "󰌾")
-          (button :class "pw-logout" :onclick "hyprctl dispatch exit" "󰍃")
-          (button :class "pw-reboot" :onclick "systemctl reboot" "󰜉")
-          (button :class "pw-sleep"  :onclick "systemctl suspend" "󰒲")
-        ))
-      (button :class "pw-power" :onclick "systemctl poweroff" "󰐥"))))
+;; TLP profile
+(defwidget tlp []
+  (button :class "mod icon-tlp" :halign "center" :valign "center"
+    :onclick "alacritty -e bash -c ~/.dotfiles/.config/scripts/tlp-interactive.sh"
+    {tlp.text ?: "⚡"}
+  ))
 
 ;; Calendar (popup window content)
 (defwidget cal []
   (box :class "cal-box" :orientation "v"
     (calendar :class "cal" :day calendar_day :month calendar_month :year calendar_year)))
 
-
-;; ──────────────────────────── Layout ───────────────────────────────
-(defwidget top []
-  (box :orientation "v" :space-evenly false :valign "center" :halign "center"
-    (launcher)
-    (workspaces)
-    (submap)
-    (idle)
-    (tlp)
-    (notifications)
-  ))
-
-(defwidget control []
-  (box :orientation "v" :space-evenly false :halign "center"  :class "control"
-    (cpu)
-    (memory)
-    (battery)
-    (mic)
-    (volume)
-    (backlight)
-    (wifi)
-    (privacy)
-  ))
-
-(defwidget cal []
-  (box :class "cal-box" :orientation "v"
-    (calendar :class "cal" :day calendar_day :month calendar_month :year calendar_year)))
-
-(defvar waifu-path "/home/teaguy21/Pictures/waifu.jpeg")
-
+;; Waifu (popup window content)
 (defwidget waifu []
   (box :class "waifu-box" :orientation "v"
     (overlay
@@ -280,59 +76,171 @@
       (label :class "waifu-caption" :text "Dead or Live" :valign "end" :halign "center")
     )))
 
-(defwidget bottom []
-  (box :orientation "v" :space-evenly false :halign "center"
-    (clock)
-    (powermenu)))
+;; ──────────────────────────── Horizontal bar ───────────────────────
 
-(defwidget end []
-  (box :orientation "v" :space-evenly false :valign "center" :halign "center"
-    (control)
-    (bottom)
+;; Workspaces
+(defwidget workspaces-h []
+  (literal :content workspace-h))
+
+;; Clock (single row)
+(defwidget clock-h []
+  (button :class "clock"
+    :onclick "scripts/popup.sh calendar"
+    :onmiddleclick "$HOME/.config/hypr/scripts/toggle-wallpaper.sh"
+    :onrightclick "$HOME/.config/swww/swww.sh"
+    (box :orientation "h" :space-evenly false
+      (label :class "clock-hour" :text "${full-hour}")
+      (label :class "clock-day" :text "${full-day}")
+    )))
+
+;; Powermenu (sideways hover-reveal so bar height stays fixed)
+(defwidget powermenu-h []
+  (eventbox :onhover "${eww} update power-reveal=true"
+    :onhoverlost "${eww} update power-reveal=false"
+    (box :orientation "h" :space-evenly false :class "powermenu"
+      (revealer :transition "slideleft" :reveal power-reveal :duration "400ms"
+        (box :orientation "h" :space-evenly false
+          (button :class "pw-lock" :onclick "loginctl lock-session" "󰌾")
+          (button :class "pw-logout" :onclick "hyprctl dispatch exit" "󰍃")
+          (button :class "pw-reboot" :onclick "systemctl reboot" "󰜉")
+          (button :class "pw-sleep"  :onclick "systemctl suspend" "󰒲")
+        ))
+      (button :class "pw-power" :onclick "systemctl poweroff" "󰐥"))))
+
+(defwidget top-h []
+  (box :orientation "h" :space-evenly false :halign "start" :valign "center"
+    (launcher)
+    (submap-h)
+    (idle)
+    (tlp)
+    (notif-h)
   ))
 
-(defwidget bar []
-  (box :class "eww_bar" :orientation "v" :space-evenly false :vexpand true :hexpand true
-    (top)
-    (box :vexpand true :hexpand true :valign "end" :halign "center" :space-evenly false
-      (end)
+(defwidget control-h []
+  (box :orientation "h" :space-evenly false :halign "center" :valign "center" :class "control"
+    (cpu-h)
+    (mem-h)
+    (bat-h)
+    (mic-h)
+    (vol-h)
+    (bri-h)
+    (wifi)
+    (privacy-h)
+  ))
+
+(defwidget bottom-h []
+  (box :orientation "h" :space-evenly false
+    (clock-h)))
+
+(defwidget end-h []
+  (box :orientation "h" :space-evenly false :halign "end" :valign "center"
+    (control-h)
+    (bottom-h)
+    (powermenu-h)
+  ))
+
+(defwidget bar-h []
+  (box :class "eww_bar bar-h" :hexpand true :vexpand true
+    (overlay :hexpand true :vexpand true
+      (box :halign "start" :valign "center" :space-evenly false
+        (top-h))
+      (box :halign "center" :valign "center" :space-evenly false
+        (workspaces-h))
+      (box :halign "end" :valign "center" :space-evenly false
+        (end-h))
     )
   )
 )
 
+;; ──────────────────────── Horizontal stat widgets ──────────────────
+;; Symbol left, value right.
+
+(defwidget cpu-h []
+  (box :orientation "h" :space-evenly false :class "stat" :valign "center"
+    (box :class "ringgy"
+      (circular-progress :value cpu :class "mem-ring-cpu" :thickness 4 :clockwise true
+        (label :class "mem-icon" :text "ㅤ")))
+    (label :class "label-sm" :text "${cpu}%")))
+
+(defwidget mem-h []
+  (box :orientation "h" :space-evenly false :class "stat" :valign "center"
+    (box :class "ringgy"
+      (circular-progress :value memory :class "mem-ring" :thickness 4 :clockwise true
+        (label :class "mem-icon" :text "ㅤ")))
+    (label :class "label-sm" :text "${memory}%")))
+
+(defwidget bat-h []
+  (box :orientation "h" :space-evenly false :class "stat" :valign "center"
+    (label :class "icon-bat ${battery-status == 'Discharging' && battery-percent < 20 ? 'critical' : ''}" :text battery-icon)
+    (label :class "label-sm" :text "${battery-percent}%")))
+
+(defwidget mic-h []
+  (eventbox :onscroll "scripts/mic.sh scroll {}" :valign "center"
+    (box :orientation "h" :space-evenly false :class "stat"
+      (button :class "icon-mic" :onclick "scripts/mic.sh mute" {mic.icon})
+      (label :class "label-sm" :text "${mic.level}%"))))
+
+(defwidget vol-h []
+  (eventbox :onscroll "scripts/volume.sh scroll {}" :valign "center"
+    (box :orientation "h" :space-evenly false :class "stat"
+      (button :class "icon-vol" :onclick "scripts/volume.sh mute" :onrightclick "scripts/popup.sh audio" {volume.icon})
+      (label :class "label-sm" :text "${volume.level}%"))))
+
+(defwidget bri-h []
+  (eventbox :onscroll "brightness_listener scroll {}" :valign "center"
+    (box :orientation "h" :space-evenly false :class "stat"
+      (label :class "icon-bright" :text "󰃠")
+      (label :class "label-sm" :text "${brightness}%"))))
+
+(defwidget notif-h []
+  (button :class "icon-notif ${notifications.state}"
+    :onclick "scripts/notifications.sh toggle"
+    :onrightclick "scripts/notifications.sh dnd"
+    :onmiddleclick "scripts/notifications.sh clear"
+    (box :orientation "h" :space-evenly false :spacing 3 :valign "center"
+      (label :class "notif-icon" :text {notifications.icon})
+      (label :class "notif-count" :text {notifications.count > 0 ? notifications.count : ""})
+    )))
+
+;; Submap + privacy reveal by sliding horizontally, because a hidden
+;; vertical revealer still reserves its child's width.
+
+(defwidget submap-h []
+  (revealer :transition "slideleft" :reveal {submap != ""} :duration "300ms"
+    (label :class "submap" :text submap :limit-width 6)))
+
+(defwidget privacy-h []
+  (revealer :transition "slideleft" :reveal privacy-mic :duration "300ms" :valign "center"
+    (label :class "privacy" :text "󰍬")))
+
 ;; ──────────────────────────── Windows ──────────────────────────────
-;; Bar thickness: change :width here. The bar floats inside this window
-;; with an 8px margin (see .eww_bar in eww.scss), so the visible bar is
-;; roughly :width minus 16px.
-(defwindow bar-left
-  :geometry (geometry :x "0px" :y "0px" :width "1px" :height "100%" :anchor "left center")
+;; Thickness: change :height here.
+(defwindow bar-top-left
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "1px" :anchor "top center")
   :monitor "eDP-1"
   :stacking "fg"
   :exclusive true
-  (bar)
+  (bar-h)
 )
 
-(defwindow bar-right
-  :geometry (geometry :x "0px" :y "0px" :width "1px" :height "100%" :anchor "left center")
+(defwindow bar-top-right
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "1px" :anchor "top center")
   :monitor "HDMI-A-1"
   :stacking "fg"
   :exclusive true
-  (bar)
+  (bar-h)
 )
 
 (defwindow calendar
-  :geometry (geometry :x "8px" :y "35px" :width "290px" :height "210px" :anchor "top right")
+  :geometry (geometry :x "8px" :y "8px" :width "290px" :height "210px" :anchor "top right")
   :monitor 0
   :stacking "fg"
   (cal)
 )
 
 (defwindow waifu
-  :geometry (geometry :x "8px" :y "35px" :width "290px" :height "210px" :anchor "top left")
+  :geometry (geometry :x "8px" :y "8px" :width "290px" :height "210px" :anchor "top left")
   :monitor 0
   :stacking "fg"
   (waifu)
 )
-
-;; All horizontal-bar widgets & windows live in horizontal.yuck
-(include "./horizontal.yuck")
