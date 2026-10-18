@@ -16,7 +16,7 @@
     :onrightclick "$HOME/.config/swww/swww.sh"
     (box :orientation "h" :space-evenly false
       (label :class "clock-hour" :text "${hour}:${min}:${sec}")
-      (label :class "clock-day" :text "  ${day}/${month}/${year}"))))
+      (label :class "clock-day" :text "${day}/${month}/${year}"))))
 
 ;; Powermenu (sideways hover-reveal so bar height stays fixed)
 (defwidget powermenu-h []
@@ -36,37 +36,37 @@
   (box :orientation "h" :space-evenly false :halign "start" :valign "center"
     (launcher)
     (workspaces-h)
-    (submap)
+    (submap-h)
     (idle)
     (tlp)
-    (notifications)
+    (notif-h)
   ))
 
 (defwidget control-h []
   (box :orientation "h" :space-evenly false :halign "center" :valign "center" :class "control"
-    (cpu)
-    (memory)
-    (battery)
-    (mic)
-    (volume)
-    (backlight)
+    (cpu-h)
+    (mem-h)
+    (bat-h)
+    (mic-h)
+    (vol-h)
+    (bri-h)
     (wifi)
-    (privacy)
+    (privacy-h)
   ))
 
 (defwidget bottom-h []
   (box :orientation "h" :space-evenly false
-    (clock-h)
-    (powermenu-h)))
+    (clock-h)))
 
 (defwidget end-h []
   (box :orientation "h" :space-evenly false :halign "end" :valign "center"
     (control-h)
     (bottom-h)
+    (powermenu-h)
   ))
 
 (defwidget bar-h []
-  (box :class "eww_bar" :orientation "h" :space-evenly false :vexpand true :hexpand true
+  (box :class "eww_bar bar-h" :orientation "h" :space-evenly false :vexpand true :hexpand true
     (top-h)
     (box :vexpand true :hexpand true :halign "end" :valign "center" :space-evenly false
       (end-h)
@@ -89,4 +89,77 @@
   :stacking "fg"
   :exclusive true
   (bar-h)
+)
+
+;; ──────────────────────── Horizontal stat widgets ──────────────────
+;; Same functionality as the vertical modules in eww.yuck, but laid out
+;; on one line: symbol left, value right.
+
+(defwidget cpu-h []
+  (box :orientation "h" :space-evenly false :class "stat" :valign "center"
+    (box :class "ringgy"
+      (circular-progress :value cpu :class "mem-ring-cpu" :thickness 4 :clockwise true
+        (label :class "mem-icon" :text "ㅤ")))
+    (label :class "label-sm" :text "${cpu}%")))
+
+(defwidget mem-h []
+  (box :orientation "h" :space-evenly false :class "stat" :valign "center"
+    (box :class "ringgy"
+      (circular-progress :value memory :class "mem-ring" :thickness 4 :clockwise true
+        (label :class "mem-icon" :text "ㅤ")))
+    (label :class "label-sm" :text "${memory}%")))
+
+(defwidget bat-h []
+  (box :orientation "h" :space-evenly false :class "stat" :valign "center"
+    (label :class "icon-bat ${battery-status == 'Discharging' && battery-percent < 20 ? 'critical' : ''}" :text battery-icon)
+    (label :class "label-sm" :text "${battery-percent}%")))
+
+(defwidget mic-h []
+  (eventbox :onscroll "scripts/mic.sh scroll {}" :valign "center"
+    (box :orientation "h" :space-evenly false :class "stat"
+      (button :class "icon-mic" :onclick "scripts/mic.sh mute" {mic.icon})
+      (label :class "label-sm" :text "${mic.level}%"))))
+
+(defwidget vol-h []
+  (eventbox :onscroll "scripts/volume.sh scroll {}" :valign "center"
+    (box :orientation "h" :space-evenly false :class "stat"
+      (button :class "icon-vol" :onclick "scripts/volume.sh mute" :onrightclick "scripts/popup.sh audio" {volume.icon})
+      (label :class "label-sm" :text "${volume.level}%"))))
+
+(defwidget bri-h []
+  (eventbox :onscroll "brightness_listener scroll {}" :valign "center"
+    (box :orientation "h" :space-evenly false :class "stat"
+      (label :class "icon-bright" :text "󰃠")
+      (label :class "label-sm" :text "${brightness}%"))))
+
+(defwidget notif-h []
+  (button :class "icon-notif ${notifications.state}"
+    :onclick "scripts/notifications.sh toggle"
+    :onrightclick "scripts/notifications.sh dnd"
+    :onmiddleclick "scripts/notifications.sh clear"
+    (box :orientation "h" :space-evenly false :spacing 3 :valign "center"
+      (label :class "notif-icon" :text {notifications.icon})
+      (label :class "notif-count" :text {notifications.count > 0 ? notifications.count : ""})
+    )))
+
+;; Submap + privacy on the horizontal bar reveal by sliding horizontally,
+;; because a hidden vertical revealer still reserves its child's width.
+
+(defwidget submap-h []
+  (revealer :transition "slideleft" :reveal {submap != ""} :duration "300ms"
+    (label :class "submap" :text submap :limit-width 6)))
+
+(defwidget privacy-h []
+  (revealer :transition "slideleft" :reveal privacy-mic :duration "300ms" :valign "center"
+    (label :class "privacy" :text "󰍬")))
+
+(defwidget cal []
+  (box :class "cal-box" :orientation "v"
+    (calendar :class "cal" :day calendar_day :month calendar_month :year calendar_year)))
+
+(defwindow calendar-h
+  :geometry (geometry :x "5px" :y "5px" :width "290px" :height "210px" :anchor "top right")
+  :monitor 0
+  :stacking "fg"
+  (cal)
 )
