@@ -35,7 +35,6 @@
 (defwidget top-h []
   (box :orientation "h" :space-evenly false :halign "start" :valign "center"
     (launcher)
-    (workspaces-h)
     (submap-h)
     (idle)
     (tlp)
@@ -66,10 +65,14 @@
   ))
 
 (defwidget bar-h []
-  (box :class "eww_bar bar-h" :orientation "h" :space-evenly false :vexpand true :hexpand true
-    (top-h)
-    (box :vexpand true :hexpand true :halign "end" :valign "center" :space-evenly false
-      (end-h)
+  (box :class "eww_bar bar-h" :hexpand true :vexpand true
+    (overlay :hexpand true :vexpand true
+      (box :halign "start" :valign "center" :space-evenly false
+        (top-h))
+      (box :halign "center" :valign "center" :space-evenly false
+        (workspaces-h))
+      (box :halign "end" :valign "center" :space-evenly false
+        (end-h))
     )
   )
 )
