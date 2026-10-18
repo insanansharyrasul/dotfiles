@@ -1,0 +1,92 @@
+;; ──────────────────────────── Horizontal bar ───────────────────────
+;; Everything the horizontal (top) bar needs. Included from eww.yuck;
+;; shared variables (time, battery, users) live there.
+
+(deflisten workspace-h :initial "(box :class \"works\")" "WORKSPACES_ORIENT=h exec scripts/workspaces.sh")
+
+;; Workspaces
+(defwidget workspaces-h []
+  (literal :content workspace-h))
+
+;; Clock (single row)
+(defwidget clock-h []
+  (button :class "clock"
+    :onclick "scripts/popup.sh calendar"
+    :onmiddleclick "$HOME/.config/hypr/scripts/toggle-wallpaper.sh"
+    :onrightclick "$HOME/.config/swww/swww.sh"
+    (box :orientation "h" :space-evenly false
+      (label :class "clock-hour" :text "${hour}:${min}:${sec}")
+      (label :class "clock-day" :text "  ${day}/${month}/${year}"))))
+
+;; Powermenu (sideways hover-reveal so bar height stays fixed)
+(defwidget powermenu-h []
+  (eventbox :onhover "${eww} update power-reveal=true"
+    :onhoverlost "${eww} update power-reveal=false"
+    (box :orientation "h" :space-evenly false :class "powermenu"
+      (revealer :transition "slideleft" :reveal power-reveal :duration "400ms"
+        (box :orientation "h" :space-evenly false
+          (button :class "pw-lock" :onclick "loginctl lock-session" "󰌾")
+          (button :class "pw-logout" :onclick "hyprctl dispatch exit" "󰍃")
+          (button :class "pw-reboot" :onclick "systemctl reboot" "󰜉")
+          (button :class "pw-sleep"  :onclick "systemctl suspend" "󰒲")
+        ))
+      (button :class "pw-power" :onclick "systemctl poweroff" "󰐥"))))
+
+(defwidget top-h []
+  (box :orientation "h" :space-evenly false :halign "start" :valign "center"
+    (launcher)
+    (workspaces-h)
+    (submap)
+    (idle)
+    (tlp)
+    (notifications)
+  ))
+
+(defwidget control-h []
+  (box :orientation "h" :space-evenly false :halign "center" :valign "center" :class "control"
+    (cpu)
+    (memory)
+    (battery)
+    (mic)
+    (volume)
+    (backlight)
+    (wifi)
+    (privacy)
+  ))
+
+(defwidget bottom-h []
+  (box :orientation "h" :space-evenly false
+    (clock-h)
+    (powermenu-h)))
+
+(defwidget end-h []
+  (box :orientation "h" :space-evenly false :halign "end" :valign "center"
+    (control-h)
+    (bottom-h)
+  ))
+
+(defwidget bar-h []
+  (box :class "eww_bar" :orientation "h" :space-evenly false :vexpand true :hexpand true
+    (top-h)
+    (box :vexpand true :hexpand true :halign "end" :valign "center" :space-evenly false
+      (end-h)
+    )
+  )
+)
+
+;; Thickness: change :height here.
+(defwindow bar-top-left
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "1px" :anchor "top left")
+  :monitor "eDP-1"
+  :stacking "fg"
+  :exclusive true
+  (bar-h)
+)
+
+(defwindow bar-top-right
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "1px" :anchor "top left")
+  :monitor "HDMI-A-1"
+  :stacking "fg"
+  :exclusive true
+  (bar-h)
+)

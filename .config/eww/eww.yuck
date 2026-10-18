@@ -333,3 +333,6 @@
   :stacking "fg"
   (waifu)
 )
+
+;; All horizontal-bar widgets & windows live in horizontal.yuck
+(include "./horizontal.yuck")
