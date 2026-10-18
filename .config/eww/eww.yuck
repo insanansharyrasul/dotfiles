@@ -321,14 +321,14 @@
 )
 
 (defwindow calendar
-  :geometry (geometry :x "5px" :y "5px" :width "290px" :height "210px" :anchor "bottom left")
+  :geometry (geometry :x "8px" :y "35px" :width "290px" :height "210px" :anchor "top right")
   :monitor 0
   :stacking "fg"
   (cal)
 )
 
 (defwindow waifu
-  :geometry (geometry :x "5px" :y "5px" :width "290px" :height "210px" :anchor "bottom left")
+  :geometry (geometry :x "8px" :y "35px" :width "290px" :height "210px" :anchor "top left")
   :monitor 0
   :stacking "fg"
   (waifu)
