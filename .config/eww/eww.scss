@@ -24,8 +24,10 @@ $yellow: #FFB454;
 $blue: #59C2FF;
 $magenta: #D2A6FF;
 
-$font: "JetBrainsMono Nerd Font Mono";
-$icon-size: 24px;
+/* Non-Mono variant: the Mono patch rescales every icon to fit one cell width,
+   so narrow glyphs (battery, volume) come out 2x too tall. Text metrics are
+   identical between the two variants. */
+$font: "JetBrainsMono Nerd Font";
 $global-padding: 3px 0px;
 
 // -- Bar --
@@ -401,9 +403,14 @@ tooltip label {
   border-radius: 8px;
 }
 
-.bar-h .icon-idle,
+.bar-h .icon-idle {
+  font-size: 17px; /* 0.75..0.83em glyph */
+  padding: 0;
+  margin: 0 7px;
+}
+
 .bar-h .icon-tlp {
-  font-size: $icon-size;
+  font-size: 16px; /* script glyphs are 0.67..1.0em */
   padding: 0;
   margin: 0 7px;
 }
@@ -433,27 +440,45 @@ tooltip label {
   margin: 0 0 0 10px;
 }
 
+/* Nerd Font glyphs are drawn at very different scales. Each icon is sized so
+   its drawn ink is the same ~14px: the font's natural icon size, 0.60em.
+   font-size = 14.4 / ink(em). */
 .bar-h .icon-bat,
 .bar-h .icon-mic,
 .bar-h .icon-vol,
-.bar-h .icon-bright {
-  font-size: $icon-size;
+.bar-h .icon-bright,
+.bar-h .icon-wifi {
   padding: 0;
 }
 
+.bar-h .icon-bat {
+  font-size: 17px; /* battery glyphs are 0.83em */
+}
+
+.bar-h .icon-mic {
+  font-size: 18px; /* 0.79em */
+}
+
+.bar-h .icon-vol {
+  font-size: 21px; /* 0.67em..0.73em depending on level */
+}
+
+.bar-h .icon-bright {
+  font-size: 15px; /* 0.94em */
+}
+
 .bar-h .icon-wifi {
-  font-size: $icon-size;
-  padding: 0;
+  font-size: 19px; /* 0.77em */
   margin: 0;
 }
 
 .bar-h .privacy {
-  font-size: $icon-size;
+  font-size: 18px; /* same 0.79em mic glyph as .icon-mic */
   margin: 0 4px 0 0;
 }
 
 .bar-h .notif-icon {
-  font-size: $icon-size;
+  font-size: 16px; /* 0.88em */
   margin: 0 7px;
 }
 
