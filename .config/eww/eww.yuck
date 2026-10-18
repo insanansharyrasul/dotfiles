@@ -15,6 +15,7 @@
 (defpoll battery-percent :interval "10s" :initial "0" "scripts/battery.sh percent")
 (defpoll battery-status  :interval "10s" :initial "" "scripts/battery.sh status")
 (defpoll wifi-icon       :interval "5s"  :initial "" "scripts/network.sh icon")
+(defpoll wifi-name       :interval "5s"  :initial "" "scripts/network.sh name")
 (defpoll tlp             :interval "5s"  :initial "{}" "$HOME/.dotfiles/.config/scripts/waybar-tlp-status.sh")
 (defpoll privacy-mic     :interval "3s"  :initial "false" "scripts/privacy.sh")
 
@@ -42,10 +43,14 @@
 
 ;; Wifi
 (defwidget wifi []
-  (button :class "mod icon-wifi"  :halign "center" :valign "center"
-    :onclick "scripts/popup.sh wifi"
-    wifi-icon
-  ))
+  (button :onclick "scripts/popup.sh wifi" :class "wifi-button"
+    (box :orientation "h" :space-evenly false
+      (label :class "mod icon-wifi" :text "${wifi-icon}")
+      (label :class "label-sm" :text "${wifi-name}")
+    )
+  )
+  
+)
 
 ;; Idle inhibitor
 (defwidget idle []
@@ -190,7 +195,10 @@
   (eventbox :onscroll "brightness_listener scroll {}" :valign "center"
     (box :orientation "h" :space-evenly false :class "stat"
       (label :class "icon-bright" :text "󰃠")
-      (label :class "label-sm" :text "${brightness}%"))))
+      (label :class "label-sm" :text "${brightness}%")
+    )
+  )
+)
 
 (defwidget notif-h []
   (button :class "icon-notif ${notifications.state}"
