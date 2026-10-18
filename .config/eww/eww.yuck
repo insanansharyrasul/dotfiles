@@ -114,12 +114,12 @@
     (idle)
     (tlp)
     (notif-h)
+    (cpu-h)
+    (mem-h)
   ))
 
 (defwidget control-h []
   (box :orientation "h" :space-evenly false :halign "center" :valign "center" :class "control"
-    (cpu-h)
-    (mem-h)
     (bat-h)
     (mic-h)
     (vol-h)
@@ -156,7 +156,7 @@
 ;; Symbol left, value right.
 
 (defwidget cpu-h []
-  (box :orientation "h" :space-evenly false :class "stat" :valign "center"
+  (box :orientation "h" :space-evenly false :class "stat-cpu" :valign "center"
     (box :class "ringgy"
       (circular-progress :value cpu :class "mem-ring-cpu" :thickness 4 :clockwise true
         (label :class "mem-icon" :text "ㅤ")))
@@ -175,15 +175,15 @@
     (label :class "label-sm" :text "${battery-percent}%")))
 
 (defwidget mic-h []
-  (eventbox :onscroll "scripts/mic.sh scroll {}" :valign "center"
+  (eventbox :onscroll "scripts/mic.sh scroll {}" :valign "center" :onclick "scripts/mic.sh mute"
     (box :orientation "h" :space-evenly false :class "stat"
-      (button :class "icon-mic" :onclick "scripts/mic.sh mute" {mic.icon})
+      (button :class "icon-mic"  {mic.icon})
       (label :class "label-sm" :text "${mic.level}%"))))
 
 (defwidget vol-h []
-  (eventbox :onscroll "scripts/volume.sh scroll {}" :valign "center"
+  (eventbox :onscroll "scripts/volume.sh scroll {}" :valign "center" :onclick "scripts/volume.sh mute" :onrightclick "scripts/popup.sh audio"
     (box :orientation "h" :space-evenly false :class "stat"
-      (button :class "icon-vol" :onclick "scripts/volume.sh mute" :onrightclick "scripts/popup.sh audio" {volume.icon})
+      (button :class "icon-vol"  {volume.icon})
       (label :class "label-sm" :text "${volume.level}%"))))
 
 (defwidget bri-h []
