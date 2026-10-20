@@ -39,6 +39,7 @@ hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind("Print", hl.dsp.exec_cmd('$HOME/.config/hypr/scripts/screenshot-full.sh'))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd('$HOME/.config/hypr/scripts/screenshot-window.sh'))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/screenshot-region.sh"))
+hl.bind(mainMod .. " + CTRL + SHIFT + S", hl.dsp.exec_cmd("shotori"))
 
 -- OCR
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd('grim -g "$(slurp)" - | tesseract stdin stdout | wl-copy'))
