@@ -3,7 +3,7 @@ mkdir -p "$HOME/Pictures/Screenshots"
 FILENAME="$HOME/Pictures/Screenshots/region-$(date +%Y-%m-%d-%H%M%S).png"
 
 if command -v slurp >/dev/null 2>&1 && command -v grim >/dev/null 2>&1; then
-  GEO=$(slurp 2>/dev/null) || exit 0
+  GEO=$(slurp -d 2>/dev/null) || exit 0
   [ -n "$GEO" ] || exit 0
   grim -g "$GEO" "$FILENAME" || exit 1
 else
