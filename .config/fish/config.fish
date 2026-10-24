@@ -56,6 +56,7 @@ set -gx PATH "/home/teaguy21/.local/bin" $PATH
 set -gx ANDROID_HOME $HOME/Android/Sdk
 set -gx ANDROID_SDK_ROOT $ANDROID_HOME
 set -gx PATH "$PATH:/home/teaguy21/.local/share/coursier/bin"
+set -gx PATH "/home/teaguy21/.rive/bin:$PATH"
 set fish_greeting
 
 fish_add_path \
