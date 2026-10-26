@@ -79,7 +79,7 @@ window {
 #entry:selected,
 #input:focus,
 window {
-    outline: 1px solid #FFCC55;
+    outline: 1px solid #FF8F40;
     box-shadow: none;
     -gtk-focus-ring: 0;
     border-style: solid;
