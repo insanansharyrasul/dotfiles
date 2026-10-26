@@ -1,7 +1,2 @@
 #!/bin/bash
-
-if pgrep -x "eww" > /dev/null; then
-    killall eww
-else
-    ~/.config/eww/scripts/launch.sh
-fi
+pgrep -x eww >/dev/null && killall eww || ~/.config/eww/scripts/launch.sh
