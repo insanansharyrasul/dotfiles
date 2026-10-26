@@ -7,10 +7,12 @@
 (deflisten mic        :initial '{"level":0,"icon":"󰍬"}' "exec scripts/mic.sh listen")
 (deflisten brightness :initial "0" "exec brightness_listener listen")
 (deflisten notifications :initial '{"count":0,"state":"none","icon":"󰂜"}' "exec scripts/notifications.sh listen")
-(deflisten memory        :initial "0" "exec ram_usage")
-(deflisten cpu        :initial "0" "exec cpu_usage")
+(deflisten memory       :initial "0" "exec ram_usage")
+(deflisten cpu          :initial "0" "exec cpu_usage")
 (deflisten idle_inhibit :initial "false" "exec idleinhibitor listen")
 
+oadsas: 
+ada   : 
 (defpoll battery-icon    :interval "10s" :initial "" "scripts/battery.sh icon")
 (defpoll battery-percent :interval "10s" :initial "0" "scripts/battery.sh percent")
 (defpoll battery-status  :interval "10s" :initial "" "scripts/battery.sh status")
@@ -100,17 +102,20 @@
 
 ;; Powermenu (sideways hover-reveal so bar height stays fixed)
 (defwidget powermenu-h []
-  (eventbox :onhover "${eww} update power-reveal=true"
-    :onhoverlost "${eww} update power-reveal=false"
+  (eventbox :onhover "${eww} update power-reveal=true" :onhoverlost "${eww} update power-reveal=false"
     (box :orientation "h" :space-evenly false :class "powermenu"
-      (revealer :transition "slideleft" :reveal power-reveal :duration "400ms"
+      (revealer   :transition "slideleft" :reveal power-reveal :duration "400ms"
         (box :orientation "h" :space-evenly false
           (button :class "pw-lock" :onclick "loginctl lock-session" "󰌾")
           (button :class "pw-logout" :onclick "hyprctl dispatch exit" "󰍃")
           (button :class "pw-reboot" :onclick "systemctl reboot" "󰜉")
           (button :class "pw-sleep"  :onclick "systemctl suspend" "󰒲")
-        ))
-      (button :class "pw-power" :onclick "systemctl poweroff" "󰐥"))))
+        )
+      )
+      (button :class "pw-power" :onclick "systemctl poweroff" "󰐥")
+    )
+  )
+)
 
 (defwidget top-h []
   (box :orientation "h" :space-evenly false :halign "start" :valign "center"
@@ -224,7 +229,7 @@
 ;; ──────────────────────────── Windows ──────────────────────────────
 ;; Thickness: change :height here.
 (defwindow bar-top-left
-  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "1px" :anchor "top center")
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "30px" :anchor "top center")
   :monitor "eDP-1"
   :stacking "fg"
   :exclusive true
@@ -232,7 +237,7 @@
 )
 
 (defwindow bar-top-right
-  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "1px" :anchor "top center")
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "30px" :anchor "top center")
   :monitor "HDMI-A-1"
   :stacking "fg"
   :exclusive true
