@@ -1,18 +1,16 @@
 (defvar eww "eww -c $HOME/.config/eww")
 
 ;; ──────────────────────────── Variables ────────────────────────────
-(deflisten workspace-h :initial "(box :class \"works\")" "WORKSPACES_ORIENT=h exec scripts/workspaces.sh")
+(deflisten workspace-h :initial "(box :class \"works\")" "exec scripts/workspaces.sh")
 (deflisten submap    :initial "" "exec scripts/submap.sh")
-(deflisten volume     :initial '{"level":0,"icon":"󰕿"}' "exec scripts/volume.sh listen")
-(deflisten mic        :initial '{"level":0,"icon":"󰍬"}' "exec scripts/mic.sh listen")
+(deflisten volume     :initial '{"level":0,"icon":"󰕿"}' "exec scripts/audio.sh sink listen")
+(deflisten mic        :initial '{"level":0,"icon":"󰍬"}' "exec scripts/audio.sh source listen")
 (deflisten brightness :initial "0" "exec brightness_listener listen")
 (deflisten notifications :initial '{"count":0,"state":"none","icon":"󰂜"}' "exec scripts/notifications.sh listen")
 (deflisten memory       :initial "0" "exec ram_usage")
 (deflisten cpu          :initial "0" "exec cpu_usage")
 (deflisten idle_inhibit :initial "false" "exec idleinhibitor listen")
-(defpoll battery-icon    :interval "10s" :initial "" "scripts/battery.sh icon")
-(defpoll battery-percent :interval "10s" :initial "0" "scripts/battery.sh percent")
-(defpoll battery-status  :interval "10s" :initial "" "scripts/battery.sh status")
+(defpoll battery :interval "10s" :initial '{"percent":0,"status":"","icon":""}' "scripts/battery.sh")
 (defpoll wifi-icon       :interval "5s"  :initial "" "scripts/network.sh icon")
 (defpoll wifi-name       :interval "5s"  :initial "" "scripts/network.sh name")
 (defpoll tlp             :interval "5s"  :initial "{}" "$HOME/.dotfiles/.config/scripts/waybar-tlp-status.sh")
@@ -20,10 +18,6 @@
 
 (defpoll full-hour :interval "1s" :initial "" "date +'%H:%M:%S'")
 (defpoll full-day  :interval "1s" :initial "" "date +'%d/%m/%y'")
-
-(defpoll calendar_day   :interval "1h" "date '+%d'")
-(defpoll calendar_month :interval "1h" "scripts/calendar")
-(defpoll calendar_year  :interval "1h" "date '+%Y'")
 
 (defvar power-reveal false)
 (defvar waifu-path "/home/teaguy21/Pictures/waifu.jpeg")
@@ -69,7 +63,7 @@
 ;; Calendar (popup window content)
 (defwidget cal []
   (box :class "cal-box" :orientation "v"
-    (calendar :class "cal" :day calendar_day :month calendar_month :year calendar_year)))
+    (calendar :class "cal")))
 
 ;; Waifu (popup window content)
 (defwidget waifu []
@@ -83,9 +77,6 @@
 ;; ──────────────────────────── Horizontal bar ───────────────────────
 
 ;; Workspaces
-(defwidget workspaces-h []
-  (literal :content workspace-h))
-
 ;; Clock (single row)
 (defwidget clock-h []
   (button :class "clock"
@@ -114,96 +105,70 @@
   )
 )
 
-(defwidget top-h []
-  (box :orientation "h" :space-evenly false :halign "start" :valign "center"
-    (launcher)
-    (submap-h)
-    (idle)
-    (tlp)
-    (notif-h)
-    (cpu-h)
-    (mem-h)
-  ))
-
-(defwidget control-h []
-  (box :orientation "h" :space-evenly false :halign "center" :valign "center" :class "control"
-    (bat-h)
-    (mic-h)
-    (vol-h)
-    (bri-h)
-    (wifi)
-    (privacy-h)
-  ))
-
-(defwidget bottom-h []
-  (box :orientation "h" :space-evenly false
-    (clock-h)))
-
-(defwidget end-h []
-  (box :orientation "h" :space-evenly false :halign "end" :valign "center"
-    (control-h)
-    (bottom-h)
-    (powermenu-h)
-  ))
-
 (defwidget bar-h []
   (box :class "eww_bar bar-h" :hexpand true :vexpand true
     (overlay :hexpand true :vexpand true
       (box :halign "end" :valign "center" :space-evenly false
-        (end-h)
-      )
+        (box :orientation "h" :space-evenly false :class "control"
+          (bat-h)
+          (mic-h)
+          (vol-h)
+          (bri-h)
+          (wifi)
+          (privacy-h))
+        (clock-h)
+        (powermenu-h))
       (box :halign "start" :valign "center" :space-evenly false
-        (top-h)
-      )
+        (launcher)
+        (submap-h)
+        (idle)
+        (tlp)
+        (notif-h)
+        (cpu-h)
+        (mem-h))
       (box :halign "center" :valign "center" :space-evenly false
-        (workspaces-h)
-      )
-    )
-  )
-)
+        (literal :content workspace-h)))))
 
 ;; ──────────────────────── Horizontal stat widgets ──────────────────
-;; Symbol left, value right.
+
+
+;; Symbol (child) left, value right.
+(defwidget stat [text ?class]
+  (box :orientation "h" :space-evenly false :class "${class ?: 'stat'}" :valign "center"
+    (children)
+    (label :class "label-sm" :text text)))
+
+(defwidget ring [class value]
+  (box :class "ringgy"
+    (circular-progress :value value :class class :thickness 4 :clockwise true
+      (label :class "mem-icon" :text "ㅤ"))))
 
 (defwidget cpu-h []
-  (box :orientation "h" :space-evenly false :class "stat-cpu" :valign "center"
-    (box :class "ringgy"
-      (circular-progress :value cpu :class "mem-ring-cpu" :thickness 4 :clockwise true
-        (label :class "mem-icon" :text "ㅤ")))
-    (label :class "label-sm" :text "${cpu}%")))
+  (stat :class "stat-cpu" :text "${cpu}%"
+    (ring :class "mem-ring-cpu" :value cpu)))
 
 (defwidget mem-h []
-  (box :orientation "h" :space-evenly false :class "stat" :valign "center"
-    (box :class "ringgy"
-      (circular-progress :value memory :class "mem-ring" :thickness 4 :clockwise true
-        (label :class "mem-icon" :text "ㅤ")))
-    (label :class "label-sm" :text "${memory}%")))
+  (stat :text "${memory}%"
+    (ring :class "mem-ring" :value memory)))
 
 (defwidget bat-h []
-  (box :orientation "h" :space-evenly false :class "stat" :valign "center"
-    (label :class "icon-bat ${battery-status == 'Discharging' && battery-percent < 20 ? 'critical' : ''}" :text battery-icon)
-    (label :class "label-sm" :text "${battery-percent}%")))
+  (stat :text "${battery.percent}%"
+    (label :class "icon-bat ${battery.status == 'Discharging' && battery.percent < 20 ? 'critical' : ''}" :text {battery.icon})))
 
 (defwidget mic-h []
-  (eventbox :onscroll "scripts/mic.sh scroll {}" :valign "center" :onclick "scripts/mic.sh mute"
-    (box :orientation "h" :space-evenly false :class "stat"
-      (button :class "icon-mic"  {mic.icon})
-      (label :class "label-sm" :text "${mic.level}%"))))
+  (eventbox :onscroll "scripts/audio.sh source scroll {}" :valign "center" :onclick "scripts/audio.sh source mute"
+    (stat :text "${mic.level}%"
+      (button :class "icon-mic" {mic.icon}))))
 
 (defwidget vol-h []
-  (eventbox :onscroll "scripts/volume.sh scroll {}" :valign "center" :onclick "scripts/volume.sh mute" :onrightclick "scripts/popup.sh audio"
-    (box :orientation "h" :space-evenly false :class "stat"
-      (button :class "icon-vol"  {volume.icon})
-      (label :class "label-sm" :text "${volume.level}%"))))
+  (eventbox :onscroll "scripts/audio.sh sink scroll {}" :valign "center" :onclick "scripts/audio.sh sink mute" :onrightclick "scripts/popup.sh audio"
+    (stat :text "${volume.level}%"
+      (button :class "icon-vol" {volume.icon}))))
 
 (defwidget bri-h []
   (eventbox :onscroll "brightness_listener scroll {}" :valign "center"
-    (box :orientation "h" :space-evenly false :class "stat"
-      (label :class "icon-bright" :text "󰃠")
-      (label :class "label-sm" :text "${brightness}%")
-    )
-  )
-)
+    (stat :text "${brightness}%"
+      (label :class "icon-bright" :text "󰃠"))))
 
 (defwidget notif-h []
   (button :class "icon-notif ${notifications.state}"
@@ -228,17 +193,9 @@
 
 ;; ──────────────────────────── Windows ──────────────────────────────
 ;; Thickness: change :height here.
-(defwindow bar-top-left
+(defwindow bar [monitor]
   :geometry (geometry :x "0px" :y "0px" :width "100%" :height "30px" :anchor "top center")
-  :monitor "eDP-1"
-  :stacking "fg"
-  :exclusive true
-  (bar-h)
-)
-
-(defwindow bar-top-right
-  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "30px" :anchor "top center")
-  :monitor "HDMI-A-1"
+  :monitor monitor
   :stacking "fg"
   :exclusive true
   (bar-h)

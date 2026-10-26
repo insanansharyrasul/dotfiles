@@ -247,16 +247,12 @@ $global-padding: 3px 0px;
   background-color: $surface2;
 }
 
-.clock-hour,
-.clock-min,
-.clock-sec {
+.clock-hour {
   font-size: 14px;
   color: $accent;
 }
 
-.clock-day,
-.clock-month,
-.clock-year {
+.clock-day {
   font-size: 14px;
   color: $magenta;
 }
@@ -503,15 +499,11 @@ tooltip label {
   margin: 0 2px 0 10px;
 }
 
-.bar-h .clock-hour,
-.bar-h .clock-min,
-.bar-h .clock-sec {
+.bar-h .clock-hour {
   font-size: 13px;
 }
 
-.bar-h .clock-day,
-.bar-h .clock-month,
-.bar-h .clock-year {
+.bar-h .clock-day {
   font-size: 13px;
   margin-left: 8px;
 }
