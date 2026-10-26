@@ -10,9 +10,6 @@
 (deflisten memory       :initial "0" "exec ram_usage")
 (deflisten cpu          :initial "0" "exec cpu_usage")
 (deflisten idle_inhibit :initial "false" "exec idleinhibitor listen")
-
-oadsas: 
-ada   : 
 (defpoll battery-icon    :interval "10s" :initial "" "scripts/battery.sh icon")
 (defpoll battery-percent :interval "10s" :initial "0" "scripts/battery.sh percent")
 (defpoll battery-status  :interval "10s" :initial "" "scripts/battery.sh status")
@@ -107,7 +104,7 @@ ada   :
       (revealer   :transition "slideleft" :reveal power-reveal :duration "400ms"
         (box :orientation "h" :space-evenly false
           (button :class "pw-lock" :onclick "loginctl lock-session" "󰌾")
-          (button :class "pw-logout" :onclick "hyprctl dispatch exit" "󰍃")
+          (button :class "pw-logout" :onclick "hyprctl dispatch 'hl.dsp.exit()'" "󰍃")
           (button :class "pw-reboot" :onclick "systemctl reboot" "󰜉")
           (button :class "pw-sleep"  :onclick "systemctl suspend" "󰒲")
         )
@@ -152,12 +149,15 @@ ada   :
 (defwidget bar-h []
   (box :class "eww_bar bar-h" :hexpand true :vexpand true
     (overlay :hexpand true :vexpand true
-      (box :halign "start" :valign "center" :space-evenly false
-        (top-h))
-      (box :halign "center" :valign "center" :space-evenly false
-        (workspaces-h))
       (box :halign "end" :valign "center" :space-evenly false
-        (end-h))
+        (end-h)
+      )
+      (box :halign "start" :valign "center" :space-evenly false
+        (top-h)
+      )
+      (box :halign "center" :valign "center" :space-evenly false
+        (workspaces-h)
+      )
     )
   )
 )
