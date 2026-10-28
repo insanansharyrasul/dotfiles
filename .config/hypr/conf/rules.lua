@@ -1,11 +1,6 @@
 ---------------------
 --- Window rules ---
 ---------------------
-hl.window_rule({ match = { class = "^(trayer)$" }, float = true })
-hl.window_rule({ match = { class = "^(trayer)$" }, pin = true })
-hl.window_rule({ match = { class = "^(trayer)$" }, no_initial_focus = true })
-hl.window_rule({ match = { class = "^(trayer)$" }, float = true })
-hl.window_rule({ match = { class = "^(trayer)$" }, float = true })
 hl.window_rule({ match = { class = "^(pop-up)$" }, float = true })
 hl.window_rule({ match = { class = "^(bubble)$" }, float = true })
 hl.window_rule({ match = { class = "^(task_dialog)$" }, float = true })
