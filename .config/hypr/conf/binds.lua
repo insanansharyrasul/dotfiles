@@ -6,7 +6,6 @@ local mainMod = "SUPER"
 
 -- Application launches
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("firefox"))
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("alacritty -e ranger"))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("nemo"))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("kitty -e yazi"))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("code --ozone-platform-hint=wayland"))
