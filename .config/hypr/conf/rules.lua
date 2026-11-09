@@ -22,6 +22,9 @@ hl.window_rule({ match = { class = "^(woomer)$" }, float = true, center = true, 
 hl.window_rule({ match = { class = "^(xdg-desktop-portal-gtk)$" }, float = true })
 hl.window_rule({ match = { class = "^zoom$" }, float = true })
 
+-- Ignore apps' own maximize requests (kitty, LibreOffice) so they tile normally
+hl.window_rule({ name = "suppress-maximize", match = { class = ".*" }, suppress_event = "maximize" })
+
 -- File picker dialogs
 hl.window_rule({ match = { title = "^(Open File)$" }, float = true })
 hl.window_rule({ match = { title = "^(Open Folder)$" }, float = true })
