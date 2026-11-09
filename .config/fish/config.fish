@@ -23,7 +23,7 @@ alias ntp "sudo ntpdate -s time.nist.gov"
 alias qw "pkill java && pkill qemu && pkill adb && pkill dart"
 
 # config aliases
-alias dotfc "vim ~/.config/hypr/hyprland.lua"
+alias dotfc "cd ~/.config/hypr ; vim"
 alias fishc "vim ~/.config/fish/config.fish"
 alias monitorc "vim ~/.config/hypr/monitors.lua"
 
@@ -66,6 +66,7 @@ fish_add_path \
 fish_add_path /home/teaguy21/.opencode/bin
 fish_add_path -g "/home/teaguy21/.kimi-code/bin"
 fish_add_path -g "/home/teaguy21/.maestro/bin"
+fish_add_path -g "/home/teaguy21/.bun/bin"
 
 function notify_on_complete --on-event fish_postexec
     set -l threshold 5000
