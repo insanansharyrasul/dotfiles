@@ -92,3 +92,5 @@ function fc -d "Compile and run a C file"
     set base_name (basename $argv[1] .c)
     gcc $argv[1] -o $base_name; and ./$base_name
 end
+
+zoxide init fish | source
