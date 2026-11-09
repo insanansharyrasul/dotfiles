@@ -1,0 +1,17 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "c0529fc"
+hash = "40c1b292185baf769d5d7736a4071158"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "c0529fc"
+hash = "17ebde15c4349f90aedbc45984b98db2"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "c0529fc"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
+
+[flavor]
+deps = []
