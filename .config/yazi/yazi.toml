@@ -1,2 +1,20 @@
 [opener]
 edit = [{ run = 'nvim %s', block = true, for = "unix" }]
+edit-code = [{ run = 'code "$@"', orphan = true, desc = "VS Code" }]
+
+[[plugin.prepend_fetchers]]
+url = "*"
+run = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url = "*/"
+run = "git"
+group = "git"
+
+[open]
+prepend_rules = [
+    { url = "*.{txt,md,json,yaml,toml,py,js,ts,rs,go,c,cpp,h}", use = [ "edit-code", "open", "edit" ] },
+    { mime = "text/*", use = [ "edit-code", "open", "edit" ] },
+]
+
