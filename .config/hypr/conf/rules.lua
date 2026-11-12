@@ -57,3 +57,15 @@ hl.window_rule({ match = { class = "^(woomer)$" }, animation = "popin" })
 hl.layer_rule({ match = { namespace = "wofi" }, ignore_alpha = 0 })
 hl.layer_rule({ match = { namespace = "wofi" }, ignore_alpha = 0.5 })
 -- hl.layer_rule({ match = { namespace = "notifications" }, no_screen_share = true })
+
+hl.window_rule({
+  name = "ueberzugpp",
+  match = { class = "^(ueberzugpp.*)$" },
+  float = true,
+  no_initial_focus = true,
+  no_anim = true,
+  no_shadow = true,
+  no_blur = true,
+  border_size = 0,
+  rounding = 0,
+})
