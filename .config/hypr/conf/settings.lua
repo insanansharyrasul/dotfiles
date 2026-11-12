@@ -144,6 +144,7 @@ hl.config({
         vrr                     = 0,
         disable_autoreload      = false,
         enable_swallow = true,
-        swallow_regex = '^Alacritty$'
+        swallow_regex = '^Alacritty$',
+        swallow_exception_regex = '^(Yazi.*|ueberzugpp.*)$'
     },
 })

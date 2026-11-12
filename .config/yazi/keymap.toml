@@ -5,10 +5,46 @@ desc = "Enter the child directory, or open the file"
 
 [[mgr.prepend_keymap]]
 on   = "<A-v>"
-run  = 'shell --orphan -- code "%h"'
+run  = 'shell --orphan -- code %h'
 desc = "Open hovered file/folder in VS Code"
 
 [[mgr.prepend_keymap]]
 on   = "<A-t>"
-run  = '''shell --orphan -- sh -c 'd=$1; [ -d "$d" ] || d=$(dirname "$d"); exec alacritty --working-directory "$d"' sh "%h"'''
+run  = '''shell --orphan -- sh -c 'd=$1; [ -d "$d" ] || d=$(dirname "$d"); exec alacritty --working-directory "$d"' sh %h'''
 desc = "Open Alacritty in hovered folder (or file's folder)"
+
+[[mgr.prepend_keymap]]
+on   = "p"
+run  = "plugin smart-paste"
+desc = "Paste into the hovered directory or CWD"
+
+[[mgr.prepend_keymap]]
+on   = "f"
+run  = "plugin smart-filter"
+desc = "Smart filter"
+
+[[mgr.prepend_keymap]]
+on   = "F"
+run  = "plugin jump-to-char"
+desc = "Jump to char"
+
+[[mgr.prepend_keymap]]
+on   = ["c", "m"]
+run  = "plugin chmod"
+desc = "Chmod on selected files"
+
+[[mgr.prepend_keymap]]
+on   = "T"
+run  = "plugin toggle-pane max-preview"
+desc = "Maximize or restore preview"
+
+[[mgr.prepend_keymap]]
+on   = "C"
+run  = "plugin ouch --args=zip"
+desc = "Compress with ouch"
+
+[[mgr.prepend_keymap]]
+on   = [ "y", "p" ]
+run  = "copy path"
+desc = "Copy hovered item path"
+

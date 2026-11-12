@@ -1,5 +1,9 @@
+[mgr]
+show_hidden = true
+linemode = "size"
+
 [opener]
-edit = [{ run = 'nvim %s', block = true, for = "unix" }]
+edit = [{ run = 'nvim "$@"', block = true, for = "unix" }]
 edit-code = [{ run = 'code "$@"', orphan = true, desc = "VS Code" }]
 
 [[plugin.prepend_fetchers]]
@@ -14,7 +18,15 @@ group = "git"
 
 [open]
 prepend_rules = [
-    { url = "*.{txt,md,json,yaml,toml,py,js,ts,rs,go,c,cpp,h}", use = [ "edit-code", "open", "edit" ] },
-    { mime = "text/*", use = [ "edit-code", "open", "edit" ] },
+    { url = "*.{txt,md,json,yaml,toml,py,js,ts,rs,go,c,cpp,h}", use = [ "edit", "edit-code", "open" ] },
+    { mime = "text/*", use = [ "edit", "edit-code", "open" ] },
 ]
 
+
+[[plugin.prepend_previewers]]
+mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}"
+run  = "ouch"
+
+[preview]
+# [x, y, w, h] in cells; nudges ueberzugpp (Alacritty) below the pane border
+ueberzug_offset = [0, 1, 0, -1]
