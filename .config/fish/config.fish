@@ -15,7 +15,7 @@ alias b "cd .."
 alias td "cd ~/Downloads"
 alias bldapk "flutter clean && flutter build apk --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Downloads/"
 alias c "clear"
-alias d "apt update ; apt upgrade -y"
+alias d "apt update ; apt upgrade -y --allow-downgrades"
 alias sai "sudo apt install"
 alias f "python3"
 alias apt='sudo apt-fast'
@@ -37,6 +37,9 @@ alias gcl "git clone"
 alias gpl "git pull"
 alias gp "git push origin"
 alias gps "git push"
+alias gs "git status"
+alias gd "git diff"
+alias gst "/usr/bin/gs"
 
 # pnpm
 set -gx PNPM_HOME "/home/teaguy21/.local/share/pnpm"
@@ -70,8 +73,25 @@ fish_add_path -g "/home/teaguy21/.bun/bin"
 
 function notify_on_complete --on-event fish_postexec
     set -l threshold 5000
+    # interactive apps you quit yourself; add more as needed
+    set -l ignore claude opencode nvim vim yazi y ssh htop btop lazygit less man
 
     if test -n "$CMD_DURATION" -a $CMD_DURATION -ge $threshold
+        # first word, skipping a leading sudo
+        set -l words (string split ' ' -- (string replace -r '^sudo\s+' '' -- "$argv"))
+        contains -- $words[1] $ignore; and return
+
+        # skip if this terminal's window is focused (Hyprland)
+        # ponytail: matches by window pid, so other windows of a single-process terminal also count as focused
+        if type -q hyprctl
+            set -l win (hyprctl activewindow -j 2>/dev/null | jq -r '.pid // empty')
+            set -l p $fish_pid
+            while test -n "$win" -a "$p" -gt 1
+                test "$p" = "$win"; and return
+                set p (string trim (ps -o ppid= -p $p))
+            end
+        end
+
         set -l duration_sec (math -s1 "$CMD_DURATION / 1000")
         set -l title "Command Finished"
         set -l msg "\"$argv\" completed in $duration_sec s"
