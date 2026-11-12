@@ -3,8 +3,8 @@ show_hidden = true
 linemode = "size"
 
 [opener]
-edit = [{ run = 'nvim "$@"', block = true, for = "unix" }]
-edit-code = [{ run = 'code "$@"', orphan = true, desc = "VS Code" }]
+edit = [{ run = 'nvim %s', block = true, for = "unix" }]
+edit-code = [{ run = 'code %s', orphan = true, desc = "VS Code" }]
 
 [[plugin.prepend_fetchers]]
 url = "*"
