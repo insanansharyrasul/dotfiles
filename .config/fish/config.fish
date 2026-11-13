@@ -28,7 +28,6 @@ alias fishc "vim ~/.config/fish/config.fish"
 alias monitorc "vim ~/.config/hypr/monitors.lua"
 
 # Git aliases
-alias g "git"
 alias ga "git add"
 alias gc "git commit -m"
 alias gca "git commit --amend"
@@ -102,7 +101,7 @@ function notify_on_complete --on-event fish_postexec
     end
 end
 
-function gall -d "Git add, commit, and push"
+function g -d "Git add, commit, and push"
     git add .
     git commit -m "$argv[1]"
     git push origin
