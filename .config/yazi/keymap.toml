@@ -44,12 +44,6 @@ run  = "plugin ouch --args=zip"
 desc = "Compress with ouch"
 
 [[mgr.prepend_keymap]]
-on   = [ "y", "p" ]
-run  = "copy path"
-desc = "Copy hovered item path"
-
-
-[[mgr.prepend_keymap]]
 on   = "<A-f>"
 run  = '''shell --orphan -- sh -c 'd=$1; [ -d "$d" ] || d=$(dirname "$d"); exec nemo "$d"' sh %h'''
 desc = "Open hovered folder (or file's folder) in Nemo"
