@@ -7,7 +7,7 @@ local mainMod = "SUPER"
 -- Application launches
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("firefox"))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("nemo"))
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("alacritty -e yazi"))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("kitty -e yazi"))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("code --ozone-platform-hint=wayland"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("~/.config/eww/scripts/toggle-eww.sh"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("gnome-system-monitor"))
