@@ -12,6 +12,7 @@ alias v nvim
 alias p "ping www.google.com"
 alias rsc "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-Fi networks.'"
 alias b "cd .."
+alias k "pkill"
 alias td "cd ~/Downloads"
 alias bldapk "flutter clean && flutter build apk --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Downloads/"
 alias c "clear"

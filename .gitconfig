@@ -1,0 +1,36 @@
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[user]
+	name = insanansharyrasul
+	email = ID+insanansharyrasul@user.noreply.github.com
+[safe]
+	directory = /media/teaguy21/0ea03a61-b679-417a-ac3e-8f7fe9162c56/home/insan/Documents/Code/Real-time-chat-application-in-c
+[color]
+	ui = auto
+[init]
+	defaultBranch = main
+[core]
+	autocrlf = input
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	dark = true
+	line-numbers = true
+	side-by-side = false
+	hyperlinks = true
+	syntax-theme = Dracula
+
+[diff]
+	colorMoved = default
+	algorithm = histogram
+	mnemonicPrefix = true
+
+[merge]
+	conflictStyle = zdiff3
+
+[alias]
+	ds = diff --staged
