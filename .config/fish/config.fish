@@ -39,6 +39,7 @@ alias gp "git push origin"
 alias gps "git push"
 alias gs "git status"
 alias gd "git diff"
+alias gl "git log"
 alias gst "/usr/bin/gs"
 
 # pnpm

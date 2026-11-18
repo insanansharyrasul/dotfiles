@@ -5,8 +5,8 @@ desc = "Enter the child directory, or open the file"
 
 [[mgr.prepend_keymap]]
 on   = "<A-v>"
-run  = 'shell --orphan -- code %h'
-desc = "Open hovered file/folder in VS Code"
+run  = 'shell --orphan -- code .'
+desc = "Open CWD in VS Code"
 
 [[mgr.prepend_keymap]]
 on   = "<A-t>"
