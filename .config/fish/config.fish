@@ -5,21 +5,24 @@ set fish_cursor_insert line blink
 set fish_cursor_replace_one underscore blink
 set fish_cursor_visual block
 
+# One letter alias
+alias b "cd .."
+alias c "clear"
+alias d "apt update ; apt upgrade -y --allow-downgrades"
+alias f "python3"
+alias k "pkill"
+alias p "ping www.google.com"
+alias t "trans"
+alias v "nvim"
+
 oh-my-posh init fish --config $HOME/.poshthemes/ayu_custom.omp.json | source
 alias vim nvim
 alias vi nvim
-alias v nvim
-alias p "ping www.google.com"
 alias rsc "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-Fi networks.'"
-alias b "cd .."
-alias k "pkill"
 alias td "cd ~/Downloads"
 alias bldapk "flutter clean && flutter build apk --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Downloads/"
-alias c "clear"
-alias d "apt update ; apt upgrade -y --allow-downgrades"
 alias sai "sudo apt install"
-alias f "python3"
-alias apt='sudo apt-fast'
+alias apt 'sudo apt-fast'
 alias ntp "sudo ntpdate -s time.nist.gov"
 alias qw "pkill java && pkill qemu && pkill adb && pkill dart"
 
@@ -74,16 +77,12 @@ fish_add_path -g "/home/teaguy21/.bun/bin"
 
 function notify_on_complete --on-event fish_postexec
     set -l threshold 5000
-    # interactive apps you quit yourself; add more as needed
     set -l ignore claude opencode nvim vim yazi y ssh htop btop lazygit less man
 
     if test -n "$CMD_DURATION" -a $CMD_DURATION -ge $threshold
-        # first word, skipping a leading sudo
         set -l words (string split ' ' -- (string replace -r '^sudo\s+' '' -- "$argv"))
         contains -- $words[1] $ignore; and return
 
-        # skip if this terminal's window is focused (Hyprland)
-        # ponytail: matches by window pid, so other windows of a single-process terminal also count as focused
         if type -q hyprctl
             set -l win (hyprctl activewindow -j 2>/dev/null | jq -r '.pid // empty')
             set -l p $fish_pid
