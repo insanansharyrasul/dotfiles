@@ -1,29 +1,30 @@
+@import url("file:///home/teaguy21/.config/wofi/colors.css");
 /* Ayu Dark Theme for Wofi */
 
 window {
     margin: 0px;
-    border: 2px solid #1F2430;
-    background-color: #0A0E14;
+    border: 2px solid @surface2;
+    background-color: @base;
     border-radius: 8px;
     font-family: "JetBrains Mono", "Fira Code", monospace;
     font-size: 16px;
-    color: #B3B1AD;
+    color: @foreground;
 }
 
 #input {
     margin: 8px;
     padding: 8px 12px;
-    border: 1px solid #1F2430;
-    background-color: #1A1F29;
+    border: 1px solid @surface2;
+    background-color: @surface;
     border-radius: 6px;
-    color: #E6E1CF;
+    color: @foreground;
     font-size: 14px;
-    caret-color: #FF8F40;
+    caret-color: @accent;
 }
 
 #input:focus {
-    border-color: #FF8F40;
-    box-shadow: 0 0 0 1px #FF8F40;
+    border-color: @accent;
+    box-shadow: 0 0 0 1px @accent;
 }
 
 #inner-box {
@@ -47,7 +48,7 @@ window {
 #text {
     margin: 0px;
     border: none;
-    color: #B3B1AD;
+    color: @foreground;
     font-weight: 400;
 }
 
@@ -57,7 +58,7 @@ window {
     border-radius: 6px;
     border: none;
     background-color: transparent;
-    color: #B3B1AD;
+    color: @foreground;
     transition: all 0.2s ease;
 }
 
@@ -68,9 +69,9 @@ window {
 }
 
 #entry:selected {
-    background-color: #1F2430;
-    color: #E6E1CF;
-    /* border-left: 3px solid #FF8F40; */
+    background-color: @surface2;
+    color: @foreground;
+    /* border-left: 3px solid @accent; */
 }
 
 #entry:focus,
@@ -79,7 +80,7 @@ window {
 #entry:selected,
 #input:focus,
 window {
-    outline: 1px solid #FF8F40;
+    outline: 1px solid @accent;
     box-shadow: none;
     -gtk-focus-ring: 0;
     border-style: solid;
@@ -88,50 +89,50 @@ window {
 }
 
 #entry:hover {
-    background-color: #1A1F29;
-    color: #E6E1CF;
+    background-color: @surface;
+    color: @foreground;
 }
 
 #entry:contains("Enable"),
 #entry:contains("Disable") {
-    color: #FF8F40;
+    color: @accent;
     font-weight: 500;
 }
 
 #entry:contains("Enable"):selected,
 #entry:contains("Disable"):selected {
-    background-color: #1F2430;
-    border-left: 3px solid #FF8F40;
+    background-color: @surface2;
+    border-left: 3px solid @accent;
 }
 
 /* Connected network styling */
 #entry:contains("Disconnect") {
-    color: #F07178;
+    color: @red;
     font-weight: 500;
 }
 
 #entry:contains("Disconnect"):selected {
-    background-color: #1F2430;
-    border-left: 3px solid #F07178;
+    background-color: @surface2;
+    border-left: 3px solid @red;
 }
 
 scrolledwindow>scrollbar {
-    /* background-color: #1A1F29; */
+    /* background-color: @surface; */
     border-radius: 4px;
     margin: 4px;
 }
 
 scrolledwindow>scrollbar>contents>trough {
-    background-color: #1A1F29;
+    background-color: @surface;
     border-radius: 4px;
 }
 
 scrolledwindow>scrollbar>contents>trough>slider {
-    background-color: #3D424D;
+    background-color: @gray;
     border-radius: 4px;
     min-width: 8px;
 }
 
 scrolledwindow>scrollbar>contents>trough>slider:hover {
-    background-color: #FF8F40;
+    background-color: @accent;
 }

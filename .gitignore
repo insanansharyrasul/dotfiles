@@ -7,3 +7,6 @@ style.css.map
 .config/alacritty/colors.toml
 .config/kitty/colors.conf
 .config/ghostty/colors
+.config/btop/themes/eww.theme
+.config/swaync/colors.css
+.config/wofi/colors.css
