@@ -5,3 +5,5 @@ current-style.txt
 __pycache__/
 style.css.map
 .config/alacritty/colors.toml
+.config/kitty/colors.conf
+.config/ghostty/colors
