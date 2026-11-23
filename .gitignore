@@ -4,3 +4,4 @@ monitors.conf
 current-style.txt
 __pycache__/
 style.css.map
+.config/alacritty/colors.toml

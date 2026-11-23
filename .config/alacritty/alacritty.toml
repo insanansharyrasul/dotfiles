@@ -9,7 +9,7 @@ window.opacity = 0.95
 
 # Themes
 [general]
-import = ["~/.config/alacritty/themes/themes/ayu_dark.toml"]
+import = ["~/.config/alacritty/colors.toml"]
 
 [[keyboard.bindings]]
 key = "Return"

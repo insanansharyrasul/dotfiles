@@ -101,6 +101,8 @@ echo "Setting wallpaper [$WALLPAPER_INDEX]: $(basename "$WALLPAPER_PATH")"
     --transition-duration 2 \
     --transition-fps 90
 
+"$HOME/.cargo/bin/matugen" image "$WALLPAPER_PATH" -m dark --prefer saturation -q >/dev/null 2>&1 &
+
 echo "$WALLPAPER_INDEX" > "$STATE_FILE"
 
 echo "$(basename "$WALLPAPER_PATH")" > "$LIVE_OR_STATIC"
