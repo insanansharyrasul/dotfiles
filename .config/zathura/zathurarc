@@ -1,3 +1,4 @@
 set guioptions none
 set selection-clipboard clipboard
 map = zoom in
+include colors

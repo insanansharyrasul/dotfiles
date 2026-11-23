@@ -1,3 +1,5 @@
+local colors = require("conf.colors")
+
 hl.config({
     debug = {
         disable_logs = true,
@@ -39,8 +41,8 @@ hl.config({
         border_size   = 1,
 
         col           = {
-            active_border   = "rgba(ff9c40ff)",
-            inactive_border = "rgba(161a24aa)",
+            active_border   = colors.active_border,
+            inactive_border = colors.inactive_border,
         },
 
         layout        = "dwindle",
@@ -66,7 +68,7 @@ hl.config({
             enabled      = false,
             range        = 4,
             render_power = 3,
-            color        = "rgba(1a1a1aee)",
+            color        = colors.shadow,
         },
     },
 })

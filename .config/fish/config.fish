@@ -15,7 +15,7 @@ alias p "ping www.google.com"
 alias t "trans"
 alias v "nvim"
 
-oh-my-posh init fish --config $HOME/.poshthemes/ayu_custom.omp.json | source
+oh-my-posh init fish --config $HOME/.poshthemes/ayu_eww.omp.json | source
 alias vim nvim
 alias vi nvim
 alias rsc "nmcli device wifi rescan && notify-send 'Wi-Fi Rescan' 'Rescanned Wi-Fi networks.'"

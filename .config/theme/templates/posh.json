@@ -1,0 +1,79 @@
+{
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none",
+            "folder_icon": "\uf115",
+            "folder_separator_icon": "/",
+            "home_icon": "\ueb06",
+            "style": "full"
+          },
+          "template": " <${base}>\uf07b \uea9c</> {{ .Path }} ",
+          "foreground": "${base}",
+          "powerline_symbol": "\ue0b0",
+          "leading_powerline_symbol": "\ue0b6",
+          "background": "${accent}",
+          "type": "path",
+          "style": "powerline"
+        },
+        {
+          "properties": {
+            "branch_icon": " <${base}>\ue0a0 </>",
+            "cache_duration": "none",
+            "fetch_stash_count": true,
+            "fetch_status": false,
+            "fetch_upstream_icon": true
+          },
+          "template": " ➜ ({{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }}) ",
+          "foreground": "${base}",
+          "powerline_symbol": "\ue0b0",
+          "background": "${red}",
+          "type": "git",
+          "style": "powerline"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
+          "foreground": "${base}",
+          "powerline_symbol": "\ue0b0",
+          "background": "${green}",
+          "type": "node",
+          "style": "powerline"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "\ue3bf ",
+          "foreground": "${red}",
+          "type": "root",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "<${accent}>></>",
+          "foreground": "${magenta}",
+          "type": "text",
+          "style": "plain"
+        }
+      ],
+      "newline": true
+    }
+  ],
+  "version": 3,
+  "final_space": true
+}

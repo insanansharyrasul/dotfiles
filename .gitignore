@@ -10,3 +10,7 @@ style.css.map
 .config/btop/themes/eww.theme
 .config/swaync/colors.css
 .config/wofi/colors.css
+.config/hypr/conf/colors.lua
+.config/hypr/hyprlock-colors.conf
+.config/zathura/colors
+.poshthemes/ayu_eww.omp.json
