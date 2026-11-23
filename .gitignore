@@ -14,3 +14,5 @@ style.css.map
 .config/hypr/hyprlock-colors.conf
 .config/zathura/colors
 .poshthemes/ayu_eww.omp.json
+.config/eww/colors.scss
+.config/theme/mode

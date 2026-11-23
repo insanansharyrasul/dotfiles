@@ -20,4 +20,4 @@ palette = 11=${yellow}
 palette = 12=${blue}
 palette = 13=${magenta}
 palette = 14=${green}
-palette = 15=#FFFFFF
+palette = 15=${bright}

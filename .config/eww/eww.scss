@@ -11,19 +11,7 @@ window {
   background-color: transparent;
 }
 
-// -- Ayu Dark palette --
-$background: #000000;
-$base: #000000;
-$surface: #161A24;
-$surface2: #1F2430;
-$foreground: #BFBDB6;
-$gray: #5C6773;
-$accent: #FF9C40;
-$red: #F07178;
-$green: #95E6CB;
-$yellow: #FFB454;
-$blue: #59C2FF;
-$magenta: #D2A6FF;
+@import "colors";
 
 /* Non-Mono variant: the Mono patch rescales every icon to fit one cell width,
    so narrow glyphs (battery, volume) come out 2x too tall. Text metrics are
