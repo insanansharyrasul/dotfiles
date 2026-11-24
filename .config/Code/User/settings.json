@@ -1,5 +1,19 @@
 {
-  "files.autoSave": "afterDelay",
+  "files.autoSave": "onFocusChange",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.watcherExclude": {
+    "**/.venv/**": true,
+    "**/build/**": true,
+    "**/.dart_tool/**": true,
+    "**/node_modules/**": true
+  },
+  "editor.stickyScroll.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.linkedEditing": true,
+  "workbench.editor.limit.enabled": true,
+  "workbench.editor.limit.value": 8,
   "code-runner.executorMap": {
     "javascript": "npm run start-dev",
     "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt -lm && $dir$fileNameWithoutExt; rm -f $dir$fileNameWithoutExt",
@@ -24,6 +38,10 @@
   "code-runner.runInTerminal": true,
   "vim.leader": "<Space>",
   "vim.hlsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.highlightedyank.enable": true,
+  "vim.smartRelativeLine": true,
+  "vim.sneak": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     // NAVIGATION
     // switch b/w buffers
@@ -540,7 +558,9 @@
   },
   "search.exclude": {
     "**/*.git": true,
-    "**/*.venv": true
+    "**/*.venv": true,
+    "**/build": true,
+    "**/.dart_tool": true
   },
   "telemetry.telemetryLevel": "off",
   "telemetry.feedback.enabled": false,
