@@ -1,0 +1,79 @@
+// Zed keymap — migrated from VSCodeVim + VSCode keybindings.json
+[
+  {
+    "context": "Editor && vim_mode == normal && !menu",
+    "bindings": {
+      "j": ["vim::Down", { "display_lines": true }],
+      "k": ["vim::Up", { "display_lines": true }],
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      "space v": "pane::SplitRight",
+      "space s": "pane::SplitDown",
+      "space h": "workspace::ActivatePaneLeft",
+      "space j": "workspace::ActivatePaneDown",
+      "space k": "workspace::ActivatePaneUp",
+      "space l": "workspace::ActivatePaneRight",
+      "space r": "debugger::Start",
+      "space t": "debugger::Stop",
+      "space e": "debugger::Continue",
+      "space d": "debugger::RerunSession",
+      "space b": "editor::ToggleBreakpoint",
+      "space w": "task::Spawn",
+      "space a": "pane::GoBack",
+      "space f": "file_finder::Toggle",
+      "space q": "editor::Format",
+      "space c a": "editor::ToggleCodeActions",
+      "[ d": "editor::GoToPreviousDiagnostic",
+      "] d": "editor::GoToDiagnostic",
+      "g h": "editor::Hover",
+      "ctrl-n": "editor::Cancel"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !menu",
+    "bindings": {
+      "shift-j": "editor::MoveLineDown",
+      "shift-k": "editor::MoveLineUp",
+      "space c": "editor::ToggleComments",
+      "v": "editor::SelectLargerSyntaxNode"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
+      "ctrl-shift-c": "editor::Copy",
+      "ctrl-shift-v": "editor::Paste"
+    }
+  },
+  {
+    "context": "Editor && vim_mode != insert",
+    "bindings": { "ctrl-w": "pane::CloseActiveItem" }
+  },
+  {
+    "context": "Editor && (showing_completions || showing_code_actions)",
+    "bindings": {
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious"
+    }
+  },
+  {
+    "context": "Picker > Editor",
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": { "ctrl-shift-j": "terminal_panel::Toggle" }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "shift-enter": ["terminal::SendText", "\\\r\n"],
+      "ctrl-l ctrl-k": "terminal::Clear"
+    }
+  }
+]

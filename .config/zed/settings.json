@@ -1,0 +1,114 @@
+// Zed settings — migrated from VSCode (backup: settings.json.bak)
+{
+  "cli_default_open_behavior": "existing_window",
+  "edit_predictions": {
+    "open_ai_compatible_api": {
+      "max_output_tokens": 64
+    }
+  },
+  "agent": {
+    "sandbox_permissions": {
+      "network_hosts": [
+        "github.com",
+        "pypi.org",
+        "files.pythonhosted.org",
+        "api.maildrop.cc"
+      ]
+    },
+    "default_profile": "write",
+    "tool_permissions": {
+      "tools": {
+        "skill": { "default": "allow" },
+        "search_web": { "default": "allow" },
+        "terminal": { "default": "allow" }
+      }
+    },
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "gpt-5.6-sol",
+      "enable_thinking": true,
+      "effort": "xhigh"
+    },
+    "favorite_models": [],
+    "model_parameters": []
+  },
+
+  // Look
+  "theme": { "mode": "system", "light": "Ayu Light", "dark": "Ayu Dark" },
+  "icon_theme": "Material Icon Theme",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "buffer_font_family": "Fira Code",
+  "buffer_font_fallbacks": ["JetBrainsMono Nerd Font"],
+  "buffer_font_features": { "calt": true },
+  "minimap": { "show": "never" },
+  "tab_bar": { "show": false },
+  "toolbar": { "breadcrumbs": false },
+  "show_wrap_guides": true,
+  "wrap_guides": [80, 120],
+  "project_panel": {
+    "dock": "right",
+    "auto_fold_dirs": false,
+    "indent_guides": { "show": "never" }
+  },
+  "outline_panel": { "dock": "right" },
+  "git_panel": { "dock": "right" },
+
+  // Editor
+  "vim_mode": true,
+  "relative_line_numbers": "enabled",
+  "autosave": { "after_delay": { "milliseconds": 500 } },
+  "format_on_save": "on",
+  "tab_size": 2,
+  "inlay_hints": { "enabled": false },
+  "diagnostics": { "inline": { "enabled": true } }, // ≈ Error Lens
+  "file_types": { "Python": ["spec"], "Markdown": ["rmd"] },
+  "file_scan_exclusions": [
+    "**/.git", "**/.svn", "**/.hg", "**/CVS", "**/.DS_Store",
+    "**/Thumbs.db", "**/.classpath", "**/.settings", "**/__pycache__"
+  ],
+
+  "terminal": {
+    "font_family": "FiraCode Nerd Font Mono",
+    "shell": { "program": "fish" }
+  },
+
+  "languages": {
+    "Python": {
+      "language_servers": ["pyright", "ruff", "..."],
+      "formatter": [
+        { "code_action": "source.fixAll.ruff" },
+        { "language_server": { "name": "ruff" } }
+      ]
+    },
+    "Dart": { "preferred_line_length": 100, "show_wrap_guides": true, "wrap_guides": [100] },
+    "Docker Compose": { "tab_size": 2, "hard_tabs": false }
+  },
+
+  // Extensions (global in Zed — union of all VSCode profiles)
+  "auto_install_extensions": {
+    "material-icon-theme": true,
+    "dart": true, "kotlin": true, "html": true, "typst": true,
+    "java": true, "scala": true, "r": true, "toml": true, "lua": true,
+    "php": true, "svelte": true, "dockerfile": true, "docker-compose": true,
+    "latex": true, "xml": true, "neocmake": true, "make": true,
+    "git-firefly": true, "csv": true, "env": true, "biome": true,
+    "sql": true, "log": true, "tcl": true, "qml": true, "verilog": true,
+    "assembly": true, "color-highlight": true
+  },
+
+  // VSCode profiles → Zed settings profiles (ctrl-shift-p: "settings profile selector: toggle")
+  "profiles": {
+    "C / C++": { "soft_wrap": "bounded", "preferred_line_length": 200 },
+    "Odoo": {
+      "buffer_font_size": 13, "ui_font_size": 14, // zoom -0.7
+      "soft_wrap": "bounded", "preferred_line_length": 200, "wrap_guides": [80],
+      "languages": {
+        "Python": {
+          "formatter": { "external": { "command": "black", "arguments": ["--quiet", "-"] } }
+        }
+      }
+    }
+    // Data, Develops, MAD, Web, Embedded used default settings in VSCode
+  }
+}

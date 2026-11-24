@@ -1,0 +1,11 @@
+// Zed tasks — replaces Code Runner (run via space w / task::Spawn)
+[
+  { "label": "Run C", "command": "cd \"$ZED_DIRNAME\" && gcc \"$ZED_FILENAME\" -o \"$ZED_STEM\" -lm && ./\"$ZED_STEM\" && rm ./\"$ZED_STEM\"" },
+  { "label": "Run C++", "command": "cd \"$ZED_DIRNAME\" && g++ -std=c++20 -O2 \"$ZED_FILENAME\" -o \"$ZED_STEM\" && ./\"$ZED_STEM\" && rm ./\"$ZED_STEM\"" },
+  { "label": "Run Python", "command": "python3 -u \"$ZED_FILE\"" },
+  { "label": "Run TypeScript", "command": "npx tsx \"$ZED_FILE\"" },
+  { "label": "Run Go", "command": "go run \"$ZED_FILE\"" },
+  { "label": "Run Java", "command": "cd \"$ZED_DIRNAME\" && javac \"$ZED_FILENAME\" && java \"$ZED_STEM\"" },
+  { "label": "cargo run", "command": "cargo run" },
+  { "label": "flutter run", "command": "flutter run" }
+]
