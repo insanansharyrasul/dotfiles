@@ -2,71 +2,18 @@
   "files.autoSave": "afterDelay",
   "code-runner.executorMap": {
     "javascript": "npm run start-dev",
-    "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
-    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt -lm && $dir$fileNameWithoutExt && rm ./$fileNameWithoutExt",
-    "zig": "zig run",
-    "cpp": "cd $dir && g++ -O2 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt && rm ./$fileNameWithoutExt",
-    "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "php": "php",
+    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt -lm && $dir$fileNameWithoutExt; rm -f $dir$fileNameWithoutExt",
+    "cpp": "cd $dir && g++ -O2 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt; rm -f $dir$fileNameWithoutExt",
     "python": "python3 -u",
-    "perl": "perl",
-    "perl6": "perl6",
-    "ruby": "ruby",
-    "go": "go run",
-    "lua": "lua",
-    "groovy": "groovy",
-    "powershell": "powershell -ExecutionPolicy ByPass -File",
-    "bat": "cmd /c",
-    "shellscript": "bash",
-    "fsharp": "fsi",
-    "csharp": "scriptcs",
-    "vbscript": "cscript //Nologo",
     "typescript": "npx tsx",
-    "coffeescript": "coffee",
-    "scala": "scala",
-    "swift": "swift",
-    "julia": "julia",
-    "crystal": "crystal",
-    "ocaml": "ocaml",
-    "r": "Rscript",
-    "applescript": "osascript",
-    "clojure": "lein exec",
-    "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
-    "rust": "cargo run",
-    "racket": "racket",
-    "scheme": "csi -script",
-    "ahk": "autohotkey",
-    "autoit": "autoit3",
-    "dart": "dart",
-    "pascal": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
-    "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
-    "haskell": "runghc",
-    "nim": "nim compile --verbosity:0 --hints:off --run",
-    "lisp": "sbcl --script",
-    "kit": "kitc --run",
-    "v": "iverilog -o $filenameWithoutExt $fileName",
-    "verilog": "iverilog -o $fileNameWithoutExt $fileName && vvp $fileNameWithoutExt",
-    "sass": "sass --style expanded",
-    "scss": "scss --style expanded",
-    "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css",
-    "FortranFreeForm": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "fortran-modern": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "fortran_fixed-form": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "sml": "cd $dir && sml $fileName",
-    "mojo": "mojo run",
-    "erlang": "escript",
-    "spwn": "spwn build",
-    "pkl": "cd $dir && pkl eval -f yaml $fileName -o $fileNameWithoutExt.yaml",
-    "gleam": "gleam run -m $fileNameWithoutExt"
+    "rust": "cargo run"
   },
   "explorer.confirmDelete": false,
   "python.analysis.autoImportCompletions": true,
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   },
   "js/ts.updateImportsOnFileMove.enabled": "always",
-  "window.zoomLevel": 0,
   "editor.fontLigatures": true,
   "editor.fontFamily": "'Fira Code', 'JetBrainsMono Nerd Font'",
   "code-runner.saveFileBeforeRun": true,
@@ -78,19 +25,6 @@
   "vim.leader": "<Space>",
   "vim.hlsearch": true,
   "vim.normalModeKeyBindingsNonRecursive": [
-    // CUSTOM NAVIGATION
-    {
-      // "before": [
-      //   "<C-f>"
-      // ],
-      // "after": [
-      //   "j",
-      //   "j",
-      //   "j",
-      //   "j",
-      //   "j"
-      // ]
-    },
     // NAVIGATION
     // switch b/w buffers
     {
@@ -130,7 +64,7 @@
     // splits
     {
       "before": [
-        "leader",
+        "<leader>",
         "v"
       ],
       "commands": [
@@ -139,7 +73,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "s"
       ],
       "commands": [
@@ -149,7 +83,7 @@
     // run debug
     {
       "before": [
-        "leader",
+        "<leader>",
         "r"
       ],
       "commands": [
@@ -158,7 +92,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "t"
       ],
       "commands": [
@@ -167,7 +101,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "e"
       ],
       "commands": [
@@ -176,7 +110,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "d"
       ],
       "commands": [
@@ -185,7 +119,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "b"
       ],
       "commands": [
@@ -194,7 +128,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "w"
       ],
       "commands": [
@@ -205,7 +139,7 @@
     // CMAKE
     {
       "before": [
-        "leader",
+        "<leader>",
         "i"
       ],
       "commands": [
@@ -214,7 +148,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "o"
       ],
       "commands": [
@@ -224,7 +158,7 @@
     // Leetcode
     {
       "before": [
-        "leader",
+        "<leader>",
         "y"
       ],
       "commands": [
@@ -233,7 +167,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "u"
       ],
       "commands": [
@@ -242,7 +176,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "a"
       ],
       "commands": [
@@ -252,7 +186,7 @@
     // panes
     {
       "before": [
-        "leader",
+        "<leader>",
         "h"
       ],
       "commands": [
@@ -261,7 +195,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "j"
       ],
       "commands": [
@@ -270,7 +204,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "k"
       ],
       "commands": [
@@ -279,7 +213,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "l"
       ],
       "commands": [
@@ -316,7 +250,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "f"
       ],
       "commands": [
@@ -325,7 +259,7 @@
     },
     {
       "before": [
-        "leader",
+        "<leader>",
         "q"
       ],
       "commands": [
@@ -390,7 +324,7 @@
     // toggle comment selection
     {
       "before": [
-        "leader",
+        "<leader>",
         "c"
       ],
       "commands": [
@@ -452,11 +386,10 @@
   "files.associations": {
     "*.rmd": "markdown",
     "*.spec": "python",
-    "*.{asm,inc,s,nasm,yasm,-----------------------------------------}": "asm-x86-nasm"
+    "*.{asm,inc,s,nasm,yasm}": "asm-x86-nasm"
   },
   "debug.showVariableTypes": true,
   "dart.hotReloadOnSave": "all",
-  "dart.flutterHotReloadOnSave": "all",
   "editor.formatOnSave": true,
   "editor.inlayHints.enabled": "offUnlessPressed",
   "window.experimentalControlOverlay": false,
@@ -465,7 +398,6 @@
   "codesnap.backgroundColor": "#ffffff",
   "codesnap.transparentBackground": true,
   "codesnap.boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px",
-  "tabnine.experimentalAutoImports": true,
   "window.commandCenter": false,
   "dart.previewFlutterUiGuides": true,
   "dart.previewFlutterUiGuidesCustomTracking": true,
@@ -483,7 +415,7 @@
     }
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll": "always"
+    "source.fixAll": "explicit"
   },
   "chat.commandCenter.enabled": false,
   "workbench.editor.showTabs": "single",
@@ -504,9 +436,6 @@
   "leetcode.hint.commandShortcut": false,
   "leetcode.hint.configWebviewMarkdown": false,
   "leetcode.showDescription": "Both",
-  "vscode_custom_css.imports": [
-    ""
-  ],
   "workbench.activityBar.location": "top",
   "workbench.startupEditor": "none",
   "githubPullRequests.createOnPublishBranch": "never",
@@ -527,7 +456,7 @@
   "dart.flutterSdkPath": "/home/teaguy21/development/flutter",
   "extensions.ignoreRecommendations": true,
   "dart.mcpServer": true,
-  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.nextEditSuggestions.enabled": false,
   "dart.debugExternalPackageLibraries": true,
   "dart.debugSdkLibraries": false,
   "terminal.integrated.suggest.enabled": true,
@@ -544,35 +473,11 @@
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "python.defaultInterpreterPath": "/bin/python",
-  "editor.indentSize": "tabSize",
   "editor.tabSize": 2,
   "chat.mcp.gallery.enabled": true,
   "chat.tools.terminal.autoApprove": {
     "flutter": true,
-    "/^python3 -m py_compile run_tests\\.py$/": {
-      "approve": true,
-      "matchCommandLine": true
-    },
-    "/^typst compile main\\.typ /tmp/typst_skripsi-review\\.pdf$/": {
-      "approve": true,
-      "matchCommandLine": true
-    },
-    "typst": true,
-    "make": true,
-    "/^printf '1='$/": true,
-    "/^\\./build/dlt '12\\.30\\.30 - 12\\.30\\.45'$/": true,
-    "/^printf '2='$/": true,
-    "/^\\./build/dlt '12\\.30 - 12\\.00'$/": true,
-    "/^printf '3='$/": true,
-    "/^\\./build/dlt '13/11/26 12\\.30\\.30 - 12/11/26 12:00:00'$/": true,
-    "/^printf '4 exit='$/": true,
-    "/^\\./build/dlt '12:30\\.30 - 12:00:00'$/": true,
-    "/^printf 'status=%s\\\\n' \"\\$\\?\"$/": true,
-    "/^pdfinfo /tmp/kolokium-typst-slides\\.pdf$/": true,
-    "/^pdftotext -f \"\\$p\" -l \"\\$p\" -layout /tmp/kolokium-typst-slides\\.pdf -$/": true,
-    "/^pandoc -D$/": true,
-    "/^pandoc --data-dir$/": true,
-    "/^true$/": true
+    "typst": true
   },
   "chat.tips.enabled": false,
   "tinymist.lint.enabled": true,
@@ -645,7 +550,7 @@
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   },
   "[json]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "chat.notifyWindowOnConfirmation": "always",
   "chat.notifyWindowOnResponseReceived": "always",

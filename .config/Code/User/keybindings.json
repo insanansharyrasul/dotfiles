@@ -75,16 +75,18 @@
   },
   {
     "key": "ctrl+shift+c",
-    "command": "editor.action.clipboardCopyAction"
+    "command": "editor.action.clipboardCopyAction",
+    "when": "editorTextFocus"
   },
   {
     "key": "ctrl+shift+v",
-    "command": "editor.action.clipboardPasteAction"
+    "command": "editor.action.clipboardPasteAction",
+    "when": "editorTextFocus"
   },
   {
     "key": "ctrl+w",
     "command": "workbench.action.closeActiveEditor",
-    "when": "vim.mode != 'Insert'"
+    "when": "editorFocus && vim.mode != 'Insert'"
   },
   {
     "key": "ctrl+k",
