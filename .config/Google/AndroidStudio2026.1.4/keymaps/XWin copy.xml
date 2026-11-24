@@ -2,12 +2,12 @@
   <action id="$Copy">
     <keyboard-shortcut first-keystroke="ctrl c" />
     <keyboard-shortcut first-keystroke="ctrl insert" />
-    <keyboard-shortcut first-keystroke="ctrl shift c" />
+    <keyboard-shortcut first-keystroke="shift ctrl c" />
   </action>
   <action id="$Paste">
     <keyboard-shortcut first-keystroke="ctrl v" />
     <keyboard-shortcut first-keystroke="shift insert" />
-    <keyboard-shortcut first-keystroke="ctrl shift v" />
+    <keyboard-shortcut first-keystroke="shift ctrl v" />
   </action>
   <action id="ActivateProjectToolWindow">
     <keyboard-shortcut first-keystroke="alt 1" />
@@ -15,7 +15,7 @@
   </action>
   <action id="ActivateTerminalToolWindow">
     <keyboard-shortcut first-keystroke="alt f12" />
-    <keyboard-shortcut first-keystroke="ctrl shift j" />
+    <keyboard-shortcut first-keystroke="shift ctrl j" />
   </action>
   <action id="CloseContent">
     <keyboard-shortcut first-keystroke="ctrl f4" />
@@ -36,7 +36,7 @@
   </action>
   <action id="PasteMultiple" />
   <action id="RecentFiles">
-    <keyboard-shortcut first-keystroke="ctrl shift e" />
+    <keyboard-shortcut first-keystroke="shift ctrl e" />
   </action>
   <action id="SelectNextOccurrence" />
   <action id="SmartSelect" />
