@@ -1,0 +1,16 @@
+cli
+dsh
+copilot
+cli
+cli
+9router
+appium
+bcryptjs
+better-sqlite3
+command-code
+mmx-cli
+omniroute
+opencode-omniroute-auth
+sql.js
+systray2
+typescript
