@@ -1,0 +1,261 @@
+{
+  "files.autoSave": "afterDelay",
+  "code-runner.executorMap": {
+    "javascript": "node",
+    "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt -lm && $dir$fileNameWithoutExt && rm ./$fileNameWithoutExt",
+    "zig": "zig run",
+    "cpp": "cd $dir && g++ -O2 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt && rm ./$fileNameWithoutExt",
+    "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "php": "php",
+    "python": "python3 -u",
+    "perl": "perl",
+    "perl6": "perl6",
+    "ruby": "ruby",
+    "go": "go run",
+    "lua": "lua",
+    "groovy": "groovy",
+    "powershell": "powershell -ExecutionPolicy ByPass -File",
+    "bat": "cmd /c",
+    "shellscript": "bash",
+    "fsharp": "fsi",
+    "csharp": "scriptcs",
+    "vbscript": "cscript //Nologo",
+    "typescript": "npx tsx",
+    "coffeescript": "coffee",
+    "scala": "scala",
+    "swift": "swift",
+    "julia": "julia",
+    "crystal": "crystal",
+    "ocaml": "ocaml",
+    "r": "Rscript",
+    "applescript": "osascript",
+    "clojure": "lein exec",
+    "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+    "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+    "racket": "racket",
+    "scheme": "csi -script",
+    "ahk": "autohotkey",
+    "autoit": "autoit3",
+    "dart": "dart",
+    "pascal": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+    "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
+    "haskell": "runghc",
+    "nim": "nim compile --verbosity:0 --hints:off --run",
+    "lisp": "sbcl --script",
+    "kit": "kitc --run",
+    "v": "v run",
+    "sass": "sass --style expanded",
+    "scss": "scss --style expanded",
+    "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css",
+    "FortranFreeForm": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "fortran-modern": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "fortran_fixed-form": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "sml": "cd $dir && sml $fileName",
+    "mojo": "mojo run",
+    "erlang": "escript",
+    "spwn": "spwn build",
+    "pkl": "cd $dir && pkl eval -f yaml $fileName -o $fileNameWithoutExt.yaml",
+    "gleam": "gleam run -m $fileNameWithoutExt",
+  },
+  "explorer.sortOrder": "type",
+  "explorer.confirmDelete": false,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 200,
+  "python.analysis.autoImportCompletions": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "window.zoomLevel": -0.7,
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "'Fira Code'",
+  "code-runner.saveFileBeforeRun": true,
+  "code-runner.saveAllFilesBeforeRun": true,
+  "editor.mouseWheelZoom": true,
+  "git.openRepositoryInParentFolders": "never",
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "code-runner.runInTerminal": true,
+  "vim.leader": "<Space>",
+  "vim.hlsearch": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // NAVIGATION
+    // switch b/w buffers
+    { "before": ["<S-h>"], "commands": [":bprevious"] },
+    { "before": ["<S-l>"], "commands": [":bnext"] },
+
+    // splits
+    { "before": ["leader", "v"], "commands": [":vsplit"] },
+    { "before": ["leader", "s"], "commands": [":split"] },
+
+    // run debug
+    { "before": ["leader", "r"], "commands": ["workbench.action.debug.start"] },
+    { "before": ["leader", "t"], "commands": ["workbench.action.debug.stop"] },
+    {
+      "before": ["leader", "e"],
+      "commands": ["workbench.action.debug.continue"],
+    },
+    {
+      "before": ["leader", "d"],
+      "commands": ["workbench.action.debug.restart"],
+    },
+    {
+      "before": ["leader", "b"],
+      "commands": ["editor.debug.action.toggleBreakpoint"],
+    },
+    { "before": ["leader", "w"], "commands": ["workbench.action.tasks.build"] },
+    // { "before": ["leader", "n"], "commands": ["coderunner.run"] },
+
+    {
+      "before": ["leader", "a"],
+      "commands": ["workbench.action.navigateBack"],
+    },
+
+    // panes
+    {
+      "before": ["leader", "h"],
+      "commands": ["workbench.action.focusLeftGroup"],
+    },
+    {
+      "before": ["leader", "j"],
+      "commands": ["workbench.action.focusBelowGroup"],
+    },
+    {
+      "before": ["leader", "k"],
+      "commands": ["workbench.action.focusAboveGroup"],
+    },
+    {
+      "before": ["leader", "l"],
+      "commands": ["workbench.action.focusRightGroup"],
+    },
+    // { "before": ["leader", "q"], "commands": [":q!"] },
+    // { "before": ["leader", "x"], "commands": [":x!"] },
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prev"],
+    },
+    {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.next"],
+    },
+    {
+      "before": ["<leader>", "c", "a"],
+      "commands": ["editor.action.quickFix"],
+    },
+    { "before": ["leader", "f"], "commands": ["workbench.action.quickOpen"] },
+    { "before": ["leader", "q"], "commands": ["editor.action.formatDocument"] },
+    {
+      "before": ["g", "h"],
+      "commands": ["editor.action.showDefinitionPreviewHover"],
+    },
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"],
+    },
+  ],
+  "vim.visualModeKeyBindings": [
+    // Stay in visual mode while indenting
+    { "before": ["<"], "commands": ["editor.action.outdentLines"] },
+    { "before": [">"], "commands": ["editor.action.indentLines"] },
+    // Move selected lines while staying in visual mode
+    { "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
+    { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] },
+    // toggle comment selection
+    { "before": ["leader", "c"], "commands": ["editor.action.commentLine"] },
+  ],
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "explorer.compactFolders": false,
+  "vim.handleKeys": {
+    "<C-d>": false,
+    "<C-s>": false,
+    "<C-z>": false,
+  },
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "[python]": {
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml",
+  },
+  "explorer.confirmDragAndDrop": false,
+  // "black-formatter.args": [
+  //   "\"--line-length\", \"150\", \"--skip-magic-trailing-comma\""
+  // ],
+  "editor.lineNumbers": "relative",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  // "python.analysis.exclude": [
+  //   "**/__pycache__"
+  // ],
+  "files.exclude": {
+    "**/__pycache__": true,
+  },
+  "workbench.colorCustomizations": {
+    "editorUnnecessaryCode.border": "#ff0000",
+  },
+  "typescript.suggest.paths": false,
+  "javascript.suggest.paths": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.minimap.enabled": false,
+  // "workbench.experimental.enableNewProfilesUI": true,
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
+  "terminal.integrated.defaultProfile.linux": "fish",
+  "terminal.integrated.focusAfterRun": "terminal",
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off",
+  },
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1,
+  },
+  "files.associations": {
+    "*.rmd": "markdown",
+  },
+  "debug.showVariableTypes": true,
+  "workbench.colorTheme": "Ayu Dark",
+  "dart.hotReloadOnSave": "all",
+  "dart.flutterHotReloadOnSave": "all",
+  "editor.formatOnSave": true,
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "window.titleBarStyle": "custom",
+  "window.experimentalControlOverlay": false,
+  "window.customTitleBarVisibility": "auto",
+  "cmake.showOptionsMovedNotification": false,
+  "codesnap.backgroundColor": "#ffffff",
+  "codesnap.transparentBackground": true,
+  "codesnap.boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px",
+  "tabnine.experimentalAutoImports": true,
+  "window.commandCenter": false,
+  "dart.previewFlutterUiGuides": true,
+  "dart.previewFlutterUiGuidesCustomTracking": true,
+  "workbench.layoutControl.enabled": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "Odoo.configurations": {
+    "0": {
+      "id": 0,
+      "name": "odoo17",
+      "odooPath": "/home/teaguy21/odoo",
+      "addons": [],
+      "pythonPath": "python3",
+      "validatedAddonsPaths": [],
+    },
+  },
+  "workbench.sideBar.location": "right",
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "git.enableSmartCommit": true,
+  // "editor.rulers": [
+  //   100
+  // ]
+}

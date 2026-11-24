@@ -1,0 +1,33 @@
+{
+	"template": {
+		"prefix": "asd",
+		"body": [
+			"#include <bits/stdc++.h>",
+			"using namespace std;",
+			"",
+			"int main()",
+			"{",
+			"\tios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);",
+			"\tfreopen(\"input.txt\", \"r\", stdin);",
+			"\tfreopen(\"output.txt\", \"w\", stdout);",
+			"\t$1",
+			"}",
+		],
+		"description": "Template for CP",
+	},
+	"freopen": {
+		"prefix": "fre",
+		"body": [
+			"freopen(\"input.txt\", \"r\", stdin);",
+			"freopen(\"output.txt\", \"w\", stdout);",
+		],
+		"description": "Template for CP",
+	},
+	"ios": {
+		"prefix": "qwe",
+		"body": [
+			"ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);"
+		],
+		"description": "Template for CP",
+	},
+}

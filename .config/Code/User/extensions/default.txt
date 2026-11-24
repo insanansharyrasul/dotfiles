@@ -1,0 +1,3 @@
+github.vscode-pull-request-github
+myriad-dreamin.tinymist
+vscodevim.vim

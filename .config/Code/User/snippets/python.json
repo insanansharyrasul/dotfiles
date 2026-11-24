@@ -1,0 +1,267 @@
+{
+	"SK Import Common Packages": {
+		"prefix": "sk_import_common",
+		"body": [
+			"import numpy as np",
+			"import pandas as pd",
+			"",
+			"from sklearn.model_selection import train_test_split",
+			"from sklearn.pipeline import Pipeline",
+			"from sklearn.compose import ColumnTransformer",
+			"",
+			"from jcopml.pipeline import num_pipe, cat_pipe",
+			"from jcopml.utils import save_model, load_model",
+			"from jcopml.plot import plot_missing_value",
+			"from jcopml.feature_importance import mean_score_decrease"
+		],
+		"description": "Import common packages"
+	},
+	"SK Import CSV": {
+		"prefix": "sk_import_csv",
+		"body": [
+			"df = pd.read_csv(\"____________\", index_col=\"___________\", parse_dates=[\"____________\"])",
+			"df.head()"
+		],
+		"description": "Import CSV data"
+	},
+	"SK Shuffle Split": {
+		"prefix": "sk_shuffle_split",
+		"body": [
+			"X = df.drop(columns=\"___________\")",
+			"y = \"_____________\"",
+			"",
+			"X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)",
+			"X_train.shape, X_test.shape, y_train.shape, y_test.shape"
+		],
+		"description": "Shuffle Split dataset"
+	},
+	"SK Stratified Split": {
+		"prefix": "sk_stratified_split",
+		"body": [
+			"X = df.drop(columns=\"___________\")",
+			"y = \"_____________\"",
+			"",
+			"X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)",
+			"X_train.shape, X_test.shape, y_train.shape, y_test.shape"
+		],
+		"description": "Stratified Shuffle Split dataset"
+	},
+	"SK Preprocessor Common": {
+		"prefix": "sk_pre_common",
+		"body": [
+			"preprocessor = ColumnTransformer([",
+			" ('numeric', num_pipe(), [\"______________\"]),",
+			" ('categoric', cat_pipe(encoder='onehot'), [\"_____________\"]),",
+			"])"
+		],
+		"description": "Common preprocessor"
+	},
+	"SK Preprocessor Advance": {
+		"prefix": "sk_pre_advance",
+		"body": [
+			"# Note: You could not use gsp, rsp, and bsp recommendation in advance mode",
+			"# You should specify your own parameter grid / interval when tuning",
+			"preprocessor = ColumnTransformer([",
+			" ('numeric1', num_pipe(impute='mean', poly=2, scaling='standard', transform='yeo-johnson'), [\"______________\"]),",
+			" ('numeric2', num_pipe(impute='median', poly=2, scaling='robust'), [\"______________\"]),",
+			" ('categoric1', cat_pipe(encoder='ordinal'), [\"_____________\"]),",
+			" ('categoric2', cat_pipe(encoder='onehot'), [\"_____________\"])",
+			"])"
+		],
+		"description": "Advanced preprocessor"
+	},
+	"SK KNN Regression": {
+		"prefix": "sk_knn_reg",
+		"body": [
+			"from sklearn.neighbors import KNeighborsRegressor",
+			"pipeline = Pipeline([",
+			" ('prep', preprocessor),",
+			" ('algo', KNeighborsRegressor())",
+			"])"
+		],
+		"description": "KNN Regression"
+	},
+	"SK SVM Regression": {
+		"prefix": "sk_svm_reg",
+		"body": [
+			"from sklearn.svm import SVR",
+			"pipeline = Pipeline([",
+			" ('prep', preprocessor),",
+			" ('algo', SVR(max_iter=500))",
+			"])"
+		],
+		"description": "SVM Regression"
+	},
+	"SK RF Regression": {
+		"prefix": "sk_rf_reg",
+		"body": [
+			"from sklearn.ensemble import RandomForestRegressor",
+			"pipeline = Pipeline([",
+			" ('prep', preprocessor),",
+			" ('algo', RandomForestRegressor(n_jobs=-1, random_state=42))",
+			"])"
+		],
+		"description": "Random Forest Regression"
+	},
+	"SK XGBoost Regression": {
+		"prefix": "sk_xgb_reg",
+		"body": [
+			"from xgboost import XGBRegressor",
+			"pipeline = Pipeline([",
+			" ('prep', preprocessor),",
+			" ('algo', XGBRegressor(n_jobs=-1, random_state=42))",
+			"])"
+		],
+		"description": "XGBoost Regression"
+	},
+	"SK Linear Regression": {
+		"prefix": "sk_lin_reg",
+		"body": [
+			"from sklearn.linear_model import LinearRegression",
+			"pipeline = Pipeline([",
+			" ('prep', preprocessor),",
+			" ('algo', LinearRegression())",
+			"])"
+		],
+		"description": "Linear Regression"
+	},
+	"SK Logistic Regression": {
+		"prefix": "sk_log_reg",
+		"body": [
+			"from sklearn.linear_model import LogisticRegression",
+			"pipeline = Pipeline([",
+			" ('prep', preprocessor),",
+			" ('algo', LogisticRegression(solver='lbfgs', n_jobs=-1, random_state=42))",
+			"])"
+		],
+		"description": "Logistic Regression"
+	},
+	"PT Import Common Packages": {
+		"prefix": "pt_import_common",
+		"body": [
+			"import torch",
+			"from torch import nn, optim",
+			"from jcopdl.callback import Callback, set_config",
+			"",
+			"device = torch.device(\"cuda:0\" if torch.cuda.is_available() else \"cpu\")",
+			"device"
+		],
+		"description": "PyTorch import common packages"
+	},
+	"PT Tensor Dataset": {
+		"prefix": "pt_tensor_dataset",
+		"body": [
+			"from torch.utils.data import TensorDataset, DataLoader",
+			"",
+			"bs = \"______\"",
+			"",
+			"train_set = TensorDataset(\"________\")",
+			"trainloader = DataLoader(train_set, batch_size=bs, shuffle=True, num_workers=\"__\")",
+			"",
+			"test_set = TensorDataset(\"_________\")",
+			"testloader = DataLoader(test_set, batch_size=bs, shuffle=\"____\")"
+		],
+		"description": "Tensor Dataset & Dataloader"
+	},
+	"PT Torchvision Image Folder": {
+		"prefix": "pt_image_folder",
+		"body": [
+			"from torchvision import datasets, transforms",
+			"from torch.utils.data import DataLoader",
+			"",
+			"bs = \"______\"",
+			"crop_size = \"____\"",
+			"",
+			"train_transform = transforms.Compose([",
+			" \"____________\",",
+			" transforms.ToTensor()",
+			"])",
+			"",
+			"test_transform = transforms.Compose([",
+			" \"____________\",",
+			" transforms.ToTensor()",
+			"])",
+			"",
+			"train_set = datasets.ImageFolder(\"________\", transform=train_transform)",
+			"trainloader = DataLoader(train_set, batch_size=bs, shuffle=True, num_workers=4)",
+			"",
+			"test_set = datasets.ImageFolder(\"________\", transform=test_transform)",
+			"testloader = DataLoader(test_set, batch_size=bs, shuffle=\"____\")"
+		],
+		"description": "Torchvision image dataset"
+	},
+	"PT ANN Example": {
+		"prefix": "pt_ann",
+		"body": [
+			"from jcopdl.layers import linear_block",
+			"",
+			"class NN(nn.Module):",
+			" def __init__(self):",
+			" super().__init__()",
+			" self.fc = nn.Sequential(",
+			" linear_block(input_size, n1, dropout=dropout),",
+			" linear_block(n1, n2, dropout=dropout),",
+			" linear_block(n2, output_size, activation='_________')",
+			" )",
+			" def forward(self, x):",
+			" return self.fc(x)"
+		],
+		"description": "ANN Example"
+	},
+	"PT CNN Example": {
+		"prefix": "pt_cnn",
+		"body": [
+			"from jcopdl.layers import linear_block, conv_block",
+			"",
+			"class CNN(nn.Module):",
+			" def __init__(self):",
+			" super().__init__()",
+			" self.conv = nn.Sequential(",
+			" conv_block(\"___\", \"___\"),",
+			" conv_block(\"___\", \"___\"),",
+			" nn.Flatten()",
+			" )",
+			" self.fc = nn.Sequential(",
+			" linear_block(\"_____\", \"_____\", dropout=\"_____\"),",
+			" linear_block(\"_____\", \"_____\", activation=\"______\")",
+			" )",
+			" def forward(self, x):",
+			" return self.fc(self.conv(x))"
+		],
+		"description": "CNN Example"
+	},
+	"PT Training Loop": {
+		"prefix": "pt_train_loop",
+		"body": [
+			"from tqdm.auto import tqdm",
+			"",
+			"def loop_fn(mode, dataset, dataloader, model, criterion, optimizer, device):",
+			" if mode == \"train\":",
+			" model.train()",
+			" elif mode == \"test\":",
+			" model.eval()",
+			" cost = 0",
+			" for feature, target in tqdm(dataloader, desc=mode.title()):",
+			" feature, target = feature.to(device), target.to(device)",
+			" output = model(feature)",
+			" loss = criterion(output, target)",
+			" if mode == \"train\":",
+			" loss.backward()",
+			" optimizer.step()",
+			" optimizer.zero_grad()",
+			" cost += loss.item() * feature.shape[0]",
+			" cost = cost / len(dataset)",
+			" return cost"
+		],
+		"description": "Training loop template"
+	},
+	"PT Load Best Model": {
+		"prefix": "pt_load_model",
+		"body": [
+			"weights = torch.load(\"________________\", map_location=\"cpu\")",
+			"model.load_state_dict(weights)",
+			"model = model.to(device)"
+		],
+		"description": "Load best model"
+	}
+}
