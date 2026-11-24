@@ -33,6 +33,7 @@
 | `.config/alacritty`, `kitty`, `ghostty` | Terminals |
 | `.config/fish` | Shell (fisher, nvm) |
 | `.config/nvim` | Neovim (lazy.nvim, LSP, telescope, treesitter) |
+| `.config/Google/AndroidStudio*`, `.ideavimrc` | Android Studio settings (keymap, editor, code style) and IdeaVim, mirroring the VS Code setup |
 | `.config/yazi`, `zathura`, `btop` | File manager, PDF viewer, system monitor |
 | `.config/kanata` | Key remapping (systemd user service) |
 | `.config/scripts` | TLP profile switcher, Bluetooth auto-switch |

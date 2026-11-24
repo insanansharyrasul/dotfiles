@@ -1,0 +1,90 @@
+" .ideavimrc — mirrors VSCode Vim settings
+
+" ── General ────────────────────────────────────────
+let mapleader = " "
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set scrolloff=5
+set clipboard+=unnamed
+set surround
+set multiple-cursors
+set highlightedyank
+set number relativenumber
+set sneak
+
+" Keys handled by the IDE (like vim.handleKeys in VS Code)
+sethandler <C-d> a:ide
+sethandler <C-s> a:ide
+sethandler <C-z> a:ide
+sethandler <C-e> a:ide
+sethandler <C-j> n-v:ide i:vim
+
+" ── NAVIGATION ─────────────────────────────────────
+nnoremap j gj
+nnoremap k gk
+
+" Switch between buffers (tabs)
+nmap <S-h> :action PreviousTab<CR>
+nmap <S-l> :action NextTab<CR>
+
+" Splits
+nmap <leader>v :vsplit<CR>
+nmap <leader>s :split<CR>
+
+" Navigate back
+nmap <leader>a :action Back<CR>
+
+" ── PANE FOCUS (split groups) ──────────────────────
+" These match VSCode's focusLeftGroup / focusBelowGroup / etc.
+nmap <leader>h <C-w>h
+nmap <leader>j <C-w>j
+nmap <leader>k <C-w>k
+nmap <leader>l <C-w>l
+
+" ── DEBUG ──────────────────────────────────────────
+nmap <leader>r :action Debug<CR>
+nmap <leader>t :action Stop<CR>
+nmap <leader>e :action Resume<CR>
+nmap <leader>d :action Rerun<CR>
+nmap <leader>b :action ToggleLineBreakpoint<CR>
+nmap <leader>w :action CompileDirty<CR>
+nmap <leader>n :action Run<CR>
+
+" ── DIAGNOSTICS / MARKERS ─────────────────────────
+nmap [d :action GotoPreviousError<CR>
+nmap ]d :action GotoNextError<CR>
+
+" ── CODE ACTIONS ──────────────────────────────────
+nmap <leader>ca :action ShowIntentionActions<CR>
+
+" ── FIND / FORMAT ─────────────────────────────────
+nmap <leader>f :action GotoFile<CR>
+nmap <leader>q :action ReformatCode<CR>
+
+" ── HOVER / DOCUMENTATION ─────────────────────────
+nmap gh :action QuickDocumentation<CR>
+
+" ── CLEAR SEARCH HIGHLIGHT ────────────────────────
+nmap <C-n> :nohlsearch<CR>
+
+" ── VISUAL MODE ───────────────────────────────────
+" Stay in visual mode while indenting
+vmap < <gv
+vmap > >gv
+
+" Move selected lines while staying in visual mode
+vmap J :action MoveLineDown<CR>gv
+vmap K :action MoveLineUp<CR>gv
+
+" Toggle comment on selection
+vmap <leader>c :action CommentByLineComment<CR>
+
+" Expand selection (like VSCode smart select)
+vmap v :action EditorSelectWord<CR>
+
+" ── COMPLETION POPUP ──────────────────────────────
+" Ctrl+J/K to move in suggestion list (selectNext/PrevSuggestion)
+imap <C-j> <Action>(EditorDown)
+imap <C-k> <Action>(EditorUp)
