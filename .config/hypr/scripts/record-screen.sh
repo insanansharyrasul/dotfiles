@@ -47,7 +47,7 @@ fi
 mkdir -p "$HOME/Videos"
 OUTPUT_FILE="$HOME/Videos/screen-rec-$(date +%Y-%m-%d-%H%M%S).mp4"
 
-notify -u low -t 1000 "Screen recording" "Recording starts in 1 second"
+notify -u low -t 1000 "Screen recording (No Audio)" "Recording starts in 1 second"
 sleep 1.1
 
 wl-screenrec \
