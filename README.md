@@ -5,161 +5,174 @@
 </p>
 
 <p align="center">
-  <em>Personal configuration files for a customized Linux desktop environment</em>
+  <em>Hyprland (Lua config) and eww, with one switch for dark and light themes</em>
 </p>
 
----
+## Contents
+- [What's here](#whats-here)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Theme](#theme)
+- [Keybindings](#keybindings)
+- [eww bar](#eww-bar)
+- [Kanata](#kanata)
+- [Making changes](#making-changes)
+- [License](#license)
+- [Credit](#credit)
 
-## 📋 Table of Contents
-- [Dotfiles](#dotfiles)
-  - [📋 Table of Contents](#-table-of-contents)
-  - [🤔 What is dotfile?](#-what-is-dotfile)
-  - [📁 Content](#-content)
-    - [Folders](#folders)
-    - [Applications](#applications)
-    - [Themes](#themes)
-  - [📦 Requirements](#-requirements)
-    - [Optional Dependencies](#optional-dependencies)
-  - [🚀 Installation](#-installation)
-  - [🎯 Usage](#-usage)
-    - [Key Features](#key-features)
-  - [📄 License](#-license)
-  - [Credit](#credit)
+## What's here
 
-## 🤔 What is dotfile?
+| Path | What |
+| --- | --- |
+| `.config/hypr` | Hyprland 0.55+ config in Lua (`hyprland.lua` loads `conf/*.lua`), hypridle, hyprlock, screenshot and recording scripts |
+| `.config/eww` | Status bar (workspaces, audio, network, battery, TLP, notifications, popups) |
+| `.config/theme` | Theme generator: fills templates from a palette to make each app's color file |
+| `.config/swaync` | Notification center |
+| `.config/wofi` | App launcher and power menu |
+| `.config/swww` | Wallpaper switcher |
+| `.config/alacritty`, `kitty`, `ghostty` | Terminals |
+| `.config/fish` | Shell (fisher, nvm) |
+| `.config/nvim` | Neovim (lazy.nvim, LSP, telescope, treesitter) |
+| `.config/yazi`, `zathura`, `btop` | File manager, PDF viewer, system monitor |
+| `.config/kanata` | Key remapping (systemd user service) |
+| `.config/scripts` | TLP profile switcher, Bluetooth auto-switch |
+| `.config/gammastep` | Night light |
+| `.config/systemd/user` | User services (kanata, swww, pipewire) |
+| `.themes`, `.fonts`, `.poshthemes` | GTK theme (ayu-dark), fonts, oh-my-posh theme |
 
-A dotfile is a hidden configuration file that starts with a dot (.) and is used to store settings for applications and tools. They are commonly found in the home directory and allow you to customize your system's behavior and appearance.
+## Requirements
 
-## 📁 Content
+Core: `git`, `stow`, `hyprland` (0.55 or newer, for the Lua config), `eww`, `swaync`, `wofi`, `swww`, `hypridle`, `hyprlock`, `alacritty`, `fish`, `envsubst` (gettext), `jq`.
 
-### Folders
-- **`.config`** - Application configurations  
-- **`.local/share`** - User data (fonts, icons, file manager extensions)
-- **`.themes`** - GTK themes
-- **`.poshthemes`** - PowerShell themes
+The keybindings and scripts also call `grim`, `slurp`, `wl-clipboard`, `tesseract` (OCR), `wl-color-picker`, `wl-screenrec`, `libnotify`, `pactl`/`wpctl`, `brightnessctl`, `playerctl`, `nemo`, `yazi`, `kitty`, `neovim` and `nmtui`.
 
-### Applications
+Optional: `kanata`, `gammastep`, `tlp`, `kdeconnect`, `lxpolkit`, `gnome-keyring`, `ghostty`, `zathura`, `btop`, `oh-my-posh`, Papirus icon theme.
 
-**Window Managers & Compositors**
-- **Sway** - Wayland tiling compositor
-- **Hyprland** - Dynamic tiling Wayland compositor
-- **i3** - X11 tiling window manager
+## Installation
 
-**Status Bars & System Info**
-- **Waybar** - Status bar for Wayland
-- **Polybar** - Status bar for X11
-- **Btop** - System monitor
+```fish
+git clone git@github.com:insanansharyrasul/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+stow .
+~/.config/theme/apply.sh dark   # REQUIRED: generates the gitignored color files
+```
 
-**Terminals**
-- **Alacritty** - GPU-accelerated terminal emulator
-- **Ghostty** - Fast terminal emulator
+Then log into Hyprland.
 
-**Application Launchers & Menus**
-- **Wofi** - Wayland application launcher
-- **Rofi** - X11 application launcher
+> Run `apply.sh` before starting Hyprland for the first time. The color files, including `hypr/conf/colors.lua`, are generated and not committed, and Hyprland won't load without that one.
 
-**Shell & Tools**
-- **Fish** - Friendly interactive shell
-- **Neovim** - Text editor
-- **Kanata** - Key remapping tool
-- **Fusuma** - Touchpad gesture recognizer
+Some settings are specific to my machine, so check these:
+- Monitors are set in `.config/hypr/monitors.lua`. Outputs not listed there fall back to `highres` at scale 2.
+- The eww bar opens on `eDP-1` and `HDMI-A-1`, hardcoded in `.config/eww/scripts/launch.sh`.
+- The wallpaper list is in `.config/swww/swww.sh` and expects files in `~/Pictures/Wallpapers/`.
+- Autostart programs are in `.config/hypr/conf/autostart.lua`.
 
-**Wayland Utilities**
-- **Mako** - Notification daemon
-- **Swaylock** - Screen locker
-- **Swww** - Wallpaper daemon
-- **Wob** - Volume/brightness overlay bar
-- **xdg-desktop-portal** - Desktop integration portal
+To start Kanata at login:
+```fish
+systemctl --user enable --now kanata.service
+```
 
-**Other**
-- **Systemd** - System services
-- **GTK** - GTK 3.0 & 4.0 theming
-- **Nemo** - File manager extensions
+## Theme
 
-### Themes
-- **Ayu dark (customized)**
-- **Catppuccin**
-- **Dracula**
-- **Bibita Mouse Cursor**
+Every color comes from one palette, `.config/theme/palettes/dark.scss` or `light.scss`.
 
-## 📦 Requirements
+```fish
+~/.config/theme/apply.sh dark     # or: light
+~/.config/theme/apply.sh toggle   # switch between dark and light
+~/.config/theme/apply.sh          # re-apply last used mode
+```
 
-Ensure you have the following dependencies installed on your system:
+The script writes new colors for Alacritty, Kitty, Ghostty, btop, swaync, wofi, Hyprland borders, hyprlock, zathura, oh-my-posh and eww, then reloads eww, Hyprland, Kitty and swaync. Ghostty has to be reloaded by hand with `ctrl+shift+,`.
 
-| Package                    | Description                       | Installation Command                                                             |
-| -------------------------- | --------------------------------- | -------------------------------------------------------------------------------- |
-| **Git**                    | Version control system            | `sudo apt install git`                                                           |
-| **Stow**                   | Symlink farm manager              | `sudo apt install stow`                                                          |
-| **Sway**                   | Wayland compositor                | `sudo apt install sway`                                                          |
-| **Waybar**                 | Status bar                        | [Build manually from GitHub](https://github.com/Alexays/Waybar)                  |
-| **Alacritty**              | Terminal emulator                 | `sudo apt install alacritty`                                                     |
-| **Fish**                   | Shell                             | `sudo apt install fish`                                                          |
-| **Neovim**                 | Text editor                       | `sudo apt install neovim`                                                        |
-| **xdg-desktop-portal-wlr** | Desktop portal for screen sharing | [Build manually from GitHub](https://github.com/emersion/xdg-desktop-portal-wlr) |
+To change a color, edit the palette and run `apply.sh` again. To theme another app, add a template to `theme/templates/` that uses variables like `${accent}` and `${background}`, then add an `envsubst` line for it in `apply.sh`. Don't edit the generated files; they start with `Generated by theme/apply.sh` and get overwritten.
 
-### Optional Dependencies
-| Package         | Description                        | Installation Command                                           |
-| --------------- | ---------------------------------- | -------------------------------------------------------------- |
-| **Hyprland**    | Alternative compositor             | [Build from GitHub](https://github.com/hyprwm/Hyprland)        |
-| **i3**          | X11 window manager                 | `sudo apt install i3`                                          |
-| **Ghostty**     | Alternative terminal               | [Download from GitHub](https://github.com/ghostty-org/ghostty) |
-| **Btop**        | System monitor                     | `sudo apt install btop`                                        |
-| **Wofi**        | Application launcher               | `sudo apt install wofi`                                        |
-| **Rofi**        | X11 application launcher           | `sudo apt install rofi`                                        |
-| **Polybar**     | X11 status bar                     | [Build from GitHub](https://github.com/polybar/polybar)        |
-| **Mako**        | Notification daemon                | `sudo apt install mako-notifier`                               |
-| **Swaylock**    | Screen locker                      | `sudo apt install swaylock`                                    |
-| **Swww**        | Wallpaper daemon                   | [Build from GitHub](https://github.com/LGFae/swww)             |
-| **Wob**         | Overlay bar                        | `sudo apt install wob`                                         |
-| **Fusuma**      | Touchpad gestures                  | `sudo gem install fusuma`                                      |
-| **Kanata**      | Key remapping                      | [Download from GitHub](https://github.com/jtroo/kanata)        |
-| **kde-connect** | Multiplatform device communication | [Install from source](https://github.com/KDE/kdeconnect-kde)   |
+## Keybindings
 
-## 🚀 Installation
+`Super` is the main modifier. The full list is in `.config/hypr/conf/binds.lua`.
 
-1. **Clone the repository** to your home directory:
-   ```fish
-   git clone git@github.com:insanansharyrasul/dotfiles.git ~/.dotfiles
-   cd ~/.dotfiles
-   ```
+### Apps
 
-2. **Create symlinks** using GNU Stow:
-   ```fish
-   stow .
-   ```
+| Key | Action |
+| --- | --- |
+| `Super + Return` / `Super + Q` | Terminal (Alacritty) |
+| `Super + D` | App launcher (wofi) |
+| `Super + E` | Firefox |
+| `Super + F` / `Super + Shift + F` | Nemo / Yazi |
+| `Super + N` | Neovim |
+| `Super + V` | VS Code |
+| `Super + T` | System monitor |
+| `Super + A` | Network (nmtui) |
+| `Super + W` | Notification center |
+| `Super + B` | Toggle eww bar |
 
-3. **Reload your configuration** or restart your session to apply changes.
+### Windows and workspaces
 
-## 🎯 Usage
+| Key | Action |
+| --- | --- |
+| `Super + Shift + Q` | Close window |
+| `Super + H/J/K/L` (or arrows) | Move focus |
+| `Super + Shift + H/J/K/L` | Move window |
+| `Super + 1..0` | Go to workspace 1 to 10 |
+| `Super + Shift + 1..0` | Move window to workspace |
+| `Ctrl + Alt + H/L` | Previous / next workspace |
+| `Super + Tab` | Cycle layout: dwindle, scrolling, monocle |
+| `Super + S` | Toggle split |
+| `Super + G` | Fullscreen |
+| `Super + Space` | Toggle floating |
+| `Super + R` | Resize mode (`hjkl` or arrows, `Esc` to exit) |
+| `Super + X` / `Super + C` | Send to / toggle scratchpad |
+| `Super + [` / `]` / `/` | Gaps bigger / smaller / reset |
+| `Super + Shift + =` / `-` | Zoom in / out |
+| `Super + LMB` / `RMB` | Drag / resize window |
 
-After installation, your dotfiles will be symlinked to their appropriate locations. You can:
+### Tools and system
 
-- **Update configurations** by editing files in the `~/.dotfiles` directory
-- **Add new configs** by placing them in the appropriate folder structure
-- **Sync changes** by running `git pull` in the dotfiles directory
+| Key | Action |
+| --- | --- |
+| `Print` | Screenshot full screen |
+| `Super + Print` | Screenshot window |
+| `Super + Shift + S` | Screenshot region |
+| `Super + Shift + T` | OCR a region and copy the text |
+| `Super + Shift + E` | Color picker |
+| `Super + Shift + R` | Record screen (press again to stop) |
+| `Super + Ctrl + Shift + R` | Record with desktop audio |
+| `Super + Shift + A` / `G` | Record area / GIF |
+| `Super + F2` / `F3` / `F4` | Volume down / up / mute |
+| `Super + M` | Mic mute |
+| `Super + Ctrl + L` | Lock screen |
+| `Super + Shift + P` | Power menu |
+| `Super + Shift + C` | Reload Hyprland |
+| `Super + Shift + O` | Exit Hyprland |
 
-### Key Features
-- 🎨 **Consistent theming** with Ayu Dark and Catppuccin across all applications
-- ⚡ **Multiple WM/compositor configs** - Sway, Hyprland, and i3 ready to use
-- 🔧 **Custom status bars** - Waybar for Wayland, Polybar for X11
-- 📝 **Dual terminal setup** - Alacritty & Ghostty with matching themes
-- 🚀 **Wayland-first workflow** with Mako, Wofi, Swaylock, and Swww
-- 🎛️ **Enhanced input handling** - Kanata key remapping and Fusuma gestures
-- 🖱️ **GTK theming** for consistent application appearance
-- 📦 **Systemd services** for automatic startup configurations
+## eww bar
 
-## 📄 License
+Clicking the clock opens a calendar. Middle-click switches between the live and static wallpaper, and right-click moves to the next wallpaper.
 
-This project is licensed under the GPL-3.0 license - see the [LICENSE](LICENSE) file for details.
+The TLP icon opens an interactive switcher between the high and low performance profiles. The idle icon toggles the idle inhibitor.
 
+If the bar dies, restart it with `~/.config/eww/scripts/launch.sh`.
 
-## Credit 
+## Kanata
+
+| Key | Tap | Hold |
+| --- | --- | --- |
+| `Caps Lock` | `Esc` | `Ctrl` |
+| `` ` `` | `` ` `` | Arrow layer: `hjkl` and `wasd` act as arrows |
+| `Right Alt` | nothing | Mouse layer: `hjkl` move, `w`/`s` scroll, `Caps`/`` ` `` left/right click, `a` middle click, `d` speed boost |
+
+## Making changes
+
+The files in `~/.config` are symlinks into `~/.dotfiles`, so you can edit either path. Commit from `~/.dotfiles`.
+
+To add a new config, put it in `~/.dotfiles/.config/<app>/` and run `stow .` again. After a `git pull`, run `stow .` again only if new files came in.
+
+For Hyprland, add a file under `hypr/conf/` and `require` it in `hyprland.lua`. Each `require` runs in its own scope, so an error in one file won't break the others.
+
+## License
+
+GPL-3.0. See [LICENSE](LICENSE).
+
+## Credit
 I also used other resources for my dotfiles:
 1. [Ayu-dark theme, by K4zoku](https://github.com/K4zoku/dotfiles/tree/a486fb6d612db309e0dfc9123fb2ffcf9213db21)
 2. [RAM Usage Script for Eww Bar](https://github.com/insanansharyrasul/sysinfoscript)
-
----
-
-<p align="center">
-  <em>Happy customizing! 🏠✨</em>
-</p>
