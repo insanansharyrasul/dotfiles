@@ -55,8 +55,8 @@ bind -M insert \t accept-autosuggestion
 bind -M insert \e\[Z complete
 
 # g++-14
-set -Ux CC gcc-14
-set -Ux CXX g++-14
+set -gx CC gcc-14
+set -gx CXX g++-14
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
 set -gx PATH "$HOME/.local/bin" $PATH

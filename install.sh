@@ -6,6 +6,7 @@ sudo apt install -y stow $(grep -vE '^(linux-|lib)' packages/apt.txt | tr '\n' '
 xargs -a packages/vscode-extensions.txt -n1 code --install-extension || true
 dconf load / < packages/dconf.ini
 stow -v .
+git config core.hooksPath .githooks
 
 # Fonts and cursor are downloaded, not committed (they made the repo 150 MB).
 fonts=~/.local/share/fonts; icons=~/.local/share/icons
