@@ -17,6 +17,6 @@ case $selected in
     exec systemctl reboot
     ;;
   lock)
-    exec swaylock -f -c 000000
+    exec hyprlock
     ;;
 esac
