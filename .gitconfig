@@ -4,8 +4,6 @@
 [user]
 	name = insanansharyrasul
 	email = 63089983+insanansharyrasul@users.noreply.github.com
-[safe]
-	directory = /media/teaguy21/0ea03a61-b679-417a-ac3e-8f7fe9162c56/home/insan/Documents/Code/Real-time-chat-application-in-c
 [color]
 	ui = auto
 [init]
@@ -34,3 +32,7 @@
 
 [alias]
 	ds = diff --staged
+
+# Machine-specific settings (safe.directory, work email, ...) go here, not in the repo.
+[include]
+	path = ~/.gitconfig.local

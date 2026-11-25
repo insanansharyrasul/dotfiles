@@ -46,7 +46,7 @@ alias gl "git log"
 alias gst "/usr/bin/gs"
 
 # pnpm
-set -gx PNPM_HOME "/home/teaguy21/.local/share/pnpm"
+set -gx PNPM_HOME "$HOME/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
@@ -59,21 +59,21 @@ set -Ux CC gcc-14
 set -Ux CXX g++-14
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
-set -gx PATH "/home/teaguy21/.local/bin" $PATH
+set -gx PATH "$HOME/.local/bin" $PATH
 set -gx ANDROID_HOME $HOME/Android/Sdk
 set -gx ANDROID_SDK_ROOT $ANDROID_HOME
-set -gx PATH "$PATH:/home/teaguy21/.local/share/coursier/bin"
-set -gx PATH "/home/teaguy21/.rive/bin:$PATH"
+set -gx PATH "$PATH:$HOME/.local/share/coursier/bin"
+set -gx PATH "$HOME/.rive/bin:$PATH"
 set fish_greeting
 
 fish_add_path \
     $ANDROID_HOME/platform-tools \
     $ANDROID_HOME/emulator \
     $ANDROID_HOME/cmdline-tools/latest/bin
-fish_add_path /home/teaguy21/.opencode/bin
-fish_add_path -g "/home/teaguy21/.kimi-code/bin"
-fish_add_path -g "/home/teaguy21/.maestro/bin"
-fish_add_path -g "/home/teaguy21/.bun/bin"
+fish_add_path $HOME/.opencode/bin
+fish_add_path -g "$HOME/.kimi-code/bin"
+fish_add_path -g "$HOME/.maestro/bin"
+fish_add_path -g "$HOME/.bun/bin"
 
 function notify_on_complete --on-event fish_postexec
     set -l threshold 5000
@@ -114,3 +114,6 @@ function fc -d "Compile and run a C file"
 end
 
 zoxide init fish | source
+
+# Machine-specific settings, not committed.
+test -f ~/.config/fish/local.fish; and source ~/.config/fish/local.fish

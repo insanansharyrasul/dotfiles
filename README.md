@@ -39,7 +39,7 @@
 | `.config/scripts` | TLP profile switcher, Bluetooth auto-switch |
 | `.config/gammastep` | Night light |
 | `.config/systemd/user` | User services (kanata, swww, pipewire) |
-| `.themes`, `.fonts`, `.poshthemes` | GTK theme (ayu-dark), fonts, oh-my-posh theme |
+| `.themes`, `.poshthemes` | GTK theme (ayu-dark), oh-my-posh theme |
 
 ## Requirements
 
@@ -52,15 +52,19 @@ Optional: `kanata`, `gammastep`, `tlp`, `kdeconnect`, `lxpolkit`, `gnome-keyring
 ## Installation
 
 ```fish
-git clone git@github.com:insanansharyrasul/dotfiles.git ~/.dotfiles
+git clone --depth 1 https://github.com/insanansharyrasul/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-stow .
+./install.sh   # apt packages, dconf, stow, Nerd Fonts, Bibata cursor, fisher plugins
 ~/.config/theme/apply.sh dark   # REQUIRED: generates the gitignored color files
 ```
 
 Then log into Hyprland.
 
 > Run `apply.sh` before starting Hyprland for the first time. The color files, including `hypr/conf/colors.lua`, are generated and not committed, and Hyprland won't load without that one.
+
+HTTPS clone needs no GitHub login. Fonts and the cursor theme are downloaded by `install.sh`, not stored in the repo.
+
+Machine-specific settings go in `~/.gitconfig.local` and `~/.config/fish/local.fish`. Both are loaded automatically if they exist and are never committed.
 
 Some settings are specific to my machine, so check these:
 - Monitors are set in `.config/hypr/monitors.lua`. Outputs not listed there fall back to `highres` at scale 2.

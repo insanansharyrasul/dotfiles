@@ -108,7 +108,6 @@ easyeffects
 effectcraft
 efibootmgr
 eog
-evince
 evtest
 example-content
 exfat-fuse
@@ -182,7 +181,6 @@ gh
 ghostscript
 ghostty
 gifski
-gimp-gmic
 gir1.2-gmenu-3.0
 gir1.2-gtk-3.0
 gir1.2-gtksource-4

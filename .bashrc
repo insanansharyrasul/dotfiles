@@ -129,7 +129,7 @@ export PATH=$PATH:$HOME/.maestro/bin
 
 
 # Added by Antigravity CLI installer
-export PATH="/home/teaguy21/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

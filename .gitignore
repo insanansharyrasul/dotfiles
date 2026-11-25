@@ -17,3 +17,25 @@ style.css.map
 .config/eww/colors.scss
 .config/theme/mode
 .config/fish/fish_variables
+
+# Machine-specific overrides
+.config/fish/local.fish
+.gitconfig.local
+
+# Junk / generated
+.config/btop/btop.log
+*.bak
+.config/systemd/user/default.target.wants/
+.config/systemd/user/graphical-session.target.wants/
+
+# Installed by `fisher update` (fish_plugins is the source of truth)
+.config/fish/functions/fisher.fish
+.config/fish/functions/*nvm*.fish
+.config/fish/completions/fisher.fish
+.config/fish/completions/nvm.fish
+.config/fish/conf.d/nvm.fish
+
+# Downloaded by install.sh / apt instead of committed
+.fonts/
+.local/share/fonts/
+.local/share/icons/
