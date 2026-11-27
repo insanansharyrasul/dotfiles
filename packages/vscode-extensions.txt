@@ -1,3 +1,4 @@
 github.vscode-pull-request-github
+mhutchie.git-graph
 myriad-dreamin.tinymist
 vscodevim.vim

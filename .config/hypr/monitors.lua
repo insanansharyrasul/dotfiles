@@ -1,7 +1,7 @@
 hl.monitor({
   output = "eDP-1",
   -- mode = "highrr",
-  mode = "2880x1800@60",
+  mode = "2880x1800@90",
   position = "0x0", -- not auto-left: negative origin breaks ueberzugpp image placement
   scale = 2,
 })

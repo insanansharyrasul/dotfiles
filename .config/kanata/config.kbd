@@ -2,10 +2,12 @@
 
 (defcfg
   process-unmapped-keys yes
+  ;; grab mice too so wheel events reach kanata (lets caps+scroll resolve to ctrl)
+  linux-device-detect-mode keyboard-mice
 )
 
 (defsrc 
-  caps h j k l grv w a s d ralt
+  caps h j k l grv w a s d ralt mwu mwd
 )
 
 (defalias
@@ -25,13 +27,13 @@
 )
 
 (deflayer default 
-  @escctrl _ _ _ _ @grvchg _ _ _ _ @mousectl
+  @escctrl _ _ _ _ @grvchg _ _ _ _ @mousectl _ _
 )
 
 (deflayer arrows
-  _ left down up rght _ up left down rght _
+  _ left down up rght _ up left down rght _ _ _
 )
 
 (deflayer mouse
-  mltp @mlt @mdn @mup @mrt mrtp @mwu mmtp @mwd @spd XX
+  mltp @mlt @mdn @mup @mrt mrtp @mwu mmtp @mwd @spd XX _ _
 )
