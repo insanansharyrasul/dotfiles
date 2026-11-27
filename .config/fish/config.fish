@@ -6,7 +6,7 @@ set fish_cursor_replace_one underscore blink
 set fish_cursor_visual block
 
 # One letter alias
-alias b "cd .."
+alias b "btop"
 alias c "clear"
 alias d "apt update ; apt upgrade -y --allow-downgrades"
 alias f "python3"
