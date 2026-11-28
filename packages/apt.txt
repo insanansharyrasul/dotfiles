@@ -83,6 +83,7 @@ dconf-editor
 debhelper
 debian-goodies
 debsums
+deckcraft
 default-jdk
 default-jre
 deja-dup
@@ -117,6 +118,7 @@ eza
 fail2ban
 fastfetch
 ffmpeg
+figcraft
 file-roller
 filezilla
 findutils
@@ -623,6 +625,7 @@ pcmciautils
 pdftk
 peek
 perl
+photocraft
 php
 php8.4-common
 php8.4-mysql

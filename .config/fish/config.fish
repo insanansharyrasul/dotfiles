@@ -51,8 +51,7 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 
-bind -M insert \t accept-autosuggestion
-bind -M insert \e\[Z complete
+bind -M insert \cf forward-char
 
 # g++-14
 set -gx CC gcc-14
