@@ -29,6 +29,10 @@ hl.bind(mainMod .. " + F3", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK
 hl.bind(mainMod .. " + F4", hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("pactl set-source-mute 85 toggle"))
 
+-- Brighness controls
+hl.bind(mainMod .. " + F5", hl.dsp.exec_cmd("brightnessctl set 10%-"), { repeating = true })
+hl.bind(mainMod .. " + F6", hl.dsp.exec_cmd("brightnessctl set 10%+"))
+
 -- Power menu
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("~/.config/wofi/power.sh"))
 
